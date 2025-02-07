@@ -1,0 +1,20 @@
+sitemap openweathermap label="Open Weather MAP" {
+	Frame label="Startpage" icon="sun" {
+		Text item=Owm_Home_StationId
+		Text item=Owm_Home_StationName
+		Text item=Owm_Home_LastMeasurement
+		Text item=Owm_Home_StationLocation
+		Text item=Owm_Home_Current_Condition
+		Text item=Owm_Home_Current_Temperature
+		Text item=Owm_Home_Current_Pressure
+		Text item=Owm_Home_Current_Humidity
+		Text item=Owm_Home_Current_WindSpeed
+		Text item=Owm_Home_Current_WindDirection
+		Text item=Owm_Home_Current_Cloudiness
+		Text item=Owm_Home_Current_RainVolume
+		Text item=Owm_Home_Current_SnowVolume
+		Text item=Owm_Home_Current_Visibility
+		Text item=Owm_Home_Forcast03_RainVolume
+		Text item=Owm_Home_Forcast24_RainVolume
+	}
+}

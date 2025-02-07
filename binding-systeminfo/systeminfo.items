@@ -1,0 +1,78 @@
+//. das ist die .
+Group	gSystemInfo								"System Information"	<info>		(gTechnik)	["Equipment"]
+
+/* Network information */
+String	Systeminfo_Network_AdapterName        "Adapter name"        <network>         (gSystemInfo)	{ channel="systeminfo:computer:work:network#networkDisplayName" }
+String	Systeminfo_Network_Name               "Name"                <network>         (gSystemInfo)	{ channel="systeminfo:computer:work:network#networkName" }
+String Systeminfo_Network_IP                 "IP address"          <network>         (gSystemInfo)	{ channel="systeminfo:computer:work:network#ip" }
+String Systeminfo_Network_Mac                "Mac address"         <network>         (gSystemInfo)	{ channel="systeminfo:computer:work:network#mac" }
+Number Systeminfo_Network_DataSent           "Data sent"           <flowpipe>        (gSystemInfo)	{ channel="systeminfo:computer:work:network#dataSent" }
+Number Systeminfo_Network_DataReceived       "Data received"       <returnpipe>      (gSystemInfo)	{ channel="systeminfo:computer:work:network#dataReceived" }
+Number Systeminfo_Network_PacketsSent        "Packets sent"        <flowpipe>        (gSystemInfo)	{ channel="systeminfo:computer:work:network#packetsSent" }
+Number Systeminfo_Network_PacketsReceived    "Packets received"    <returnpipe>      (gSystemInfo)	{ channel="systeminfo:computer:work:network#packetsReceived" }
+
+/* CPU information*/
+String Systeminfo_CPU_Name                   "Name"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:cpu#name" }
+String Systeminfo_CPU_Description            "Description"         <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:cpu#description" }
+Number Systeminfo_CPU_Load1                  "Load (1 min)"        <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:cpu#load1" }
+Number Systeminfo_CPU_Load5                  "Load (5 min)"        <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:cpu#load5" }
+Number Systeminfo_CPU_Load15                 "Load (15 min)"       <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:cpu#load15" }
+Number Systeminfo_CPU_Threads                "Threads"             <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:cpu#threads" }
+Number Systeminfo_CPU_Uptime                 "Uptime"              <time>            (gSystemInfo)	{ channel="systeminfo:computer:work:cpu#uptime" }
+
+/* Drive information*/
+String Systeminfo_Drive_Name                 "Name"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:drive#name" }
+String Systeminfo_Drive_Model                "Model"               <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:drive#model" }
+String Systeminfo_Drive_Serial               "Serial"              <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:drive#serial" }
+
+/* Storage information*/
+String Systeminfo_Storage_Name               "Name"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:storage#name" }
+String Systeminfo_Storage_Type               "Type"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:storage#type" }
+String Systeminfo_Storage_Description        "Description"         <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:storage#description" }
+Number Systeminfo_Storage_Available          "Available"           <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:storage#available" }
+Number Systeminfo_Storage_Used               "Used"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:storage#used" }
+Number Systeminfo_Storage_Total              "Total"               <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:storage#total" }
+Number Systeminfo_Storage_Available_Percent  "Available (%)"       <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:storage#availablePercent" }
+Number Systeminfo_Storage_Used_Percent       "Used (%)"            <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:storage#usedPercent" }
+
+/* Memory information*/
+Number Systeminfo_Memory_Available           "Available"           <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:memory#available" }
+Number Systeminfo_Memory_Used                "Used"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:memory#used" }
+Number Systeminfo_Memory_Total               "Total"               <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:memory#total" }
+Number Systeminfo_Memory_Available_Percent   "Available (%)"       <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:memory#availablePercent" }
+Number Systeminfo_Memory_Used_Percent        "Used (%)"            <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:memory#usedPercent" }
+
+/* Swap memory information*/
+Number Systeminfo_Swap_Available             "Available"           <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:swap#available" }
+Number Systeminfo_Swap_Used                  "Used"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:swap#used" }
+Number Systeminfo_Swap_Total                 "Total"               <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:swap#total" }
+Number Systeminfo_Swap_Available_Percent     "Available (%)"       <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:swap#availablePercent" }
+Number Systeminfo_Swap_Used_Percent          "Used (%)"            <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:swap#usedPercent" }
+
+/* Battery information*/
+/*
+String Systeminfo_Battery_Name               "Name"                <batterylevel>    (gSystemInfo)	{ channel="systeminfo:computer:work:battery#name" }
+Number Systeminfo_Battery_RemainingCapacity  "Remaining Capacity"  <batterylevel>    (gSystemInfo)	{ channel="systeminfo:computer:work:battery#remainingCapacity" }
+Number Systeminfo_Battery_RemainingTime      "Remaining Time"      <batterylevel>    (gSystemInfo)	{ channel="systeminfo:computer:work:battery#remainingTime" }
+*/
+
+/* Display information*/
+/*
+String Systeminfo_Display_Description        "Display description" <screen>          (gSystemInfo)	{ channel="systeminfo:computer:work:display#information" }
+*/
+
+/* Sensors information*/
+/*
+Number Systeminfo_Sensor_CPUTemp             "CPU Temperature"     <temperature>     (gSystemInfo)	{ channel="systeminfo:computer:work:sensors#cpuTemp" }
+Number Systeminfo_Sensor_CPUVoltage          "CPU Voltage"         <energy>          (gSystemInfo)	{ channel="systeminfo:computer:work:sensors#cpuVoltage" }
+Number Systeminfo_Sensor_FanSpeed            "Fan speed"           <fan>             (gSystemInfo)	{ channel="systeminfo:computer:work:sensors#fanSpeed" }
+*/
+
+/* Process information*/
+/*
+Number Systeminfo_Process_load               "Load"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:process#load" }
+Number Systeminfo_Process_used               "Used"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:process#used" }
+String Systeminfo_Process_name               "Name"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:process#name" }
+Number Systeminfo_Process_threads            "Threads"             <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:process#threads" }
+String Systeminfo_Process_path               "Path"                <none>            (gSystemInfo)	{ channel="systeminfo:computer:work:process#path" }
+*/

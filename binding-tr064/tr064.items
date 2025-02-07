@@ -1,0 +1,25 @@
+Group	gtr064				"tr064"       <ic_illu_fbox7490>      (gMisc,EG_Technik)        ["Equipment","NetworkAppliance"]
+
+//Group gtr064Info             "Fritz!Box Info"    <info> (gtr064)
+//Group gtr064Phone            "Fritz!Box Phone"   <ic_phoneincradle_gray> (gtr064)
+//Group gtr064Network          "Fritz!Box Network" <ic_nexus> (gtr064)
+//Group gtr064WLAN             "Fritz!Box WLAN"    <ic_lan_blue> (gtr064)
+
+Switch		tr064phoneRalf				"Ralf Telefon"	<presence>	(gtr064)   ["Equipment","NetworkAppliance"] {channel="tr064:subdeviceLan:fb7490:maconline:06:81:CA:78:78:B1"}
+// Contact		tr064phoneRalf			"Ralf Telefon [MAP(boolean.map):%s]"	<network>	(gtr064Info)   ["Equipment","NetworkAppliance"] {fritzboxtr064="maconline:06-81-CA-78-78-B1"}
+
+Switch		tr064Wifi24					"1 2,4GHz Wifi"				<network>	(gtr064)	["Equipment","NetworkAppliance"] {channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifi24GHzEnable" }
+Switch		tr064Wifi50					"1 5,0GHz Wifi"				<network>	(gtr064)	["Equipment","NetworkAppliance"] {channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifi5GHzEnable" }
+Switch		tr064GuestWifi				"1 Guest Wifi"				<network>	(gtr064)	["Equipment","NetworkAppliance"] {channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifiGuestEnable"}
+
+String		tr064WanIP					"2 tr064 WAN IP [%s]"	<network>	(gtr064)	["Equipment","NetworkAppliance"]	{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:wanIpAddress"}
+String		tr064WanConnectionStatus	"2 tr064 WAN Status [%s]"	<network>	(gtr064)	["Equipment","NetworkAppliance"]	{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:wanConnectionStatus"}
+Number:Time	tr064WanUptime				"2 tr064 WAN Uptime "					<network>	(gtr064)	["Equipment","NetworkAppliance"]	{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:uptime"}
+
+// Incoming, Outgoing and missed calls in the last 7 days
+//Number tr064IncomingCalls "Incoming Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:inboundCalls_7" }
+//Number tr064OutgoingCalls "Outgoing Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:outboundCalls_7" }
+//Number tr064MissedCalls "Missed Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:missedCalls_7" }P
+
+Switch		tr064tamEnable			"3 AB Ein/Aus"			<phone>		(gtr064)	["Status"]	{ channel="tr064:fritzbox:fb7490:tamEnable_0 " }
+Number		tr064tamNewMessages		"3 AB Anrufe [%d]"		<phone>		(gtr064)	["Status"]	{ channel="tr064:fritzbox:fb7490:tamNewMessages_0" }

@@ -1,0 +1,32 @@
+sitemap systeminfo label="SystemInfo Binding" {
+	Frame label="Startpage" icon="sun" {
+		Text item=Systeminfo_Network_AdapterName
+		Text item=Systeminfo_Network_Name
+		Text item=Systeminfo_Network_IP
+		Text item=Systeminfo_Network_Mac
+		Text item=Systeminfo_Network_DataSent
+		Text item=Systeminfo_CPU_Load1
+		Text item=Systeminfo_CPU_Load5
+		Text item=Systeminfo_CPU_Load15
+		Text item=Systeminfo_CPU_Threads
+		Text item=Systeminfo_CPU_Uptime
+		Text item=Systeminfo_Storage_Name
+		Text item=Systeminfo_Storage_Type
+		Text item=Systeminfo_Storage_Description
+		Text item=Systeminfo_Storage_Available
+		Text item=Systeminfo_Storage_Used
+		Text item=Systeminfo_Storage_Total
+		Text item=Systeminfo_Storage_Available_Percent
+		Text item=Systeminfo_Storage_Used_Percent
+		Text item=Systeminfo_Memory_Available
+		Text item=Systeminfo_Memory_Used
+		Text item=Systeminfo_Memory_Total
+		Text item=Systeminfo_Memory_Available_Percent
+		Text item=Systeminfo_Memory_Used_Percent
+		Text item=Systeminfo_Swap_Available
+		Text item=Systeminfo_Swap_Used
+		Text item=Systeminfo_Swap_Total
+		Text item=Systeminfo_Swap_Available_Percent
+		Text item=Systeminfo_Swap_Used_Percent
+	}
+}

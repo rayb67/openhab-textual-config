@@ -1,0 +1,173 @@
+// Im Sommer wenn es laengere Zeit draussen Heiss ist, wird es auch im Haus staetig waermer.
+// Mit dieser Regel soll dann Nachts durch spezielle Massnahmen fuer zusaetzliche kuehlung
+// gesorgt werden. 
+// a) Ein Dachfenster im Flur oben im Dach soll geoeffnet werden. Da die warme Luft nach oben steigt,
+//    kann diese warme Luft direkt aus dem Fenster raus.
+// b) Die Lueftungsanlage wird auf volle Pulle gestellt (Party Mode). Damit wird zusaetzliche die
+//    Luft im Haus ausgetauscht. Warme Luft raus, kalte Luft rein.
+//
+// Wenn die Solltemperatur (belueftung_temperature_soll) im Mittel (belueftung_avg_time) 
+// ueberschritten wird, wird die Lueftungsanlage auf 1 (server-devmal) gestellt.
+//
+
+// number of houres to calculate average temperature
+var Number belueftung_avg_time = 72
+// Target value
+//SunProSollTempAussen.state
+// BelueftungSollTempAussen = 20
+var Number belueftung_temperature_soll = 20
+// Wenn die temp ueberschritten wird, wird tagsueber auf Fan auf 1 und AutoMode aktiviert 
+// 26.7. von 25. auf 22. runter
+var Number belueftung_temperature_max_aussen = 22
+// average temperature
+var Number tmp_temperatur
+
+// Der Wert TempAussenAvg1W, wird in der Rule Datalogging.rules ermittelt
+
+rule "Belueftung"
+when
+//Time cron "0 */2 * * * ?"      // every two minute only for testing
+//or
+Time cron "0 2 */1 * * ?"      //   every houre
+or
+Item BelueftungOnOff changed
+then
+
+    var Number month = now.getMonthValue
+    if (month < 10) { month = '0' + month.toString() } else { month = month.toString() }
+    var Number day = now.dayOfMonth
+    if (day < 10) { day = '0' + day.toString() } else { day = day.toString() }
+	var Number year = now.getYear
+
+	// Ab Monat MAI
+	var belueftung_monat_von = ZonedDateTime.parse(year+"-05-01T00:00:00.349+01:00")
+	// Bis zum 1. Oktober
+	var belueftung_monat_bis = ZonedDateTime.parse(year+"-10-01T00:00:00.349+01:00")
+	
+	// Nachts - soll es im Haus kuehler werden. Dazu wir das Dachfenster geoeffnet und die Lueftung auf volle Pulle gestellt!
+	var belueftung_nacht_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T22:30:00.349+01:00")
+	var belueftung_nacht_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T07:00:00.349+01:00")
+	// Tagsueber - soll wenn es zu warm ist, die Lueftung reduziert werden.
+	var belueftung_tag_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T09:00:00.349+01:00")
+	var belueftung_tag_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T21:00:00.349+01:00")
+
+	var Number tmp_temperatur = TempAussen.averageSince(now.minusHours(belueftung_avg_time))
+
+	logInfo("Belueftung","monat von        : " + belueftung_monat_von.toString("yyyy.MM.dd_HH:mm")+" - "+belueftung_monat_bis.toString("yyyy.MM.dd_HH:mm"))
+	logInfo("Belueftung","nacht stunde von : "+belueftung_nacht_stunde_von.toString("yyyy.MM.dd_HH:mm")+" "+now.isAfter(belueftung_nacht_stunde_von)+" - "+belueftung_nacht_stunde_bis.toString("yyyy.MM.dd_HH:mm")+" "+now.isBefore(belueftung_nacht_stunde_bis))
+	logInfo("Belueftung","tag stunde von   : "+belueftung_tag_stunde_von.toString("yyyy.MM.dd_HH:mm")+" "+now.isAfter(belueftung_tag_stunde_von)+" - "+belueftung_tag_stunde_bis.toString("yyyy.MM.dd_HH:mm")+" "+now.isBefore(belueftung_tag_stunde_bis))
+	logInfo("Belueftung","Automatik On/off : "+BelueftungOnOff.state)
+	logInfo("Belueftung","TempAussenAvg1W  : "+TempAussenAvg1W.state.format("%.1f")+" > "+belueftung_temperature_soll+" (Schwellwert) ")
+	logInfo("Belueftung","Temperaturen avg : "+tmp_temperatur+" > "+belueftung_temperature_soll+" (Schwellwert)  ueber "+belueftung_avg_time+" h")
+	logInfo("Belueftung","START Level/Mode : "+comfoairFanLevel.state+"/"+comfoairAutoMode.state+" Temp "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll+" State: "+BelueftungState.state)
+
+//		( tmp_temperatur > belueftung_temperature_soll) &&
+
+	if ( 
+		(BelueftungOnOff.state == ON) && 
+		((TempAussenAvg1W.state as QuantityType<Number>).doubleValue > belueftung_temperature_soll) &&
+		(now.isAfter(belueftung_monat_von)) && 
+		(now.isBefore(belueftung_monat_bis)) )        // Monat 
+	{
+		logInfo("Belueftung","Im Monatszeitrum ......     ") 
+		if (
+			(now.isAfter(belueftung_nacht_stunde_von)) &&
+			(now.isBefore(belueftung_nacht_stunde_bis)) )   // Stunde
+		{
+			logInfo("Belueftung","10-nachts und los geht es TempAussen    : "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll)
+
+			if ((TempAussen.state <= belueftung_temperature_soll) &&
+				(BelueftungState.state != ON ) )
+			{  
+				logInfo("Belueftung","20-Ein Dachfenster oeffnen....     ") 
+				BelueftungState.postUpdate(ON)
+//				sendCommand(SendKeyOGFlurDachFAuf, ON)
+//Switch SendKeyOGFlurDachFAuf 		"OGFlurDachFAuf"					{lcn="[ON:lcn_pi:KEYS.S0.M200.A8.HIT]"}
+				val actions = getActions("lcn","lcn:module:bus:S000M200")
+				actions.hitKey("A", 8, "HIT")
+				logInfo("Belueftung","Ein Lueftung auf 4  ....     ") 
+				sendCommand(comfoairAutoMode, 0) // 1=Auto; 0=Manuell
+				sendCommand(comfoairFanLevel, 4) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+			}
+		} else if (
+				(now.isAfter(belueftung_tag_stunde_von)) &&
+				(TempAussenAvg.state > belueftung_temperature_soll) &&
+				(now.isBefore(belueftung_tag_stunde_bis)) )
+		{
+//			logInfo("Belueftung","tagsueber Lueftung auf Auto  ....     ") 
+			sendCommand(comfoairFanLevel, 1) // 1=Automatik - das sind im Sommer i.d.R 15% Fan Level, 2=wenig, 3=normal, 4=start
+			sendCommand(comfoairAutoMode, 1) // 1=Auto; 0=Manuell
+		}
+		else if  (BelueftungState.state == ON )        
+		{
+			logInfo("Belueftung","40-Aus Dachfenster schließen....     ") 
+			BelueftungState.postUpdate(OFF)
+//			sendCommand(SendKeyOGFlurDachFZu, ON)
+//Switch SendKeyOGFlurDachFZu 		"OGFlurDachFZu"						{lcn="[ON:lcn_pi:KEYS.S0.M200.A7.HIT]"}
+			val actions = getActions("lcn","lcn:module:bus:S000M200")
+			actions.hitKey("A", 7, "HIT")
+			sendCommand(comfoairFanLevel, 1) // 1=Automatik - das sind im Sommer i.d.R 15% Fan Level, 2=wenig, 3=normal, 4=start
+			sendCommand(comfoairAutoMode, 1) // 1=Auto; 0=Manuell
+			BelueftungNachts.postUpdate(0)
+		}
+		else
+		{
+			logInfo("Belueftung","50-nicht im Zeitfenster") 
+		}
+	}
+	else if  (BelueftungState.state == ON )        
+	{
+		logInfo("Belueftung","60-...default") 
+		BelueftungState.postUpdate(OFF)
+//		sendCommand(SendKeyOGFlurDachFZu, ON)
+		val actions = getActions("lcn","lcn:module:bus:S000M200")
+		actions.hitKey("A", 7, "HIT")
+		sendCommand(comfoairFanLevel, 1) // 1=Automatik - das sind im Sommer i.d.R 15% Fan Level, 2=wenig, 3=normal, 4=start
+		sendCommand(comfoairAutoMode, 1)
+	}
+	else
+	{
+		logInfo("Belueftung","100-Nicht im Zeitfenster oder deaktiviert--------------------------")
+		if ( (TempAussen.state > belueftung_temperature_max_aussen) &&
+			 (OhAbwesend.state == ON)) 
+		{
+			logInfo("Belueftung","110- Abwesend und warm --------------------------")
+			sendCommand(comfoairAutoMode, 1) // 1=Auto; 0=Manuell
+			sendCommand(comfoairFanLevel, 1) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+		}
+// Der folgend Teil deaktiviert, weil das bewusste setzen auf Level 2
+// nicht ueberschrieben werden soll
+/*		
+		else if (	(TempAussen.state < belueftung_temperature_max_aussen) &&
+					(OhAbwesend.state != ON)) 
+		{
+			logInfo("Belueftung","120- Default  --------------------------")
+			sendCommand(comfoairAutoMode, 1) // 1=Auto; 0=Manuell
+			sendCommand(comfoairFanLevel, 3) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+		}
+*/
+	}
+	logInfo("Belueftung","ENDE  Level/Mode "+ comfoairFanLevel.state + "/"+comfoairAutoMode.state)
+end
+
+// ****************************************************************
+// ****************************************************************
+// Belueftung: Wenns im Sommer heiss ist, wird automatisch das Dachfenster OG Flur geoeffnet.
+// Falls es Fehler gibt und das Dachfenster offen bleibt, wird pauschal das Fenster geschlossen.
+rule "TimerDiverses:DachFensterZu"
+when
+        Time cron "0 30 7 ? * MON-FRI" //   0sec 0min 7h
+		or
+        Time cron "0 30 8 ? * SAT-SUN" //   0sec 0min 7h
+		
+then
+			logInfo("BelueftungTimer","START")
+			createTimer(now.plusMinutes( 15 ),  [ |
+				logInfo("BelueftungTimer","Dachfenster Kind Zu")
+				SendKeyOGKindDachFZu.postUpdate(ON)
+				logInfo("BelueftungTimer","Dachfenster Flur Zu")
+				SendKeyOGFlurDachFZu.postUpdate(ON)
+			])
+			logInfo("BelueftungTimer","ENDE")
+end
+

@@ -1,0 +1,20 @@
+//Bridge squeezebox:squeezeboxserver:server-dev   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
+Bridge squeezebox:squeezeboxserver:server   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
+{
+	Thing squeezeboxplayer wohnzimmer    "SB Wohnzimmer " @ "Wohnzimmer"	
+	[ mac="74:da:38:58:30:32" , notificationTimeout=30, notificationVolume=50 ] // Wohnzimmer
+	Thing squeezeboxplayer mobile        "SB Mobile" @ "Mobile"             
+	[ mac="d0:37:45:c2:81:99" , notificationTimeout=30, notificationVolume=50 ] // Mobile - WLAN dongle
+	Thing squeezeboxplayer bad           "SB Bad" @ "Bad"					
+	[ mac="b8:27:eb:73:c0:bf" , notificationTimeout=30, notificationVolume=50 ] // Bad
+	Thing squeezeboxplayer kueche        "SB Kueche" @ "Kueche"
+	[ mac="dc:a6:32:04:70:83" , notificationTimeout=30, notificationVolume=50 ] // Kueche
+	Thing squeezeboxplayer karen		"SB Karen" @ "Oase"			
+	[ mac="b8:27:eb:fd:79:92" , notificationTimeout=30, notificationVolume=50 ] // Display Kaaren
+}
+/*
+	Thing squeezeboxplayer boom          "SB Boom" @ "Boom"					
+	[ mac="c0:28:8d:f0:f9:87" , notificationTimeout=30, notificationVolume=50 ] // BOOM
+	Thing squeezeboxplayer schlafzimmer  "SB Schlafz" @ "Schlafz"			
+	[ mac="b8:27:eb:c0:7d:24" , notificationTimeout=30, notificationVolume=50 ] // WHITE
+*/

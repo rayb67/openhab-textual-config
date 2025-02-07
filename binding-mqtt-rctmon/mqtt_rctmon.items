@@ -1,0 +1,70 @@
+// Monitoring/PV/Current
+Group gPV									"RCT/Photovoltaik"					<solarplant>
+
+Switch			PV_TestSwitch			"RCT Test Switch"					(gPV,gMisc)
+Switch			PV_Error_LIM			"RCT Error LIM"						(gPV,gMisc)
+
+
+Number:Energy	PV_Daily_House_Power	"RCT Energy Haus (täglich)"			<energy>		(gPV,AUS_Dach)	["Measurement","Energy"]
+Number:Energy	PV_Energy_Household_Sum "RCT Energy Household SUM" 	 		<energy>		(gPV,AUS_Dach)	["Measurement","Energy","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Energy_Household_Sum", stateDescription=" "[ pattern="%.1f kWh" ] }
+
+// ###############################
+Number:Energy	PV_Grid_Power_Sum 		"RCT Grid Power SUM" 	 			<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ stateDescription=" "[ pattern="%.1f W" ] }
+
+Number:Energy	PV_Grid_Power_Phase1 	"RCT Grid Power Phase 1" 	 		<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Grid_Power_Phase1", stateDescription=" "[ pattern="%.1f W" ] }
+Number:Energy	PV_Grid_Power_Phase2 	"RCT Grid Power Phase 2" 	 		<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Grid_Power_Phase2", stateDescription=" "[ pattern="%.1f W" ] }
+Number:Energy	PV_Grid_Power_Phase3 	"RCT Grid Power Phase 3" 	 		<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Grid_Power_Phase3", stateDescription=" "[ pattern="%.1f W" ] }
+
+// ###############################
+Number:Energy	PV_Daily_Grid_Load		"RCT Energie Netzlast (täglich)"	<energy>		(gPV,AUS_Dach)  ["Measurement","Energy"]
+Number:Energy	PV_Energy_Grid_Load_Sum "RCT Energie Netzlast SUM" 	 		<energy>		(gPV,AUS_Dach)	["Measurement","Energy","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Energy_Grid_Load_Sum", stateDescription=" "[ pattern="%.1f kWh" ] }
+Number:Power	PV_Energy_Grid_Feed_Sum "RCT Einspeisung aktuell"		 	<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Energy_Grid_Feed_Sum", stateDescription=" "[ pattern="%.1f kWh" ] }
+
+// ###############################
+Number:Power	PV_Daily_Generator		"RCT Energie Erzeugt (täglich)"		<solarplant>    (gPV,AUS_Dach)   ["Measurement","Power","Inverter"] 
+{ stateDescription=" "[ pattern="%.1f W" ] }
+
+Number:Power	PV_Solar_Generator_Sum	"RCT Erzeugt"                     	<solarplant>    (gPV,AUS_Dach)   ["Measurement","Power","Inverter"] 
+{ stateDescription=" "[ pattern="%.1f W" ] }
+
+Number:Energy	PV_Energy_Solar_Generator_A "RCT Energy Generator_A"  		<energy>		(gPV,AUS_Dach)	["Measurement","Energy","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Energy_Solar_Generator_A", stateDescription=" "[ pattern="%.1f kWh" ] }
+Number:Energy	PV_Energy_Solar_Generator_B "RCT Energy Generator_B"  		<energy>		(gPV,AUS_Dach)	["Measurement","Energy","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Energy_Solar_Generator_B", stateDescription=" "[ pattern="%.1f kWh" ] }
+
+// ###############################
+Number:Power PV_Input_Sum				"RCT Input Sum"                     <solarplant>    (gPV,AUS_Dach)   ["Measurement","Power","Inverter"] 
+{ stateDescription=" "[ pattern="%.1f W" ] }
+Number:Power	PV_Input_A_Watt 		"RCT Input A in Watt" 				<solarplant>	(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Input_A_Watt", stateDescription=" "[ pattern="%.1f W" ] }
+Number:Power	PV_Input_B_Watt 		"RCT Input B in Watt" 			 	<solarplant>	(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Input_B_Watt", stateDescription=" "[ pattern="%.1f W" ] }
+
+Number:Power	PV_Input_A_Volt 		"RCT Input A in Volt" 				<solarplant>	(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Input_A_Volt", stateDescription=" "[ pattern="%.1f V" ] }
+Number:Power	PV_Input_B_Volt 		"RCT Input B in Volt"			 	<solarplant>	(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Input_B_Volt", stateDescription=" "[ pattern="%.1f V" ] }
+// ###############################
+Number:Power	PV_House_Current_Power 	"RCT House Current Power" 	 		<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter"]
+{ channel="mqtt:topic:rctclient:rctmon:PV_House_Current_Power", stateDescription=" "[ pattern="%.1f W" ] }
+Number:Power	PV_Battery_Voltage 		"RCT Battery Voltage" 				<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter","Battery"]
+{ channel="mqtt:topic:rctclient:rctmon:PV_Battery_Voltage", stateDescription=" "[ pattern="%.1f V" ] }
+Number:Power	PV_Battery_Upper_SOC 	"RCT Battery Upper SOC Limit"		<line>			(gPV,AUS_Dach)	["Measurement","Power","Inverter","Battery"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Battery_Upper_SOC", stateDescription=" "[ pattern="%.1f %%" ] }
+Number:Energy	PV_Battery_Energy_From	"RCT Battery Energy From" 			<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Battery_Energy_From", stateDescription=" "[ pattern="%.1f kWh" ] }
+Number:Energy	PV_Battery_Energy_Into	"RCT Battery Energy Into" 		 	<energy>		(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Battery_Energy_Into", stateDescription=" "[ pattern="%.1f kWh" ] }
+Number:Power	PV_Battery_Current_Power	"RCT Battery Current Power" 	<battery>		(gPV,AUS_Dach)	["Measurement","Power","Inverter","Battery"] 
+{ channel="mqtt:topic:rctclient:rctmon:PV_Battery_Current_Power", stateDescription=" "[ pattern="%.1f W" ] }
+Number:Temperature	PV_Battery_Temperature	"RCT Battery Temperature" 	 	<temperature>	(gPV,AUS_Dach)	["Measurement","Power","Inverter","Battery"]
+{ channel="mqtt:topic:rctclient:rctmon:PV_Battery_Temperature", stateDescription=" "[ pattern="%.1f °C" ]}
+Number:Dimensionless	PV_Battery_SOC 		"RCT Battery State of Charge"	<batterylevel>	(gPV,AUS_Dach)	["Energy","Inverter","Battery"]
+{ channel="mqtt:topic:rctclient:rctmon:PV_Battery_SOC", stateDescription=" "[ pattern="%.1f" ] }

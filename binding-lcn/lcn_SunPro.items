@@ -1,0 +1,62 @@
+Group gSunPro                       "Sonnenschutz"  <sun>
+
+Switch	SunProTestSwitch	"SunPro Test"		(gTest,gSunPro)
+Switch	OhLamellenMorgensGerade		"Lamellen Gerade"				<sun>			(gSunPro)
+
+// Sonnen Schutz aktivieren - Kommand an LCN, wo ueber Tasten die Funktion ausgeloest wird.
+Switch SendKeySunProWestJust            "West Justierung"               <motion>        (gSunPro)
+Switch OhSonnenschutzJustierung    "Sonnenschutz Justierung E/A"           <info>          (gMisc,gSunPro)
+
+// Den aktuellen Status zwischenspeichern innerhalb der Rule sonnenschutz.rules
+Switch SunProStatusNord      "Status Nord"			(gSunPro)
+Switch SunProStatusSued      "Status Sued"			(gSunPro)
+Switch SunProStatusOst       "Status Ost"			(gSunPro)
+Switch SunProStatusWest      "Status West"			(gSunPro)
+Switch SunProStatusErLi      "Status ErLi"			(gSunPro)
+Switch SunProStatusErRe      "Status ErRe"			(gSunPro)
+
+// Fuer ein manuelles Starten
+Switch SendKeySunProOstOn		"manuell trigger Ost"				(gSunPro)
+Switch SendKeySunProSuedOn		"manuell trigger Sued"				(gSunPro)
+Switch SendKeySunProWestOn		"manuell trigger West"				(gSunPro)
+Switch SendKeySunProNordOn		"manuell trigger Nord"				(gSunPro)
+Switch SendKeySunProErLiOn		"manuell trigger ErLi"				(gSunPro)
+Switch SendKeySunProErReOn		"manuell trigger ErRe"				(gSunPro)
+
+// Den aktuellen Status zwischenspeichern innerhalb der Rule rollo.rules
+Switch RolloRunterStatus            "RolloRunter Status"		(gSunPro)
+Switch RolloJustierenStatus         "RolloJustieren Status"		(gSunPro)
+
+Switch SunProBlockRolloAbendsHoch   "Sonne Block Abends Hoch"	(gSunPro)
+
+
+// LEDs fuer den Sonnenschutz 
+Switch SunProOstActiv		"Steuerung Ost (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)
+Switch SunProSuedActiv		"Steuerung Sued (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)
+Switch SunProWestActiv		"Steuerung West (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)
+Switch SunProNordActiv		"Steuerung Nord (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)
+Switch SunProErLiActiv		"Steuerung ErkerLi (ein/aus) [MAP(lcn.map):%s]"	(gSunPro)
+Switch SunProErReActiv		"Steuerung ErkerRe (ein/aus) [MAP(lcn.map):%s]"	(gSunPro)
+
+Number:Dimensionless	SunProSollTempWohnzimmer	"SunPro Soll Wohnzimmer (23)"	<temperature>	(gSunPro,gWetter)		["Control","Setpoint"]
+{ 
+    widget    ="oh-stepper-card"[ title="SunPro Soll Wohnzimmer", min=18, max=26, step=0.5, icon="oh:temperature" ],
+    listWidget="oh-stepper-item"[ title="SunPro Soll Wohnzimmer", min=19, max=26, step=0.5, icon="oh:temperature" ],
+    cellWidget="oh-stepper-cell"[ title="SunPro Soll Wohnzimmer", min=20, max=26, step=0.5, icon="oh:temperature" ],
+	stateDescription=" "[ pattern="%.1f" ]
+}
+Number:Dimensionless	SunProSoll3DTempAussen		"SunPro Soll Aussen 3D (16)"	<temperature>	(gSunPro,gWetter)		["Control","Setpoint"]
+{ 
+    widget    ="oh-stepper-card"[ title="SunPro Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
+    listWidget="oh-stepper-item"[ title="SunPro Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
+    cellWidget="oh-stepper-cell"[ title="SunPro Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
+	stateDescription=" "[ pattern="%.1f" ]
+}
+Number:Dimensionless	SunProSollTempAussen		"SunPro Soll Aussen (24)"		<temperature>	(gSunPro,gWetter)		["Control","Setpoint"]
+{ 
+    widget    ="oh-stepper-card"[ title="SunPro Soll Aussen", min=10, max=25, step=0.5, icon="oh:temperature" ],
+    listWidget="oh-stepper-item"[ title="SunPro Soll Aussen", min=10, max=25, step=0.5, icon="oh:temperature" ],
+    cellWidget="oh-stepper-cell"[ title="SunPro Soll Aussen", min=10, max=25, step=0.5, icon="oh:temperature" ],
+	stateDescription=" "[ pattern="%.1f" ]
+}
+

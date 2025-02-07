@@ -1,0 +1,49 @@
+sitemap comfoair label="ComfoAir" {
+	Frame label="Control" {
+		Selection item=comfoairFanLevel
+		Setpoint item=comfoairTargetTemperature step=0.5 minValue=15 maxValue=28 valuecolor=["black"]
+		Setpoint item=comfoairSollTempAussen step=0.5 minValue=15 maxValue=28 valuecolor=["black"]
+		Switch item=comfoairTest
+		Text item=comfoairControl valuecolor=[OFF="silver", ON="black"]
+		Text item=comfoairAutoMode
+	}
+	Frame label="State" {
+		Text item=comfoairIncomingFan valuecolor=["black"]
+		Text item=comfoairOutgoingFan valuecolor=["black"]
+		Text item=comfoairOutdoorIncomingTemperature valuecolor=["black"]
+		Text item=comfoairOutdoorOutgoingTemperature valuecolor=["black"]
+		Text item=comfoairIndoorIncomingTemperature valuecolor=["black"]
+		Text item=comfoairIndoorOutgoingTemperature valuecolor=["black"]
+		Text item=comfoairVentilationFanInRPM valuecolor=["black"]
+		Text item=comfoairVentilationFanOutRPM valuecolor=["black"]
+		Text item=comfoairFanIn0
+		Text item=comfoairFanOut0
+	}
+	Frame label="Main" {
+		Switch item=comfoairControl mappings=[OFF="CCEase", ON="Computer"]
+		Switch item=comfoairErrorReset mappings=[1="Reset"]
+		Text item=comfoairFilterPeriod valuecolor=["black"]
+		Switch item=comfoairFilterReset mappings=[1="Reset"]
+		Text item=comfoairFilterRuntime
+		Text item=comfoairError labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
+		Text item=comfoairErrorLast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
+		Text item=comfoairErrorPrelast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
+		Text item=comfoairErrorPrePrelast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
+	}
+	Frame label="misc" {
+		Text item=comfoairGHXMode valuecolor=[OFF="silver", ON="black"]
+		Text item=comfoairFreezeMode valuecolor=[OFF="black", ON="red"]
+		Text item=comfoairChimneyMode valuecolor=[OFF="silver", ON="black"]
+	}
+	Frame label="Option" {
+		Text item=comfoairOptionsCookerhood valuecolor=[1="green", 0="red"]
+	}
+	Frame label="Bypass" {
+		Text item=comfoairOptionsBypass valuecolor=[1="green", 0="red"]
+		Text item=comfoairBypassMode valuecolor=["black"]
+		Text item=comfoairBypassFactor
+		Text item=comfoairBypassLevel
+		Text item=comfoairBypassCorrection
+		Text item=comfoairBypassTime
+	}
+}

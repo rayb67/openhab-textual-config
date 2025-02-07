@@ -1,0 +1,193 @@
+var Number tmp_level = 250
+rule "RctMqtt_Grid_Power" 
+when
+	Time cron "0 */1 * * * ?" //  1 Min zum testen
+	or
+	Time cron "0 */30 * * * ?" //  10 Min zum testen
+	or
+	Item PV_Grid_Power_Phase1 changed
+then
+	logDebug("RctMqtt_Grid_Load","1")
+	logDebug("RctMqtt_Grid_Load","P1 "+PV_Grid_Power_Phase1.state)
+	logDebug("RctMqtt_Grid_Load","P2 "+PV_Grid_Power_Phase2.state)
+	logDebug("RctMqtt_Grid_Load","P3 "+PV_Grid_Power_Phase3.state)
+	if(	(PV_Grid_Power_Phase1.state == NULL) ||
+		(PV_Grid_Power_Phase2.state == NULL) ||
+		(PV_Grid_Power_Phase3.state == NULL) ) return;
+	logDebug("RctMqtt_Grid_Load","2")
+
+	var Number mm = (	(PV_Grid_Power_Phase1.state as QuantityType<Energy>).doubleValue +
+						(PV_Grid_Power_Phase2.state as QuantityType<Energy>).doubleValue +
+						(PV_Grid_Power_Phase3.state as QuantityType<Energy>).doubleValue )
+	logDebug("RctMqtt_Grid_Load","2")
+	logDebug("RctMqtt_Grid_Load","m                      : "+mm)
+	PV_Grid_Power_Sum.postUpdate(mm)
+
+end
+
+
+// ----- 2
+rule "RctMqttDataloggingInput" 
+when
+//	Time cron "0 */1 * * * ?" //  1 Min zum testen
+	Time cron "0 */4 * * * ?" //  15 Min zum testen
+	or
+	Item PV_Input_A_Watt changed
+	or
+	Item PV_Input_B_Watt changed
+then
+	logDebug("RctMqttDataloggingInput","PV_Input_A_Watt     : "+PV_Input_A_Watt.state)
+	logDebug("RctMqttDataloggingInput","PV_Input_B_Watt     : "+PV_Input_B_Watt.state)
+	var Number InputA = (PV_Input_A_Watt.state as QuantityType<Power>).doubleValue
+	var Number InputB =  (PV_Input_B_Watt.state as QuantityType<Power>).doubleValue
+	logDebug("RctMqttDataloggingInput","Input_A             : "+InputA)
+	logDebug("RctMqttDataloggingInput","Input_B             : "+InputB)
+	var Number InputSUM = InputA + InputB
+	logDebug("RctMqttDataloggingInput","InputSUM            : "+InputSUM)
+	PV_Input_Sum.postUpdate(InputSUM)
+	logDebug("RctMqttDataloggingInput","PV_Input_Sum        : "+PV_Input_Sum.state)
+
+end
+
+// ----- 3
+rule "RctMqttDataloggingGenerator" 
+when
+//	Time cron "0 */1 * * * ?" //  1 Min zum testen
+//	or
+	Time cron "0 */4 * * * ?" //  15 Min zum testen
+	or
+	Item PV_Energy_Solar_Generator_A changed
+	or
+	Item PV_Energy_Solar_Generator_B changed
+then
+	logDebug("RctMqttDataloggingInput","PV_Input_A_Watt     : "+PV_Input_A_Watt.state)
+	logDebug("RctMqttDataloggingInput","PV_Input_B_Watt     : "+PV_Input_B_Watt.state)
+	var Number InputA = (PV_Input_A_Watt.state as QuantityType<Power>).doubleValue
+	var Number InputB =  (PV_Input_B_Watt.state as QuantityType<Power>).doubleValue
+	logDebug("RctMqttDataloggingInput","Input_A             : "+InputA)
+	logDebug("RctMqttDataloggingInput","Input_B             : "+InputB)
+	var Number InputSUM = InputA + InputB
+	logDebug("RctMqttDataloggingInput","InputSUM            : "+InputSUM)
+	PV_Input_Sum.postUpdate(InputSUM)
+	logDebug("RctMqttDataloggingInput","PV_Input_Sum        : "+PV_Input_Sum.state)
+
+end
+
+
+// ----- 4
+rule "RctMqttDataloggingGenerator" 
+when
+	Time cron "0 */4 * * * ?" //  15 Min zum testen
+then
+	logDebug("RctMqttDataloggingGenerator","PV_Energy_Solar_Generator_A     : "+PV_Energy_Solar_Generator_A.state)
+	logDebug("RctMqttDataloggingGenerator","PV_Energy_Solar_Generator_B     : "+PV_Energy_Solar_Generator_B.state)
+	if(	(PV_Energy_Solar_Generator_A.state == NULL) ||
+		(PV_Energy_Solar_Generator_B.state == NULL)) return;
+	var Number InputA = (PV_Energy_Solar_Generator_A.state as QuantityType<Energy>).doubleValue
+	var Number InputB = (PV_Energy_Solar_Generator_B.state as QuantityType<Energy>).doubleValue
+
+	var Number InputSUM = InputA + InputB
+	logDebug("RctMqttDataloggingGenerator","Generator SUM       : "+InputSUM)
+	PV_Solar_Generator_Sum.postUpdate(InputSUM)
+	logDebug("RctMqttDataloggingGenerator","PV__Sum        : "+PV_Solar_Generator_Sum.state)
+
+	// Only to detect if one string has to low power
+	var Number InputVoltA = Math::abs((PV_Input_A_Volt.averageSince(now.minusMinutes(20)) as QuantityType).doubleValue)
+	logDebug("RctMqttDataloggingGenerator","InputVoltA       : "+InputVoltA)
+	var Number InputVoltB = Math::abs((PV_Input_B_Volt.averageSince(now.minusMinutes(20)) as QuantityType).doubleValue)
+	logDebug("RctMqttDataloggingGenerator","InputVoltB       : "+InputVoltB)
+	var Number InputVoltDiff = InputVoltA - InputVoltB
+	logDebug("RctMqttDataloggingGenerator","InputVoltDiff    : "+InputVoltDiff)
+
+
+    val String sgr_str1 = "\r\nDiff             : "+InputVoltDiff
+    val String sgr_str2 = "\r\nVolt A           : "+InputVoltA
+    val String sgr_str3 = "\r\nVolt B           : "+InputVoltB
+	val String sgr_str4 = "\r\nLevel            : "+tmp_level
+    val String sgr_all = sgr_str1 + sgr_str2 + sgr_str3 + sgr_str4
+
+
+	if((InputVoltA > tmp_level ) || (InputVoltB > tmp_level ) )
+	{
+		logDebug("RctMqttDataloggingGenerator","level  : "+tmp_level+" Volt A : "+InputVoltA.toString.format("%.0f")+" Volt B : "+InputVoltB.toString.format("%.0f"))
+
+		logDebug("RctMqttDataloggingGenerator","PV A : "+InputVoltA+" B : "+InputVoltB)
+		if (	((InputVoltDiff) < -200 ) || 
+				((InputVoltDiff) > 200 )  )
+		{
+			logDebug("RctMqttDataloggingGenerator","FEHLER - PV Input Delta : "+InputVoltDiff)
+			if ( PV_Error_LIM.state == ON ) 
+			{
+				logDebug("RctMqttDataloggingGenerator","a ... ist schon ON : "+PV_Error_LIM.state)
+			} else {
+				logDebug("RctMqttDataloggingGenerator","b ... noch nicht ON : "+PV_Error_LIM.state)
+				postUpdate( PV_Error_LIM, "ON")
+                val mailActions = getActions("mail","mail:smtp:samplesmtp")
+                mailActions.sendMail("ralf.berhorst@web.de","PV Fehler",sgr_all)
+
+				logInfo("RctMqttDataloggingGenerator","c-now  PV_Error_LIM : "+PV_Error_LIM.state)
+			} 
+	
+		} else {
+			logDebug("RctMqttDataloggingGenerator","alles OK - PV Input Delta : "+InputVoltDiff)
+			if ( PV_Error_LIM.state == OFF ) 
+			{
+				logDebug("RctMqttDataloggingGenerator","A ... ist schon OFF : "+PV_Error_LIM.state)
+			} else {
+				logDebug("RctMqttDataloggingGenerator","B ... noch nicht OFF : "+PV_Error_LIM.state)
+				postUpdate( PV_Error_LIM, "OFF")
+				logDebug("RctMqttDataloggingGenerator","C-now  PV_Error_LIM : "+PV_Error_LIM.state)
+			} 
+		}
+		logDebug("RctMqttDataloggingGenerator","Status PV_Error_LIM : "+PV_Error_LIM.state)
+
+	} else {
+		logDebug("RctMqttDataloggingGenerator","...nix mehr ueber 20")
+	}
+
+end
+
+
+// ----- 5
+rule "RctMqttDatalogging_day"
+	when
+		Time cron "50 59 23 ? * * *"
+		or
+		Item PV_TestSwitch changed
+	then
+		var Number temp_Household = (PV_Energy_Household_Sum.deltaSince(now.minusDays(1)) as QuantityType<Energy>).doubleValue
+		logDebug("PV_Energy_Household_Day","Household")
+		temp_Household = temp_Household*1000
+		PV_Daily_House_Power.postUpdate (temp_Household)
+		logDebug("PV_Energy_Household_Day","Household    : "+ temp_Household)
+		logDebug("PV_Energy_Household_Day","Household    : "+ PV_Daily_House_Power.state)
+
+		var Number temp_GridLoad = (PV_Energy_Grid_Load_Sum.deltaSince(now.minusDays(1)) as QuantityType<Energy>).doubleValue
+		logDebug("PV_Energy_Grid_Load_Sum","GridLoad")
+		temp_GridLoad= temp_GridLoad*1000
+		PV_Daily_Grid_Load.postUpdate (temp_GridLoad)
+		logDebug("PV_Energy_Grid_Load_Sum","GridLoad    : "+ temp_GridLoad)
+		logDebug("PV_Energy_Grid_Load_Sum","GridLoad    : "+ PV_Daily_Grid_Load.state)
+
+
+		var Number temp_Generator = (PV_Solar_Generator_Sum.deltaSince(now.minusDays(1)) as QuantityType<Energy>).doubleValue
+		logDebug("PV_Daily_Generator","Generator Sum")
+		temp_Generator = temp_Generator*1000
+		PV_Daily_Generator.postUpdate (temp_Generator)
+		logDebug("PV_Daily_Generator","Generator Sum   : "+ temp_Generator)
+		logDebug("PV_Daily_Generator","Generator Sum   : "+ PV_Daily_Generator.state)
+end
+
+// ----- 6
+rule "RctMqttReset"
+when
+    Time cron "0 59 23 * * ?"
+     or
+    Item Test01 changed
+then
+
+	logInfo("RctMqttReset","Status PV_Error_LIM : "+PV_Error_LIM.state)
+	postUpdate( PV_Error_LIM, "OFF")
+	logInfo("RctMqttReset","Status PV_Error_LIM : "+PV_Error_LIM.state)
+end
+

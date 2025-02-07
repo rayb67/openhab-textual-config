@@ -1,0 +1,388 @@
+sitemap default label="Haussteuerung"
+{
+ 	Frame label="Raueme" icon="house" {
+		Text label="Erdgeschoss" icon="groundfloor" {
+			Text label="Wohnzimmer" icon="sofa" {
+				Switch item=Steckdose_EG_Wohnz_Fernseher
+				Switch item=Steckdose_EG_Wohnz_Leibung
+				Slider item=Licht_EG_Ess switchSupport
+				Slider item=Licht_EG_Sofa switchSupport
+				Switch item=Licht_EG_Sekretaer
+				Text item=TempEGWohnzFlur icon="temperature"
+				Text item=TempEGWohnzSofa icon="temperature"
+				Text item=TempEGWohnzGarten icon="temperature"
+				Switch item=Rollo_EG_WZ_Strasse icon="rollershutter"
+				Switch item=Rollo_EG_WZ_Fenster icon="rollershutter"
+				Switch item=Rollo_EG_WZ_Garten icon="rollershutter"
+				Switch item=Rollo_EG_WZ_ErkerLinks icon="rollershutter"
+				Switch item=Rollo_EG_WZ_ErkerRechts icon="rollershutter"
+            	Setpoint item=SetTeEGWohnz			step=0.5 minValue=16 maxValue=24
+			}
+			Text label="Kueche" icon="kitchen" {
+				Switch item=Licht_EG_Kueche_Tisch 
+				Slider item=Licht_EG_Kueche_Insel switchSupport
+				Slider item=Licht_EG_Kueche_Kranz switchSupport
+				Switch item=Licht_EG_Kueche_Spuele
+				Text item=TempEGKuecheErker icon="temperature"
+				Switch item=Rollo_EG_KuecheTuer icon="rollershutter"
+				Switch item=Rollo_EG_KuecheFenster icon="rollershutter"
+				Switch item=Rollo_EG_KuecheErkerLinks icon="rollershutter"
+				Switch item=Rollo_EG_KuecheErkerRechts icon="rollershutter"
+//				Switch item=SendKeyRolloSperreEGKuecheErkLi icon="rollershutter" mappings=[ON="HIT"]
+//				Switch item=SendKeyRolloEndSperreEGKuecheErkLi icon="rollershutter" mappings=[ON="HIT"]
+            	Setpoint item=SetTeEGKueche			step=0.5 minValue=16 maxValue=24
+				Switch item=OhRolloKuecheDaemmerung icon="light"
+			}
+			Text label="Flur" icon="corridor" {
+				Switch item=Licht_EG_Flur
+				Switch item=Licht_EG_Treppe
+				Switch item=TuerHaustuer
+				Text item=TempEGHaustuer icon="temperature"
+      			Setpoint item=SetTeEGDiele			step=0.5 minValue=16 maxValue=22
+			}
+			Text label="Schleuse" icon="dryer" {
+				Switch item=Licht_EG_Schleuse
+			}
+			Text label="Vorrat" icon="corridor" {
+				Switch item=Licht_EG_Vorrat
+				Text item=TempEGVorrat icon="temperature"
+			}
+			Text label="Garage" icon="garage" {
+				Switch item=Licht_EG_Garage
+				Switch item=Licht_AUS_Garage_Vorne
+				Switch item=Licht_AUS_Garage_Hinten
+				Text item=TempEGGarage icon="temperature"
+				Switch item=Steckdose_EG_Garage_Regal
+				Switch item=Steckdose_EG_Garage_Ecke
+//				Switch item=SendKeyGarageTorAuf icon="door"	 mappings=[ON="HIT"]
+//				Switch item=SendKeyGarageTorAb icon="door"	 mappings=[ON="HIT"]
+				Switch item=GarageTorUP icon="rollershutter"
+				Switch item=GarageTorDOWN icon="rollershutter"
+			}
+			Text label="Abstell" icon="corridor" {
+				Switch item=Licht_EG_Abstellraum
+				Text item=TempEGAbstell icon="temperature"
+				Text item=Rollo_EG_Abstell icon="rollershutter"
+				Setpoint item=SetTeEGAbstell		step=0.5 minValue=16 maxValue=23
+			}
+			Text label="WC" icon="bath" {
+				Switch item=Licht_EG_WC_Decke
+				Switch item=Licht_EG_WC_Spiegel
+				Text item=TempEGWC icon="temperature"
+	 			Setpoint item=SetTeEGGaesteWC		step=0.5 minValue=16 maxValue=25
+			}
+			Text label="Technik" icon="energy" {
+				Switch item=Licht_EG_Technik
+				Text item=TempEGTechnik icon="temperature"
+				Switch item=Rollo_EG_WZ_Technik icon="rollershutter"
+				Switch item=RelaisSperreLoesen
+			}
+		}
+		Text label="Obergeschoss" icon="firstfloor" {
+			Text label="Schlaf" icon="bedroom" {
+				Slider item=Licht_OG_Schlaf switchSupport
+				Slider item=Licht_OG_Schlaf_Rechts  switchSupport
+				Slider item=Licht_OG_Schlaf_Links  switchSupport
+				Switch item=Steckdose_OG_Schlaf_Fenster
+				Switch item=Rollo_OG_Schlaf icon="rollershutter"
+				Setpoint item=SetTeOGSchlafz		step=0.5 minValue=16 maxValue=23
+				Text item=TempOGSchlafTuer icon="temperature"
+				Text item=TempOGSchlafLinks icon="temperature"
+				Text item=TempOGSchlafRechts icon="temperature"
+			}
+			Text label="Bad" icon="bath" {
+				Slider item=Licht_OG_Bad_Spiegel  switchSupport
+				Slider item=Licht_OG_Bad_Kranz  switchSupport
+				Text item=TempOGBad icon="temperature"
+				Switch item=Rollo_OG_BadToilette icon="rollershutter"
+				Switch item=Rollo_OG_BadDusche icon="rollershutter"
+				Switch item=Rollo_OG_BadStrasse icon="rollershutter"
+				Group item=gMusic label="Musik" icon="music"
+
+				Text label="Einstellungen" {
+					Setpoint item=SetTeOGBad			step=0.5 minValue=16 maxValue=24
+					Switch item=OhBadMusicAutomatic
+				}
+			}
+			Text label="Buero" icon="office" {
+				Slider item=Licht_OG_Buero_Decke switchSupport
+				Switch item=Licht_OG_Buero_Schreibtisch
+				Switch item=Steckdose_OG_Buero
+				Text item=TempOGBuero icon="temperature"
+				Switch item=Rollo_OG_BueroGarten icon="rollershutter"
+				Switch item=Rollo_OG_BueroHinten icon="rollershutter"
+				Switch item=Rollo_OG_BueroStrasse icon="rollershutter"
+   		   	    Setpoint item=SetTeOGBuero			step=0.5 minValue=16 maxValue=24
+				Switch item=OhHomeOffice
+				Switch item=OhControlRolloBueroStrasse
+				Text item=OhStatusRolloBueroStrasse
+			}
+			Text label="Tom" icon="boy_1" {
+				Slider item=Licht_OG_Kind switchSupport
+				Switch item=Steckdose_OG_Kind1
+				Switch item=Steckdose_OG_Kind2
+				Text item=TempOGKind icon="temperature"
+				Switch item=Rollo_OG_Kind icon="rollershutter"
+//				Switch item=Rollo_OG_KindD icon="rollershutter"
+		        Setpoint item=SetTeOGKind
+			}
+			Text label="Karen" icon="sun" {
+				Slider item=Licht_OG_Gaeste
+				Switch item=Steckdose_OG_Gaeste
+				Text item=TempOGGaeste icon="temperature"
+				Switch item=Rollo_OG_GaesteLinks icon="rollershutter"
+				Switch item=Rollo_OG_GaesteRechts icon="rollershutter"
+				Setpoint item=SetTeOGGaeste
+			}
+			Text label="Ankleide" icon="suitcase" {
+				Switch item=Licht_OG_Ankleide
+				Switch item=Rollo_OG_Ankleide icon="rollershutter"
+				Setpoint item=SetTeOGAnkleide		step=0.5 minValue=14 maxValue=22
+			}
+			Text label="Rest" icon="corridor" {
+				Switch item=Licht_OG_Flur
+				Text item=TempOGFlur icon="temperature"
+				Switch item=Rollo_OG_Flur icon="rollershutter"
+//				Switch item=Rollo_OG_FlurD icon="rollershutter"
+				Switch item=SendKeyOGFlurDachFZu icon="door"	 mappings=[ON="HIT"]
+				Switch item=SendKeyOGFlurDachFAuf icon="door"	 mappings=[ON="HIT"]
+				Setpoint item=SetTeOGFlur			step=0.5 minValue=14 maxValue=22
+			}
+		}
+		Text label="Aussen" icon="garden" {
+			Text label="Hof" icon="garage" {
+				Switch item=Licht_AUS_Haustuer
+				Switch item=Licht_AUS_Garage_Vorne
+				Switch item=Steckdose_AUS_Haustuer
+			}
+			Text label="Garten" icon="garage" {
+				Slider item=Licht_AUS_Erker  switchSupport
+				Switch item=Licht_AUS_Garage_Hinten
+				Switch item=Licht_AUS_Schleuse
+				Switch item=Steckdose_AUS_Garage_Hinten
+				Switch item=Steckdose_AUS_Schleuse
+			}
+			Text label="Terasse" icon="terrace" {
+				Slider item=Licht_AUS_Terasse  switchSupport
+				Switch item=Licht_AUS_Boden_Terasse
+				Switch item=Steckdose_AUS_Tuer_Terasse
+				Switch item=Steckdose_AUS_Bogen
+			}
+		}
+		Text item=TempAussen  icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
+	}
+
+	Frame label="Funktionen" {
+		Group item=comfoairFanLevel label="Lueftung [MAP(comfoair_level_de.map):%d]" icon="fan"   valuecolor=[4="red",1="blue",3="green",2="orange"] {
+			Frame label="Main" {
+				Switch item=BelueftungOnOff	icon="fan" mappings=[OFF="Aus", ON="Ein"]
+				Text item=comfoairError labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
+				Switch item=comfoairControl mappings=[OFF="CCEase", ON="Computer"]
+				Switch item=comfoairErrorReset mappings=[1="Reset"]
+				Switch item=comfoairFilterReset mappings=[1="Reset"]
+				Switch item=comfoairFilterPeriod valuecolor=["black"]
+			}
+			Frame label="Control" {
+				Selection item=comfoairFanLevel label="Lueftung [MAP(comfoair_level_de.map):%d]" icon="fan"   valuecolor=[4="red",1="blue",3="green",2="orange"]
+				Setpoint item=comfoairTargetTemperature step=0.5 minValue=15 maxValue=28 valuecolor=["black"]
+			}
+			Frame label="State" {
+				Text item=comfoairOutdoorIncomingTemperature valuecolor=["black"]
+				Text item=comfoairOutdoorOutgoingTemperature valuecolor=["black"]
+				Text item=comfoairIndoorIncomingTemperature valuecolor=["black"]
+				Text item=comfoairIndoorOutgoingTemperature valuecolor=["black"]
+				Text item=TempAussen icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
+			}
+			Frame {
+				Text item=comfoairIncomingFan valuecolor=["black"]
+				Text item=comfoairBypassMode valuecolor=[0="red",1="blue"]
+				Text item=comfoairOutgoingFan valuecolor=["black"]
+				Text item=comfoairGHXMode valuecolor=[OFF="silver", ON="black"]
+				Text item=comfoairFreezeMode valuecolor=[OFF="black", ON="red"]
+				Text item=comfoairFilterRuntime valuecolor=["black"]
+				Text item=comfoairChimneyMode valuecolor=[OFF="silver", ON="black"]
+			}
+			Frame label="Schwellwerte" icon="sun" {
+		        Setpoint item=BelueftungSollTempAussen label="Soll TempAussen (20)" icon="temperature" step=1 minValue=10 maxValue=25
+			}	
+		}
+		Text label="Heizung" icon="temperature" {
+	        Setpoint item=SetTeOGKind			step=0.5 minValue=16 maxValue=24
+			Text item=StatusHeizungOGKind
+      	    Setpoint item=SetTeOGBuero			step=0.5 minValue=16 maxValue=24
+			Text item=StatusHeizungOGBuero
+      		Setpoint item=SetTeEGDiele			step=0.5 minValue=16 maxValue=22
+			Text item=StatusHeizungEGDiele
+ 			Setpoint item=SetTeEGGaesteWC		step=0.5 minValue=20 maxValue=25
+			Text item=StatusHeizungEGGaesteWC
+            Setpoint item=SetTeEGKueche			step=0.5 minValue=16 maxValue=24
+			Text item=StatusHeizungEGKueche
+            Setpoint item=SetTeEGWohnz			step=0.5 minValue=16 maxValue=24
+			Text item=StatusHeizungEGWohnz
+			Setpoint item=SetTeEGAbstell		step=0.5 minValue=16 maxValue=23
+			Text item=StatusHeizungEGAbstell
+			Setpoint item=SetTeOGFlur			step=0.5 minValue=16 maxValue=22
+			Text item=StatusHeizungOGFlur
+			Setpoint item=SetTeOGBad			step=0.5 minValue=20 maxValue=25
+			Text item=StatusHeizungOGBad
+			Setpoint item=SetTeOGGaeste			step=0.5 minValue=16 maxValue=23
+			Text item=StatusHeizungOGGaeste
+			Setpoint item=SetTeOGSchlafz		step=0.5 minValue=16 maxValue=23
+			Text item=StatusHeizungOGSchlafz
+			Setpoint item=SetTeOGAnkleide		step=0.5 minValue=16 maxValue=23
+			Text item=StatusHeizungOGAnkleide
+		}
+		Text label="Sonstiges" icon="house" {
+			Group item=modbus_stiebel_operation_mode label="Heizung [MAP(modbusstiebelmode.map):%d]" icon="info" valuecolor=[4="red",1="blue",3="green",2="orange",0="black",5="black",6="black"] {
+//			Text label="Heizung" icon="heating" {
+				Frame label="Operation Mode" {
+					Selection item=modbus_stiebel_operation_mode label="Betriebsart [MAP(modbusstiebelmode.map):%d]" icon="heating" valuecolor=[4="red",1="blue",3="green",2="orange",0="black",5="black",6="black"] 
+					Default item=modbus_stiebel_mode_pump icon="info" label="Pumpe [MAP(modbusstiebelstatus.map):%d]"
+					Default item=modbus_stiebel_mode_heating icon="info"  label="Heizen [MAP(modbusstiebelstatus.map):%d]"
+					Default item=modbus_stiebel_mode_water icon="info" label="Wasser [MAP(modbusstiebelstatus.map):%d]"
+					Default item=modbus_stiebel_mode_cooling icon="info" label="Kuehlung [MAP(modbusstiebelstatus.map):%d]"
+					Default item=modbus_stiebel_mode_summer icon="info" label="Sommer [MAP(modbusstiebelstatus.map):%d]"
+				}
+				Frame label= "State" {
+					Default item=modbus_stiebel_outdoor_temp  icon="temperature"
+					Default item=modbus_stiebel_temp_hk1  icon="temperature"
+					Default item=modbus_stiebel_setpoint_hk1  icon="temperature"
+					Default item=modbus_stiebel_vorlauf_temp  icon="temperature"
+					Default item=modbus_stiebel_ruecklauf_temp  icon="temperature"
+					Default item=modbus_stiebel_temp_water  icon="temperature"
+					Default item=modbus_stiebel_setpoint_water icon="temperature"
+					Default item=modbus_stiebel_temperature_ffk  icon="temperature"
+					Default item=modbus_stiebel_setpoint_ffk icon="temperature"
+					Default item=modbus_stiebel_humidity_ffk icon="humidity"
+					Default item=modbus_stiebel_dewpoint_ffk icon="temperature"
+					Default item=modbus_stiebel_source_temp icon="temperature"
+				}
+				Frame label="Paramters" {
+					Setpoint item=modbus_stiebel_heating_comfort_temp icon="temperature" step=1 minValue=5 maxValue=30
+					Setpoint item=modbus_stiebel_heating_eco_temp icon="temperature" step=1 minValue=5 maxValue=30
+					Setpoint item=modbus_stiebel_water_comfort_temp icon="temperature" step=1 minValue=10 maxValue=60
+					Setpoint item=modbus_stiebel_water_eco_temp icon="temperature" step=1 minValue=10 maxValue=60
+				}
+				Frame label="Energy consumption" {
+					Default item=modbus_stiebel_consumption_heat_today icon="energy"
+					Default item=modbus_stiebel_consumption_heat_total icon="energy"
+					Default item=modbus_stiebel_consumption_water_today icon="energy"
+					Default item=modbus_stiebel_consumption_water_total icon="energy"
+				}
+				Frame label="Heat quantity" {
+					Default item=modbus_stiebel_production_heat_today icon="radiator"
+					Default item=modbus_stiebel_production_water_today icon="water"
+					Default item=modbus_stiebel_production_heat_total icon="radiator"
+					Default item=modbus_stiebel_production_water_total icon="water"
+				}
+			}
+
+			Text label="Wetterstation" icon="sun_clouds" {
+				Frame label="Wichtige Infos"  {
+					Text item=WetterLichtO
+					Text item=WetterLichtS
+					Text item=WetterLichtW
+					Text item=Wind icon="wind"
+					Text item=Wind2 icon="wind"
+					Text item=TempAussen  icon="temperature"
+					Text item=WindAvg  icon="temperature"
+					Text item=TempAussenAvg  icon="temperature"
+					Text item=WetterRegen  icon="rain"
+				}
+			}
+			Text label="Gartenbewaesserung" icon="rain" {
+/* 2023.06.01 deaktiviert, sieh Item File
+				Frame label="Manuell" icon="rain" {
+					Switch item=Pumpe_Hinten	icon="rain"
+					Switch item=Pumpe_Vorne	icon="rain"
+					Switch item=Pumpe_Kies	icon="rain"
+					Switch item=Pumpe_Beet	icon="rain"
+					Switch item=Pumpe_Hochbeet	icon="rain"
+				}	
+*/
+				Frame label="Automatik" icon="rain" {
+					Switch item=WasserAutoHinten	icon="rain"
+					Switch item=WasserAutoVorne	icon="rain"
+					Switch item=WasserAutoKies	icon="rain"
+					Switch item=WasserAutoBeet	icon="rain"
+					Switch item=WasserAutoHochbeet	icon="rain"
+					Switch item=WasserAutoMorgens	icon="rain"
+					Switch item=WasserAutoAbends	icon="rain"
+				}	
+				Frame label="Status" icon="rain" {
+					Switch item=BewaesserungStatusVorne	icon="rain"
+					Switch item=BewaesserungStatusHinten	icon="rain"
+					Switch item=BewaesserungStatusKies	icon="rain"
+					Switch item=BewaesserungStatusBeet	icon="rain"
+					Switch item=BewaesserungStatusHochbeet	icon="rain"
+				}	
+			}
+			Text label="Sonnenschutz" icon="sun" {
+				Frame label="Manuelle Steuerung" icon="sun" {
+					Switch item=SendKeySunProWestJust	icon="sun"	 mappings=[ON="MAKE"]
+					Setpoint item=SunProSoll3DTempAussen label="Soll TempAussen 3D (12)" icon="temperature" step=1 minValue=10 maxValue=25
+			        Setpoint item=SunProSollTempAussen label="Soll TempAussen (20)" icon="temperature" step=1 minValue=10 maxValue=22
+					Setpoint item=SunProSollTempWohnzimmer label="Soll TempWohnzimmer (24)" icon="temperature" step=1 minValue=22 maxValue=28
+					Switch item=SunProTestSwitch icon="sun"
+
+				}	
+				Frame label="Aktueller Status (nur Anzeige!!!)" icon="sun" {
+					Switch item=SunProStatusOst icon="sun"
+					Switch item=SunProStatusSued icon="sun"
+					Switch item=SunProStatusWest icon="sun"
+					Switch item=SunProStatusErLi icon="sun"
+					Switch item=SunProStatusErRe icon="sun"
+					Switch item=SunProStatusNord icon="sun"
+				}	
+				Frame label="Automatik Steuerung (Ein/Aus)" icon="sun" {
+					Switch item=SunProOstActiv	icon="sun"
+					Switch item=SunProSuedActiv	icon="sun"
+					Switch item=SunProWestActiv	icon="sun"
+					Switch item=SunProNordActiv	icon="sun"
+					Switch item=SunProErLiActiv	icon="sun"
+					Switch item=SunProErReActiv	icon="sun"
+					Switch item=SunProBlockRolloAbendsHoch icon="shield-0"
+				}	
+			}	
+			Group item=gAstro
+			Group item=gLED
+			Group item=gVarSensor
+			Group item=gWeather
+			Group item=gSunPro
+//			Group item=gWasser
+			Text label="misc" icon="settings" {
+				Switch item=BelueftungOnOff					icon="fan"
+				Switch item=OhDaemmerungRolloDeko
+				Switch item=OhHomeOffice
+				Switch item=OhSonnenschutzJustierung
+				Switch item=OhLamellenMorgensGerade
+				Switch item=OhBadMusicAutomatic
+				Switch item=SendKeySperreBewegungsmelder	icon="sun"	mappings=[ON="HIT"]
+				Switch item=SendKeySperreRolloOff			icon="rollershutter"	mappings=[ON="HIT"]
+				Text item=StatusSperreRollo
+				Text item=StatusParty
+				Text item=StatusGuestMode
+				Text item=StatusGuestWLAN
+				Text item=StatusWeihnacht
+				Text item=StatusSperreBewegungsmelder
+				Text item=StatusFeuer
+				Text item=StatusCooling
+		    }	
+		}		
+		Default item=modbus_stiebel_operation_mode label="Waermepumpe [MAP(modbusstiebelmode.map):%d]" icon="heating" valuecolor=[4="red",1="blue",3="green",2="orange",0="black",5="black",6="black"] 
+		Switch item=OhUrlaub
+		Switch item=OhAbwesend
+
+	}
+	Frame label="Uebersicht" {
+ 		Switch item=gLichtEG
+ 		Switch item=gSteckdosenEG	icon="poweroutlet"
+		Switch item=gLichtOG
+		Switch item=gSteckdosenOG	icon="poweroutlet"
+		Switch item=gLichtAUS
+		Switch item=gSteckdosenAUS	icon="poweroutlet"
+		Switch item=LightAll        mappings=[OFF="AUS"]
+	}
+
+}
+

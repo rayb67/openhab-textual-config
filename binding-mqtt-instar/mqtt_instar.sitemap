@@ -1,0 +1,10 @@
+sitemap mqtt_instar label="Instar Kamera"
+{	
+	Frame label="Detection Areas" {
+		Text item=instar_status_area_alarm_yellow_enable label="Yellow on [MAP(mqtt_instar_tf.map):%d]"
+		Text item=instar_status_area_alarm_green_enable label="Green on [MAP(mqtt_instar_tf.map):%d]"
+		Text item=instar_status_area_alarm_blue_enable label="Blue on [MAP(mqtt_instar_tf.map):%d]"
+		Switch item=instar_status_area_alarm_red_enable // label="Blue on [MAP(mqtt_instar_tf.map):%d]"
+//		Slider item=instar_status_area_alarm_blue_sensitivity step=1 minValue=1 maxValue=100
+	}
+}

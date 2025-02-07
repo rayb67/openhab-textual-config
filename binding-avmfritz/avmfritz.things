@@ -1,0 +1,13 @@
+// https://community.openhab.org/t/missing-call-monitor-for-fritzbox-after-oh3-upgrade/111561/5
+Bridge avmfritz:fritzbox:avmfb7490 "AVMFRITZ FritzBox" 
+[ ipAddress="10.10.10.1", 
+	password="passwort", 
+	user="openhab",
+	protocol="https",
+	port="443",
+	pollingInterval=60, 
+	asyncTimeout=15000, 
+	syncTimeout=10000 ] 
+{
+    Thing FRITZ_Powerline_546E 08_96_D7_F3_8E_AA "FRITZ!Powerline 546E #x" [ ain="08:96:D7:F3:8E:AA" ]
+}

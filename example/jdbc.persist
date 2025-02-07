@@ -1,0 +1,14 @@
+Strategies {
+    everyMinute : "0 0/1 * * * ?"
+    every2Minute : "0 0/2 * * * ?"
+    every5Minute : "0 0/5 * * * ?"
+    every15Minute : "0 0/15 * * * ?"
+    everyHour : "0 0 * * * ?"
+    everyDay  : "00 59 23 * * ?"
+
+    default = everyHour
+}
+
+Items {
+    *        : strategy = everyChange, every15Minute, everyDay, restoreOnStartup
+}

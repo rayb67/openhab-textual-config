@@ -1,0 +1,62 @@
+sitemap mqtt_rctmon label="RCT Solar Monitoring"
+{	
+        Frame label="PV Current Status" {
+                Text item=PV_Input_A_Volt
+				Text item=PV_Input_B_Volt
+				Text item=PV_Input_A_Watt
+				Text item=PV_Input_B_Watt
+				Text item=PV_Input_Sum
+				Text item=PV_Daily_House_Power
+				Text item=PV_House_Current_Power
+				Text item=PV_Current_Grid_Feed_Sum
+				Text item=PV_Energy_Household_Sum
+				Text item=PV_Grid_Power_Sum
+				Text item=PV_Grid_Power_Phase1
+				Text item=PV_Grid_Power_Phase2
+				Text item=PV_Grid_Power_Phase3
+				Switch item=PV_Error_LIM mappings=[ON=ON, OFF=OFF]
+				Text item=PV_Solar_Generator_Sum
+				Text item=PV_Daily_Grid_Load
+				Text item=PV_Energy_Grid_Load_Sum
+				Text item=PV_Daily_Generator
+				Text item=PV_Solar_Generator_Sum
+				Text item=PV_Energy_Solar_Generator_A
+				Text item=PV_Energy_Solar_Generator_B
+				Text item=PV_Current_Grid_Feed
+				Text item=PV_House_Current_Power
+        }
+		
+		Frame label="PV Battery Status" {
+                Text item=PV_Battery_Voltage
+				Text item=PV_Battery_Upper_SOC
+				Text item=PV_Battery_SOC
+				Text item=PV_Battery_Current_Power
+				Text item=PV_Battery_Temperature
+				Text item=PV_Battery_Energy_From
+				Text item=PV_Battery_Energy_Into
+        }
+		
+//		Frame label="PV Daily Status" {
+//                Text item=PV_Daily_Input_A
+//				Text item=PV_Daily_Input_B
+//				Text item=PV_Daily_Grid_Feed
+//				Text item=PV_Daily_Grid_Load
+//				Text item=PV_Daily_House_Power
+//        }
+		
+//		Frame label="PV Monthly Status" {
+//                Text item=PV_Monthly_Input_A
+//				Text item=PV_Monthly_Input_B
+//				Text item=PV_Monthly_Grid_Feed
+//				Text item=PV_Monthly_Grid_Load
+//				Text item=PV_Monthly_House_Power
+//        }
+		
+		//Frame label="PV Yearly Status" {
+        //        Text item=PV_Yearly_Input_A
+		//		Text item=PV_Yearly_Input_B
+		//		Text item=PV_Yearly_Grid_Feed
+		//		Text item=PV_Yearly_Grid_Load
+		//		Text item=PV_Yearly_House_Power
+        //}
+}
