@@ -1,0 +1,2 @@
+// USB0
+Thing comfoair:comfoair:myComfoAir "ComfoAir" [serialPort="/dev/ttyUSB0", refreshInterval="600"]

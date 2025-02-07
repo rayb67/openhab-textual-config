@@ -1,0 +1,40 @@
+Group:Switch:OR(ON, OFF)	gWasser			"Bewaesserung [%d]"				<water>		(AUS_Garten)			["Water"]
+
+// Bewasserung
+Switch			SchalterWasserHochbeet		"Hochbett"						<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#4"}
+Switch			SchalterWasserKies			"Zaun Kies"						<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#5"}
+Switch			SchalterWasserBeet			"Hochbeet2"						<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#6"}
+Switch			SchalterWasserHinten		"Rasen Hinten"					<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#7"}
+Switch			SchalterWasserVorne			"Rasen Vorne"					<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#8"}
+
+
+// Den aktuellen Status zwischenspeichern innerhalb der Rule bewaesserung.rules
+Switch			BewaesserungPumpeManuell	"Bewaesserung Pumpe Manuell"	<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+
+Switch			BewaesserungStatusVorne		"Status Bewasserung Vorn"		<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+Switch			BewaesserungStatusHinten	"Status Bewasserung Hinten"		<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung 
+Switch			BewaesserungStatusKies		"Status Bewasserung Kies"		<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+Switch			BewaesserungStatusBeet		"Status Bewasserung Hochbeet2"	<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+Switch			BewaesserungStatusHochbeet	"Status Bewasserung Hochbeet"	<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+
+Switch			WasserAutoMorgens			"Automatik Morgens"				<water>		(gWasser,AUS_Garten)	["Water"]
+Switch			WasserAutoAbends			"Automatik Abends"				<water>		(gWasser,AUS_Garten)	["Water"]
+Switch			WasserAutoVorne				"Automatik Vorne"				<water>		(gWasser,AUS_Garten)	["Water"]
+Switch			WasserAutoHinten			"Automatik Hinten"				<water>		(gWasser,AUS_Garten)	["Water"]
+Switch			WasserAutoKies				"Automatik Kies"				<water>		(gWasser,AUS_Garten)	["Water"]
+Switch			WasserAutoBeet				"Automatik Hochbeet 2"			<water>		(gWasser,AUS_Garten)	["Water"]
+Switch			WasserAutoHochbeet			"Automatik Hochbeet"			<water>		(gWasser,AUS_Garten)	["Water"]
+
+// Neu nach Idee von :
+// https://community.openhab.org/t/changing-pattern-of-stepper-card/115064
+Number	WateringAutomatic_Start				"Bewasserung Start"				<water>		(gWasser,AUS_Garten)	["Control","Setpoint"]
+Number	WateringAutomatic_End				"Bewasserung Ende"				<water>		(gWasser,AUS_Garten)	["Control","Setpoint"]
+{ 	widget           ="oh-stepper-card"[ title="BW Ende", min=360, max=1020, step=5, icon="oh:temperature" ],
+    listWidget       ="oh-stepper-item"[ title="BW Ende", min=360, max=1020, step=5, icon="oh:temperature" ],
+    cellWidget       ="oh-stepper-cell"[ title="BW Ende", min=360, max=1020, step=5, icon="oh:temperature" ]
+}

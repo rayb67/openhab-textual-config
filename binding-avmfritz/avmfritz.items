@@ -1,0 +1,22 @@
+Group   gAVMFritz					"avmfritz"							(EG_Technik)				["Equipment","NetworkAppliance"]
+
+// Points:
+
+Group   gCALLMONITOR				"Call Monitor"						(EG_Technik)				["Equipment","NetworkAppliance"]
+Call    fritzIncomingCall			"Incoming Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR) ["Status"] { channel="avmfritz:fritzbox:avmfb7490:incoming_call" }
+Call    fritzActiveCall			    "Active Call [from %1$s]"           (gAVMFritz,gCALLMONITOR) ["Status"] { channel="avmfritz:fritzbox:avmfb7490:active_call" }
+Call    fritzOutgoingCall			"Outgoing Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR) ["Status"] { channel="avmfritz:fritzbox:avmfb7490:outgoing_call" }
+String  fritzCallRinging			"Status [%s]"                       (gAVMFritz,gCALLMONITOR) ["Status"] { channel="avmfritz:fritzbox:avmfb7490:call_state" }
+String  fritzTemplate			    "Vorlage anwenden"                  (gAVMFritz,gCALLMONITOR) ["Status"] { channel="avmfritz:fritzbox:avmfb7490:apply_template" }
+
+// resolved numbers (only if TR-064 binding is installed)
+
+String  fritzIncomingCallCaller     "Incoming Call - Caller [%s]"		(gAVMFritz,gCALLMONITOR)    ["Status"] { channel="tr064:fritzbox:fb7490:incoming_call" [profile="transform:PHONEBOOK", phonebook="tr064_3Afritzbox_3Afb7490", phoneNumberIndex=1, matchcount="8"] }
+String  fritzActiveCallCaller	    "Active Call - Caller [%s]"			(gAVMFritz,gCALLMONITOR)    ["Status"] { channel="tr064:fritzbox:fb7490:active_call" [profile="transform:PHONEBOOK", phonebook="tr064_3Afritzbox_3Afb7490"] }
+String  fritzOutgoingCallCaller     "Outgoing Call - Caller [%s]"		(gAVMFritz,gCALLMONITOR)    ["Status"] { channel="tr064:fritzbox:fb7490:outgoing_call" [profile="transform:PHONEBOOK", phonebook="tr064_3Afritzbox_3Afb7490", phoneNumberIndex=1, matchcount="8"] }
+String  fritzLetzterAusgehenderRuf  "Name Angerufener"                  (gAVMFritz)                 ["Status"] 
+String  fritzLetzteAusgendeNr       "angerufene Nummer"                 (gAVMFritz)                 ["Status"]
+Number  fritzLetzteALeitung         "über ausgehende Nummer"            (gAVMFritz)                 ["Status"]
+String  fritzLetzterEingehenderRuf  "Name Anrufer"                      (gAVMFritz)                 ["Status"]
+String  fritzLetzteEingehendeNr     "anrufende Nummer"                  (gAVMFritz)                 ["Status"]
+Number  fritzLetzteELeitung         "über eingende Nummer"              (gAVMFritz)                 ["Status"]

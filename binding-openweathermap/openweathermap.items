@@ -1,0 +1,39 @@
+//.. STATION ITEMS
+Group					gWeather						"OWM Weather"				<rain>			(EG_Technik)	["Equipment"]
+String					Owm_Home_StationId				"Station: ID"				<info>			(gWeather,AUS_Service)	["Outdoor"]
+{ channel="openweathermap:weather-and-forecast:api:local:station#id", stateDescription=" "[ pattern="%s" ]  }
+String					Owm_Home_StationName			"Station: Name"				<info>			(gWeather,AUS_Service)	["Outdoor"]
+{ channel="openweathermap:weather-and-forecast:api:local:station#name", stateDescription=" "[ pattern="%s" ] }
+Location				Owm_Home_StationLocation		"Station: Location"			<info>			(gWeather,AUS_Service)	["Outdoor"]
+{ channel="openweathermap:weather-and-forecast:api:local:station#location", stateDescription=" "[ pattern="%2$s°N %3$s°E" ] }
+
+// WEATHER CURRENT
+DateTime				Owm_Home_LastMeasurement         "Time of Last Measurement [%1$tY-%1$tm-%1$tdT%1$tH:%1$tM:%1$tS]"   <time> (gWeather,AUS_Service)
+{ channel="openweathermap:weather-and-forecast:api:local:current#time-stamp" }
+String					Owm_Home_Current_Condition       "Aktuelle Wetterlage"		<sun_clouds>    (gWeather,AUS_Service)
+{ channel="openweathermap:weather-and-forecast:api:local:current#condition", stateDescription=" "[ pattern="%s" ]  }
+Image					Owm_Home_Current_ConditionIcon   "Bild"										(gWeather,AUS_Service)
+{ channel="openweathermap:weather-and-forecast:api:local:current#icon" }
+Number:Temperature		Owm_Home_Current_Temperature     "Temperatur"				<temperature>   (gWeather,AUS_Service)	["Temperature"] 
+{ channel="openweathermap:weather-and-forecast:api:local:current#temperature", stateDescription=" "[ pattern="%.1f °C" ]  }
+Number:Pressure			Owm_Home_Current_Pressure        "Luftdruck"				<pressure>      (gWeather,AUS_Service)	["Pressure"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#pressure", stateDescription=" "[ pattern="%.1f hPa" ] }
+Number:Dimensionless	Owm_Home_Current_Humidity        "Luftfeuchtigkeit"			<humidity>      (gWeather,AUS_Service)	["Humidity"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#humidity", stateDescription=" "[ pattern="%.1f %%" ] }
+Number:Speed			Owm_Home_Current_WindSpeed       "Wind Geschwindigkeit"		<wind>          (gWeather,AUS_Service)	["Wind"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#wind-speed", stateDescription=" "[ pattern="%.1f km/h" ] }
+Number:Angle			Owm_Home_Current_WindDirection   "Wind Richtung"			<wind>          (gWeather,AUS_Service)	["Wind"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#wind-direction", stateDescription=" "[ pattern="%.1f °" ] }
+Number:Dimensionless	Owm_Home_Current_Cloudiness      "Aktuelle Bewölkung"		<sun_clouds>    (gWeather,AUS_Service)	["Status"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#cloudiness", stateDescription=" "[ pattern="%d %%" ] }
+Number:Length			Owm_Home_Current_RainVolume      "Regenmenge"				<rain>          (gWeather,AUS_Service)	["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#rain", stateDescription=" "[ pattern="%.1f l/m²" ] }
+Number:Length			Owm_Home_Current_SnowVolume      "Schneemenge"				<snow>          (gWeather,AUS_Service)	["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#snow", stateDescription=" "[ pattern="%.1f l/m²" ] }
+Number:Length			Owm_Home_Current_Visibility      "Fernsicht"				<visibility>    (gWeather,AUS_Service)	
+{ channel="openweathermap:weather-and-forecast:api:local:current#visibility", stateDescription=" "[ pattern="%.1f km" ] }
+
+Number:Length			Owm_Home_Forcast03_RainVolume	"Regenmenge in 03 Std."		<rain>			(gWeather,AUS_Service)   ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastHours03#rain", stateDescription=" "[ pattern="%.1f l/m²" ]  }
+Number:Length			Owm_Home_Forcast24_RainVolume	"Regenmenge in 24 Std."		<rain>			(gWeather,AUS_Service)   ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastHours24#rain", stateDescription=" "[ pattern="%.1f l/m²" ]  }

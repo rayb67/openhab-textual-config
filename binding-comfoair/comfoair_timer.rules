@@ -1,0 +1,44 @@
+// Karen Lueftung EIN
+rule "TimerDiverses:LueftungEIN"
+when
+	Time cron "0 30 18 ? * *"
+	or
+	Time cron "0 40 1 ? * SAT,SUN" // Wochenende
+	or
+	Time cron "0 40 23 ? * 1-5"  // in der Woche  So-Do
+then
+	if(	(OhFrauBesonderheitenOnOff.state == ON) &&
+		(OhAbwesend.state != ON) ) 
+	{
+		sendCommand(comfoairAutoMode, 1) // 1=Auto; 0=Manuell
+		sendCommand(comfoairFanLevel, 3) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+		logInfo("TimerDiverses:LueftungEIN","EIN Besonderheit: "+OhFrauBesonderheitenOnOff.state+"  Level : "+comfoairFanLevel.state)
+	}
+	else
+	{
+		logInfo("TimerDiverses:LueftungEIN","... es passiert nix ")
+	}
+end
+
+// Karen Lueftung AUS
+rule "TimerDiverses:LueftungAUS"
+when
+	Time cron "0 50 7 ? * THU,FRI"
+	or
+	Time cron "0 0 23 ? * FRI,SAT"  // Fr-Sa - Wochenende
+	or
+	Time cron "0 0 22 ? * SUN,MON,THU,WED,THU"  // So-Do - in der Woche
+then
+	if ( OhFrauBesonderheitenOnOff.state == ON) 
+	{
+		sendCommand(comfoairAutoMode, 1) // 1=Auto; 0=Manuell
+		sendCommand(comfoairFanLevel, 2) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+
+		logInfo("TimerDiverses:LueftungAUS","AUS Besonderheit: "+OhFrauBesonderheitenOnOff.state+"  Level : "+comfoairFanLevel.state)
+	}
+	else
+	{
+		logInfo("TimerDiverses:LueftungAUS","... es passiert nix ")
+	}
+end
+

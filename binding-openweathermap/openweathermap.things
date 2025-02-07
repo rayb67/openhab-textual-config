@@ -1,0 +1,11 @@
+Bridge openweathermap:weather-api:api	"OWM Account"				[apikey="your-api-key", refreshInterval=20, language="de"] 
+{
+    Thing weather-and-forecast local	"OWM: Weather And Forecast"	[location="50.941413507071154,6.958217013317433,100", forecastHours=24, forecastDays=0]
+    Thing uvindex local 				"OWM: UV Index"				[location="50.941413507071154,6.958217013317433,100", forecastDays=1] 
+    Thing air-pollution local 			"OWM: Air Pollution"		[location="50.941413507071154,6.958217013317433,100", forecastDays=1] 
+}
+
+/*
+    Thing onecall local 				"OWM: One Call"				[location="50.941413507071154,6.958217013317433,100", forecastDays=1] 
+    Thing onecall-history local 		"OWM: One Call History"		[location="50.941413507071154,6.958217013317433,100", forecastDays=1] 
+*/

@@ -1,0 +1,16 @@
+{
+  "admin": {
+    "class": "org.openhab.core.auth.ManagedUser",
+    "value": {
+      "name": "admin",
+      "passwordHash": "RLX8yEszLn+Ho5b7hkhoQwA79LeIieqOzvzuCztFyNaeT+FECcZecFUzJ/GrQK9ZESQQVNPHg/hE8ue/FK66qA\u003d\u003d",
+      "passwordSalt": "vT0GRv6AHQOnh5HNlTJBOkTUngCHNNGMPu9/NoalUlocAYtObcE55jUfidJjk9/GC87IDXsCPZgpJ+d5SOPkFQ\u003d\u003d",
+      "roles": [
+        "adserver-devstrator"
+      ],
+      "sessions": [
+      ],
+      "apiTokens": []
+    }
+  }
+}

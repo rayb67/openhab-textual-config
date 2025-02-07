@@ -1,0 +1,101 @@
+/*
+rule "ForecastSolarActions"
+    when
+        Time cron "0 55 23 * * ?" // trigger whatever you like
+    then 
+        // get Actions for specific fs-site
+        logDebug("ForecastSolarActions","1")
+        val solarforecastActions = getActions("solarforecast","solarforecast:fs-site:home")
+        logDebug("ForecastSolarActions","2")
+ 
+        // get earliest and latest forecast dates
+        val beginDT = solarforecastActions.getForecastBegin
+        val endDT = solarforecastActions.getForecastEnd
+        logDebug("ForecastSolarActions","3")
+        logDebug("ForecastSolarActions","Begin: "+ beginDT+" End: "+endDT)
+ 
+        // get forecast for tomorrow    
+        val fcTomorrowState = solarforecastActions.getDay(LocalDate.now.plusDays(1))
+        logDebug("ForecastSolarActions","Forecast tomorrow state: "+ fcTomorrowState.toString)
+        val fcToTomorrowDouble = (fcTomorrowState as Number).doubleValue
+        logDebug("ForecastSolarActions","Forecast tomorrow value: "+ fcToTomorrowDouble)
+        
+        // get power forecast in one hour
+        val hourPlusOnePowerState = solarforecastActions.getPower(LocalDateTime.now.plusHours(1))
+        logDebug("ForecastSolarActions","Hour+1 power state: "+ hourPlusOnePowerState.toString)
+        val hourPlusOnePowerValue = (hourPlusOnePowerState as Number).doubleValue
+        logDebug("ForecastSolarActions","Hour+1 power value: "+ hourPlusOnePowerValue)
+        
+        // get total energy forecast from now till 2 days ahead
+        val twoDaysForecastFromNowState = solarforecastActions.getEnergy(LocalDateTime.now.plusDays(2))
+        logDebug("ForecastSolarActions","Forecast 2 days state: "+ twoDaysForecastFromNowState.toString)
+        val twoDaysForecastFromNowValue = (twoDaysForecastFromNowState as Number).doubleValue
+        logDebug("ForecastSolarActions","Forecast 2 days value: "+ twoDaysForecastFromNowValue)
+end
+*/
+
+rule "ForecastSolarActions"
+when
+    Time cron "0 55 23 * * ?" // Trigger at 23:55
+	or
+	Item DummySwitch changed
+then 
+    logDebug("ForecastSolarActions", "Rule triggered")
+
+    // Get Actions for specific fs-site
+    val solarforecastActions = getActions("solarforecast", "solarforecast:fs-site:home")
+
+    // Get earliest and latest forecast dates
+    val beginDT = solarforecastActions.getForecastBegin
+    val endDT = solarforecastActions.getForecastEnd
+    logDebug("ForecastSolarActions", "Forecast Begin: " + beginDT + " End: " + endDT)
+
+    try {
+        // Get forecast for tomorrow
+        val fcTomorrowState = solarforecastActions.getDay(LocalDate.now.plusDays(1))
+        val fcToTomorrowDouble = (fcTomorrowState as Number).doubleValue
+        logDebug("ForecastSolarActions", "Forecast for tomorrow: " + fcToTomorrowDouble)
+
+        // Get power forecast in one hour
+        val hourPlusOnePowerState = solarforecastActions.getPower(LocalDateTime.now.plusHours(1))
+        val hourPlusOnePowerValue = (hourPlusOnePowerState as Number).doubleValue
+        logDebug("ForecastSolarActions", "Power forecast in 1 hour: " + hourPlusOnePowerValue)
+
+        // Get total energy forecast from now till 2 days ahead
+//        val twoDaysForecastFromNowState = solarforecastActions.getEnergy(LocalDateTime.now.plusDays(1))
+//        val twoDaysForecastFromNowValue = (twoDaysForecastFromNowState as Number).doubleValue
+//        logDebug("ForecastSolarActions", "Total energy forecast for next 2 days: " + twoDaysForecastFromNowValue)
+
+    } catch (Exception e) {
+        logError("ForecastSolarActions", "Error in retrieving forecast data: " + e.getMessage)
+    }
+    
+    logDebug("ForecastSolarActions", "Rule execution completed")
+end
+
+
+rule "SolcastActions"
+    when
+        Time cron "40 54 23 * * ?" // trigger whatever you like
+    then
+        val solarforecastActions = getActions("solarforecast","solarforecast:fs-site:home")
+
+        val twoDayForecast = solarforecastActions.getEnergy(LocalDateTime.now,LocalDateTime.now.plusDays(2))
+        logDebug("SolcastActions","Forecast Estimate  2 days "+ twoDayForecast)
+        val threeDayForecast = solarforecastActions.getEnergy(LocalDateTime.now,LocalDateTime.now.plusDays(3))
+        logDebug("SolcastActions","Forecast Estimate  3 days "+ threeDayForecast)
+        val sixDayForecast = solarforecastActions.getEnergy(LocalDateTime.now,LocalDateTime.now.plusDays(6))
+        logDebug("SolcastActions","Forecast Estimate  6 days "+ sixDayForecast)
+
+end
+
+rule "SolcastAverage"
+    when
+        Time cron "40 55 23 * * ?" // trigger whatever you like
+//		or
+//        Time cron "40 */1 * * * ?" // trigger whatever you like
+    then
+//	(TempOGSchlafTuer.state as QuantityType<Number>).doubleValue
+	logDebug("SolcastAverage","1 : "+ForecastSolarSite_Day1.state+" -")
+end
+

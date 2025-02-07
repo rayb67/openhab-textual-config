@@ -1,0 +1,14 @@
+sitemap shelly label="Shelly"
+{	
+        Frame label="Shelly Plug 113" {
+				Switch item=Shelly_Device113_Relay
+				Text item=Shelly_Device113_Power_Current
+				Text item=Shelly_Device113_Power_Total
+        }
+		
+		Frame label="Shelly Plug 114 (Kuehlschrank)" {
+				Switch item=Shelly_Device114_Relay
+				Text item=Shelly_Device114_Power_Current
+				Text item=Shelly_Device114_Power_Total
+        }
+}

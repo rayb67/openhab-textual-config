@@ -1,0 +1,112 @@
+/* Fritz TR064 Binding */
+// Auslesen der Infos ueber...
+// http://fritz.box:49000/tr64desc.xml
+// https://community.openhab.org/t/missing-call-monitor-for-fritzbox-after-oh3-upgrade/111561/5
+
+// Bridge tr064:fritzbox:rootuid "TR064 FritzBox7490" [ 
+Bridge tr064:fritzbox:fb7490 "TR064 FritzBox7490" [ 
+	host="10.10.10.1", 
+	refresh=252, 
+	password="password", 
+	user="openhab",
+	tamIndices="0",
+	phonebookInterval="600" ] 
+{
+//	Thing subdeviceLan LAN "TR064 FritzBox LAN" [
+	Thing subdeviceLan fritzboxLAN "TR064 FritzBox LAN" [
+		uuid="uuid:75802409-bccb-40e7-8e6b-C80E1427A94F"
+	]
+//	Thing subdeviceLan WAN "TR064 FritzBox WAN" [
+	Thing subdeviceLan fritzboxWAN "TR064 FritzBox WAN" [
+		uuid="uuid:75802409-bccb-40e7-8e6a-C80E1427A94F"
+	]
+//	Thing subdeviceLan WANCon "TR064 FritzBox WANConnection" [
+	Thing subdeviceLan fritzboxWANCon "TR064 FritzBox WANConnection" [
+		uuid="uuid:75802409-bccb-40e7-8e69-C80E1427A94F"
+	]
+}
+
+
+/*
+	]
+	Thing subdeviceLan tr064:subdeviceLan:10.10.10.1:uuid_3A75802409_2Dbccb_2D40e7_2D8e6b_2DC80E1427A94F	"TR064 Sub-Device LAN"  [ 
+		uuid="uuid:75802409-bccb-40e7-8e69-C80E1427A94F"
+		, macOnline="C8:0E:14:27:A9:4f" 
+	]
+
+	Thing subdeviceLan uuid_3A75802409_2Dbccb_2D40e7_2D8e6b_2DC80E1427A94 "TR064 Sub-Device LAN " (tr064:fritzbox:10.10.10.1)  [ uuid="uuid:75802409-bccb-40e7-8e69-C80E1427A94F", 
+    macOnline=   "C8:0E:14:27:A9:51" // FB WIFI 2,4 GHz
+    			,"C8:0E:14:27:A9:52" // FB WIFI 5,0 GHz
+    			,"C8:0E:14:27:A9:4f" // FB LAN
+	]
+
+
+openhab> openhab:things show tr064:subdevice:10.10.10.1:uuid_3A75802409_2Dbccb_2D40e7_2D8e6a_2DC80E1427A94F
+UID: tr064:subdevice:10.10.10.1:uuid_3A75802409_2Dbccb_2D40e7_2D8e6a_2DC80E1427A94F
+Type: tr064:subdevice
+Label: SCAN WANDevice - FRITZ!Box 7490
+Status: ONLINE
+Bridge: tr064:fritzbox:10.10.10.1
+
+Properties:
+	deviceType : urn:dslforum-org:device:WANDevice:1
+
+Configuration parameters:
+	uuid : uuid:75802409-bccb-40e7-8e6a-C80E1427A94F
+	refresh : 60
+
+Channels:
+	ID: wanAccessType
+	Label: null
+	Type: tr064:wanAccessType
+
+	ID: wanPhysicalLinkStatus
+	Label: null
+	Type: tr064:wanPhysicalLinkStatus
+
+	ID: wanMaxDownstreamRate
+	Label: null
+	Type: tr064:wanMaxDownstreamRate
+
+	ID: wanMaxUpstreamRate
+	Label: null
+	Type: tr064:wanMaxUpstreamRate
+
+openhab:things list
+openhab:things show tr064:subdevice:10.10.10.1:uuid_3A75802409_2Dbccb_2D40e7_2D8e6a_2DC80E1427A94F
+
+UID: tr064:subdevice:10.10.10.1:uuid_3A75802409_2Dbccb_2D40e7_2D8e6a_2DC80E1427A94F
+Type: tr064:subdevice
+Label: WANDevice - FRITZ!Box 7490
+Status: ONLINE
+Bridge: tr064:fritzbox:10.10.10.1
+
+Properties:
+	deviceType : urn:dslforum-org:device:WANDevice:1
+
+Configuration parameters:
+	uuid : uuid:75802409-bccb-40e7-8e6a-C80E1427A94F
+	refresh : 60
+
+
+
+openhab> openhab:things show tr064:subdeviceLan:10.10.10.1:uuid_3A75802409_2Dbccb_2D40e7_2D8e6b_2DC80E1427A94F
+UID: tr064:subdeviceLan:10.10.10.1:uuid_3A75802409_2Dbccb_2D40e7_2D8e6b_2DC80E1427A94F
+Type: tr064:subdeviceLan
+Label: LANDevice - FRITZ!Box 7490
+Status: ONLINE
+Bridge: tr064:fritzbox:10.10.10.1
+
+Properties:
+	deviceType : urn:dslforum-org:device:LANDevice:1
+
+Configuration parameters:
+	refresh : 60
+	uuid : uuid:75802409-bccb-40e7-8e6b-C80E1427A94F
+	macOnline : [C8:0E:14:27:A9:51,C8:0E:14:27:A9:52,C8:0E:14:27:A9:4f,DE:84:58:CB:82:CC]
+
+*/
+//                ,"yy:yy:yy:yy:yy:yy" // CM Note - LAN
+// https://knx-user-forum.de/forum/supportforen/openhab/1589693-tr-064-fritz-box-binding-mit-openhab-3
+//    Thing FRITZ_Powerline_546E yy_yy_yy_yy_yy_yy "FRITZ!Powerline 546E #2" [ ain="yy:yy:yy:yy:yy:yy" ]
+//	Thing subdeviceLan FB_Online [uuid="uuid:75802409-bxyb-40e7-8yxb-C80E14268C10", macOnline="00:E0:6C:68:06:BC","4C:CC:8A:29:04:9E"]

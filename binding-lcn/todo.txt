@@ -1,0 +1,6 @@
+M70 B1 Helligkeit Display kurz 80
+M70 B1 Helligkeit Display lang 70
+M70 B2 Helligkeit Display kurz 60
+M70 B2 Helligkeit Display lang 50
+M70 B8 Corona lang 10 
+M70 B8 Corona kurz 30 

@@ -1,0 +1,58 @@
+Strategies {
+	every5Minute : "0 0/5 * * * ?"
+	everyMinute  : "0 * * * * ?"
+	everyHour    : "0 0 * * * ?"
+	everyDay     : "0 0 0 * * ?"
+	default = everyChange
+}
+Items {
+     network*    	          : strategy = everyChange, everyDay, restoreOnStartup
+	 
+     SunProOstActiv              : strategy = everyChange, everyDay, restoreOnStartup
+     SunProWestActiv             : strategy = everyChange, everyDay, restoreOnStartup
+     SunProSuedActiv             : strategy = everyChange, everyDay, restoreOnStartup
+     SunProNordActiv             : strategy = everyChange, everyDay, restoreOnStartup
+     SunProErLiActiv             : strategy = everyChange, everyDay, restoreOnStartup
+     SunProErReActiv             : strategy = everyChange, everyDay, restoreOnStartup
+
+	WasserAutoMorgens			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoAbends			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoVorne				: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoHinten			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoKies				: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoBeet				: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoHochbeet			: strategy = everyChange, everyDay, restoreOnStartup
+
+	SPMobileSource				: strategy = everyChange, everyDay, restoreOnStartup
+	SPSchlafzSource				: strategy = everyChange, everyDay, restoreOnStartup
+	SPWohnzSource				: strategy = everyChange, everyDay, restoreOnStartup
+	SPBadSource					: strategy = everyChange, everyDay, restoreOnStartup
+	SPBoomSource				: strategy = everyChange, everyDay, restoreOnStartup
+	SPKuecheSource				: strategy = everyChange, everyDay, restoreOnStartup
+
+	Owm_Home_Current_RainVolume			: strategy = everyChange, everyDay, restoreOnStartup
+	WetterRegen							: strategy = everyChange, everyDay, restoreOnStartup
+
+	Systeminfo_CPU_Load1				: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_CPU_Load5				: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_CPU_Load15				: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_Memory_Used				: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_Memory_Available			: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_CPU_Threads				: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_Swap_Available_Percent		: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_Memory_Available_Percent		: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_Storage_Available_Percent	: strategy = everyChange, everyHour, restoreOnStartup
+
+	Owm_Home_Forcast24_RainVolume			: strategy = everyChange, every5Minute, restoreOnStartup
+	Owm_Home_Forcast03_RainVolume			: strategy = everyChange, every5Minute, restoreOnStartup
+	Owm_Home_Current_RainVolume				: strategy = everyChange, every5Minute, restoreOnStartup
+	
+	ForecastSolarSite*						: strategy = everyChange, every5Minute, restoreOnStartup
+	Landroid*						: strategy = everyChange, everyHour, restoreOnStartup
+
+	ephemeris_Status					: strategy = everyChange, everyDay, restoreOnStartup
+	ephemeris_Name						: strategy = everyChange, everyDay, restoreOnStartup
+	ephemeris_NextDay					: strategy = everyChange, everyDay, restoreOnStartup
+	OhLamellenMorgensGerade				: strategy = everyChange, everyDay, restoreOnStartup
+}
+

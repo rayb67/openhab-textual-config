@@ -1,0 +1,1 @@
+Thing mail:smtp:samplesmtp [ hostname="your-smtp-server", sender="your-sender-address", security="STARTTLS", username="your-sender-address", password="your-password"]

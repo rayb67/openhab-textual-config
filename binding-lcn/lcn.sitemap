@@ -1,0 +1,79 @@
+sitemap lcn label="LCN" {
+    Frame label="Dachfenster" {
+		Switch item=SendKeyFlurDachAuf label="Flur Auf" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+		Switch item=SendKeyFlurDachAb label="Flur Ab" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+		Switch item=SendKeyKindDachAuf label="Kind Auf" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+		Switch item=SendKeyKindDachAb label="Kind Ab" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+
+    }
+    Frame label="Sonnenschutz" {
+		Setpoint item=SunProSollTempAussen label="Soll TempAussen (18)" icon="temperature" step=1 minValue=10 maxValue=25
+		Text item=TempAussen icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
+		Setpoint item=SunProSoll3DTempAussen label="Soll TempAussen 3D (14)" icon="temperature" step=1 minValue=10 maxValue=25
+		Text item=TempAussenAvg3D icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
+		Setpoint item=SunProSollTempWohnzimmer label="Soll TempWohnzimmer (25)" icon="temperature" step=1 minValue=22 maxValue=28
+		Text item=TempEGWohnzFlur icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
+		Setpoint item=SunProLichtSollNord label="Soll Lichtstaerke Nord" icon="sun" step=10 minValue=0 maxValue=1200
+		Text item=WetterLichtSAvg icon="info" valuecolor=[>1000="orange",>1130="green",<=1000="blue"]
+        Switch item=SunProOstActiv label="Ost aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=SunProSuedActiv label="Sued aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=SunProWestActiv label="West aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=SunProErReActiv label="ErRe aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=SunProNordActiv label="Nord aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=SunProErLiActiv label="ErLi aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=DummySwitch 
+    }
+
+    Frame label="Heizung" {
+	Setpoint item=SetTeEGWohnz step=0.5 minValue=14.0
+	Setpoint item=SetTeEGKueche step=0.5 minValue=14.0
+	Setpoint item=SetTeEGGaesteWC step=0.5 minValue=14.0
+	Setpoint item=SetTeEGAbstell step=0.5 minValue=14.0
+	Setpoint item=SetTeEGDiele step=0.5 minValue=14.0
+	Setpoint item=SetTeOGFlur step=0.5 minValue=14.0
+	Setpoint item=SetTeOGBad step=0.5 minValue=14.0
+	Setpoint item=SetTeOGKind step=0.5 minValue=14.0
+	Setpoint item=SetTeOGGaeste step=0.5 minValue=14.0
+	Setpoint item=SetTeOGSchlafz step=0.5 minValue=14.0
+	Setpoint item=SetTeOGAnkleide step=0.5 minValue=14.0
+	Setpoint item=SetTeOGBuero step=0.5 minValue=14.0
+    }
+
+    Frame label="Gruppen" {
+		Group item=gSunPro
+		Group item=gLichtEG
+		Group item=gLichtOG
+		Group item=gSteckdosenEG
+		Group item=gSteckdosenOG
+		// Group item=gHeizung
+//		Group item=gRolladen
+		Group item=gLED
+		Group item=gVarSensor
+		Group item=gWetter
+		Group item=gStatusImLCN
+		Group item=gWasser
+    }
+
+    Frame label="LED Test" {
+        // LEDs
+/*
+		Switch item=LCN_LED_M206_01 label="LED M206 1" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=LCN_LED_M206_02 label="LED M206 2"
+        Switch item=LCN_LED_M206_01 label="LED M206 fliker 3" mappings=[BLINK=Blinken, FLICKER=Flacker, ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+*/
+        Switch item=SchalterWetterDaemmerungOH label="SchalterWetterDaemmerungOH"
+        Switch item=TestEvents label="Test Event"  mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=LCN_LED_Status_M150_04 mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=LCN_LED_Status_M150_05 mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+//        Switch item=LCN_LED_Status_M150_06 mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=LCN_LED_Status_M150_10 mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+        Switch item=LCN_LED_Status_M150_11 mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
+		Switch item=OhRolloKuecheDaemmerung
+		Default item=Rollo_EG_WZ_Strasse 
+		Default item=Rollo_EG_WZ_Garten 
+		Default item=Rollo_EG_WZ_ErkerLinks
+		Default item=Rollo_EG_WZ_ErkerRechts
+		Default item=Rollo_EG_KuecheErkerLinks
+		Default item=Rollo_EG_KuecheErkerRechts
+    }
+}

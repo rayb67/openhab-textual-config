@@ -1,0 +1,309 @@
+Group	gSQPlayerMobile			"Music Mobile Player"							<player>	(OG_Buero,gSQBox)	["Equipment"]
+
+// wird in einer rule genutzt
+Number:Time	SPMobile_CurrentTrackLength	"Music Time Begin"				<time>		(gSQPlayerMobile) { stateDescription=" "[ pattern="%1$ta, %1$ty-%1$tm-%1$td %1$tH:%1$tM"] }
+
+Number:Time	SPMobile_CurrPlaytime	"Music Playing Time [JS(mmss.js):%s]"				(gSQPlayerMobile)  
+{channel="squeezebox:squeezeboxplayer:server:mobile:currentPlayingTime" }
+Number:Time	SPMobile_Duration	"Music Duration [JS(mmss.js):%s]"         			    (gSQPlayerMobile)  
+{channel="squeezebox:squeezeboxplayer:server:mobile:duration" }
+
+Switch	SPMobile_Mute			"Music Mute"									<player>	(gSQPlayerMobile) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:mute"}
+Switch	SPMobile_Power			"Music Power"									<player>	(gSQPlayerMobile) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:power"}
+Switch	SPMobile_Play			"Music Pause/Play"								<player>	(gSQPlayerMobile) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:playPause"}
+Switch	SPMobile_Stop			"Music Stop"									<player>	(gSQPlayerMobile) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:stop"}
+Player	SPMobile_Control			"Music Control"      						  	<player>	(gSQPlayerMobile,OG_Buero) ["Control","Receiver"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:control"}
+Dimmer	SPMobile_Volume			"Music Volume [%d %%]"							<player>	(gSQPlayerMobile,OG_Buero) ["SoundVolume"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:volume"}
+String	SPMobile_Source			"Music Source [%s]"								<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:source"}
+String	SPMobile_Title			"Music Title [%s]"								<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:title"}
+String	SPMobile_Album			"Music Album [%s]"								<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:album"}
+//String	SPMobile_CoverArt		"Music CoverArt [%s]"							<player>	(gSQPlayerMobile) ["Status"] 
+//{channel="squeezebox:squeezeboxplayer:server:mobile:coverartdata"}
+String	SPMobile_PlayFavorite	"Music Play Favorite [%s]"						<player>	(gSQPlayerMobile,OG_Buero) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:playFavorite"}
+Image	SPMobile_CoverArtData	"Music CoverArt"								<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:coverartdata"}
+String	SPMobile_FavoritesList	"Music Favorites list"							<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:favoritesList"}
+String	SPMobile_Sync			"Music Sync [%s]"								<player>	(gSQPlayerMobile) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:sync"}
+Switch	SPMobile_Unsync			"Music unSync [%d]"								<player>	(gSQPlayerMobile) ["Switch"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:unsync"}
+String	SPMobile_Conductor		"Music Conductor [%s]"							<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:conductor"}
+String	SPMobile_Composer		"Music Composer [%s]"							<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:composer"}
+String	SPMobile_Band			"Music Band [%s]"								<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:band"}
+String	SPMobile_Artist			"Music Artist [%s]"								<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:artist"}
+String	SPMobile_AlbumArtist	"Music albumArtist [%s]"						<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:albumArtist"}
+Number	SPMobile_CurPlalRepeat "Music currentPlaylistRepeat [%s]"				<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:currentPlaylistRepeat"}
+Number	SPMobile_CurPlalShuffle "Music currentPlaylistShuffle [%s]"				<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:currentPlaylistShuffle"}
+String	SPMobile_Stream			"Music stream [%s]"								<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:stream"}
+
+Number	SPMobile_CurPlalIndex "Music playListIndex [%d]"				<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:playListIndex"}
+
+Number	SPMobile_NumPlaylistTracks "Music numberPlaylistTracks [%d]"				<player>	(gSQPlayerMobile) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:mobile:numberPlaylistTracks"}
+
+
+
+
+Group	gSQPlayerKueche			"Music Kueche Player"							<player>	(gSQBox,EG_Kueche)	["Equipment"]
+Switch	SPKueche_Trigger_Sync	"Music Kueche Sync WZ ON/OFF"					<player>	(gSQPlayerKueche)	["Switch"] 
+String	SPKueche_Sync			"Music Sync [%s]"								<player>	(gSQPlayerKueche)	["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:sync"}
+Switch	SPKueche_Unsync			"Music unSync [%d]"								<player>	(gSQPlayerKueche) 
+{channel="squeezebox:squeezeboxplayer:server:kueche:unsync"}
+
+Switch	SPKueche_Power			"Music Power"									<player>	(gSQPlayerKueche) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:power"}
+Switch	SPKueche_Mute			"Music Mute"									<player>	(gSQPlayerKueche) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:mute"}
+Switch	SPKueche_Play			"Music Pause/Play"								<player>	(gSQPlayerKueche) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:volume"}
+
+String	SPKueche_Year			"Music Year [%s]"								<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:year"}
+String	SPKueche_Source			"Music Source [%s]"								<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:playPause"}
+Switch	SPKueche_Stop			"Music Stop"									<player>	(gSQPlayerKueche) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:stop"}
+Player	SPKueche_Control			"Music Control"      						  	<player>	(gSQPlayerKueche,EG_Kueche) ["Control","Receiver"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:control"}
+Dimmer	SPKueche_Volume			"Music Volume [%d %%]"							<player>	(gSQPlayerKueche,EG_Kueche) ["SoundVolume"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:source"}
+String	SPKueche_Title			"Music Title [%s]"								<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:title"}
+String	SPKueche_Album			"Music Album [%s]"								<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:album"}
+//String	SPKueche_CoverArt		"Music CoverArt [%s]"							<player>	(gSQPlayerKueche) ["Status"] 
+//{channel="squeezebox:squeezeboxplayer:server:kueche:coverartdata"}
+String	SPKueche_PlayFavorite	"Music Play Favorite [%s]"						<player>	(gSQPlayerKueche,EG_Kueche) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:playFavorite"}
+Image	SPKueche_CoverArtData	"Music CoverArt"								<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:coverartdata"}
+String	SPKueche_FavoritesList	"Music Favorites list"							<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:favoritesList"}
+
+String	SPKueche_Conductor		"Music Conductor [%s]"							<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:conductor"}
+String	SPKueche_Composer		"Music Composer [%s]"							<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:composer"}
+String	SPKueche_Band			"Music Band [%s]"								<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:band"}
+String	SPKueche_Artist			"Music Artist [%s]"								<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:artist"}
+String	SPKueche_AlbumArtist		"Music albumArtist [%s]"						<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:albumArtist"}
+Number	SPKueche_CurPlalRepeat 	"Music currentPlaylistRepeat [%s]"				<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:currentPlaylistRepeat"}
+Number	SPKueche_CurPlalShuffle "Music currentPlaylistShuffle [%s]"				<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:currentPlaylistShuffle"}
+String	SPKueche_Stream			"Music stream [%s]"								<player>	(gSQPlayerKueche) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:stream"}
+
+
+
+Group	gSQPlayerWohnz			"Music Wohnz Player"							<player>	(gSQBox,EG_Wohnz)	["Equipment"]
+Switch	SPWohnz_Power			"Music Power"									<player>	(gSQPlayerWohnz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:power"}
+Switch	SPWohnz_Play			"Music Pause/Play"								<player>	(gSQPlayerWohnz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:playPause"}
+Switch	SPWohnz_Stop			"Music Stop"									<player>	(gSQPlayerWohnz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:stop"}
+Player	SPWohnz_Control		"Music Control"      						  	<player>	(gSQPlayerWohnz,EG_Wohnz) ["Control","Receiver"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:control"}
+Dimmer	SPWohnz_Volume		"Music Volume [%d %%]"							<player>	(gSQPlayerWohnz,EG_Wohnz) ["SoundVolume"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:volume"}
+String	SPWohnz_Source			"Music Source [%s]"								<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:source"}
+String	SPWohnz_Title			"Music Title [%s]"								<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:title"}
+String	SPWohnz_Album			"Music Album [%s]"								<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:album"}
+//String	SPWohnz_CoverArt		"Music CoverArt [%s]"							<player>	(gSQPlayerWohnz) ["Status"] 
+//{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:coverartdata"}
+String	SPWohnz_PlayFavorite	"Music Play Favorite [%s]"						<player>	(gSQPlayerWohnz,EG_Wohnz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:playFavorite"}
+Image	SPWohnz_CoverArtData	"Music CoverArt"								<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:coverartdata"}
+String	SPWohnz_FavoritesList	"Music Favorites list"							<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:favoritesList"}
+String	SPWohnz_Sync			"Music Sync [%s]"								<player>	(gSQPlayerWohnz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:sync"}
+Switch	SPWohnz_Unsync			"Music unSync [%d]"								<player>	(gSQPlayerWohnz) ["Switch"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:unsync"}
+String	SPWohnz_Conductor		"Music Conductor [%s]"							<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:conductor"}
+String	SPWohnz_Composer		"Music Composer [%s]"							<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:composer"}
+String	SPWohnz_Band			"Music Band [%s]"								<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:band"}
+String	SPWohnz_Artist			"Music Artist [%s]"								<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:artist"}
+String	SPWohnz_AlbumArtist	"Music albumArtist [%s]"						<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:albumArtist"}
+Number	SPWohnz_CurPlalRepeat "Music currentPlaylistRepeat [%s]"				<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:currentPlaylistRepeat"}
+Number	SPWohnz_CurPlalShuffle "Music currentPlaylistShuffle [%s]"				<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:currentPlaylistShuffle"}
+String	SPWohnz_Stream			"Music stream [%s]"								<player>	(gSQPlayerWohnz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:wohnzimmer:stream"}
+
+Group	gSQPlayerBad		"Music Bad Player"								<player>	(OG_Bad,gSQBox)	["Equipment"]
+Switch	SPBad_Power			"Music Power"									<player>	(gSQPlayerBad)	["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:power"}
+Switch	SPBad_Play			"Music Pause/Play"								<player>	(gSQPlayerBad)	["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:playPause"}
+Switch	SPBad_Stop			"Music Stop"									<player>	(gSQPlayerBad)	["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:stop"}
+Player	SPBad_Control		"Music Control"      						  	<player>	(gSQPlayerBad)	["Control","Receiver"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:control"}
+Dimmer	SPBad_Volume		"Music Volume [%d %%]"							<player>	(gSQPlayerBad)	["SoundVolume"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:volume"}
+String	SPBad_Source		"Music Source [%s]"								<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:source"}
+String	SPBad_Title			"Music Title [%s]"								<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:title"}
+String	SPBad_Album			"Music Album [%s]"								<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:album"}
+//String	SPBad_CoverArt		"Music CoverArt [%s]"							<player>	(gSQPlayerBad) ["Status"] 
+//{channel="squeezebox:squeezeboxplayer:server:bad:coverartdata"}
+String	SPBad_PlayFavorite	"Music Play Favorite [%s]"						<player>	(gSQPlayerBad) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:playFavorite"}
+Image	SPBad_CoverArtData	"Music CoverArt"								<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:coverartdata"}
+String	SPBad_FavoritesList	"Music Favorites list"							<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:favoritesList"}
+String	SPBad_Sync			"Music Sync [%s]"								<player>	(gSQPlayerBad) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:sync"}
+Switch	SPBad_Unsync		"Music unSync [%d]"								<player>	(gSQPlayerBad) ["Switch"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:unsync"}
+String	SPBad_Conductor		"Music Conductor [%s]"							<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:conductor"}
+String	SPBad_Composer		"Music Composer [%s]"							<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:composer"}
+String	SPBad_Band			"Music Band [%s]"								<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:band"}
+String	SPBad_Artist		"Music Artist [%s]"								<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:artist"}
+String	SPBad_AlbumArtist	"Music albumArtist [%s]"						<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:albumArtist"}
+Number	SPBad_CurPlalRepeat "Music currentPlaylistRepeat [%s]"				<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:currentPlaylistRepeat"}
+Number	SPBad_CurPlalShuffle "Music currentPlaylistShuffle [%s]"				<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:currentPlaylistShuffle"}
+String	SPBad_Stream			"Music stream [%s]"								<player>	(gSQPlayerBad) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:bad:stream"}
+
+
+Group	gSQPlayerBoom		"Music Karen Player"								<player>	(OG_Gaeste,gSQBox)	["Equipment"]
+Switch	SPBoom_Power			"Music Power"									<player>	(gSQPlayerBoom) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:power"}
+Switch	SPBoom_Play			"Music Pause/Play"								<player>	(gSQPlayerBoom) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:playPause"}
+Switch	SPBoom_Stop			"Music Stop"									<player>	(gSQPlayerBoom) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:stop"}
+Player	SPBoom_Control		"Music Control"      						  	<player>	(gSQPlayerBoom,OG_Gaeste) ["Control","Receiver"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:control"}
+Dimmer	SPBoom_Volume		"Music Volume [%d %%]"							<player>	(gSQPlayerBoom,OG_Gaeste) ["SoundVolume"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:volume"}
+String	SPBoom_Source			"Music Source [%s]"								<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:source"}
+String	SPBoom_Title			"Music Title [%s]"								<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:title"}
+String	SPBoom_Album			"Music Album [%s]"								<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:album"}
+//String	SPBoom_CoverArt		"Music CoverArt [%s]"							<player>	(gSQPlayerBoom) ["Status"] 
+//{channel="squeezebox:squeezeboxplayer:server:karen:coverartdata"}
+String	SPBoom_PlayFavorite	"Music Play Favorite [%s]"						<player>	(gSQPlayerBoom,OG_Gaeste) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:playFavorite"}
+Image	SPBoom_CoverArtData	"Music CoverArt"								<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:coverartdata"}
+String	SPBoom_FavoritesList	"Music Favorites list"							<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:favoritesList"}
+String	SPBoom_Sync			"Music Sync [%s]"								<player>	(gSQPlayerBoom) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:sync"}
+Switch	SPBoom_Unsync			"Music unSync [%d]"								<player>	(gSQPlayerBoom) ["Switch"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:unsync"}
+String	SPBoom_Conductor		"Music Conductor [%s]"							<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:conductor"}
+String	SPBoom_Composer		"Music Composer [%s]"							<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:composer"}
+String	SPBoom_Band			"Music Band [%s]"								<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:band"}
+String	SPBoom_Artist			"Music Artist [%s]"								<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:artist"}
+String	SPBoom_AlbumArtist	"Music albumArtist [%s]"						<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:albumArtist"}
+Number	SPBoom_CurPlalRepeat "Music currentPlaylistRepeat [%s]"				<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:currentPlaylistRepeat"}
+Number	SPBoom_CurPlalShuffle "Music currentPlaylistShuffle [%s]"				<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:currentPlaylistShuffle"}
+String	SPBoom_Stream			"Music stream [%s]"								<player>	(gSQPlayerBoom) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:karen:stream"}
+
+/*
+
+Group	gSQPlayerSchlafz		"Music Player Schalfzimmer"						<player>		["Equipment"]
+Switch	SPSchlafz_Power			"Music Power"									<player>	(gSQPlayerSchlafz)			["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:power"}
+Switch	SPSchlafz_Play			"Music Pause/Play"								<player>	(gSQPlayerSchlafz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:playPause"}
+Switch	SPSchlafz_Stop			"Music Stop"									<player>	(gSQPlayerSchlafz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:stop"}
+Player	SPSchlafz_Control		"Music Control"      						  	<player>	(gSQPlayerSchlafz,OG_Schlafz) ["Control","Receiver"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:control"}
+Dimmer	SPSchlafz_Volume		"Music Volume [%d %%]"							<player>	(gSQPlayerSchlafz,OG_Schlafz) ["SoundVolume"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:volume"}
+String	SPSchlafz_Source			"Music Source [%s]"								<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:source"}
+String	SPSchlafz_Title			"Music Title [%s]"								<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:title"}
+String	SPSchlafz_Album			"Music Album [%s]"								<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:album"}
+//String	SPSchlafz_CoverArt		"Music CoverArt [%s]"							<player>	(gSQPlayerSchlafz) ["Status"] 
+//{channel="squeezebox:squeezeboxplayer:server:kueche:coverartdata"}
+String	SPSchlafz_PlayFavorite	"Music Play Favorite [%s]"						<player>	(gSQPlayerSchlafz,OG_Schlafz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:playFavorite"}
+Image	SPSchlafz_CoverArtData	"Music CoverArt"								<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:coverartdata"}
+String	SPSchlafz_FavoritesList	"Music Favorites list"							<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:favoritesList"}
+String	SPSchlafz_Sync			"Music Sync [%s]"								<player>	(gSQPlayerSchlafz) ["Control"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:sync"}
+Switch	SPSchlafz_Unsync			"Music unSync [%d]"								<player>	(gSQPlayerSchlafz) ["Switch"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:unsync"}
+String	SPSchlafz_Conductor		"Music Conductor [%s]"							<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:conductor"}
+String	SPSchlafz_Composer		"Music Composer [%s]"							<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:composer"}
+String	SPSchlafz_Band			"Music Band [%s]"								<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:band"}
+String	SPSchlafz_Artist			"Music Artist [%s]"								<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:artist"}
+String	SPSchlafz_AlbumArtist	"Music albumArtist [%s]"						<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:albumArtist"}
+Number	SPSchlafz_CurPlalRepeat "Music currentPlaylistRepeat [%s]"				<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:currentPlaylistRepeat"}
+Number	SPSchlafz_CurPlalShuffle "Music currentPlaylistShuffle [%s]"				<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:currentPlaylistShuffle"}
+String	SPSchlafz_Stream			"Music stream [%s]"								<player>	(gSQPlayerSchlafz) ["Status"] 
+{channel="squeezebox:squeezeboxplayer:server:kueche:stream"}
+*/

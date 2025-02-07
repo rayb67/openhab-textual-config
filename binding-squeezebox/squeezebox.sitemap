@@ -1,0 +1,99 @@
+// https://community.openhab.org/t/oh2-squeezeplayer-with-radio-playlist-select-button-and-dynamic-visibility/24443
+sitemap squeezebox label="Squeeze"
+{
+	Frame label="Groups" {
+		Group item=gSQPlayerBoom
+		Group item=gSQPlayerMobile
+		Group item=gSQPlayerBad
+		Group item=gSQPlayerSchlafz
+		Group item=gSQPlayerKueche
+		Group item=gSQPlayerWohnz
+	}
+	Frame label="Boom" {
+		Switch item=SPBoom_Play mappings=[ON="Play", OFF="Stop"]
+		Default item=SPBoom_Control
+		Text item=SPBoom_Album label="Album: [%s]"
+		Text item=SPBoom_Title label="Titel: [%s]"
+		Text item=SPBoom_Artist label="Artist: [%s]"
+		Selection item=SPBoom_CurrentPlaylistRepeat label="Repeat"
+		Selection item=SPBoom_CurrentPlaylistShuffle label="Shuffle"
+		Slider item=SPBoom_Volume
+		Selection item=SPBoom_PlayFavorite
+		Image item=SPBoom_CoverArt visibility=[SPBoom_Power == ON]
+		Text item=SPBoom_Source label="Source: [%s]"
+	}
+	Frame label="Mobile" {
+		Switch item=SPMobile_Play mappings=[ON="Play", OFF="Stop"]
+		Default item=SPMobile_Control
+		Text item=SPMobile_Album label="Album: [%s]"
+		Text item=SPMobile_Title label="Titel: [%s]"
+		Text item=SPMobile_Artist label="Artist: [%s]"
+		Selection item=SPMobile_CurrentPlaylistRepeat label="Repeat"
+		Selection item=SPMobile_CurrentPlaylistShuffle label="Shuffle"
+		Slider item=SPMobile_Volume
+		Selection item=SPMobile_PlayFavorite
+		Image item=SPMobile_CoverArt visibility=[SPMobile_Power == ON]
+		Text item=SPMobile_Source label="Source: [%s]"
+	}
+	Frame label="Bad" {
+		Switch item=SPBad_Play mappings=[ON="Play", OFF="Stop"]
+		Default item=SPBad_Control
+		Text item=SPBad_Album label="Album: [%s]"
+		Text item=SPBad_Title label="Titel: [%s]"
+		Text item=SPBad_Artist label="Artist: [%s]"
+		Selection item=SPBad_CurrentPlaylistRepeat label="Repeat"
+		Selection item=SPBad_CurrentPlaylistShuffle label="Shuffle"
+		Slider item=SPBad_Volume
+		Selection item=SPBad_PlayFavorite
+		Image item=SPBad_CoverArt visibility=[SPBad_Power == ON]
+		Text item=SPBad_Source label="Source: [%s]"
+	}
+	Frame label="Schlafz" {
+		Switch item=SPSchlafz_Play mappings=[ON="Play", OFF="Stop"]
+		Default item=SPSchlafz_Control
+		Text item=SPSchlafz_Album label="Album: [%s]"
+		Text item=SPSchlafz_Title label="Titel: [%s]"
+		Text item=SPSchlafz_Artist label="Artist: [%s]"
+		Selection item=SPSchlafz_CurrentPlaylistRepeat label="Repeat"
+		Selection item=SPSchlafz_CurrentPlaylistShuffle label="Shuffle"
+		Slider item=SPSchlafz_Volume
+		Selection item=SPSchlafz_PlayFavorite
+		Image item=SPSchlafz_CoverArt visibility=[SPSchlafz_Power == ON]
+		Text item=SPSchlafz_Source label="Source: [%s]"
+	}
+	Frame label="Kueche" {
+		Switch item=SPKueche_Trigger_Sync mappings=[ON="Sync", OFF="UnSync"]
+		Switch item=SPKueche_Play mappings=[ON="Play", OFF="Stop"]
+		Default item=SPKueche_Control
+		Text item=SPKueche_Album label="Album: [%s]"
+		Text item=SPKueche_Title label="Titel: [%s]"
+		Text item=SPKueche_Artist label="Artist: [%s]"
+		Selection item=SPKueche_CurrentPlaylistRepeat label="Repeat"
+		Selection item=SPKueche_CurrentPlaylistShuffle label="Shuffle"
+		Slider item=SPKueche_Volume
+		Selection item=SPKueche_PlayFavorite
+		Image item=SPKueche_CoverArt visibility=[SPKueche_Power == ON]
+		Text item=SPKueche_Source label="Source: [%s]"
+// neuen Channels, die Stand 14.1.2024 noch nix liefern.
+// https://github.com/openhab/openhab-addons/pull/14201
+//					Text item=SPKueche_Band label="Band: [%s]"
+//					Text item=SPKueche_Stream label="Stream: [%s]"
+//					Text item=SPKueche_Composer label="Composer: [%s]"
+//					Text item=SPKueche_Conductor label="Conductor: [%s]"
+//					Text item=SPKueche_AlbumArtist label="Album Artist: [%s]"
+	}
+	Frame label="Wohnzimmer" {
+					Switch item=SPWohnz_Play mappings=[ON="Play", OFF="Stop"]
+					Default item=SPWohnz_Control
+					Text item=SPWohnz_Album label="Album: [%s]"
+					Text item=SPWohnz_Title label="Titel: [%s]"
+					Text item=SPWohnz_Artist label="Artist: [%s]"
+					Selection item=SPWohnz_CurrentPlaylistRepeat label="Repeat"
+					Selection item=SPWohnz_CurrentPlaylistShuffle label="Shuffle"
+					Slider item=SPWohnz_Volume
+					Selection item=SPWohnz_PlayFavorite
+					Image item=SPWohnz_CoverArt visibility=[SPWohnz_Power == ON]
+					Text item=SPWohnz_Source label="Source: [%s]"
+				}
+}
+

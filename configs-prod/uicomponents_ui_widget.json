@@ -1,0 +1,4759 @@
+{
+  "Card_room_12": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Card_room_12",
+      "tags": [],
+      "props": {
+        "parameters": [
+          {
+            "label": "Header",
+            "name": "text_header",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "icon name without \".png\", located in static/icons/ folder",
+            "label": "Icon",
+            "name": "iconimage",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "HEX or rgba",
+            "label": "Backgroundcolor",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Page which will be opened as popup",
+            "label": "Page ID",
+            "name": "page",
+            "required": false
+          },
+          {
+            "context": "item",
+            "description": "select group for status lights",
+            "label": "Item",
+            "name": "status",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for heating",
+            "label": "Item",
+            "name": "heating",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for temperature",
+            "label": "Item",
+            "name": "temp",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for set temperature",
+            "label": "Item",
+            "name": "settemp",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for humidity",
+            "label": "Item",
+            "name": "humidity",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for illuminance",
+            "label": "Item",
+            "name": "illuminance",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for door state(s)",
+            "label": "Item",
+            "name": "door_state",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for door lock(s)",
+            "label": "Item",
+            "name": "door_lock",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for blinds group (SUM)",
+            "label": "Item",
+            "name": "blinds_closed",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for speaker(s)",
+            "label": "Item",
+            "name": "speakers",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for windows(s)",
+            "label": "Item",
+            "name": "windows",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for numbers of windows",
+            "label": "Item",
+            "name": "windows_numbers",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "select item for boiler temp",
+            "label": "Item",
+            "name": "boiler_temp",
+            "required": false,
+            "type": "TEXT"
+          }
+        ]
+      },
+      "timestamp": "May 9, 2024, 8:41:08 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "class": [
+            {
+              "padding": "0px"
+            }
+          ],
+          "height": "125px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "left": "50px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "17px",
+                      "font-weight": 600.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.text_header ? props.text_header : \u0027Set Props\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-37px",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "iconColor": "\u003dthemeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027",
+                    "iconF7": "\u003d(Number(items[props.status].state) \u003e 0) ? \u0027lightbulb\u0027 : \u0027lightbulb_slash\u0027",
+                    "iconSize": 18.0,
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003d(Number(items[props.status].state) \u003e 0) ? items[props.status].state : \u0027\u0027",
+                    "visible": "\u003dprops.status ? true : false"
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "iconColor": "\u003dthemeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027",
+                    "iconF7": "flame",
+                    "iconSize": 18.0,
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003ditems[props.heating].state \u003d\u003d\u003d \u0027ON\u0027 ? \u0027\u0027 : \u0027\u0027",
+                    "visible": "\u003ditems[props.heating].state \u003d\u003d\u003d \u0027ON\u0027"
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003ditems[props.door_state].state \u003d\u003d\u003d \u0027ON\u0027 ? \u0027\u0027 : \u0027\u0027",
+                    "visible": "\u003dprops.door_state ? true : false"
+                  },
+                  "slots": {
+                    "media": [
+                      {
+                        "component": "oh-icon",
+                        "config": {
+                          "icon": "\u003ditems[props.door_state].state \u003d\u003d\u003d \u0027ON\u0027 ? \u0027door-open\u0027 : \u0027door-closed\u0027",
+                          "style": {
+                            "filter": "\u003d\u0027brightness(\u0027 + (themeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u00271\u0027 : \u00270.4\u0027) + \u0027)\u0027",
+                            "height": "18px"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003ditems[props.windows_numbers].state \u003e 0 ? items[props.windows_numbers].state : \u0027\u0027",
+                    "visible": "\u003ditems[props.windows].state \u003d\u003d\u003d \u0027OPEN\u0027 ? true : false"
+                  },
+                  "slots": {
+                    "media": [
+                      {
+                        "component": "oh-icon",
+                        "config": {
+                          "icon": "window-open",
+                          "style": {
+                            "filter": "\u003d\u0027brightness(\u0027 + (themeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u00271\u0027 : \u00270.4\u0027) + \u0027)\u0027",
+                            "height": "18px"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "iconColor": "\u003dthemeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027",
+                    "iconF7": "\u003ditems[props.door_lock].state \u003d\u003d\u003d \u0027ON\u0027 ? \u0027lock_open\u0027 : \u0027lock\u0027",
+                    "iconSize": 18.0,
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003ditems[props.door_lock].state \u003d\u003d\u003d \u0027ON\u0027 ? \u0027\u0027 : \u0027\u0027",
+                    "visible": "\u003dprops.door_lock ? true : false"
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003d(Number(items[props.blinds_closed].state) \u003d\u003d\u003d 0) ? \u0027\u0027 : Math.floor(items[props.blinds_closed].state)",
+                    "visible": "\u003d(Number(Math.floor(items[props.blinds_closed].state)) \u003e 0) ? true : false"
+                  },
+                  "slots": {
+                    "media": [
+                      {
+                        "component": "oh-icon",
+                        "config": {
+                          "icon": "\u003d(Number(items[props.blinds_closed].state) \u003d\u003d\u003d 0) ? \u0027cinemascreen-30\u0027 : \u0027cinemascreen-100\u0027",
+                          "style": {
+                            "filter": "\u003d\u0027brightness(\u0027 + (themeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027100\u0027 : \u00270.3\u0027) + \u0027)\u0027",
+                            "height": "18px"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "iconColor": "\u003dthemeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027",
+                    "iconF7": "\u003ditems[props.speakers].state \u003d\u003d\u003d \u0027PLAY\u0027 ? \u0027speaker_2\u0027 : \u0027speaker\u0027",
+                    "iconSize": 18.0,
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "visible": "\u003ditems[props.speakers].state \u003d\u003d\u003d \u0027PLAY\u0027 ? true : false"
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "iconColor": "\u003dthemeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027",
+                    "iconF7": "sun_min",
+                    "iconSize": 18.0,
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003ditems[props.illuminance].displayState",
+                    "visible": "\u003dprops.illuminance ? true : false"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-65px",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "iconColor": "\u003dthemeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027",
+                    "iconF7": "thermometer",
+                    "iconSize": 18.0,
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003d(items[props.temp].displayState  ? items[props.temp].displayState : items[props.temp].state) +  (props.settemp ? \u0027 (\u0027 + items[props.settemp].state + \u0027)\u0027 : \u0027\u0027)",
+                    "visible": "\u003dprops.temp ? true : false"
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "iconColor": "\u003dthemeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027",
+                    "iconF7": "drop",
+                    "iconSize": 18.0,
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003ditems[props.humidity].displayState",
+                    "visible": "\u003dprops.humidity ? true : false"
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "style": {
+                      "--f7-chip-bg-color": "rgba(255, 255, 255, 0)"
+                    },
+                    "text": "\u003ditems[props.boiler_temp].state",
+                    "visible": "\u003dprops.boiler_temp ? true : false"
+                  },
+                  "slots": {
+                    "media": [
+                      {
+                        "component": "oh-icon",
+                        "config": {
+                          "icon": "waterheater2",
+                          "style": {
+                            "filter": "\u003d\u0027invert(\u0027 + (themeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u00271\u0027 : \u00270\u0027) + \u0027)\u0027",
+                            "height": "18px"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-image",
+            "config": {
+              "style": {
+                "height": "25px",
+                "left": "16px",
+                "opacity": 0.7,
+                "position": "absolute",
+                "top": "10px"
+              },
+              "url": "\u003d\u0027/static/icons/\u0027 + props.iconimage + \u0027.png\u0027",
+              "visible": "\u003dprops.iconimage ? true : false"
+            }
+          },
+          {
+            "component": "oh-link",
+            "config": {
+              "action": "popup",
+              "actionModal": "\u003d\u0027page:\u0027 + props.page",
+              "style": {
+                "height": "110px",
+                "left": "0px",
+                "position": "absolute",
+                "top": "0px",
+                "width": "100%"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Card_1A": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Card_1A",
+      "tags": [],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Header big sized",
+            "label": "Header",
+            "name": "header",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Icon on top of the card (only f7 icons (without f7:))",
+            "label": "Icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "rgba or HEX",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item to control",
+            "label": "Item",
+            "name": "item",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "label": "Command to send",
+            "name": "command",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "May 9, 2024, 6:02:35 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "class": [
+            {
+              "padding": "0px"
+            }
+          ],
+          "height": "70px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    },
+                    "visible": "\u003dprops.icon ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-15px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "17px",
+                      "font-weight": 600.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.header ? props.header : \u0027Set Props\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-link",
+            "config": {
+              "action": "command",
+              "actionCommand": "\u003dprops.command",
+              "actionFeedback": "Done!",
+              "actionItem": "\u003dprops.item",
+              "style": {
+                "actionPosition": "center",
+                "height": "60px",
+                "left": 0.0,
+                "position": "absolute",
+                "top": 0.0,
+                "width": "100%"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Landroid_Schedule": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Landroid_Schedule",
+      "tags": [
+        "in Use",
+        "page_landroid"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "HEX or rgba",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Enable Slot",
+            "label": "Item",
+            "name": "enable",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Start Time",
+            "label": "Item",
+            "name": "starttime",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Duration",
+            "label": "Item",
+            "name": "duration",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Edgecut",
+            "label": "Item",
+            "name": "edgecut",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Time format (12h|24h)",
+            "label": "Format",
+            "name": "timeFormat",
+            "required": true,
+            "type": "TEXT"
+          }
+        ]
+      },
+      "timestamp": "Aug 24, 2024, 6:21:27 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "height": "260px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "10px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "timer",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    }
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "14px",
+                      "font-weight": "bold",
+                      "margin-top": "-8px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-10px",
+                "flex-direction": "row",
+                "left": "50px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "14px"
+                    },
+                    "text": "\u003dNumber(items[props.enable].state) \u003d\u003d\u003d 0 ? \u0027Enable Aktiv\u0027 : \u0027Enable Aus\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "iconColor": "red",
+              "iconF7": "checkmark_rectangle",
+              "iconSize": 25.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "left": "10px",
+                "position": "absolute",
+                "top": "30px"
+              }
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-10px",
+                "flex-direction": "row",
+                "left": "170px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "14px"
+                    },
+                    "text": "\u003dNumber(items[props.edgcut].state) \u003d\u003d\u003d 0 ? \u0027Edgcut Aktiv\u0027 : \u0027Edgcut Aus\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "iconColor": "red",
+              "iconF7": "xmark_square",
+              "iconSize": 25.0,
+              "style": {
+                "background": "transparent",
+                "height": "125px",
+                "left": "130px",
+                "position": "absolute",
+                "top": "30px"
+              }
+            }
+          },
+          {
+            "component": "f7-col",
+            "config": {
+              "style": {
+                "bottom": "-220px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              },
+              "width": "\u003d(props.timeFormat \u003d\u003d\u003d \u002712h\u0027) ? \u002770\u0027: \u0027100\u0027"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-block",
+                  "config": {
+                    "style": {
+                      "bottom": "150px",
+                      "flex-direction": "row",
+                      "left": "00px",
+                      "position": "absolute"
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "Label",
+                        "config": {
+                          "style": {
+                            "font-size": "18px"
+                          },
+                          "text": "StartTime"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-block",
+                  "config": {
+                    "style": {
+                      "bottom": "150px",
+                      "flex-direction": "row",
+                      "left": "140px",
+                      "position": "absolute"
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "Label",
+                        "config": {
+                          "style": {
+                            "font-size": "18px"
+                          },
+                          "text": "Duration"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-col",
+            "config": {
+              "style": {
+                "bottom": "-220px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              },
+              "width": "\u003d(props.timeFormat \u003d\u003d\u003d \u002712h\u0027) ? \u002770\u0027: \u0027100\u0027"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "style": {
+                            "text-align": "center"
+                          },
+                          "width": "45"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-button",
+                              "config": {
+                                "action": "command",
+                                "actionCommand": "\u003d(dayjs(items[props.starttime].state).add(1, \u0027hour\u0027).format(\u0027HH:mm\u0027))",
+                                "actionItem": "\u003d(props.starttime)",
+                                "style": {
+                                  "--f7-button-text-color": "var(--f7-text-color)",
+                                  "font-family": "u2400",
+                                  "font-size": "150%"
+                                },
+                                "text": "▲"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "width": "10"
+                        }
+                      },
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "style": {
+                            "text-align": "center"
+                          },
+                          "width": "45"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-button",
+                              "config": {
+                                "action": "command",
+                                "actionCommand": "\u003d(dayjs(items[props.starttime].state).add(1, \u0027minute\u0027).format(\u0027HH:mm\u0027))",
+                                "actionItem": "\u003d(props.starttime)",
+                                "style": {
+                                  "--f7-button-text-color": "var(--f7-text-color)",
+                                  "font-family": "u2400",
+                                  "font-size": "150%"
+                                },
+                                "text": "▲"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "width": "45"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "label": "\u003d(((items[props.starttime].state \u003d\u003d\u003d \u0027NULL\u0027) || !props.starttime) ? \u0027?\u0027: props.timeFormat \u003d\u003d \u002712h\u0027 ? dayjs(items[props.starttime].state).format(\u0027hh\u0027): dayjs(items[props.starttime].state).format(\u0027HH\u0027))"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "style": {
+                            "margin": "auto",
+                            "text-align": "center"
+                          },
+                          "width": "10"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "font-size": "200%"
+                                },
+                                "text": ":"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "width": "45"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-label-card",
+                              "config": {
+                                "label": "\u003d(((items[props.starttime].state \u003d\u003d\u003d \u0027NULL\u0027) || !props.starttime) ? \u0027?\u0027: dayjs(items[props.starttime].state).format(\u0027mm\u0027))"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "style": {
+                            "text-align": "center"
+                          },
+                          "width": "45"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-button",
+                              "config": {
+                                "action": "command",
+                                "actionCommand": "\u003d(dayjs(items[props.starttime].state).add(-1, \u0027hour\u0027).format(\u0027HH:mm\u0027))",
+                                "actionItem": "\u003d(props.starttime)",
+                                "style": {
+                                  "--f7-button-text-color": "var(--f7-text-color)",
+                                  "font-family": "u2400",
+                                  "font-size": "150%"
+                                },
+                                "text": "▼"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "width": "10"
+                        }
+                      },
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "style": {
+                            "text-align": "center"
+                          },
+                          "width": "45"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-button",
+                              "config": {
+                                "action": "command",
+                                "actionCommand": "\u003d(dayjs(items[props.starttime].state).add(-1, \u0027minute\u0027).format(\u0027HH:mm\u0027))",
+                                "actionItem": "\u003d(props.starttime)",
+                                "style": {
+                                  "--f7-button-text-color": "var(--f7-text-color)",
+                                  "font-family": "u2400",
+                                  "font-size": "150%"
+                                },
+                                "text": "▼"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-col",
+            "config": {
+              "style": {
+                "margin": "auto"
+              },
+              "visible": "\u003d(props.timeFormat \u003d\u003d\u003d \u002712h\u0027)",
+              "width": "30"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-row",
+                  "config": {
+                    "class": [
+                      {
+                        "bottom": "-135px"
+                      },
+                      "padding-bottom"
+                    ]
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "style": {
+                            "margin": "auto"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-button",
+                              "config": {
+                                "fill": true,
+                                "large": true,
+                                "style": {
+                                  "--f7-button-bg-color": "var(--f7-button-fill-bg-color,var(--f7-theme-color))"
+                                },
+                                "text": "AM",
+                                "visible": "\u003d((items[props.starttime].state !\u003d \u0027NULL\u0027) \u0026\u0026 props.starttime \u0026\u0026 dayjs(items[props.starttime].state).hour() \u003c 12)"
+                              }
+                            },
+                            {
+                              "component": "oh-button",
+                              "config": {
+                                "action": "command",
+                                "actionCommand": "\u003d(dayjs(items[props.starttime].state).add(-12, \u0027hour\u0027).format(\u0027HH:mm\u0027))",
+                                "actionItem": "\u003d(props.starttime)",
+                                "fill": true,
+                                "large": true,
+                                "style": {
+                                  "--f7-button-bg-color": "var(--f7-card-bg-color)"
+                                },
+                                "text": "AM",
+                                "visible": "\u003d((items[props.starttime].state !\u003d \u0027NULL\u0027) \u0026\u0026 props.starttime \u0026\u0026 dayjs(items[props.starttime].state).hour() \u003e\u003d 12)"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-row",
+                  "config": {
+                    "class": [
+                      {
+                        "bottom": "-135px"
+                      },
+                      "padding-top"
+                    ]
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-col",
+                        "config": {
+                          "style": {
+                            "margin": "auto"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-button",
+                              "config": {
+                                "fill": true,
+                                "large": true,
+                                "style": {
+                                  "--f7-button-bg-color": "var(--f7-button-fill-bg-color,var(--f7-theme-color))"
+                                },
+                                "text": "PM",
+                                "visible": "\u003d((items[props.starttime].state !\u003d \u0027NULL\u0027) \u0026\u0026 props.starttime \u0026\u0026 dayjs(items[props.starttime].state).hour() \u003e\u003d 12)"
+                              }
+                            },
+                            {
+                              "component": "oh-button",
+                              "config": {
+                                "action": "command",
+                                "actionCommand": "\u003d(dayjs(items[props.starttime].state).add(12, \u0027hour\u0027).format(\u0027HH:mm\u0027))",
+                                "actionItem": "\u003d(props.starttime)",
+                                "fill": true,
+                                "large": true,
+                                "style": {
+                                  "--f7-button-bg-color": "var(--f7-card-bg-color)"
+                                },
+                                "text": "PM",
+                                "visible": "\u003d((items[props.starttime].state !\u003d \u0027NULL\u0027) \u0026\u0026 props.starttime \u0026\u0026 dayjs(items[props.starttime].state).hour() \u003c 12)"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Light_Card_1": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Light_Card_1",
+      "tags": [
+        "in Use",
+        "page_EG_Wohnzimmer",
+        "page_OG_Gaeste"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Header big sized",
+            "label": "Header",
+            "name": "header",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Icon on top of the card (only f7 icons (without f7:))",
+            "label": "Icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "rgba or HEX",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item to control on/off",
+            "label": "Item",
+            "name": "item_schalter",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item to control brightness",
+            "label": "Item",
+            "name": "item_brightness",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:29:48 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "height": "120px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    },
+                    "visible": "\u003dprops.icon ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-15px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "17px",
+                      "font-weight": 600.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.header ? props.header : \u0027Set Props\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-slider",
+            "config": {
+              "item": "\u003dprops.item_brightness",
+              "max": 100.0,
+              "min": 0.0,
+              "style": {
+                "--f7-range-bar-border-radius": "8px",
+                "--f7-range-bar-size": "8px",
+                "--f7-range-knob-box-shadow": "0 2px 4px rgba(0, 0, 0, 0.3)",
+                "--f7-range-knob-size": "20px",
+                "bottom": "-75px",
+                "left": "20px",
+                "position": "absolute",
+                "width": "calc(100% - 40px)"
+              }
+            }
+          },
+          {
+            "component": "oh-toggle",
+            "config": {
+              "item": "\u003dprops.item_schalter",
+              "style": {
+                "position": "absolute",
+                "right": "20px",
+                "top": "15px"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Light_Card_2": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Light_Card_2",
+      "tags": [
+        "in Use",
+        "page_EG_Wohnzimmer",
+        "page_OG_Gaeste"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Header big sized",
+            "label": "Header",
+            "name": "header",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Icon on top of the card (only f7 icons (without f7:))",
+            "label": "Icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "rgba or HEX",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item to control on/off",
+            "label": "Item",
+            "name": "item_schalter",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:30:00 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "height": "80px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    },
+                    "visible": "\u003dprops.icon ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-15px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "17px",
+                      "font-weight": 600.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.header ? props.header : \u0027Set Props\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-toggle",
+            "config": {
+              "item": "\u003dprops.item_schalter",
+              "style": {
+                "position": "absolute",
+                "right": "20px",
+                "top": "15px"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Shutter_Card_1": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Shutter_Card_1",
+      "tags": [
+        "in Use",
+        "page_EG_Kueche",
+        "page_EG_Wohnzimmer"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Header big sized",
+            "label": "Header",
+            "name": "header",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Icon on top of the card only f7 icons without",
+            "label": "Icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "HEX or rgba",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Shutter item to control",
+            "label": "Item",
+            "name": "item",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:15:17 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "height": "120px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    },
+                    "visible": "\u003dprops.icon ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-15px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "17px",
+                      "font-weight": 600.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.header ? props.header : \u0027Set Props\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-35px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dNumber(items[props.item].state) \u003d\u003d\u003d 0 ? \u0027Geöffnet\u0027 : \u0027Geschlossen\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "UP",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "red",
+              "iconF7": "arrow_up_circle",
+              "iconSize": 35.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "position": "absolute",
+                "right": "10px",
+                "top": "12px"
+              }
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "STOP",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "red",
+              "iconF7": "stop_circle",
+              "iconSize": 29.0,
+              "style": {
+                "background": "transparent",
+                "height": "29px",
+                "position": "absolute",
+                "right": "13px",
+                "top": "46px"
+              }
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "DOWN",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "red",
+              "iconF7": "arrow_down_circle",
+              "iconSize": 35.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "position": "absolute",
+                "right": "10px",
+                "top": "74px"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Shutter_Card_2": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Shutter_Card_2",
+      "tags": [
+        "in Use",
+        "page_EG_Kueche",
+        "page_OG_Kind"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Header big sized",
+            "label": "Header",
+            "name": "header",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Icon on top of the card only f7 icons without",
+            "label": "Icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "HEX or rgba",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Shutter item down command",
+            "label": "Item",
+            "name": "item",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:27:28 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "height": "120px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    },
+                    "visible": "\u003dprops.icon ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-15px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "17px",
+                      "font-weight": 600.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.header ? props.header : \u0027Set Props\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-35px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dNumber(items[props.item_up].state) \u003d\u003d\u003d 0 ? \u0027Geöffnet\u0027 : \u0027Geschlossen\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "OFF",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "red",
+              "iconF7": "stop_circle",
+              "iconSize": 29.0,
+              "style": {
+                "background": "transparent",
+                "height": "29px",
+                "position": "absolute",
+                "right": "13px",
+                "top": "46px"
+              }
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "ON",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "red",
+              "iconF7": "arrow_down_circle",
+              "iconSize": 35.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "position": "absolute",
+                "right": "10px",
+                "top": "74px"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Shutter_Card_3": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Shutter_Card_3",
+      "tags": [
+        "in Use",
+        "page_OG_Kind"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Header big sized",
+            "label": "Header",
+            "name": "header",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Icon on top of the card only f7 icons without",
+            "label": "Icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "HEX or rgba",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Shutter item down command",
+            "label": "Item",
+            "name": "item",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:27:38 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "height": "120px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    },
+                    "visible": "\u003dprops.icon ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-15px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "17px",
+                      "font-weight": 600.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.header ? props.header : \u0027Set Props\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-35px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dNumber(items[props.item_up].state) \u003d\u003d\u003d 0 ? \u0027Geöffnet\u0027 : \u0027Geschlossen\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "ON",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "red",
+              "iconF7": "arrow_up_circle",
+              "iconSize": 35.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "position": "absolute",
+                "right": "10px",
+                "top": "12px"
+              }
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "OFF",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "red",
+              "iconF7": "stop_circle",
+              "iconSize": 29.0,
+              "style": {
+                "background": "transparent",
+                "height": "29px",
+                "position": "absolute",
+                "right": "13px",
+                "top": "46px"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Squeez_Card_1": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Squeez_Card_1",
+      "tags": [
+        "in Use",
+        "in den rooms with squeezbox"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "HEX or rgba",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item to control",
+            "label": "Item",
+            "name": "item",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item to Favorit",
+            "label": "Item",
+            "name": "item_favorit",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item for volume",
+            "label": "Item",
+            "name": "item_volume",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item for Coverbild",
+            "label": "Item",
+            "name": "item_cover",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 25, 2024, 11:12:06 AM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(34,34,34,34.1)",
+          "height": "300px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003ditems[props.item].state \u003d\u003d\u003d \u0027PLAY\u0027 ? \u0027speaker_3\u0027 : \u0027speaker\u0027",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    }
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-label-card",
+            "config": {
+              "action": "options",
+              "actionItem": "\u003dprops.item_favorit",
+              "expandable": false,
+              "label": "\u003ditems[props.item_favorit].displayState.slice(0,9)",
+              "style": {
+                "background-color": "rgba(200,180,180,.3)",
+                "bottom": "-75px",
+                "font-size": "10px",
+                "height": "80px",
+                "margin-left": "2px",
+                "margin-top": "2px",
+                "noShadow": true,
+                "padding": "0px",
+                "position": "absolute"
+              },
+              "title": "Select a favorite channel"
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "PLAY",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "\u003ditems[props.item].state \u003d\u003d\u003d \u0027PAUSE\u0027 ? themeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027 : \u0027red\u0027 ",
+              "iconF7": "play_circle",
+              "iconSize": 35.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "position": "absolute",
+                "right": "10px",
+                "top": "12px"
+              }
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "PAUSE",
+              "actionItem": "\u003dprops.item",
+              "iconColor": "\u003ditems[props.item].state \u003d\u003d\u003d \u0027PLAY\u0027 ? themeOptions.dark \u003d\u003d\u003d \u0027dark\u0027 ? \u0027white\u0027 : \u0027black\u0027 : \u0027red\u0027",
+              "iconF7": "pause_circle",
+              "iconSize": 35.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "position": "absolute",
+                "right": "10px",
+                "top": "74px"
+              }
+            }
+          },
+          {
+            "component": "oh-slider",
+            "config": {
+              "item": "\u003dprops.item_volume",
+              "max": 100.0,
+              "min": 0.0,
+              "style": {
+                "--f7-range-bar-border-radius": "8px",
+                "--f7-range-bar-size": "8px",
+                "--f7-range-knob-box-shadow": "0 2px 4px rgba(0, 0, 0, 0.3)",
+                "--f7-range-knob-size": "20px",
+                "bottom": "-75px",
+                "left": "20px",
+                "position": "absolute",
+                "width": "calc(100% - 205px)"
+              }
+            }
+          },
+          {
+            "component": "oh-image",
+            "config": {
+              "item": "\u003dprops.item_cover",
+              "style": {
+                "bottom": "-78px",
+                "height": "100px",
+                "position": "absolute",
+                "right": "70px"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Squeez_SelectFavorite": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Squeez_SelectFavorite",
+      "tags": [
+        "Page-display-Kueche",
+        "in Use",
+        "page_EG_Kueche",
+        "page_EG_Wohnzimmer"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "context": "item",
+            "description": "Selection Item with State Descirption",
+            "label": "Selection Item",
+            "name": "itemSelect",
+            "required": true,
+            "type": "TEXT"
+          }
+        ]
+      },
+      "timestamp": "Aug 24, 2024, 6:15:26 PM",
+      "component": "oh-repeater",
+      "config": {
+        "for": "selection",
+        "fragment": true,
+        "in": [
+          {
+            "icon": "f7:hifispeaker_fill",
+            "item": "\u003dprops.itemSelect"
+          }
+        ],
+        "sourceType": "array"
+      },
+      "slots": {
+        "default": [
+          {
+            "component": "f7-col",
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-list",
+                  "config": {
+                    "id": "list"
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-list-item",
+                        "config": {
+                          "after": "\u003ditems[loop.selection.item].displayState",
+                          "icon": "\u003dloop.selection.icon",
+                          "iconColor": "default",
+                          "popupOpen": "\u003d\".selectionPopup_\" + props.itemSelect + loop.selection_idx",
+                          "smartSelect": true,
+                          "style": {
+                            "border": "1px solid lightgray",
+                            "border-radius": "5px",
+                            "margin-left": "10px",
+                            "margin-right": "10px",
+                            "margin-top": "10px"
+                          },
+                          "title": "\u003dloop.selection.title"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-popup",
+                  "config": {
+                    "class": "\u003d\"selectionPopup_\" + props.itemSelect + loop.selection_idx"
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-page",
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "f7-navbar",
+                              "config": {
+                                "style": {
+                                  "position": "sticky"
+                                },
+                                "title": "\u003dloop.selection.title"
+                              },
+                              "slots": {
+                                "left": [
+                                  {
+                                    "component": "oh-link",
+                                    "config": {
+                                      "iconAurora": "f7:arrow_left",
+                                      "iconIos": "f7:arrow_left",
+                                      "iconMd": "material:arrow_back",
+                                      "popup-close": true
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "component": "f7-list",
+                              "config": {
+                                "virtualList": true
+                              },
+                              "slots": {
+                                "default": [
+                                  {
+                                    "component": "oh-repeater",
+                                    "config": {
+                                      "for": "option",
+                                      "fragment": true,
+                                      "itemOptions": "\u003dloop.selection.item",
+                                      "sourceType": "itemStateOptions"
+                                    },
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "oh-list-item",
+                                          "config": {
+                                            "action": "command",
+                                            "actionCommand": "\u003dloop.option.value",
+                                            "actionFeedback": "\u003d\u0027{ \"text\":\"You selected \u003cb\u003e\u0027 + loop.option.label + \u0027\u003c/b\u003e\u003cbr\u003eSending command \u003cb\u003e\u0027 +  loop.option.value + \u0027\u003c/b\u003e to item\", \"position\":\"center\",\"icon\":\"\u003ci style\u003d\\\\\"color:green\\\\\" class\u003d\\\\\"f7-icons\\\\\"\u003echeckmark_alt\u003c/i\u003e\",\"closeButton\":true }\u0027",
+                                            "actionItem": "\u003dloop.selection.item",
+                                            "checked": "\u003dloop.option.value \u003d\u003d\u003d items[loop.selection.item].state ? true : false",
+                                            "noChevron": true,
+                                            "popupClose": true,
+                                            "radio": true,
+                                            "title": "\u003dloop.option.label"
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Temp_Card_1": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Temp_Card_1",
+      "tags": [
+        "in Use",
+        "page_EG_Kueche",
+        "page_EG_Wohnzimmer",
+        "page_OG_Gaeste",
+        "page_OG_Kind"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Icon on top of the card (only f7 icons (without f7:))",
+            "label": "Icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "in rgba() or HEX or empty",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Current Temperature",
+            "name": "temp_item",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Set Temperature",
+            "name": "set_temp_item",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Current Humidity",
+            "name": "humidity_item",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "on/off item",
+            "label": "Heating control item",
+            "name": "heating_item",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:29:19 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "height": "120px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    },
+                    "visible": "\u003dprops.icon ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-20px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "22px",
+                      "font-weight": 400.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003ditems[props.temp_item].displayState ? items[props.temp_item].displayState : items[props.temp_item].state"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-40px",
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "12px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "drop",
+                    "size": 18.0,
+                    "visible": "\u003dprops.humidity_item ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-left": "5px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003ditems[props.humidity_item].displayState",
+                    "visible": "\u003dprops.humidity_item ? true : false"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-63px",
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "12px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "flame",
+                    "size": 18.0,
+                    "visible": "\u003dprops.heating_item ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-left": "5px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003ditems[props.heating_item].state",
+                    "visible": "\u003dprops.heating_item ? true : false"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "\u003dNumber(items[props.set_temp_item].state.split(\u0027 \u0027)[0]) + 0.5",
+              "actionItem": "\u003dprops.set_temp_item",
+              "iconColor": "red",
+              "iconF7": "arrow_up_circle",
+              "iconSize": 35.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "position": "absolute",
+                "right": "10px",
+                "top": "12px"
+              },
+              "visible": "\u003dprops.set_temp_item ? true : false"
+            }
+          },
+          {
+            "component": "oh-button",
+            "config": {
+              "action": "command",
+              "actionCommand": "\u003dNumber(items[props.set_temp_item].state.split(\u0027 \u0027)[0]) - 0.5",
+              "actionItem": "\u003dprops.set_temp_item",
+              "iconColor": "red",
+              "iconF7": "arrow_down_circle",
+              "iconSize": 35.0,
+              "style": {
+                "background": "transparent",
+                "height": "35px",
+                "position": "absolute",
+                "right": "10px",
+                "top": "74px"
+              },
+              "visible": "\u003dprops.set_temp_item ? true : false"
+            }
+          },
+          {
+            "component": "Label",
+            "config": {
+              "style": {
+                "font-size": "12px",
+                "position": "absolute",
+                "right": "15px",
+                "top": "50px"
+              },
+              "text": "\u003ditems[props.set_temp_item].state",
+              "visible": "\u003dprops.set_temp_item ? true : false"
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "height": "120px",
+                "left": "15px",
+                "position": "absolute",
+                "top": "15px",
+                "width": "\u003dprops.set_temp_item ? \u0027calc(100% - 55px)\u0027 : \u0027100%\u0027 "
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-trend",
+                  "config": {
+                    "style": {
+                      "--f7-theme-color-bg-color": "transparent",
+                      "background": "var(--f7-theme-color-bg-color)",
+                      "filter": "opacity(30%)",
+                      "height": "100%",
+                      "left": "0px",
+                      "position": "absolute",
+                      "top": "0px",
+                      "width": "100%",
+                      "z-index": 1.0
+                    },
+                    "trendGradient": [
+                      "#aa2b1d",
+                      "#cc561e",
+                      "#ef8d32",
+                      "#beca5c"
+                    ],
+                    "trendItem": "\u003dprops.temp_item"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-link",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerChartType": "day",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": "\u003dprops.set_temp_item ? [props.temp_item, props.humidity_item, props.set_temp_item, props.heating_item] : (props.humidity_item ? [props.temp_item, props.humidity_item] : [props.temp_item])",
+              "style": {
+                "height": "120px",
+                "left": "0px",
+                "position": "absolute",
+                "top": "0px",
+                "width": "\u003dprops.set_temp_item ? \u0027calc(100% - 55px)\u0027 : \u0027100%\u0027 "
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Cell_Toggle_Card_1": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Cell_Toggle_Card_1",
+      "tags": [
+        "in Use",
+        "page_EG_Kueche",
+        "page_OG_Gaeste",
+        "page_OG_Kind"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Small title on top of the card",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Header big sized",
+            "label": "Header",
+            "name": "header",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Icon on top of the card (only f7 icons (without f7:))",
+            "label": "Icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "rgba or HEX",
+            "label": "Background Color",
+            "name": "bgcolor",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item to toggle",
+            "label": "Item",
+            "name": "item_schalter",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:29:29 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "5px 5px 10px 1px rgba(0,0,0,0.1)",
+          "height": "80px",
+          "margin-left": "5px",
+          "margin-right": "5px",
+          "noShadow": false,
+          "padding": "0px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute",
+                "top": "-5px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon",
+                    "size": 18.0,
+                    "style": {
+                      "margin-right": "10px"
+                    },
+                    "visible": "\u003dprops.icon ? true : false"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "12px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.title ? props.title : \u0027\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "bottom": "-15px",
+                "flex-direction": "row",
+                "left": "16px",
+                "position": "absolute"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "font-size": "17px",
+                      "font-weight": 600.0,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.header ? props.header : \u0027Set Props\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-toggle",
+            "config": {
+              "item": "\u003dprops.item_schalter",
+              "style": {
+                "position": "absolute",
+                "right": "20px",
+                "top": "15px"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Chart_one_unit": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Chart_one_unit",
+      "tags": [
+        "in use",
+        "page_pv2",
+        "page_settings"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Title of the widget",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "1st chart",
+            "label": "Chart label 1",
+            "name": "chart1",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "2nd chart",
+            "label": "Chart label 2",
+            "name": "chart2",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Unit y",
+            "label": "Unit left",
+            "name": "item_unit_left",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Y-axis name",
+            "label": "Y-axis label",
+            "name": "axlabel",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Colur Item 1",
+            "label": "Colur Item1",
+            "name": "item_colure1",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Colure Item 2",
+            "label": "Colur Item2",
+            "name": "item_colure2",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item in chart",
+            "label": "Chart item 1",
+            "name": "item3",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item in chart",
+            "label": "Chart item 2",
+            "name": "item4",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 25, 2024, 11:09:15 AM",
+      "component": "f7-card",
+      "config": {
+        "title": "\u003dprops.title"
+      },
+      "slots": {
+        "default": [
+          {
+            "component": "f7-row",
+            "config": {
+              "class": [
+                "margin-top"
+              ]
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-col",
+                  "config": {
+                    "width": 100.0
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-chart",
+                        "config": {
+                          "chartType": "",
+                          "label": "\u003dprops.chart1",
+                          "period": "1d"
+                        },
+                        "slots": {
+                          "dataZoom": [
+                            {
+                              "component": "oh-chart-datazoom",
+                              "config": {
+                                "type": "inside"
+                              }
+                            }
+                          ],
+                          "grid": [
+                            {
+                              "component": "oh-chart-grid",
+                              "config": {
+                                "containLabel": false
+                              }
+                            }
+                          ],
+                          "legend": [
+                            {
+                              "component": "oh-chart-legend",
+                              "config": {
+                                "bottom": 3.0,
+                                "type": "scroll"
+                              }
+                            }
+                          ],
+                          "series": [
+                            {
+                              "component": "oh-time-series",
+                              "config": {
+                                "color": "\u003dprops.item_colure1",
+                                "gridIndex": 0.0,
+                                "item": "\u003dprops.item3",
+                                "name": "\u003dprops.chart1",
+                                "type": "line",
+                                "xAxisIndex": 0.0,
+                                "yAxisIndex": 0.0
+                              }
+                            },
+                            {
+                              "component": "oh-time-series",
+                              "config": {
+                                "color": "\u003dprops.item_colure2",
+                                "gridIndex": 0.0,
+                                "item": "\u003dprops.item4",
+                                "name": "\u003dprops.chart2",
+                                "type": "line",
+                                "xAxisIndex": 0.0,
+                                "yAxisIndex": 0.0
+                              }
+                            }
+                          ],
+                          "tooltip": [
+                            {
+                              "component": "oh-chart-tooltip",
+                              "config": {
+                                "confine": true,
+                                "smartFormatter": true
+                              }
+                            }
+                          ],
+                          "xAxis": [
+                            {
+                              "component": "oh-time-axis",
+                              "config": {
+                                "gridIndex": 0.0
+                              }
+                            }
+                          ],
+                          "yAxis": [
+                            {
+                              "component": "oh-value-axis",
+                              "config": {
+                                "gridIndex": 0.0,
+                                "min": 0.0,
+                                "name": "\u003dprops.item_unit_left"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "ClickableCameraImage": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "ClickableCameraImage",
+      "tags": [
+        "Page-Camera",
+        "in Use",
+        "page_OG_Gaeste",
+        "page_OG_Kind",
+        "page_settings"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "example: http://192.168.1.57:8080/ipcamera/hof/snapshots.mjpeg",
+            "label": "Thumbnail URL",
+            "name": "thumbnailURL",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "description": "example: http://192.168.1.57:8080/ipcamera/hof/snapshots.mjpeg",
+            "label": "Stream URL",
+            "name": "streamURL",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Select the Camera to Control",
+            "name": "camera",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "label": "Show Equipment Controls",
+            "name": "showSettings",
+            "required": true,
+            "type": "BOOLEAN"
+          },
+          {
+            "label": "Show Audio Alarms",
+            "name": "showAudioAlarms",
+            "required": true,
+            "type": "BOOLEAN"
+          },
+          {
+            "label": "Show Motion Alarms",
+            "name": "showMotionAlarms",
+            "required": true,
+            "type": "BOOLEAN"
+          },
+          {
+            "context": "item",
+            "label": "Item to Switch",
+            "name": "switchItem",
+            "required": false,
+            "type": "TEXT"
+          }
+        ]
+      },
+      "timestamp": "Aug 24, 2024, 6:28:56 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "--f7-card-margin-horizontal": "0px",
+          "height": "9rem",
+          "width": "16rem"
+        }
+      },
+      "slots": {
+        "default": [
+          {
+            "component": "oh-image-card",
+            "config": {
+              "action": "photos",
+              "actionPhotoBrowserConfig": {
+                "lazy": true,
+                "theme": "dark",
+                "type": "popup"
+              },
+              "actionPhotos": "\u003d[props.streamURL]",
+              "lazy": true,
+              "style": {
+                "border-radius": "6px",
+                "height": "9rem",
+                "margin": "0px",
+                "width": "100%"
+              },
+              "url": "\u003dprops.thumbnailURL"
+            }
+          },
+          {
+            "component": "f7-card-content"
+          },
+          {
+            "component": "oh-link",
+            "config": {
+              "action": "toggle",
+              "actionCommand": true,
+              "actionCommandAlt": false,
+              "actionItem": "\u003dprops.switchItem",
+              "iconF7": "power",
+              "iconSize": 25.0,
+              "style": {
+                "color": "\u003d(items[props.switchItem].state \u003d\u003d\u003d \u0027ON\u0027) ? \u0027cyan\u0027 : \u0027white\u0027",
+                "left": "0.2rem",
+                "opacity": "\u003d(items[props.switchItem].state \u003d\u003d\u003d \u0027ON\u0027) ? \u00270.4\u0027 : \u00270.3\u0027",
+                "position": "absolute",
+                "top": "0rem"
+              },
+              "visible": "\u003dprops.switchItem !\u003d\u003d undefined"
+            }
+          },
+          {
+            "component": "oh-link",
+            "config": {
+              "action": "group",
+              "actionGroupPopupItem": "\u003dprops.gIPCamera",
+              "iconF7": "gear_alt",
+              "iconSize": 25.0,
+              "style": {
+                "color": "white",
+                "opacity": 0.4,
+                "position": "absolute",
+                "right": "0.2rem",
+                "top": "0rem"
+              },
+              "visible": "\u003dprops.showSettings \u003d\u003d\u003d true"
+            }
+          },
+          {
+            "component": "oh-link",
+            "config": {
+              "iconF7": "eye",
+              "iconSize": 18.0,
+              "style": {
+                "color": "white",
+                "opacity": "\u003d(props.showMotionAlarms !\u003d\u003d true) ? \"0\" : (items[props.gIPCamera + \"_MotionAlarm\"].state \u003d\u003d\u003d \"ON\") ? \"0.5\" : \"0\" ",
+                "position": "absolute",
+                "right": "0.2rem",
+                "top": "7.8rem"
+              },
+              "visible": "\u003dprops.showMotionAlarms \u003d\u003d\u003d true"
+            }
+          },
+          {
+            "component": "oh-link",
+            "config": {
+              "iconF7": "ear",
+              "iconSize": 18.0,
+              "style": {
+                "color": "white",
+                "left": "0rem",
+                "opacity": "\u003d(props.showAudioAlarms !\u003d\u003d true) ? \"0\" : (items[props.gIPCamera + \"_AudioAlarm\"].state \u003d\u003d\u003d \"ON\") ? \"0.5\" : \"0\" ",
+                "position": "absolute",
+                "top": "7.7rem"
+              },
+              "visible": "\u003dprops.showAudioAlarms \u003d\u003d\u003d true"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "PV_widget2": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "PV_widget2",
+      "tags": [
+        "in use",
+        "page_settings"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "context": "item",
+            "label": "Grid power",
+            "name": "gridpower",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Load",
+            "name": "load",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Solar power",
+            "name": "solarpower",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Solar power A",
+            "name": "solarpowerA",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Solar power B",
+            "name": "solarpowerB",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Solar Volt A",
+            "name": "solarvoltA",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Solar Volt B",
+            "name": "solarvoltB",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Battery power",
+            "name": "batterypower",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "label": "Battery level",
+            "name": "batterylevel",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "description": "Battery Icon Name clasic",
+            "label": "Icon Battery",
+            "name": "icon_battery",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "description": "Grid/Netz Icon Name clasic",
+            "label": "Icon Grid",
+            "name": "icon_grid",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "description": "House Icon Name clasic",
+            "label": "Icon House",
+            "name": "icon_house",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "description": "Solar Icon Name clasic",
+            "label": "Icon Solar",
+            "name": "icon_solar",
+            "required": true,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 25, 2024, 11:05:30 AM",
+      "component": "f7-card",
+      "config": {
+        "class": [
+          "display-flex",
+          "flex-direction-column",
+          "align-items-center"
+        ],
+        "style": {
+          "height": "36 3px"
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "--f7-theme-color": "var(--f7-text-color)",
+                "display": "flex",
+                "justify-content": "space-between",
+                "padding": 0.0
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-row",
+                  "config": {
+                    "style": {
+                      "align-items": "center",
+                      "display": "flex",
+                      "flex-grow": 1.0
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-block",
+                        "config": {
+                          "style": {
+                            "align-items": "center",
+                            "display": "flex",
+                            "flex-direction": "column",
+                            "height": "100px",
+                            "justify-content": "center",
+                            "margin-top": 0.0,
+                            "width": "110px"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "font-size": "18px",
+                                  "font-weight": "bold",
+                                  "text-align": "center",
+                                  "width": "100px"
+                                },
+                                "text": "\u003dMath.abs(Number.parseFloat(items[props.solarpowerA].state.split(\" \")[0])).toFixed(1) + \u0027 ᵂ\u0027"
+                              }
+                            },
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "font-size": "14px",
+                                  "text-align": "center",
+                                  "width": "100px"
+                                },
+                                "text": "\u003dMath.abs(Number.parseFloat(items[props.solarvoltA].state.split(\" \")[0])).toFixed(1) + \u0027 v\u0027"
+                              }
+                            },
+                            {
+                              "component": "oh-icon",
+                              "config": {
+                                "height": "60px",
+                                "icon": "\u003dprops.icon_solar",
+                                "style": {
+                                  "margin-top": "-1px"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-row",
+                  "config": {
+                    "style": {
+                      "align-items": "center",
+                      "display": "flex",
+                      "flex-grow": 1.0
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-block",
+                        "config": {
+                          "style": {
+                            "align-items": "center",
+                            "display": "flex",
+                            "flex-direction": "column",
+                            "height": "110px",
+                            "justify-content": "center",
+                            "margin-top": 0.0,
+                            "width": "60px"
+                          }
+                        },
+                        "slots": {}
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-row",
+                  "config": {
+                    "style": {
+                      "align-items": "center",
+                      "display": "flex",
+                      "flex-grow": 1.0
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-block",
+                        "config": {
+                          "style": {
+                            "align-items": "center",
+                            "display": "flex",
+                            "flex-direction": "column",
+                            "height": "110px",
+                            "justify-content": "center",
+                            "margin-top": 0.0,
+                            "width": "110px"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "font-size": "18px",
+                                  "font-weight": "bold",
+                                  "text-align": "center",
+                                  "width": "100px"
+                                },
+                                "text": "\u003dMath.abs(Number.parseFloat(items[props.solarpowerB].state.split(\" \")[0])).toFixed(1) + \u0027 ᵂ\u0027"
+                              }
+                            },
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "font-size": "14px",
+                                  "text-align": "center",
+                                  "width": "100px"
+                                },
+                                "text": "\u003dMath.abs(Number.parseFloat(items[props.solarvoltB].state.split(\" \")[0])).toFixed(1) + \u0027 v\u0027"
+                              }
+                            },
+                            {
+                              "component": "oh-icon",
+                              "config": {
+                                "height": "60px",
+                                "icon": "\u003dprops.icon_solar",
+                                "style": {
+                                  "margin-top": "-1px"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "--f7-theme-color": "var(--f7-text-color)",
+                "display": "flex",
+                "justify-content": "space-between",
+                "padding": 0.0
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-col",
+                  "config": {
+                    "style": {
+                      "align-items": "center",
+                      "display": "flex",
+                      "flex-direction": "row"
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-block",
+                        "config": {
+                          "style": {
+                            "align-items": "center",
+                            "display": "flex",
+                            "flex-direction": "column",
+                            "height": "110px",
+                            "justify-content": "center",
+                            "width": "110px"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-icon",
+                              "config": {
+                                "height": "60px",
+                                "icon": "\u003dprops.icon_grid"
+                              }
+                            },
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "color": "\u003ditems[props.gridpower].state.split(\" \")[0] \u003e 0 ? \"red\" : items[props.gridpower].state.split(\" \")[0] \u003d\u003d 0 ? \"white\" : \"green\"",
+                                  "font-size": "20px",
+                                  "font-weight": "bold",
+                                  "margin-top": "-5px",
+                                  "text-align": "center",
+                                  "width": "100px"
+                                },
+                                "text": "\u003dMath.abs(items[props.gridpower].state.split(\" \")[0]).toFixed(1)  + \u0027 ᵂ\u0027"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-col",
+                  "config": {
+                    "style": {
+                      "align-items": "center",
+                      "display": "flex",
+                      "flex-direction": "column",
+                      "flex-grow": 1.0
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-block",
+                        "config": {
+                          "style": {
+                            "align-items": "center",
+                            "display": "flex",
+                            "flex-direction": "column",
+                            "height": "30px",
+                            "justify-content": "center",
+                            "margin-top": 0.0,
+                            "width": "110px"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "font-size": "20px",
+                                  "font-weight": "bold",
+                                  "text-align": "center",
+                                  "width": "100px"
+                                },
+                                "text": "\u003dMath.abs(Number.parseFloat(items[props.solarpower].state.split(\" \")[0])).toFixed(1) + \u0027 ᵂ\u0027"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "f7-block",
+                        "config": {
+                          "style": {
+                            "display": "flex",
+                            "justify-content": "center",
+                            "margin": 0.0,
+                            "padding": 0.0,
+                            "width": "100%"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "f7-row",
+                              "config": {
+                                "preserveAspectRatio": "xMidYMid slice",
+                                "style": {
+                                  "height": "100px",
+                                  "width": "100px"
+                                },
+                                "tag": "svg",
+                                "viewBox": "0 0 100 100",
+                                "xmlns": "http://www.w3.org/2000/svg"
+                              },
+                              "slots": {
+                                "default": [
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "d": "M60 -10 v10 c0 40  10 35  30  35  h20",
+                                      "fill": "none",
+                                      "id": "topright",
+                                      "stroke": "rgba(100, 150, 200, 0.8)",
+                                      "stroke-width": 2.0,
+                                      "tag": "path",
+                                      "vector-effect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.batterypower].state.split(\" \")[0] \u003c 0 \u0026\u0026 items[props.solarpower].state.split(\" \")[0] \u003e 0"
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "fill": "rgba(100, 150, 200, 0.8)",
+                                      "r": 6.0,
+                                      "style": {
+                                        "stroke-width": 4.0
+                                      },
+                                      "tag": "circle",
+                                      "vector-effect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.batterypower].state.split(\" \")[0] \u003c 0 \u0026\u0026 items[props.solarpower].state.split(\" \")[0] \u003e 0"
+                                    },
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "f7-row",
+                                          "config": {
+                                            "calcMode": "linear",
+                                            "dur": "4s",
+                                            "repeatCount": "indefinite",
+                                            "tag": "animateMotion"
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "f7-row",
+                                                "config": {
+                                                  "tag": "mpath",
+                                                  "xlink:href": "#topright"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "d": "M40 -10 v10 c0 40 -10 35 -30 35 h-20",
+                                      "fill": "none",
+                                      "id": "topleft",
+                                      "stroke": "rgba(100, 150, 200, 0.8)",
+                                      "stroke-width": 2.0,
+                                      "tag": "path",
+                                      "vector-effect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.solarpower].state.split(\" \")[0] \u003e 0 \u0026\u0026 items[props.gridpower].state.split(\" \")[0] \u003c 0"
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "fill": "rgba(100, 150, 200, 0.8)",
+                                      "r": 6.0,
+                                      "strokeWidth": 10.0,
+                                      "tag": "circle",
+                                      "vectorEffect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.solarpower].state.split(\" \")[0] \u003e 0 \u0026\u0026 items[props.gridpower].state.split(\" \")[0] \u003c 0"
+                                    },
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "f7-row",
+                                          "config": {
+                                            "calcMode": "linear",
+                                            "dur": "4s",
+                                            "repeatCount": "indefinite",
+                                            "tag": "animateMotion"
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "f7-row",
+                                                "config": {
+                                                  "tag": "mpath",
+                                                  "xlink:href": "#topleft"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "d": "M50, 0 v100",
+                                      "fill": "none",
+                                      "id": "vertical",
+                                      "stroke": "rgba(100, 150, 200, 0.8)",
+                                      "stroke-width": 2.0,
+                                      "tag": "path",
+                                      "vector-effect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.solarpower].state.split(\" \")[0] \u003e 0"
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "fill": "rgba(100, 150, 200, 0.8)",
+                                      "r": 6.0,
+                                      "strokeWidth": 10.0,
+                                      "tag": "circle",
+                                      "vectorEffect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.solarpower].state.split(\" \")[0] \u003e 0"
+                                    },
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "f7-row",
+                                          "config": {
+                                            "calcMode": "linear",
+                                            "dur": "4s",
+                                            "repeatCount": "indefinite",
+                                            "tag": "animateMotion"
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "f7-row",
+                                                "config": {
+                                                  "tag": "mpath",
+                                                  "xlink:href": "#vertical"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "d": "M-5 55 l10 0 c40 0 35 10 35 50 l0 20",
+                                      "fill": "none",
+                                      "id": "botleft",
+                                      "stroke": "rgba(100, 150, 200, 0.8)",
+                                      "stroke-width": 2.0,
+                                      "tag": "path",
+                                      "vector-effect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.gridpower].state.split(\" \")[0] \u003e 0"
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "fill": "rgba(100, 150, 200, 0.8)",
+                                      "r": 6.0,
+                                      "strokeWidth": 10.0,
+                                      "tag": "circle",
+                                      "vectorEffect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.gridpower].state.split(\" \")[0] \u003e 0"
+                                    },
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "f7-row",
+                                          "config": {
+                                            "calcMode": "linear",
+                                            "dur": "4s",
+                                            "repeatCount": "indefinite",
+                                            "tag": "animateMotion"
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "f7-row",
+                                                "config": {
+                                                  "tag": "mpath",
+                                                  "xlink:href": "#botleft"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "d": "\u003ditems[props.gridpower].state.split(\" \")[0] \u003e 0 ? \"M0, 45 h100\" : \"M100, 45 h-100\"",
+                                      "fill": "none",
+                                      "id": "horizontal",
+                                      "stroke": "rgba(100, 150, 200, 0.8)",
+                                      "stroke-width": 2.0,
+                                      "tag": "path",
+                                      "vector-effect": "non-scaling-stroke",
+                                      "visible": "\u003d(items[props.gridpower].state.split(\" \")[0] \u003e 0 \u0026\u0026 items[props.solarpower].state.split(\" \")[0] \u003c Math.abs(Math.min(0, items[props.batterypower].state.split(\" \")[0]))) || (items[props.batterypower].state.split(\" \")[0] \u003e 0 \u0026\u0026 items[props.gridpower].state.split(\" \")[0] \u003c 0 \u0026\u0026 items[props.solarpower].state.split(\" \")[0] \u003c\u003d 0)"
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "fill": "rgba(100, 150, 200, 0.8)",
+                                      "r": 6.0,
+                                      "strokeWidth": 10.0,
+                                      "tag": "circle",
+                                      "vectorEffect": "non-scaling-stroke",
+                                      "visible": "\u003d(items[props.gridpower].state.split(\" \")[0] \u003e 0 \u0026\u0026 items[props.solarpower].state.split(\" \")[0] \u003c Math.abs(Math.min(0, items[props.batterypower].state.split(\" \")[0]))) || (items[props.batterypower].state.split(\" \")[0] \u003e 0 \u0026\u0026 items[props.gridpower].state.split(\" \")[0] \u003c 0 \u0026\u0026 items[props.solarpower].state.split(\" \")[0] \u003c\u003d 0)"
+                                    },
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "f7-row",
+                                          "config": {
+                                            "calcMode": "linear",
+                                            "dur": "4s",
+                                            "repeatCount": "indefinite",
+                                            "tag": "animateMotion"
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "f7-row",
+                                                "config": {
+                                                  "tag": "mpath",
+                                                  "xlink:href": "#horizontal"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "d": "M 105 55 l-10 0 c-40 0 -35 10 -35 50 l0 20",
+                                      "fill": "none",
+                                      "id": "botright",
+                                      "stroke": "rgba(100, 150, 200, 0.8)",
+                                      "stroke-width": 2.0,
+                                      "tag": "path",
+                                      "vector-effect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.batterypower].state.split(\" \")[0] \u003e 0"
+                                    }
+                                  },
+                                  {
+                                    "component": "f7-row",
+                                    "config": {
+                                      "fill": "rgba(100, 150, 200, 0.8)",
+                                      "r": 6.0,
+                                      "strokeWidth": 10.0,
+                                      "tag": "circle",
+                                      "vectorEffect": "non-scaling-stroke",
+                                      "visible": "\u003ditems[props.batterypower].state.split(\" \")[0] \u003e 0"
+                                    },
+                                    "slots": {
+                                      "default": [
+                                        {
+                                          "component": "f7-row",
+                                          "config": {
+                                            "calcMode": "linear",
+                                            "dur": "4s",
+                                            "repeatCount": "indefinite",
+                                            "tag": "animateMotion"
+                                          },
+                                          "slots": {
+                                            "default": [
+                                              {
+                                                "component": "f7-row",
+                                                "config": {
+                                                  "tag": "mpath",
+                                                  "xlink:href": "#botright"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "f7-block",
+                        "config": {
+                          "style": {
+                            "align-items": "center",
+                            "display": "flex",
+                            "flex-direction": "column",
+                            "height": "110px",
+                            "justify-content": "center",
+                            "margin-top": "-10px",
+                            "width": "110px"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-icon",
+                              "config": {
+                                "height": "60px",
+                                "icon": "\u003dprops.icon_house"
+                              }
+                            },
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "font-size": "20px",
+                                  "font-weight": "bold",
+                                  "margin-top": "-5px",
+                                  "text-align": "center",
+                                  "width": "100px"
+                                },
+                                "text": "\u003dMath.abs(Number.parseFloat(items[props.load].state.split(\" \")[0])).toFixed(1)+\u0027 ᵂ\u0027"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-col",
+                  "config": {
+                    "style": {
+                      "align-items": "center",
+                      "display": "flex",
+                      "flex-direction": "row"
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "f7-block",
+                        "config": {
+                          "style": {
+                            "align-items": "center",
+                            "display": "flex",
+                            "flex-direction": "column",
+                            "height": "110px",
+                            "justify-content": "center",
+                            "width": "110px"
+                          }
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-link",
+                              "config": {
+                                "action": "analyzer",
+                                "actionAnalyzerCoordSystem": "time",
+                                "actionAnalyzerItems": "\u003d[props.batterylevel]",
+                                "iconColor": "\u003ditems[props.batterylevel].state.split(\" \")[0] \u003c 75 ? items[props.batterylevel].state.split(\" \")[0] \u003c 10 ? \"red\" : \"orange\" : \"green\"",
+                                "iconF7": "\u003ditems[props.batterylevel].state.split(\" \")[0] \u003c 75 ? items[props.batterylevel].state.split(\" \")[0] \u003c 10 ? \"battery_0\" : \"battery_25\" : \"battery_100\"",
+                                "iconSize": "33px",
+                                "style": {
+                                  "font-size": "18px",
+                                  "font-weight": "bold",
+                                  "position": "absolute",
+                                  "top": "-25px",
+                                  "white-space": "nowrap"
+                                },
+                                "text": "\u003dMath.abs(Number.parseFloat(items[props.batterylevel].state.split(\" \")[0])).toFixed(1)+ \u0027 %\u0027"
+                              }
+                            },
+                            {
+                              "component": "oh-icon",
+                              "config": {
+                                "height": "60px",
+                                "icon": "\u003dprops.icon_battery"
+                              }
+                            },
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "color": "\u003ditems[props.batterypower].state.split(\" \")[0] \u003e 0 ? \"red\" : items[props.batterypower].state.split(\" \")[0] \u003d\u003d 0 ? \"white\" : \"green\"",
+                                  "font-size": "20px",
+                                  "font-weight": "bold",
+                                  "margin-top": "-5px",
+                                  "text-align": "center",
+                                  "white-space": "nowrap",
+                                  "width": "100px"
+                                },
+                                "text": "\u003dMath.abs(items[props.batterypower].state.split(\" \")[0]).toFixed(1) + \u0027 ᵂ\u0027"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Time_Stepper_Item": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Time_Stepper_Item",
+      "tags": [
+        "Page-Bewaesserung",
+        "in Use"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "A text prop",
+            "label": "Title",
+            "name": "title",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "A text prop",
+            "label": "Subtitle",
+            "name": "subtitle",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "only f7, without f7:",
+            "label": "icon",
+            "name": "icon",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "MAX Value must be devidable by STEP value",
+            "label": "STEP Value in minutes",
+            "name": "steper",
+            "required": true
+          },
+          {
+            "context": "item",
+            "description": "An item to control",
+            "label": "Item",
+            "name": "item",
+            "required": false,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:06:00 PM",
+      "component": "f7-list-item",
+      "config": {
+        "f7-icon": "\u003dprops.icon",
+        "mediaItem": true,
+        "mediaList": true
+      },
+      "slots": {
+        "inner": [
+          {
+            "component": "f7-block",
+            "config": {
+              "class": [
+                "align-items-center"
+              ],
+              "style": {
+                "display": "flex",
+                "flex-direction": "row",
+                "margin": "0px",
+                "padding": "0px"
+              }
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "clock",
+                    "size": "32px"
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "padding-left": "10px"
+                    },
+                    "text": "\u003dprops.title"
+                  }
+                },
+                {
+                  "component": "f7-block",
+                  "config": {
+                    "class": [
+                      "align-items-center"
+                    ],
+                    "style": {
+                      "display": "flex",
+                      "flex-direction": "row",
+                      "margin": "0px",
+                      "padding": "0px",
+                      "position": "absolute",
+                      "right": "0px"
+                    }
+                  },
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "Label",
+                        "config": {
+                          "style": {
+                            "color": "gray",
+                            "font-size": "13px",
+                            "padding-right": "15px"
+                          },
+                          "text": "\u003ditems[props.item].displayState || items[props.item].state"
+                        }
+                      },
+                      {
+                        "component": "oh-stepper",
+                        "config": {
+                          "autorepeat": true,
+                          "autorepeatDynamic": true,
+                          "buttonsOnly": true,
+                          "item": "\u003dprops.item",
+                          "max": 1440.0,
+                          "min": 0.0,
+                          "small": true,
+                          "step": "\u003dNumber(props.steper)"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "squeezbox_widget": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "squeezbox_widget",
+      "tags": [
+        "Page-display-Kueche",
+        "in Use",
+        "page_EG_Kueche",
+        "page_EG_Wohnzimmer"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "How all the Items associated with this chromecast starts",
+            "label": "Item prefix",
+            "name": "prefix",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Title for the widget",
+            "label": "Static Title",
+            "name": "title",
+            "required": false
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:15:33 PM",
+      "component": "f7-card",
+      "config": {
+        "title": "\u003dprops.title"
+      },
+      "slots": {
+        "default": [
+          {
+            "component": "f7-row",
+            "config": {
+              "class": [
+                "justify-content-left"
+              ]
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-col",
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "Label",
+                        "config": {
+                          "class": [
+                            "text-align-center"
+                          ],
+                          "text": "\u003ditems[props.prefix+\"_Artist\"].state"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-col",
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "Label",
+                        "config": {
+                          "class": [
+                            "text-align-center"
+                          ],
+                          "text": "\u003ditems[props.prefix+\"_Title\"].state"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-row",
+            "config": {
+              "class": [
+                "padding-top",
+                "padding-bottom"
+              ]
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-col",
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-player-controls",
+                        "config": {
+                          "item": "\u003dprops.prefix+\"_Control\""
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "f7-col",
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-slider",
+                        "config": {
+                          "item": "\u003dprops.prefix+\"_Volume\"",
+                          "label": true,
+                          "max": 100.0,
+                          "min": 0.0,
+                          "step": 10.0,
+                          "unit": "%"
+                        }
+                      },
+                      {
+                        "component": "oh-button",
+                        "config": {
+                          "action": "command",
+                          "actionCommand": "ON",
+                          "actionFeedback": "Media Stopped",
+                          "actionItem": "\u003dprops.prefix+\"_Stop\"",
+                          "class": [
+                            "margin-top"
+                          ],
+                          "color": "red",
+                          "fill": true,
+                          "iconF7": "stop",
+                          "text": "Stop"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-row",
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-image",
+                  "config": {
+                    "item": "\u003dprops.prefix+\"_CoverArtData\"",
+                    "style": {
+                      "height": "auto",
+                      "width": "100%"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "widget_f7-card_Temp_V2_Control": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "widget_f7-card_Temp_V2_Control",
+      "tags": [
+        "Soll Tag",
+        "homekit-look"
+      ],
+      "props": {
+        "parameters": [
+          {
+            "description": "Location?",
+            "label": "Prop 1",
+            "name": "prop1",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Thermostate icon f7",
+            "label": "f7 icon name",
+            "name": "icon1",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "description": "Humidity icon f7",
+            "label": "f7 icon name",
+            "name": "icon2",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "A Temperature item to display",
+            "label": "Item",
+            "name": "itemTemp",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "A Set-Temperature item to display",
+            "label": "Item",
+            "name": "itemTempSoll",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "An Humidity item to display",
+            "label": "Item",
+            "name": "itemHum",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "the valve state",
+            "label": "Item",
+            "name": "itemValve",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item for temperature channel",
+            "label": "Ambient temperature",
+            "name": "itemAmbientTemp",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item for outdoor temperature channel",
+            "label": "Outdoor temperature",
+            "name": "itemOutdoorTemp",
+            "required": false,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item for target temperature channel",
+            "label": "Target temperature",
+            "name": "itemTargetTemp",
+            "required": true,
+            "type": "TEXT"
+          },
+          {
+            "context": "item",
+            "description": "Item for operation mode channel",
+            "label": "Operation mode",
+            "name": "itemMode",
+            "required": true,
+            "type": "TEXT"
+          }
+        ],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:00:01 PM",
+      "component": "f7-card",
+      "config": {
+        "style": {
+          "background-color": "\u003d(Number.parseFloat(items[props.itemHum].state.split(\" \")[0]) \u003e 60) ? \"white\" : (Number.parseFloat(items[props.itemTemp].state.split(\" \")[0]) \u003e 23) ? \"white\" : \"rgba(228,228,228,0.9)\"",
+          "border-radius": "var(--f7-card-expandable-border-radius)",
+          "box-shadow": "var(--f7-card-expandable-box-shadow)",
+          "class": [
+            "padding"
+          ],
+          "height": "8.5em",
+          "max-width": "400px",
+          "min-width": "9.5em",
+          "noShadow": false
+        }
+      },
+      "slots": {
+        "content": [
+          {
+            "component": "f7-block",
+            "config": {
+              "style": {
+                "align-items": "start",
+                "display": "flex",
+                "flex-direction": "column",
+                "margin-left": "-6px",
+                "padding": "-1px"
+              }
+            }
+          },
+          {
+            "component": "f7-row",
+            "config": {
+              "class": [
+                "justify-content-left"
+              ]
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "class": [
+                      "align-self-center"
+                    ],
+                    "f7": "\u003dprops.icon1",
+                    "size": 22.0,
+                    "style": {
+                      "color": "\u003d(Number.parseFloat(items[props.itemHum].state.split(\" \")[0]) \u003e 60) ? \"black\" : (Number.parseFloat(items[props.itemTemp].state.split(\" \")[0]) \u003e 23) ? \"black\" : \"rgb(0,0,0,0.5)\"",
+                      "margin-left": "-6px",
+                      "margin-top": "0px"
+                    }
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "color": "\u003d(Number.parseFloat(items[props.itemHum].state.split(\" \")[0]) \u003e 60) ? \"black\" : (Number.parseFloat(items[props.itemTemp].state.split(\" \")[0]) \u003e 23) ? \"black\" : \"rgb(0,0,0,0.5)\"",
+                      "font-size": "14px",
+                      "font-weight": 500.0,
+                      "margin-left": "-4px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003dprops.prop1"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-row",
+            "config": {
+              "class": [
+                "justify-content-left"
+              ]
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "color": "\u003d(Number.parseFloat(items[props.itemHum].state.split(\" \")[0]) \u003e 60) ? \"black\" : (Number.parseFloat(items[props.itemTemp].state.split(\" \")[0]) \u003e 23) ? \"black\" : \"rgb(0,0,0,0.5)\"",
+                      "font-size": "32px",
+                      "font-weight": 498.0,
+                      "line-height": 1.1,
+                      "margin-left": "0px",
+                      "margin-top": "0px"
+                    },
+                    "text": "\u003d(Number.parseFloat(items[props.itemTemp].state.split(\" \")[0]) * 100 / 100).toFixed(1) + \u0027°\u0027"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-row",
+            "config": {
+              "class": [
+                "justify-content-left"
+              ]
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "\u003dprops.icon2",
+                    "size": 16.0,
+                    "style": {
+                      "color": "\u003d(Number.parseFloat(items[props.itemHum].state.split(\" \")[0]) \u003e 60) ? \"red\" : \"rgb(0,0,0,0.5)\"",
+                      "left": "0px",
+                      "top": "5px"
+                    }
+                  }
+                },
+                {
+                  "component": "Label",
+                  "config": {
+                    "style": {
+                      "color": "\u003d(Number.parseFloat(items[props.itemHum].state.split(\" \")[0]) \u003e 60) ? \"red\" : \"rgb(0,0,0,0.5)\"",
+                      "font-size": "13px",
+                      "font-weight": 500.0,
+                      "left": "0px",
+                      "top": "5px"
+                    },
+                    "text": "\u003d(Number.parseFloat(items[props.itemHum].state.split(\" \")[0]) * 100 / 100).toFixed(0) + \u0027%\u0027",
+                    "visible": "\u003dprops.itemHum !\u003d\u003d undefined"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "f7-row",
+            "config": {
+              "class": [
+                "float-right"
+              ]
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "f7-icon",
+                  "config": {
+                    "f7": "arrowshape_turn_up_right",
+                    "size": 16.0,
+                    "style": {
+                      "bottom": "0px",
+                      "color": "rgb(0,0,0,0.5)",
+                      "opacity": 0.5,
+                      "right": "-45px"
+                    }
+                  }
+                },
+                {
+                  "component": "f7-chip",
+                  "config": {
+                    "bgColor": "\u003d(Number.parseFloat(items[props.itemValve].state.split(\" \")[0]) \u003e 15) ? \"orange\" : \"green\"",
+                    "style": {
+                      "border-radius": "25px 25px 25px 25px",
+                      "bottom": "75px",
+                      "color": "white",
+                      "margin-top": "2px",
+                      "right": "-5px",
+                      "size": 20.0,
+                      "z-index": 2.0
+                    },
+                    "text": "\u003d(Number.parseFloat(items[props.itemTempSoll].state.split(\" \")[0]) * 100 / 100).toFixed(0)"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-trend",
+            "config": {
+              "style": {
+                "--f7-theme-color-bg-color": "transparent",
+                "background": "var(--f7-theme-color-bg-color)",
+                "filter": "opacity(30%)",
+                "height": "100%",
+                "left": 2.0,
+                "position": "absolute",
+                "top": 0.0,
+                "width": "100%",
+                "z-index": 1.0
+              },
+              "trendItem": "\u003d[props.itemTemp]"
+            }
+          },
+          {
+            "component": "oh-link",
+            "config": {
+              "action": "popup",
+              "actionModal": "widget:HM_Thermostat_Control_Final",
+              "actionModalConfig": {
+                "itemAmbientTemp": "\u003dprops.itemAmbientTemp",
+                "itemMode": "\u003dprops.itemMode",
+                "itemOutdoorTemp": "\u003dprops.itemOutdoorTemp",
+                "itemTargetTemp": "\u003dprops.itemTargetTemp"
+              },
+              "style": {
+                "height": "100%",
+                "left": 0.0,
+                "position": "absolute",
+                "top": 0.0,
+                "width": "100%"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

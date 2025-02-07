@@ -1,0 +1,35 @@
+Group	gInstar						"Instar Camera"			<alarm>
+
+Switch	instar_status_area_alarm_red_enable	"status_area_alarm_red_enable [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_area_alarm_red_enable" }
+Dimmer	instar_status_area_alarm_red_sensitivity	"status_area_alarm_red_sensitivity [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_area_alarm_red_sensitivity" }
+
+Switch	instar_status_area_alarm_yellow	"status_area_alarm_yellow [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_area_alarm_yellow" }
+Dimmer	instar_status_area_alarm_yellow_sensitivity	"status_area_alarm_yellow_sensitivity [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_area_alarm_yellow_sensitivity" }
+
+Switch	instar_status_area_alarm_green	"status_area_alarm_green [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_area_alarm_green" }
+Dimmer	instar_status_area_alarm_green_sensitivity	"status_area_alarm_green_sensitivity [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_area_alarm_green_sensitivity" }
+
+Switch	instar_status_area_alarm_blue	"status_area_alarm_blue [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_area_alarm_blue" }
+Dimmer	instar_status_area_alarm_blue_sensitivity	"status_area_alarm_blue_sensitivity [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_area_alarm_blue_sensitivity" }
+
+Switch	instar_status_alarm_action_pir	"status_alarm_action_pir [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_alarm_action_pir" }
+
+Switch	instar_status_alarm_triggerd	"status_alarm_triggerd [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_alarm_triggerd" }
+
+Switch	instar_status_alarm_triggerd_object	"status_alarm_triggerd_object [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_alarm_triggerd_object" }
+
+/*
+Switch	instar_status_system_update_updateavailable "status_system_update_updateavailable [%d]"	(gInstar,AUS_Hof)
+{channel="mqtt:topic:server-dev:instar:status_system_update_updateavailable" }
+*/

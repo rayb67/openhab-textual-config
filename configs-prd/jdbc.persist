@@ -1,0 +1,318 @@
+Strategies {
+    everyMinute : "0 0/1 * * * ?"
+    every2Minute : "0 0/2 * * * ?"
+    every5Minute : "0 0/5 * * * ?"
+    every15Minute : "0 0/15 * * * ?"
+    everyHour : "0 0 * * * ?"
+    everyDay  : "00 59 23 * * ?"
+
+    default = everyHour
+}
+
+Items {
+	Systeminfo_CPU_Load1				: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_CPU_Load5				: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_CPU_Load15				: strategy = everyChange, everyHour, restoreOnStartup
+	Systeminfo_Memory_Used				: strategy = every5Minute, everyHour, restoreOnStartup
+	Systeminfo_Memory_Available			: strategy = every5Minute, everyHour, restoreOnStartup
+	Systeminfo_CPU_Threads				: strategy = every5Minute, everyHour, restoreOnStartup
+	Systeminfo_Swap_Available_Percent		: strategy = every5Minute, everyHour, restoreOnStartup
+	Systeminfo_Memory_Available_Percent		: strategy = every5Minute, everyHour, restoreOnStartup
+	Systeminfo_Storage_Available_Percent	: strategy = every5Minute, everyHour, restoreOnStartup
+
+	Shelly_Device114_Power_Current			: strategy = every5Minute, everyHour, restoreOnStartup
+	Shelly_Device113_Power_Current			: strategy = every5Minute, everyHour, restoreOnStartup
+
+	SollWertRolloDownWetterLicht	: strategy = everyChange, everyDay, restoreOnStartup
+	SollWertDekoLichtWetterLicht	: strategy = everyChange, everyDay, restoreOnStartup
+	Wind						: strategy = every2Minute, everyDay, restoreOnStartup
+	Wind2						: strategy = every2Minute, everyDay, restoreOnStartup
+	TempAussen					: strategy = everyChange, everyDay, restoreOnStartup
+    TempEGWohnzFlur				: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGWohnzSofa				: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGWohnzGarten			: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGKuecheWz				: strategy = everyChange, everyDay, restoreOnStartup
+    TempEGKuecheErker			: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGWC					: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGVorrat				: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGAbstell				: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGHaustuer				: strategy = everyChange, everyDay, restoreOnStartup
+    TempEGGarage				: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGTechnik				: strategy = everyChange, everyDay, restoreOnStartup
+	TempOGFlur					: strategy = everyChange, everyDay, restoreOnStartup
+	TempOGBuero					: strategy = everyChange, everyDay, restoreOnStartup
+	TempOGEckeBuero				: strategy = everyChange, everyDay, restoreOnStartup
+	TempOGAnkleide				: strategy = everyChange, everyDay, restoreOnStartup
+    TempOGSchlafRechts			: strategy = everyChange, everyDay, restoreOnStartup
+	TempOGSchlafLinks			: strategy = everyChange, everyDay, restoreOnStartup
+    TempOGSchlafTuer			: strategy = everyChange, everyDay, restoreOnStartup
+	TempOGGaeste				: strategy = everyChange, everyDay, restoreOnStartup
+	TempOGKind					: strategy = everyChange, everyDay, restoreOnStartup
+	TempOGBad					: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeEGWohnz				: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeEGKueche				: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeEGGaesteWC				: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeEGAbstell				: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeEGDiele				: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeOGFlur					: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeOGBad					: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeOGKind					: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeOGGaeste				: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeOGSchlafz				: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeOGAnkleide				: strategy = everyChange, everyDay, restoreOnStartup
+	SetTeOGBuero				: strategy = everyChange, everyDay, restoreOnStartup
+
+// bei der Consumtion wir (26.3.2022) ab 23:00 Uhr wieder auf 0 gesetzt.
+// daher soll der letzte Stand fuer today gespeichert werden.
+// warum um 2250 und nicht um 2359 kann ich mir gerade nicht erklaeren.
+// das habe ich in der events.log gesehen. 2240 passt ungefaer
+// grep modbus_stiebel_con /var/log/openhab/events.log | grep today
+
+	Stiebel_hk1_pump_active					: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_compressor_running				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_currently_heating				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_currently_hot_water				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_compressor_running				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_summer_mode_active				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_power_off						: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_fault_status					: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_bus_status						: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_active_error					: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_Betriebsart						: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_KomforttemperaturHKSOLL			: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_ECOtemperaturHKSOLL				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_Heizkurve						: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_heating_dm_temp_bivalence		: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_KomforttemperaturWWSOLL			: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_ECOtemperaturWWSOLL				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_hot_water_stages				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_hot_water_dm_temp_bivalence		: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_KuehlenSOLLDurchlauf			: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_Kuehlenhysterese				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_KuehlenSOLLRaumtemperatur		: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_FEKTemperaturIST				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_FEKTemperaturSOLL				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_Raumfeuchte						: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_Taupunkttemperatur				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_Aussentemperatur				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_heat_pump_flow_temperature		: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_VorlaufIstTemperaturWP			: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_Ruecklaufisttemperatur			: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_KuehlenIST						: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_KuehlenSOLL						: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_LAL_heating						: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_LAL_hot_water					: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_Heizungsdruck					: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_Quellendruck					: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_QuellenTemperatur				: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_QuellenTempMin					: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_Volumenstrom					: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_HeizgasTemperatur				: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_WarmwasserSOLL					: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_WarmwasserIST					: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_PufferSOLL						: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_PufferIST						: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_Heizkreis1SOLL					: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_Heizkreis1IST					: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_FEKTemperaturSOLL				: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_FEKTemperaturIST				: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_high_pressure					: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_low_pressure					: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_heat_quantity_today				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_heat_quantity_total				: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_water_heat_quantity_today		: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_water_heat_quantity_total		: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_nhz_heat_quantity_total			: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_nhz_hotwater_quantity_total		: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_power_heating_today				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_power_heating_total				: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_power_water_today				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_power_water_total				: strategy = everyChange, every15Minute, restoreOnStartup
+	Stiebel_power_water_houre				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_power_heating_houre				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_power_sum_houre					: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_heating_runtime					: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_hot_water_runtime				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_cooling_runtime					: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_currently_cooling				: strategy = everyChange, everyHour, restoreOnStartup
+	Stiebel_sgready_input_lines				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_sgready_onoff_switch			: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_sgready_controller				: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_sgready_operation_state			: strategy = everyChange, everyDay, restoreOnStartup
+	Stiebel_sgready_nhz1_runtime			: strategy = everyChange, everyDay, restoreOnStartup
+
+// OK BIS HIER
+	// Das sind alles Sollwerte fuer die SmartGrid Steuerung
+	SGReady_water_comfort_temp_high			: strategy = everyChange, everyDay, restoreOnStartup
+	SGReady_water_comfort_temp_low			: strategy = everyChange, everyDay, restoreOnStartup
+	SGReadySoC								: strategy = everyChange, everyDay, restoreOnStartup
+	SGReadyForcastToday						: strategy = everyChange, everyDay, restoreOnStartup
+	SGReadyWasserTempSoll					: strategy = everyChange, everyDay, restoreOnStartup
+	SGReadyElevation						: strategy = everyChange, everyDay, restoreOnStartup
+	SGReadyRuntime							: strategy = everyChange, everyHour, restoreOnStartup
+	SGReadyControl							: strategy = everyChange, everyHour, restoreOnStartup
+	SGReadyStatus							: strategy = everyChange, everyHour, restoreOnStartup
+	SGReadyRememberRun						: strategy = everyChange, everyHour, restoreOnStartup
+	comfoairFanLevel						: strategy = everyChange, everyHour, restoreOnStartup
+
+	// aus dem mqtt binding
+    mqtt_vzlogger_bezug                     : strategy = everyChange, everyHour, restoreOnStartup
+    mqtt_vzlogger_lieferung                 : strategy = everyChange, everyHour, restoreOnStartup
+    mqtt_vzlogger_aktuell                   : strategy = every5Minute, restoreOnStartup
+    mqtt_vzlogger_stunde_bezug              : strategy = everyChange, everyHour, restoreOnStartup
+    mqtt_vzlogger_stunde_lieferung          : strategy = everyChange, everyHour, restoreOnStartup
+    mqtt_vzlogger_tag_bezug 	            : strategy = everyChange, restoreOnStartup
+    mqtt_vzlogger_tag_lieferung 	        : strategy = everyChange, restoreOnStartup
+
+	StatusHeating							: strategy = everyChange, everyDay, restoreOnStartup
+	StatusHeizungEGWohnz					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungEGDiele					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungEGGaestWC					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungEGAbstell					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungEGSchleuse					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungEGKueche					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungOGGaeste					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungOGKind						: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungOGBad						: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungOGFlur						: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungOGBuero					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungOGAnkleide					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusHeizungOGSchlafz					: strategy = everyChange, everyHour, restoreOnStartup
+	StatusBewegungOGBad						: strategy = everyChange, everyDay, restoreOnStartup
+
+	ForecastSolarPlane_Day_SW		: strategy = everyChange, everyDay, restoreOnStartup
+	ForecastSolarPlane_Today_SW		: strategy = everyChange, everyDay, restoreOnStartup
+
+	PV_Solar_Generator_Sum		: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Energy_Household_Sum		: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Energy_Grid_Load_Sum		: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Grid_Power_Sum			: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Current_Grid_Feed		: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Current_Grid_Power		: strategy = everyChange, everyDay, restoreOnStartup
+
+	PV_Daily_Grid_Load			: strategy = everyDay, every15Minute, restoreOnStartup
+	PV_Daily_Grid_Feed			: strategy = everyDay, every15Minute, restoreOnStartup
+	PV_Daily_Generator			: strategy = everyDay, every15Minute, restoreOnStartup
+
+	PV_Input_A_Volt				: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Input_A_Watt				: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Input_B_Volt				: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Input_B_Watt				: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Input_Sum 				: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Inverter_Current_Power	: strategy = everyChange, everyHour, restoreOnStartup
+	PV_Battery_Voltage			: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Battery_Upper_SOC		: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Battery_Upper_SOC_Display	: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Battery_SOC				: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Battery_SOC_Display		: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Battery_Current_Power	: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Battery_Temperature		: strategy = every15Minute, everyDay, restoreOnStartup
+	PV_Battery_Energy_From		: strategy = every15Minute, everyDay, restoreOnStartup
+	PV_Battery_Energy_Into		: strategy = every15Minute, everyDay, restoreOnStartup
+	PV_House_Current_Power		: strategy = everyChange, everyDay, restoreOnStartup
+	PV_Real_Current_Power		: strategy = everyChange, everyDay, restoreOnStartup
+
+	PV_Daily_House_Power		: strategy = everyDay, every15Minute, restoreOnStartup
+	PV_Daily_House_Power_Sum	: strategy = everyDay, every15Minute, restoreOnStartup
+	PV_Daily_External_Energy	: strategy = everyDay, every15Minute, restoreOnStartup
+	PV_Daily_Energy				: strategy = everyDay, every15Minute, restoreOnStartup
+	PV_Monthly_Input_A			: strategy = everyDay, restoreOnStartup
+	PV_Monthly_Input_B			: strategy = everyDay, restoreOnStartup
+	PV_Monthly_Grid_Feed		: strategy = everyDay, restoreOnStartup
+	PV_Monthly_Grid_Load		: strategy = everyDay, restoreOnStartup
+	PV_Monthly_House_Power		: strategy = everyDay, restoreOnStartup
+	PV_Monthly_Energy			: strategy = everyDay, restoreOnStartup
+
+    Owm_Home_Current_Temperature			: strategy = everyChange, everyDay, restoreOnStartup
+    Owm_Home_Current_WindSpeed				: strategy = everyChange, everyDay, restoreOnStartup
+	Owm_Home_Current_Pressure				: strategy = everyChange, everyDay, restoreOnStartup
+	
+	comfoairFanLevel						: strategy = everyChange, everyDay, restoreOnStartup
+	comfoairBypass							: strategy = everyChange, everyDay, restoreOnStartup
+    comfoairComfortTemperature				: strategy = everyChange, everyDay, restoreOnStartup
+    comfoairIncoming						: strategy = everyChange, everyDay, restoreOnStartup
+	comfoairOutgoing						: strategy = everyChange, everyDay, restoreOnStartup
+	comfoairTargetTemperature				: strategy = everyChange, everyDay, restoreOnStartup
+    comfoairIndoorOutgoingTemperature		: strategy = everyChange, everyDay, restoreOnStartup
+	comfoairIndoorIncomingTemperature		: strategy = everyChange, everyDay, restoreOnStartup
+    comfoairOutdoorIncomingTemperature		: strategy = everyChange, everyDay, restoreOnStartup
+	comfoairOutdoorOutgoingTemperature		: strategy = everyChange, everyDay, restoreOnStartup
+
+	BelueftungState				: strategy = everyChange, everyDay, restoreOnStartup
+	BelueftungOnOff				: strategy = everyChange, everyDay, restoreOnStartup
+	BelueftungSollTempAussen	: strategy = everyChange, everyDay, restoreOnStartup
+
+    WetterLichtO				: strategy = everyChange, everyDay, restoreOnStartup
+	WetterLichtS				: strategy = everyChange, everyDay, restoreOnStartup
+	WetterLichtW				: strategy = everyMinute, restoreOnStartup
+    WetterLichtOAvg				: strategy = everyChange, everyDay, restoreOnStartup
+	WetterLichtSAvg				: strategy = everyChange, everyDay, restoreOnStartup
+	WetterLichtWAvg				: strategy = everyChange, everyDay, restoreOnStartup
+	WetterLichtAve				: strategy = everyChange, everyDay, restoreOnStartup
+
+	WetterRegen					: strategy = everyChange, everyDay, restoreOnStartup
+/*
+	SunProOstActiv				: strategy = everyChange, everyDay, restoreOnStartup
+	SunProWestActiv				: strategy = everyChange, everyDay, restoreOnStartup
+	SunProSuedActiv				: strategy = everyChange, everyDay, restoreOnStartup
+	SunProNordActiv				: strategy = everyChange, everyDay, restoreOnStartup
+	SunProErLiActiv				: strategy = everyChange, everyDay, restoreOnStartup
+	SunProErReActiv				: strategy = everyChange, everyDay, restoreOnStartup
+	*/
+	SunProLichtSollNord			: strategy = everyChange, everyDay, restoreOnStartup
+	Sun_Protect_West			: strategy = everyChange, everyDay, restoreOnStartup
+    Sun_Protect_Ost				: strategy = everyChange, everyDay, restoreOnStartup
+	Sun_Protect_Sued			: strategy = everyChange, everyDay, restoreOnStartup
+    Sun_Protect_Nord			: strategy = everyChange, everyDay, restoreOnStartup
+	Sun_Protect_ErRe			: strategy = everyChange, everyDay, restoreOnStartup
+	Sun_Protect_ErLi			: strategy = everyChange, everyDay, restoreOnStartup
+	SunProSoll3DTempAussen		: strategy = everyChange, everyDay, restoreOnStartup
+	SunProSollTempAussen		: strategy = everyChange, everyDay, restoreOnStartup
+	SunProSollTempWohnzimmer	: strategy = everyChange, everyDay, restoreOnStartup
+	SunProStatusNord			: strategy = everyChange, everyDay, restoreOnStartup
+	SunProStatusSued			: strategy = everyChange, everyDay, restoreOnStartup
+	SunProStatusOst				: strategy = everyChange, everyDay, restoreOnStartup
+	SunProStatusWest			: strategy = everyChange, everyDay, restoreOnStartup
+	SunProStatusErRe			: strategy = everyChange, everyDay, restoreOnStartup
+	SunProStatusErLi			: strategy = everyChange, everyDay, restoreOnStartup
+	SunProBlockRolloAbendsHoch	: strategy = everyChange, everyDay, restoreOnStartup
+	OhDaemmerungRolloDeko		: strategy = everyChange, everyDay, restoreOnStartup
+	OhControlRolloBueroStrasse	: strategy = everyChange, everyDay, restoreOnStartup
+	OhFrauBesonderheitenOnOff	: strategy = everyChange, everyDay, restoreOnStartup
+	OhFrauBesonderheitenStatus	: strategy = everyChange, everyDay, restoreOnStartup
+	OhRolloKuecheDaemmerung		: strategy = everyChange, everyDay, restoreOnStartup
+	OhUrlaub					: strategy = everyChange, everyDay, restoreOnStartup
+	OhAbwesend					: strategy = everyChange, everyDay, restoreOnStartup
+	OhHomeOffice				: strategy = everyChange, everyDay, restoreOnStartup
+	OhSonnenschutzJustierung	: strategy = everyChange, everyDay, restoreOnStartup
+	RolloJustierenStatus		: strategy = everyChange, everyDay, restoreOnStartup
+
+	WasserAutoMorgens			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoAbends			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoVorne				: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoHinten			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoKies				: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoBeet				: strategy = everyChange, everyDay, restoreOnStartup
+	WasserAutoHochbeet			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserManuellVorne			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserManuellHinten			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserManuellKies			: strategy = everyChange, everyDay, restoreOnStartup
+	WasserManuellBeea			: strategy = everyChange, everyDay, restoreOnStartup
+
+	TempOGAvg					: strategy = everyChange, everyDay, restoreOnStartup
+	TempEGGarageAvg				: strategy = everyChange, everyDay, restoreOnStartup
+    TempAussenAvg				: strategy = everyChange, everyDay, restoreOnStartup
+	TempAussenAvg3D				: strategy = everyChange, everyDay, restoreOnStartup
+	TempAussenAvg1D				: strategy = everyChange, everyDay, restoreOnStartup
+	TempAussenAvg1W				: strategy = everyChange, everyDay, restoreOnStartup
+	WindAvg						: strategy = everyChange, everyDay, restoreOnStartup
+	SGReadySoCON				: strategy = everyChange, everyDay, restoreOnStartup
+	SGReadySoCOFF				: strategy = everyChange, everyDay, restoreOnStartup
+
+    SPMobile_PlayFavorite        : strategy = everyChange, everyDay, restoreOnStartup
+    SPSchlafz_PlayFavorite       : strategy = everyChange, everyDay, restoreOnStartup
+    SPWohnz_PlayFavorite         : strategy = everyChange, everyDay, restoreOnStartup
+    SPBad_PlayFavorite           : strategy = everyChange, everyDay, restoreOnStartup
+    SPBoom_PlayFavorite          : strategy = everyChange, everyDay, restoreOnStartup
+    SPKueche_PlayFavorite        : strategy = everyChange, everyDay, restoreOnStartup
+}
