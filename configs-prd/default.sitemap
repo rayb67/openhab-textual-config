@@ -117,7 +117,7 @@ sitemap default label="Haussteuerung"
 				Switch item=OhControlRolloBueroStrasse
 				Text item=OhStatusRolloBueroStrasse
 			}
-			Text label="Tom" icon="boy_1" {
+			Text label="Kind" icon="boy_1" {
 				Slider item=Licht_OG_Kind switchSupport
 				Switch item=Steckdose_OG_Kind1
 				Switch item=Steckdose_OG_Kind2
@@ -126,7 +126,7 @@ sitemap default label="Haussteuerung"
 //				Switch item=Rollo_OG_KindD icon="rollershutter"
 		        Setpoint item=SetTeOGKind
 			}
-			Text label="Karen" icon="sun" {
+			Text label="Gast" icon="sun" {
 				Slider item=Licht_OG_Gaeste
 				Switch item=Steckdose_OG_Gaeste
 				Text item=TempOGGaeste icon="temperature"

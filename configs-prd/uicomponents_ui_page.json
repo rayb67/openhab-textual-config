@@ -3429,15 +3429,15 @@
                           "action": "toggle",
                           "actionCommand": "ON",
                           "actionCommandAlt": "OFF",
-                          "actionItem": "network_PhoneTomOn",
-                          "color": "\u003d(items.network_PhoneTomOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
+                          "actionItem": "network_PhoneKindOn",
+                          "color": "\u003d(items.network_PhoneKindOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
                           "fontSize": "16px",
-                          "footer": "\u003d\u0027Status \u0027 + items.network_PhoneTomOn.state",
+                          "footer": "\u003d\u0027Status \u0027 + items.network_PhoneKindOn.state",
                           "icon": "camera",
-                          "item": "network_PhoneTomOn",
-                          "off": "\u003d(items.network_PhoneTomOn.state \u003d\u003d \u0027OFF\u0027)",
-                          "on": "\u003d(items.network_PhoneTomOn.state \u003d\u003d \u0027ON\u0027)",
-                          "title": "Tom (iPhone)",
+                          "item": "network_PhoneKindOn",
+                          "off": "\u003d(items.network_PhoneKindOn.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.network_PhoneKindOn.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Kind (iPhone)",
                           "vertical": true
                         }
                       },
@@ -3447,15 +3447,15 @@
                           "action": "toggle",
                           "actionCommand": "ON",
                           "actionCommandAlt": "OFF",
-                          "actionItem": "network_PhoneKarenOn",
-                          "color": "\u003d(items.network_PhoneKarenOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
+                          "actionItem": "network_PhoneGastOn",
+                          "color": "\u003d(items.network_PhoneGastOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
                           "fontSize": "16px",
-                          "footer": "\u003d\u0027Status \u0027 + items.network_PhoneKarenOn.state",
+                          "footer": "\u003d\u0027Status \u0027 + items.network_PhoneGastOn.state",
                           "icon": "camera",
-                          "item": "network_PhoneKarenOn",
-                          "off": "\u003d(items.network_PhoneKarenOn.state \u003d\u003d \u0027OFF\u0027)",
-                          "on": "\u003d(items.network_PhoneKarenOn.state \u003d\u003d \u0027ON\u0027)",
-                          "title": "Karen (iPhone)",
+                          "item": "network_PhoneGastOn",
+                          "off": "\u003d(items.network_PhoneGastOn.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.network_PhoneGastOn.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Gast (iPhone)",
                           "vertical": true
                         }
                       },
@@ -3465,15 +3465,15 @@
                           "action": "toggle",
                           "actionCommand": "ON",
                           "actionCommandAlt": "OFF",
-                          "actionItem": "network_LaptopLANTomOn",
-                          "color": "\u003d(items.network_LaptopLANTomOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
+                          "actionItem": "network_LaptopLANKindOn",
+                          "color": "\u003d(items.network_LaptopLANKindOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
                           "fontSize": "16px",
-                          "footer": "\u003d\u0027Status \u0027 + items.network_LaptopLANTomOn.state",
+                          "footer": "\u003d\u0027Status \u0027 + items.network_LaptopLANKindOn.state",
                           "icon": "camera",
-                          "item": "network_LaptopLANTomOn",
-                          "off": "\u003d(items.network_LaptopLANTomOn.state \u003d\u003d \u0027OFF\u0027)",
-                          "on": "\u003d(items.network_LaptopLANTomOn.state \u003d\u003d \u0027ON\u0027)",
-                          "title": "Tom (Latop)",
+                          "item": "network_LaptopLANKindOn",
+                          "off": "\u003d(items.network_LaptopLANKindOn.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.network_LaptopLANKindOn.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Kind (Latop)",
                           "vertical": true
                         }
                       },
@@ -3509,7 +3509,7 @@
       "timestamp": "Sep 30, 2024, 6:05:44 PM",
       "component": "oh-layout-page",
       "config": {
-        "label": "OG Karen",
+        "label": "OG Gast",
         "sidebar": false
       },
       "slots": {
@@ -3592,7 +3592,7 @@
                                 "icon": "thermometer",
                                 "set_temp_item": "SetTeOGGaeste",
                                 "temp_item": "TempOGGaeste",
-                                "title": "OG Karen"
+                                "title": "OG Gast"
                               }
                             }
                           ]
@@ -3704,7 +3704,7 @@
                         "component": "widget:Cell_Squeez_Card_1",
                         "config": {
                           "bgcolor": "rgba(200,180,180,.3)",
-                          "header": "Boom (bei Karen)",
+                          "header": "Boom (bei Gast)",
                           "icon": "speaker_3",
                           "item": "SPBoomControl",
                           "item_cover": "SPBoomCoverArtData",
@@ -3736,7 +3736,7 @@
       "timestamp": "Jul 7, 2024, 10:25:11 PM",
       "component": "oh-layout-page",
       "config": {
-        "label": "OG Tom",
+        "label": "OG Kind",
         "sidebar": false
       },
       "slots": {
@@ -4313,7 +4313,7 @@
                           "actionPage": "page:page_OG_Gaeste",
                           "color": "blue",
                           "footer": "\u003d\u0027Temperatur Soll \u0027 + items.SetTeOGGaeste.displayState",
-                          "header": "\u003d \u0027Karen\u0027",
+                          "header": "\u003d \u0027Gast\u0027",
                           "icon": "oh:sun",
                           "title": "\u003d\u0027Temperatur Ist \u0027+ items.TempOGGaeste.displayState"
                         }
@@ -4370,7 +4370,7 @@
                           "color": "blue",
                           "footer": "\u003d\u0027Temperatur \u0027 + items.TempOGKind.displayState",
                           "icon": "oh:boy_1",
-                          "title": "Tom"
+                          "title": "Kind"
                         }
                       },
                       {
