@@ -367,8 +367,9 @@ inst-example() {
 
 	function-openhab-stop   ## call funtion
 
-	cp ${OPENHAB_SETUP_SOURCE}/example/users.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/users.properties ${OPENHAB_SETUP_USERDATA}/etc/.
+#	cp ${OPENHAB_SETUP_SOURCE}/example/users.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
+#	cp ${OPENHAB_SETUP_SOURCE}/example/users.properties ${OPENHAB_SETUP_USERDATA}/etc/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/uicom* ${OPENHAB_SETUP_USERDATA}/jsondb/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/addons.cfg  ${OPENHAB_SETUP_CONF}/services/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/default.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.cfg  ${OPENHAB_SETUP_CONF}/services/.
@@ -377,6 +378,7 @@ inst-example() {
 	cp ${OPENHAB_SETUP_SOURCE}/example/jdbc.persist  ${OPENHAB_SETUP_CONF}/persistence/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/*.map  ${OPENHAB_SETUP_CONF}/transform/.
 
+	cp ${OPENHAB_SETUP_SOURCE}/example/_groups.items  ${OPENHAB_SETUP_CONF}/items/.
 
 	mkdir ${OPENHAB_SETUP_CONF}/html/floorplans
 	cp -r ${OPENHAB_SETUP_SOURCE}/images/floorplans ${OPENHAB_SETUP_CONF}/html
