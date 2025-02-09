@@ -25,7 +25,7 @@ They are not real binding, but contains some files which are indepndend from a r
 <h4>about "z-backup"</h4>
 I build my own simple backup solution. `backup.sh` is running at all server. `openhab-backup.sh` only at the prd and dev openhab server. This is required only for the function `back-restore-prd`. It can not run on the prd server, because i will prevent a mistack for the "production" environment.
 
-<h2>about 1-setup.bash</h2>
+<h3>about 1-setup.bash</h3>
 This file is the primary installation script. If no parameters are specified, only the help will be displayed.
 
 In my case, 3 different server are in use: production, development and sandbox.
@@ -44,7 +44,7 @@ Snapshot with VMware is really practical for testing e.g. the `1-setup.bash` scr
 
 Of course everything is without guarantee. It's best to start with the “astro” binding and see how this approach works.
 
-<h3>some rules</h3>
+<h4>some rules</h4>
 A few rules must be observed so that import and later automatic installation are possible.
 
 a) Each .item and each .things file has the name e.g. of the binding. But the name is arbitrary and should help to organise the setup files. Especially in folder like items or rules, you are going to lost an overview very quickly. 
