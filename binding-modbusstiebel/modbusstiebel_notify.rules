@@ -27,8 +27,8 @@ then
 
 	logInfo("StatusStiebelDruck","Stiebel_Heizungsdruck : "+Stiebel_Heizungsdruck.state)
 	logInfo("StatusStiebelDruck","Stiebel_Quellendruck : "+Stiebel_Quellendruck.state)
-	if	(	((( Stiebel_Heizungsdruck.state as QuantityType<Pressure>).toBigDecimal) < 1600) ||
-			((( Stiebel_Quellendruck.state as QuantityType<Pressure>).toBigDecimal) < 1300) )
+	if	(	((( Stiebel_Heizungsdruck.state as QuantityType<Pressure>).toBigDecimal) < 1.6) ||
+			((( Stiebel_Quellendruck.state as QuantityType<Pressure>).toBigDecimal) < 1.3) )
 	{
 		logInfo("StatusStiebelDruck","Stiebel Eltron Störung ! Druck : "+Stiebel_Heizungsdruck.state)
 		logInfo("StatusStiebelDruck","Stiebel Eltron Störung ! Druck : "+Stiebel_Quellendruck.state)

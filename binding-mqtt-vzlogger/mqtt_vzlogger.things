@@ -1,5 +1,5 @@
 // ..
-Bridge mqtt:broker:mybroker [ host="10.10.10.68", port="1883", secure=false ]
+Bridge mqtt:broker:mybroker [ host="192.168.1.68", port="1883", secure=false ]
 {
     Thing topic vzlogger "MQTT vzlogger Energiemeter" {
 		Channels: 

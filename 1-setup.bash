@@ -377,9 +377,13 @@ inst-example() {
 	cp ${OPENHAB_SETUP_SOURCE}/example/jdbc.persist  ${OPENHAB_SETUP_CONF}/persistence/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/*.map  ${OPENHAB_SETUP_CONF}/transform/.
 
+
 	mkdir ${OPENHAB_SETUP_CONF}/html/floorplans
-	cp -r ${OPENHAB_SETUP_SOURCE}/images/floorplans/* ${OPENHAB_SETUP_CONF}/html/floorplans
-	cp -r ${OPENHAB_SETUP_SOURCE}/images/classic/* ${OPENHAB_SETUP_CONF}/icons/classic
+	cp -r ${OPENHAB_SETUP_SOURCE}/images/floorplans ${OPENHAB_SETUP_CONF}/html
+	cp -r ${OPENHAB_SETUP_SOURCE}/images/classic ${OPENHAB_SETUP_CONF}/icons
+	mkdir ${OPENHAB_SETUP_CONF}/html/fotos
+	cp -r ${OPENHAB_SETUP_SOURCE}/example/fotos ${OPENHAB_SETUP_CONF}/html
+
 
 	chown -R openhab:openhab ${OPENHAB_SETUP_CONF}
 	chown -R openhab:openhab ${OPENHAB_SETUP_USERDATA}

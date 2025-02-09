@@ -1,4 +1,104 @@
 {
+  "AdminWPDruck": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "AdminWPDruck",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Feb 8, 2025, 11:16:27 AM",
+      "component": "oh-chart-page",
+      "config": {
+        "chartType": "",
+        "label": "Admin WP Druck",
+        "order": "66",
+        "period": "D",
+        "sidebar": true,
+        "visibleTo": [
+          "role:adserver-devstrator"
+        ]
+      },
+      "slots": {
+        "dataZoom": [
+          {
+            "component": "oh-chart-datazoom",
+            "config": {
+              "type": "inside"
+            }
+          }
+        ],
+        "grid": [
+          {
+            "component": "oh-chart-grid",
+            "config": {
+              "includeLabels": true
+            }
+          }
+        ],
+        "legend": [
+          {
+            "component": "oh-chart-legend",
+            "config": {
+              "bottom": 3.0,
+              "type": "scroll"
+            }
+          }
+        ],
+        "series": [
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "Stiebel_Quellendruck",
+              "name": "Quellendruck",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "Stiebel_Heizungsdruck",
+              "name": "Heizkreislauf",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          }
+        ],
+        "tooltip": [
+          {
+            "component": "oh-chart-tooltip",
+            "config": {
+              "confine": true,
+              "smartFormatter": true
+            }
+          }
+        ],
+        "xAxis": [
+          {
+            "component": "oh-time-axis",
+            "config": {
+              "gridIndex": 0.0
+            }
+          }
+        ],
+        "yAxis": [
+          {
+            "component": "oh-value-axis",
+            "config": {
+              "gridIndex": 0.0,
+              "name": "bar"
+            }
+          }
+        ]
+      }
+    }
+  },
   "Heizung_Waerme_Tag": {
     "class": "org.openhab.core.ui.components.RootUIComponent",
     "value": {
@@ -8,12 +108,12 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jan 26, 2025, 8:43:01 AM",
+      "timestamp": "Feb 7, 2025, 6:31:49 PM",
       "component": "oh-chart-page",
       "config": {
         "chartType": "",
-        "label": "Admin Wärmemenge ",
-        "order": "65",
+        "label": "Admin WP Wärmemenge ",
+        "order": "66",
         "period": "D",
         "sidebar": true,
         "visibleTo": [
@@ -499,7 +599,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Feb 1, 2025, 8:44:09 AM",
+      "timestamp": "Feb 6, 2025, 2:27:36 PM",
       "component": "oh-chart-page",
       "config": {
         "chartType": "",
@@ -544,17 +644,6 @@
               "gridIndex": 0.0,
               "item": "Wind",
               "name": "Wind Dach",
-              "type": "line",
-              "xAxisIndex": 0.0,
-              "yAxisIndex": 0.0
-            }
-          },
-          {
-            "component": "oh-time-series",
-            "config": {
-              "gridIndex": 0.0,
-              "item": "Wind2",
-              "name": "Wind Terrasse",
               "type": "line",
               "xAxisIndex": 0.0,
               "yAxisIndex": 0.0
@@ -2759,11 +2848,11 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jan 26, 2025, 8:50:20 AM",
+      "timestamp": "Feb 7, 2025, 5:59:43 PM",
       "component": "oh-chart-page",
       "config": {
-        "label": "Admin Heizung \"Heizen\"",
-        "order": "67",
+        "label": "Admin WP \"Heizen\"",
+        "order": "66",
         "sidebar": true,
         "visibleTo": [
           "role:adserver-devstrator"
@@ -3240,8 +3329,8 @@
                               "config": {
                                 "showAudioAlarms": false,
                                 "showMotionAlarms": true,
-                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
-                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                                "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
                               }
                             }
                           ]
@@ -3625,8 +3714,8 @@
                               "config": {
                                 "showAudioAlarms": false,
                                 "showMotionAlarms": true,
-                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
-                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                                "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
                               }
                             }
                           ]
@@ -3891,8 +3980,8 @@
                               "config": {
                                 "showAudioAlarms": false,
                                 "showMotionAlarms": true,
-                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
-                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                                "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
                               }
                             }
                           ]
@@ -4420,12 +4509,12 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jan 26, 2025, 8:43:14 AM",
+      "timestamp": "Feb 7, 2025, 6:55:20 PM",
       "component": "oh-chart-page",
       "config": {
         "chartType": "",
         "label": "Admin PV Forecast",
-        "order": "66",
+        "order": "65",
         "period": "D",
         "sidebar": true,
         "visibleTo": [
@@ -5573,8 +5662,8 @@
                             {
                               "component": "widget:ClickableCameraImage",
                               "config": {
-                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
-                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                                "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
                               }
                             }
                           ]
@@ -5600,12 +5689,12 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jan 26, 2025, 8:50:33 AM",
+      "timestamp": "Feb 7, 2025, 6:58:06 PM",
       "component": "oh-chart-page",
       "config": {
         "chartType": "",
-        "label": "Admin Heizung",
-        "order": "67",
+        "label": "Admin WP \"Wasser\"",
+        "order": "66",
         "period": "D",
         "sidebar": true,
         "visibleTo": [
@@ -8222,9 +8311,9 @@
                         "component": "widget:ClickableCameraImage",
                         "config": {
                           "camera": "Camera_Hof",
-                          "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                          "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
                           "switchItem": "gIPCamera",
-                          "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                          "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
                         }
                       },
                       {
@@ -8437,11 +8526,11 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jan 26, 2025, 8:41:00 AM",
+      "timestamp": "Feb 7, 2025, 6:55:56 PM",
       "component": "oh-chart-page",
       "config": {
-        "label": "Admin SG Ready Analyse",
-        "order": "61",
+        "label": "Admin WP SG Ready Analyse",
+        "order": "66",
         "period": "3D",
         "sidebar": true,
         "visibleTo": [

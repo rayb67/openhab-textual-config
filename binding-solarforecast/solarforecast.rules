@@ -15,10 +15,10 @@ rule "ForecastSolarActions"
         logDebug("ForecastSolarActions","Begin: "+ beginDT+" End: "+endDT)
  
         // get forecast for tomorrow    
-        val fcTomorrowState = solarforecastActions.getDay(LocalDate.now.plusDays(1))
-        logDebug("ForecastSolarActions","Forecast tomorrow state: "+ fcTomorrowState.toString)
-        val fcToTomorrowDouble = (fcTomorrowState as Number).doubleValue
-        logDebug("ForecastSolarActions","Forecast tomorrow value: "+ fcToTomorrowDouble)
+        val fcKindorrowState = solarforecastActions.getDay(LocalDate.now.plusDays(1))
+        logDebug("ForecastSolarActions","Forecast tomorrow state: "+ fcKindorrowState.toString)
+        val fcToKindorrowDouble = (fcKindorrowState as Number).doubleValue
+        logDebug("ForecastSolarActions","Forecast tomorrow value: "+ fcToKindorrowDouble)
         
         // get power forecast in one hour
         val hourPlusOnePowerState = solarforecastActions.getPower(LocalDateTime.now.plusHours(1))
@@ -52,9 +52,9 @@ then
 
     try {
         // Get forecast for tomorrow
-        val fcTomorrowState = solarforecastActions.getDay(LocalDate.now.plusDays(1))
-        val fcToTomorrowDouble = (fcTomorrowState as Number).doubleValue
-        logDebug("ForecastSolarActions", "Forecast for tomorrow: " + fcToTomorrowDouble)
+        val fcKindorrowState = solarforecastActions.getDay(LocalDate.now.plusDays(1))
+        val fcToKindorrowDouble = (fcKindorrowState as Number).doubleValue
+        logDebug("ForecastSolarActions", "Forecast for tomorrow: " + fcToKindorrowDouble)
 
         // Get power forecast in one hour
         val hourPlusOnePowerState = solarforecastActions.getPower(LocalDateTime.now.plusHours(1))

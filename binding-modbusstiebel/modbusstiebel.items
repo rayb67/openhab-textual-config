@@ -145,10 +145,7 @@ Number:Temperature		Stiebel_PufferIST					"Puffer Temperature IST"				<temperatu
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#buffer-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
 Number:Temperature		Stiebel_PufferSOLL					"Puffer Temperature Soll"				<temperature>	(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#buffer-temperature-setpoint", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:Pressure			Stiebel_Heizungsdruck				"Heizen Druck"							<pressure>		(gStiebelEltronHP,gTechnik)	["Pressure"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#heating-pressure", stateDescription=" "[ pattern="%.1f bar"]  }
 Number:VolumetricFlowRate Stiebel_Volumenstrom				"Volumenstrom (Druchfluss)"				<flow>			(gStiebelEltronHP,gTechnik)
-//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#flow-rate", stateDescription=" "[ pattern="%.1f m³"] }
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#flow-rate", stateDescription=" "[ pattern="%.1f l/min"] }
 Number:Temperature		Stiebel_WarmwasserIST				"Warmwasser Temperature Ist"			<temperature>	(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#hotwater-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
@@ -166,16 +163,28 @@ Number:Temperature		Stiebel_QuellenTemperatur			"Quellen Temperatur"					<temper
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#source-temperature" }
 Number:Temperature		Stiebel_QuellenTempMin				"Quellen Minimal Temperatur"			<temperature>	(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#min-source-temperature" }
-Number:Pressure			Stiebel_Quellendruck				"Quellendruck"							<pressure>		(gStiebelEltronHP,gTechnik)	["Pressure"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#source-pressure" }
 
 Number		Stiebel_HeizgasTemperatur			"Heisgas Temperatur"					<temperature>	(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#hotgas-temperature" }
 
-Number:Pressure			Stiebel_high_pressure				"High Pressure"							<pressure>		(gStiebelEltronHP,gTechnik)	["Pressure"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#high-pressure" }
-Number:Pressure			Stiebel_low_pressure				"Low Pressure"							<pressure>		(gStiebelEltronHP,gTechnik)	["Pressure"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#low-pressure" }
+//Number:Pressure			Stiebel_high_pressure				"High Pressure"							<pressure>		(gStiebelEltronHP,gTechnik)	["Pressure"]
+//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#high-pressure" }
+//Number:Pressure			Stiebel_low_pressure				"Low Pressure"							<pressure>		(gStiebelEltronHP,gTechnik)	["Pressure"]
+//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#low-pressure" }
+//Number:Pressure			Stiebel_Quellendruck				"Quellendruck"							<pressure>		(gStiebelEltronHP,gTechnik)	["Pressure"]
+//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#source-pressure" }
+//Number:Pressure			Stiebel_Heizungsdruck				"Heizen Druck"							<pressure>		(gStiebelEltronHP,gTechnik)	["Pressure"]
+//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#heating-pressure", stateDescription=" "[ pattern="%.1f bar"]  }
+
+
+Number:Pressure     Stiebel_Quellendruck        "Quellendruck"              <pressure>    (gStiebelEltronHP,gTechnik) ["Pressure"]
+{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#source-pressure", unit="bar" }
+Number:Pressure     Stiebel_Heizungsdruck       "Heizen Druck"              <pressure>    (gStiebelEltronHP,gTechnik) ["Pressure"]
+{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#heating-pressure", unit="bar" }
+Number:Pressure     Stiebel_high_pressure       "High Pressure"             <pressure>    (gStiebelEltronHP,gTechnik) ["Pressure"]
+{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#high-pressure", unit="bar" }
+Number:Pressure     Stiebel_low_pressure        "Low Pressure"              <pressure>    (gStiebelEltronHP,gTechnik) ["Pressure"]
+{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#low-pressure", unit="bar" }
 
 Number:Energy			Stiebel_heat_quantity_today			"Heizen Quantity Today [%.0f kWh]"		<energy>		(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-heat-today" }

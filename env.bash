@@ -15,9 +15,9 @@ export OPENHAB_SETUP_FILES=openhab-setup-step-files-$VERSION
 # important to know in case of restore, what is the source (PRD) and what is the target (DEV)
 # Some parameter must change and/or cleand up
 export OPENHAB_PRD_HOSTNAME=server-prd
-export OPENHAB_PRD_IP=10.10.10.68
+export OPENHAB_PRD_IP=192.168.1.68
 export OPENHAB_DEV_HOSTNAME=server-dev
-export OPENHAB_DEV_IP=10.10.10.125
+export OPENHAB_DEV_IP=192.168.1.125
 export OPENHAB_RESTORE=/tmp/openhab-restore
 export OPENHAB_LOGPATH=/var/log/openhab
 export BACKUP_PATH=/nas/linux/backups

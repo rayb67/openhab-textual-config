@@ -213,7 +213,7 @@ String	SPBad_Stream			"Music stream [%s]"								<player>	(gSQPlayerBad) ["Statu
 {channel="squeezebox:squeezeboxplayer:server:bad:stream"}
 
 
-Group	gSQPlayerBoom		"Music Karen Player"								<player>	(OG_Gaeste,gSQBox)	["Equipment"]
+Group	gSQPlayerBoom		"Music Gast Player"								<player>	(OG_Gaeste,gSQBox)	["Equipment"]
 Switch	SPBoom_Power			"Music Power"									<player>	(gSQPlayerBoom) ["Control"] 
 {channel="squeezebox:squeezeboxplayer:server:karen:power"}
 Switch	SPBoom_Play			"Music Pause/Play"								<player>	(gSQPlayerBoom) ["Control"] 

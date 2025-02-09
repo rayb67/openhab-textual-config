@@ -3642,14 +3642,14 @@
       "props": {
         "parameters": [
           {
-            "description": "example: http://10.10.10.57:8080/ipcamera/hof/snapshots.mjpeg",
+            "description": "example: http://192.168.1.57:8080/ipcamera/hof/snapshots.mjpeg",
             "label": "Thumbnail URL",
             "name": "thumbnailURL",
             "required": true,
             "type": "TEXT"
           },
           {
-            "description": "example: http://10.10.10.57:8080/ipcamera/hof/snapshots.mjpeg",
+            "description": "example: http://192.168.1.57:8080/ipcamera/hof/snapshots.mjpeg",
             "label": "Stream URL",
             "name": "streamURL",
             "required": true,

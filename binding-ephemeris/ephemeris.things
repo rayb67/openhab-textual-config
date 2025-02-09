@@ -1,0 +1,3 @@
+Thing ephemeris:holiday:local "Holidays"
+Thing ephemeris:weekend:local "Week-end"
+Thing ephemeris:custom:events "Event" [fileName="ephemeris.xml"]

@@ -245,7 +245,7 @@ Contact				BinaryFire					"Bin Feuermelder"					<fire>				(gMisc,EG_Technik)	["O
 // M145 / SHS R8H BU4L (EG Technik UV-Unten) Heizungsventile oben
 Switch				Licht_DG_Dachboden			"Dachboden [MAP(lcn.map):%s]"		<light>
 (OG_Spitzboden,gLichtDG,LightS)	["Lightblub"]   { channel="lcn:module:bus:S000M145:relay#1" }
-Number				StatusHeizungOGGaeste		"Hz Karen [MAP(lcn.map):%s]"		<contact>
+Number				StatusHeizungOGGaeste		"Hz Gast [MAP(lcn.map):%s]"		<contact>
 (OG_Gaeste,gHeizung)			["OpenState"]   { channel="lcn:module:bus:S000M145:relay#2" }
 Number				StatusHeizungOGKind			"Hz Kind [MAP(lcn.map):%s]"			<contact>
 (OG_Kind,gHeizung)				["OpenState"]   { channel="lcn:module:bus:S000M145:relay#3" }
@@ -260,7 +260,7 @@ Number				StatusHeizungOGAnkleide		"Hz Ankleide [MAP(lcn.map):%s]"		<contact>
 Number				StatusHeizungOGSchlafz		"Hz Schlafzimmer [MAP(lcn.map):%s]"	<contact>
 (OG_Schlafz,gHeizung)		["OpenState"]   { channel="lcn:module:bus:S000M145:relay#8" }
 // am 20.10.2022 geaendert
-//Dimmer				Licht_OG_Gaeste				"Karen Decke [%d %%]"									(OG_Gaeste, gLichtOG,LightD)	["Light"]   {channel="lcn:module:bus:S000M145:output#1"}
+//Dimmer				Licht_OG_Gaeste				"Gast Decke [%d %%]"									(OG_Gaeste, gLichtOG,LightD)	["Light"]   {channel="lcn:module:bus:S000M145:output#1"}
 
 
 // ------------------------------------------------------------------------------------
@@ -543,11 +543,11 @@ Switch SendKeyGuestWLAN				"Fritzbox Guest WLAN"	(EG_Technik)
 
 // ------------------------------------------------------------------------------------
 // M210 / UPS GT12   (OG Gaeste)
-Number				SetTeOGGaeste			"Karen [%.1f %unit%]"		<temperature>	(OG_Gaeste,gHeizung)					["Temperature","Setpoint"]	
+Number				SetTeOGGaeste			"Gast [%.1f %unit%]"		<temperature>	(OG_Gaeste,gHeizung)					["Temperature","Setpoint"]	
 { channel="lcn:module:bus:S000M220:rvarsetpoint#1",
-	widget    ="oh-stepper-card"[ title="Karen", min=16, max=24, step=0.5, icon="oh:temperature" ], 
-	listWidget="oh-stepper-item"[ title="Karen", min=16, max=24, step=0.5, icon="oh:temperature" ],
-	cellWidget="oh-stepper-cell"[ title="Karen", min=16, max=24, step=0.5, icon="oh:temperature" ], 
+	widget    ="oh-stepper-card"[ title="Gast", min=16, max=24, step=0.5, icon="oh:temperature" ], 
+	listWidget="oh-stepper-item"[ title="Gast", min=16, max=24, step=0.5, icon="oh:temperature" ],
+	cellWidget="oh-stepper-cell"[ title="Gast", min=16, max=24, step=0.5, icon="oh:temperature" ], 
 	stateDescription=" "[ pattern="%.1f °C"],
 	autoupdate="false"	
 }
@@ -774,7 +774,7 @@ Switch					OhTimerHeizung				"Timer Heitzung auf 43 E/A"				<temperature>	(gMisc
 Switch					OhHomeOffice				"Home Office E/A"						<home>			(gMisc,OG_Buero)	["WallSwitch"]
 Switch					OhAbwesend					"Abwesend E/A"							<info>			(gMisc,OG_Buero)	["WallSwitch"]
 Switch					OhDaemmerungRolloDeko		"Daemmerung Rollo Deko E/A"				<info>			(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhFrauBesonderheitenOnOff	"Karens Ausnahmen E/A"					<info>			(gMisc,OG_Buero)	["WallSwitch"]
+Switch					OhFrauBesonderheitenOnOff	"Gasts Ausnahmen E/A"					<info>			(gMisc,OG_Buero)	["WallSwitch"]
 Switch					OhFrauBesonderheitenStatus	"Status Frau Besonderheiten"	// in der Rule FrauBesonderheiten
 Switch					OhRolloKuecheDaemmerung		"Ro Kueche block Dammerung E/A"			<info>			(gMisc,OG_Buero)	["WallSwitch"]
 Switch					OhBadMusicAutomatic			"Musik Bad automatik E/A"				<player>		(gMisc,OG_Bad)		["WallSwitch"]

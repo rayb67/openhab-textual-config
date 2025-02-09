@@ -1,7 +1,7 @@
 //. Wird maxTries benoetigit?
-Bridge modbus:tcp:bridge "1-Stiebel Modbus TCP Bridge" @ "Technik"	[ host="10.10.10.56", port=502, id=1 ] {
-	Thing heatpump stiebelEltron "1-Stiebel Eltron Thing" (modbus:tcp:modbusbridge) @"Technik"  [ refresh=97, maxTries=3 ]
-	Thing stiebeleltron-heatpump-wpm3i stiebelEltronWMP3i "1-Stiebel-Eltron Heat Pump (WMP3i)" (modbus:tcp:modbusbridge) @"Technik" [ refresh=63, maxTries=3 ]
-	Thing stiebeleltron-isg-sg-ready-em stiebelEltronEM "1-Stiebel-Eltron Heat Pump (EM)" (modbus:tcp:modbusbridge) @"Technik" [ refresh=63, maxTries=3 ]
+Bridge modbus:tcp:bridge "1-Stiebel Modbus TCP Bridge" @ "Technik"	[ host="192.168.1.56", port=502, id=1 ] {
+	Thing heatpump stiebelEltron "1-Stiebel Eltron Thing" (modbus:tcp:modbusbridge) @"Technik"  [ refresh=117, maxTries=3 ]
+	Thing stiebeleltron-heatpump-wpm3i stiebelEltronWMP3i "1-Stiebel-Eltron Heat Pump (WMP3i)" (modbus:tcp:modbusbridge) @"Technik" [ refresh=113, maxTries=3 ]
+	Thing stiebeleltron-isg-sg-ready-em stiebelEltronEM "1-Stiebel-Eltron Heat Pump (EM)" (modbus:tcp:modbusbridge) @"Technik" [ refresh=119, maxTries=3 ]
 }
 

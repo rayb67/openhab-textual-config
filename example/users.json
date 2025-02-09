@@ -3,13 +3,12 @@
     "class": "org.openhab.core.auth.ManagedUser",
     "value": {
       "name": "admin",
-      "passwordHash": "RLX8yEszLn+Ho5b7hkhoQwA79LeIieqOzvzuCztFyNaeT+FECcZecFUzJ/GrQK9ZESQQVNPHg/hE8ue/FK66qA\u003d\u003d",
-      "passwordSalt": "vT0GRv6AHQOnh5HNlTJBOkTUngCHNNGMPu9/NoalUlocAYtObcE55jUfidJjk9/GC87IDXsCPZgpJ+d5SOPkFQ\u003d\u003d",
+      "passwordHash": "tmeiqf5qKXGImK7RhpWRWR1rwdVJqGZp+XAosgUR9DHDsMmXLRF8mNmS1sC5YJ5U58kRW2x3D4z8rT6grkhu2g\u003d\u003d",
+      "passwordSalt": "+LPkJK+oKC8j7FMHh4E9PAqCEuKMYWLEpCzER8Gu1/D1RmUZ1KsMtIo79QiwFP+HySb0rB/8RuDiCRHi9dMaxg\u003d\u003d",
       "roles": [
         "adserver-devstrator"
       ],
-      "sessions": [
-      ],
+      "sessions": [],
       "apiTokens": []
     }
   }

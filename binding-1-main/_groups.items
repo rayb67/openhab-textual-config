@@ -62,6 +62,3 @@ Group						LightAll				"Alle Lichter"					<light> 		(gHaus)				["Lightbulb"]
 Group:Switch:OR(ON,OFF)		LightS					"Licht S"						<light>			(LightAll)			["Lightbulb"]	{autoupdate="false"}
 Group:Dimmer				LightD					"Licht D"						<light> 		(LightAll)			["Lightbulb"]
 Group:Dimmer				LightDimEG				"Licht Dim EG"					<light>			(LightAll)			["Lightbulb"]
-
-Location					RalfsPos				"Wo ist Ralf"					<boy_1>								["Point"]
-
