@@ -408,7 +408,7 @@ inst-default() {
 
 	function-check-prod  # if the current system is PRD, we stop
 
-	function-openhab-start   ## call funtion
+	function-openhab-stop   ## call funtion
 
 	cp ${OPENHAB_SETUP_SOURCE}/defaults/i18n.config ${OPENHAB_SETUP_USERDATA}/config/org/openhab/.
 	cp ${OPENHAB_SETUP_SOURCE}/defaults/users.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
@@ -678,45 +678,54 @@ inst-select() {
 #######################################################################
 back-all() {
 
-	if [ `hostname` == "${OPENHAB_PRD_HOSTNAME}" ];
-	then
-		echo "...running on prod machine..."
-	else
-		echo "!!!!!!!!!!!!1"
-		echo "Full Backup is only possible on the prod machine"
-		echo "!!!!!!!!!!!!1"
-		exit
-	fi
-
 	cd $OPENHAB_SETUP_CONF
 
+	echo
 	echo "CONF     = "${OPENHAB_SETUP_CONF}
 	echo "SOURCE   = "${OPENHAB_SETUP_SOURCE}
 	echo "UserData = "${OPENHAB_SETUP_USERDATA}
+	echo "SRV Type = "${OPENHAB_SRV_TYPE}
+	echo
 
 	cd ${OPENHAB_SETUP_SOURCE}
 
-	rm -R /tmp/openhab-backup
+	rm -R /tmp/openhab-backup*
 
-	mkdir /tmp/openhab-backup
-	mkdir /tmp/openhab-backup/config
-	mkdir /tmp/openhab-backup/images
-	mkdir /tmp/openhab-backup/rules
-	mkdir /tmp/openhab-backup/html
-	cd /tmp/openhab-backup
+	mkdir /tmp/openhab-backup-${OPENHAB_SRV_TYPE}
+	cd /tmp/openhab-backup-${OPENHAB_SRV_TYPE}
+	mkdir config
+	mkdir images
+	mkdir rules
+	mkdir html
 
 
-	echo "-x-x-x-x-x"
+	echo "backup configs"
 	cp ${OPENHAB_SETUP_CONF}/sitemaps/default.sitemap config/.
 	cp ${OPENHAB_SETUP_CONF}/services/*.cfg config/.
 	cp ${OPENHAB_SETUP_CONF}/persistence/*.persist config/.
 	cp -r ${OPENHAB_SETUP_CONF}/html html/.
 	cp -r ${OPENHAB_SETUP_CONF}/rules rules/.
 	cp ${OPENHAB_SETUP_USERDATA}/jsondb/uicomponents_ui_*.json config/.
+	cp ${OPENHAB_SETUP_USERDATA}/jsondb/users.* config/.
+	cp ${OPENHAB_SETUP_USERDATA}/etc/users.* config/.
 
-	########################
+
+	if [ "prd" != "${OPENHAB_SRV_TYPE}" ];
+	then
+		echo "!!!!!!!!!!!!1"
+		echo "Full Backup is only possible on the >prd< machine : "${OPENHAB_PRD_HOSTNAME}
+		echo "!!!!!!!!!!!!1"
+		exit
+	fi
+
+	echo
+	echo "backup bindings related files"
+
+
+	#######################################################################
 	# now copy goes on
-	########################
+	# this list must update manually depends on your setup
+	#######################################################################
 	. ${OPENHAB_SETUP_SOURCE}/binding-astro/backup.bash binding-astro
 	. ${OPENHAB_SETUP_SOURCE}/binding-avmfritz/backup.bash binding-avmfritz
 	. ${OPENHAB_SETUP_SOURCE}/binding-comfoair/backup.bash binding-comfoair
@@ -771,6 +780,7 @@ env() {
 	echo "OPENHAB_SETUP_ADDONS   : " $OPENHAB_SETUP_ADDONS
 	echo "OPENHAB_SETUP_SOURCE   : " $OPENHAB_SETUP_SOURCE
 	echo "OPENHAB_DOCKER         : " $OPENHAB_DOCKER
+	echo "OPENHAB_SRV_TYPE       : " $OPENHAB_SRV_TYPE
 
 	echo
 	echo "env ...ende..."
