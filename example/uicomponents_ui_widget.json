@@ -1699,14 +1699,14 @@
         ],
         "parameterGroups": []
       },
-      "timestamp": "Aug 25, 2024, 11:12:06 AM",
+      "timestamp": "Feb 11, 2025, 3:59:23 PM",
       "component": "f7-card",
       "config": {
         "style": {
           "background-color": "\u003dprops.bgcolor ? props.bgcolor : \u0027\u0027",
           "border-radius": "var(--f7-card-expandable-border-radius)",
           "box-shadow": "5px 5px 10px 1px rgba(34,34,34,34.1)",
-          "height": "300px",
+          "height": "150px",
           "margin-left": "5px",
           "margin-right": "5px",
           "noShadow": false,
@@ -1734,7 +1734,8 @@
                     "f7": "\u003ditems[props.item].state \u003d\u003d\u003d \u0027PLAY\u0027 ? \u0027speaker_3\u0027 : \u0027speaker\u0027",
                     "size": 18.0,
                     "style": {
-                      "margin-right": "10px"
+                      "margin-right": "10px",
+                      "margin-top": "18px"
                     }
                   }
                 },
@@ -1760,9 +1761,9 @@
               "label": "\u003ditems[props.item_favorit].displayState.slice(0,9)",
               "style": {
                 "background-color": "rgba(200,180,180,.3)",
-                "bottom": "-75px",
+                "bottom": "-95px",
                 "font-size": "10px",
-                "height": "80px",
+                "height": "100px",
                 "margin-left": "2px",
                 "margin-top": "2px",
                 "noShadow": true,
@@ -1819,7 +1820,7 @@
                 "--f7-range-bar-size": "8px",
                 "--f7-range-knob-box-shadow": "0 2px 4px rgba(0, 0, 0, 0.3)",
                 "--f7-range-knob-size": "20px",
-                "bottom": "-75px",
+                "bottom": "-115px",
                 "left": "20px",
                 "position": "absolute",
                 "width": "calc(100% - 205px)"

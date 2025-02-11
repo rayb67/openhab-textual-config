@@ -28,3 +28,4 @@ cp ${DATAPATH}/squeezebox.items $OPENHAB_SETUP_CONF/items/.
 cp ${DATAPATH}/squeezebox.sitemap $OPENHAB_SETUP_CONF/sitemaps/.
 cp ${DATAPATH}/squeezebox.things $OPENHAB_SETUP_CONF/things/.
 cp ${DATAPATH}/squeezebox.rules $OPENHAB_SETUP_CONF/rules/.
+cp ${DATAPATH}/squeezebox_time.js $OPENHAB_SETUP_CONF/transform/.

@@ -2028,7 +2028,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Sep 22, 2024, 7:28:42 PM",
+      "timestamp": "Feb 11, 2025, 5:53:24 PM",
       "component": "oh-layout-page",
       "config": {
         "label": "OG Büro",
@@ -2280,8 +2280,7 @@
                                 "item": "SPMobile_Control",
                                 "item_cover": "SPMobile_CoverArtData",
                                 "item_favorit": "SPMobile_PlayFavorite",
-                                "item_volume": "SPMobile_Volume",
-                                "title": "Squeezbox"
+                                "item_volume": "SPMobile_Volume"
                               }
                             }
                           ]
@@ -2325,97 +2324,7 @@
             "component": "oh-block",
             "config": {},
             "slots": {
-              "default": [
-                {
-                  "component": "oh-grid-cells",
-                  "config": {},
-                  "slots": {
-                    "default": [
-                      {
-                        "component": "oh-cell",
-                        "config": {
-                          "action": "toggle",
-                          "actionCommand": "ON",
-                          "actionCommandAlt": "OFF",
-                          "actionItem": "network_PhoneRalfOn",
-                          "color": "\u003d(items.network_PhoneRalfOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
-                          "fontSize": "16px",
-                          "footer": "\u003d\u0027Status \u0027 + items.network_PhoneRalfOn.state",
-                          "icon": "camera",
-                          "item": "network_PhoneRalfOn",
-                          "off": "\u003d(items.network_PhoneRalfOn.state \u003d\u003d \u0027OFF\u0027)",
-                          "on": "\u003d(items.network_PhoneRalfOn.state \u003d\u003d \u0027ON\u0027)",
-                          "title": "Ralf (iPhone)",
-                          "vertical": true
-                        }
-                      },
-                      {
-                        "component": "oh-cell",
-                        "config": {
-                          "action": "toggle",
-                          "actionCommand": "ON",
-                          "actionCommandAlt": "OFF",
-                          "actionItem": "network_PhoneKindOn",
-                          "color": "\u003d(items.network_PhoneKindOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
-                          "fontSize": "16px",
-                          "footer": "\u003d\u0027Status \u0027 + items.network_PhoneKindOn.state",
-                          "icon": "camera",
-                          "item": "network_PhoneKindOn",
-                          "off": "\u003d(items.network_PhoneKindOn.state \u003d\u003d \u0027OFF\u0027)",
-                          "on": "\u003d(items.network_PhoneKindOn.state \u003d\u003d \u0027ON\u0027)",
-                          "title": "Kind (iPhone)",
-                          "vertical": true
-                        }
-                      },
-                      {
-                        "component": "oh-cell",
-                        "config": {
-                          "action": "toggle",
-                          "actionCommand": "ON",
-                          "actionCommandAlt": "OFF",
-                          "actionItem": "network_PhoneGastOn",
-                          "color": "\u003d(items.network_PhoneGastOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
-                          "fontSize": "16px",
-                          "footer": "\u003d\u0027Status \u0027 + items.network_PhoneGastOn.state",
-                          "icon": "camera",
-                          "item": "network_PhoneGastOn",
-                          "off": "\u003d(items.network_PhoneGastOn.state \u003d\u003d \u0027OFF\u0027)",
-                          "on": "\u003d(items.network_PhoneGastOn.state \u003d\u003d \u0027ON\u0027)",
-                          "title": "Gast (iPhone)",
-                          "vertical": true
-                        }
-                      },
-                      {
-                        "component": "oh-cell",
-                        "config": {
-                          "action": "toggle",
-                          "actionCommand": "ON",
-                          "actionCommandAlt": "OFF",
-                          "actionItem": "network_LaptopLANKindOn",
-                          "color": "\u003d(items.network_LaptopLANKindOn.state \u003d\u003d OO ) ? \u0027red\u0027 : \u0027green\u0027",
-                          "fontSize": "16px",
-                          "footer": "\u003d\u0027Status \u0027 + items.network_LaptopLANKindOn.state",
-                          "icon": "camera",
-                          "item": "network_LaptopLANKindOn",
-                          "off": "\u003d(items.network_LaptopLANKindOn.state \u003d\u003d \u0027OFF\u0027)",
-                          "on": "\u003d(items.network_LaptopLANKindOn.state \u003d\u003d \u0027ON\u0027)",
-                          "title": "Kind (Latop)",
-                          "vertical": true
-                        }
-                      },
-                      {
-                        "component": "widget:Cell_Toggle_Card_1",
-                        "config": {
-                          "header": "RESET",
-                          "icon": "circle_fill",
-                          "item_schalter": "exec_restart_trigger",
-                          "title": "Trigger Reset"
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
+              "default": []
             }
           }
         ],
@@ -2432,7 +2341,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Sep 30, 2024, 6:05:44 PM",
+      "timestamp": "Feb 11, 2025, 5:54:43 PM",
       "component": "oh-layout-page",
       "config": {
         "label": "OG Gast",
@@ -2622,21 +2531,35 @@
             "slots": {
               "default": [
                 {
-                  "component": "oh-grid-cells",
+                  "component": "oh-grid-row",
                   "config": {},
                   "slots": {
                     "default": [
                       {
-                        "component": "widget:Cell_Squeez_Card_1",
+                        "component": "oh-grid-col",
                         "config": {
-                          "bgcolor": "rgba(200,180,180,.3)",
-                          "header": "Boom (bei Gast)",
-                          "icon": "speaker_3",
-                          "item": "SPBoomControl",
-                          "item_cover": "SPBoomCoverArtData",
-                          "item_favorit": "SPBoomPlayFavorite",
-                          "item_volume": "SPBoomVolumen",
-                          "title": "Squeezbox"
+                          "large": "50",
+                          "medium": "100",
+                          "small": "100",
+                          "width": "100",
+                          "xlarge": "50",
+                          "xsmall": "100"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Squeez_Card_1",
+                              "config": {
+                                "bgcolor": "rgba(200,180,180,.3)",
+                                "header": "Mobile (im Buero)",
+                                "icon": "speaker_3",
+                                "item": "SPMobile_Control",
+                                "item_cover": "SPMobile_CoverArtData",
+                                "item_favorit": "SPMobile_PlayFavorite",
+                                "item_volume": "SPMobile_Volume"
+                              }
+                            }
+                          ]
                         }
                       }
                     ]
@@ -2646,7 +2569,8 @@
             }
           }
         ],
-        "grid": []
+        "grid": [],
+        "masonry": []
       }
     }
   },

@@ -30,3 +30,4 @@ cp ${OPENHAB_SETUP_CONF}/items/squeezebox.items .
 cp ${OPENHAB_SETUP_CONF}/sitemaps/squeezebox.sitemap .
 cp ${OPENHAB_SETUP_CONF}/things/squeezebox.things .
 cp ${OPENHAB_SETUP_CONF}/rules/squeezebox.rules .
+cp ${OPENHAB_SETUP_CONF}/transform/squeezebox_*.js .

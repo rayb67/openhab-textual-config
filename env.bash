@@ -4,7 +4,7 @@
 # The version must match exactly!
 
 export OPENHAB_VERSION=4.3.0
-export JDK_VERSION=21
+export JDK_VERSION=17
 export OPENHAB_USER=openhab
 export OPENHAB_GROUP=openhab
 export OPENHAB_DBNAME=openhab

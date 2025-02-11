@@ -781,6 +781,7 @@ env() {
 	echo "OPENHAB_SETUP_SOURCE   : " $OPENHAB_SETUP_SOURCE
 	echo "OPENHAB_DOCKER         : " $OPENHAB_DOCKER
 	echo "OPENHAB_SRV_TYPE       : " $OPENHAB_SRV_TYPE
+	echo "JDK_VERSION            : " $JDK_VERSION
 
 	echo
 	echo "env ...ende..."
