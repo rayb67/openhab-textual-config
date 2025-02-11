@@ -31,12 +31,18 @@ This file is the primary installation script. If no parameters are specified, on
 In my case, 3 different server are in use: production, development and sandbox.
 In addition to my professional experience as an administrator in medium-sized and large companies, this has also developed with my use of openHAB for more than 10 years. The installation approach using scripts is certainly also a result of my professional experience.
 
-I recommend to set the following variables via /etc/profile per server/system you are plant to work with openhab. These are the /etc/profile for a sandbox. 
+You should/must set some parameter in your environment.  I recommend to set the following variables via /etc/profile per server/system you are plant to work with openhab. These are the /etc/profile for a sandbox. The following command should to all required things together :
 
-`export OPENHAB_SETUP_CONF=/etc/openhab`<br/>
-`export OPENHAB_SETUP_ADDONS=/usr/share/openhab/addons`<br/>
-`export OPENHAB_SETUP_USERDATA=/var/lib/openhab`<br/>
-`export OPENHAB_SETUP_SOURCE=/nas/linux/install/openhab`
+```
+cd
+git clone https://github.com/rayb67/openhab-textual-config.git
+echo "export OPENHAB_SETUP_SOURCE=/root/openhab-textual-config
+export OPENHAB_SETUP_USERDATA=/var/lib/openhab
+export OPENHAB_SETUP_ADDONS=/usr/share/openhab/addons
+export OPENHAB_SETUP_CONF=/etc/openhab
+export OPENHAB_SRV_TYPE=sand" >> /etc/profile
+cd /root/openhab-textual-config
+```
 
 The variable `OPENHAB_SETUP_SOURCE` is the directory where the script itself and the other data “binding-...” etc. are located.
 Keep in mind, today production and development run in a <a href="http://www.berhorst.net/docker.html">docker environment</a>. In case of docker i have other posiblities. Compare the `env.bash` Only a sandbox is running on a raspberry PI or in an VMware Fusion "virtual server" under my MacBook ;-) . 
