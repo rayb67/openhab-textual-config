@@ -1,8 +1,8 @@
-Group   gAVMFritz					"avmfritz"							(EG_Technik)				["Equipment","NetworkAppliance"]
+Group   gAVMFritz					"avmfritz"										["Equipment","NetworkAppliance"]
 
 // Points:
 
-Group   gCALLMONITOR				"Call Monitor"						(EG_Technik)				["Equipment","NetworkAppliance"]
+Group   gCALLMONITOR				"Call Monitor"									["Equipment","NetworkAppliance"]
 Call    fritzIncomingCall			"Incoming Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR) ["Status"] { channel="avmfritz:fritzbox:avmfb7490:incoming_call" }
 Call    fritzActiveCall			    "Active Call [from %1$s]"           (gAVMFritz,gCALLMONITOR) ["Status"] { channel="avmfritz:fritzbox:avmfb7490:active_call" }
 Call    fritzOutgoingCall			"Outgoing Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR) ["Status"] { channel="avmfritz:fritzbox:avmfb7490:outgoing_call" }

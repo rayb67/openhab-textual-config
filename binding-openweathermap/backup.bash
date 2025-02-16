@@ -26,10 +26,8 @@ fi
 
 cd ${DATAPATH}
 
-
-cp ${OPENHAB_SETUP_CONF}/things/openweathermap.things .
-cp ${OPENHAB_SETUP_CONF}/items/openweathermap.items .
-cp ${OPENHAB_SETUP_CONF}/sitemaps/openweathermap.sitemap .
-#cp ${OPENHAB_SETUP_CONF}/rules/openweathermap.rules .
-#cp ${OPENHAB_SETUP_CONF}/transform/openweathermap.map .
-cp ${OPENHAB_SETUP_CONF}/transform/openweathermap.scale .
+cp ${OPENHAB_SETUP_CONF}/things/openweathermap*.things .
+cp ${OPENHAB_SETUP_CONF}/items/openweathermap*.items .
+cp ${OPENHAB_SETUP_CONF}/rules/openweathermap*.rules .
+cp ${OPENHAB_SETUP_CONF}/transform/openweathermap*.map .
+cp ${OPENHAB_SETUP_CONF}/sitemaps/openweathermap*.sitemap .

@@ -50,12 +50,6 @@ rule "vzlogger_letzte_stunde"
 		var Number temp_bezug_h = mqtt_vzlogger_bezug.deltaSince(now.minusHours(1))
 
 		logInfo("vzlogger_letzte_stunde","Wert bezug letzte h : "+temp_bezug_h)
-		if (temp_bezug_h = 0)
-		{   
-			logInfo("vzlogger_letzte_stunde","vzlogger Störung !!!! bezug 0  : "+Stiebel_WarmwasserIST.state)
-			val mailActions = getActions("mail","mail:smtp:samplesmtp")
-			mailActions.sendMail("yourmail@localhost","STOERUNG ? - vzlogger bezug nichts mehr","Entweder ist soviel sonnne da, oder .... prufen")
-		}
 
 		temp_bezug_h = temp_bezug_h *1000
 		mqtt_vzlogger_stunde_bezug.postUpdate (temp_bezug_h)

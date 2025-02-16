@@ -678,8 +678,6 @@ inst-select() {
 #######################################################################
 back-all() {
 
-	cd $OPENHAB_SETUP_CONF
-
 	echo
 	echo "CONF     = "${OPENHAB_SETUP_CONF}
 	echo "SOURCE   = "${OPENHAB_SETUP_SOURCE}
@@ -726,6 +724,7 @@ back-all() {
 	# now copy goes on
 	# this list must update manually depends on your setup
 	#######################################################################
+	. ${OPENHAB_SETUP_SOURCE}/binding-1-main/backup.bash binding-1-main
 	. ${OPENHAB_SETUP_SOURCE}/binding-astro/backup.bash binding-astro
 	. ${OPENHAB_SETUP_SOURCE}/binding-avmfritz/backup.bash binding-avmfritz
 	. ${OPENHAB_SETUP_SOURCE}/binding-comfoair/backup.bash binding-comfoair

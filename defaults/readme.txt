@@ -1,5 +1,6 @@
-A fresh installation is based on the initial setup of a new version of Openhab. 
-The purpose is, when updating to a new version, where we can thus for testing activies to exclude potential errors during the upgrade.
+A fresh installation is based on the initial setup of a new version of openHAB. 
+This folder contains some basic files you need to speed up a basic installation based on your environment (e.g. _groups.items, uicom*)
 
-copy your files into this folder and modify the corresponding section in the 1-setup.bash script (inst-default)
+Purpuse is, for e.g. integrate a new binding
 
+Copy your files into this folder and modify the corresponding section in the 1-setup.bash script (inst-default)

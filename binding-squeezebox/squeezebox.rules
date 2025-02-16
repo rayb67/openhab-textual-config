@@ -78,7 +78,7 @@ then
 	} else {
 //		SPBad_Volume.postUpdate(20 ) // OK
 		sendCommand( SPBad_Volume,  20 )
-		logDebug("StatusMusicBadVolumeSub","20 server-devmum")
+		logDebug("StatusMusicBadVolumeSub","20 minimum")
 	}
 	logDebug("StatusMusicBadVolumeSub","StatusMusicBadVolumeSub new : "+SPBad_Volume.state)
 	sendCommand( StatusMusicBadVolumeSub, OFF)

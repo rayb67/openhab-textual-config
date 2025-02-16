@@ -1,4 +1,4 @@
-Group gComfoAir          "Lueftung"		<climate>	(EG_Technik)	["Equipment"]
+Group gComfoAir          "Lueftung"		<climate>	["Equipment"]
 Number	comfoairAutoMode            "Modus"                 <selfAutoMode>      (gComfoAir,gTechnik)
 
 // Damit wird nachts im Hochsommer das Dachfenster und die Lueftungsstaerke gesteuert.

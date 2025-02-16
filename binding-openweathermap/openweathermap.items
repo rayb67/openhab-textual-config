@@ -1,5 +1,5 @@
 //.. STATION ITEMS
-Group					gWeather						"OWM Weather"				<rain>			(EG_Technik)	["Equipment"]
+Group					gWeather						"OWM Weather"				<rain>			["Equipment"]
 String					Owm_Home_StationId				"Station: ID"				<info>			(gWeather,AUS_Service)	["Outdoor"]
 { channel="openweathermap:weather-and-forecast:api:local:station#id", stateDescription=" "[ pattern="%s" ]  }
 String					Owm_Home_StationName			"Station: Name"				<info>			(gWeather,AUS_Service)	["Outdoor"]

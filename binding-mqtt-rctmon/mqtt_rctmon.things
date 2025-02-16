@@ -1,5 +1,5 @@
 // ... test
-Bridge mqtt:broker:rctclient "MQTT RCT Client" [ host="192.168.1.68", port="1883", secure=false, qos="1" ]
+Bridge mqtt:broker:rctclient "MQTT RCT Client" [ host="192.168.1.68", port="1883", secure=false, qos="1" , retained="180"]
 {
 	Thing topic rctmon "MQTT RCTMON" {
 			Type number : PV_Energy_Household_Sum		"Energy Household SUM" 				[ stateTopic="rctmon/energy/household/sum", transformationPattern="JS:| parseFloat(input) / 1000" ]
@@ -20,6 +20,8 @@ Bridge mqtt:broker:rctclient "MQTT RCT Client" [ host="192.168.1.68", port="1883
 			Type number : PV_Battery_Current_Power		"Battery Current Power" 			[ stateTopic="rctmon/battery/power" ]
 			Type number : PV_Input_B_Volt 				"Input B in Volt"			 		[ stateTopic="rctmon/generator/voltage/volt/generator_b" ]
 			Type number : PV_Input_A_Volt 				"Input A in Volt"					[ stateTopic="rctmon/generator/voltage/volt/generator_a" ]
+			Type number : PV_Temperature_Sensor_Heatsink "Temperator Heatsink"				[ stateTopic="rctmon/temperature/sensor_heatsink" ]
+			Type number : PV_Temperature_Sensor_Core	"Temperator Core"					[ stateTopic="rctmon/temperature/sensor_core" ]
 			Type number : PV_Battery_Temperature 		"Battery Temperature" 		 		[ stateTopic="rctmon/battery/temperature" ]
 			Type number : PV_Battery_Upper_SOC		 	"Battery Upper SOC Limit in %" 		
 			[ stateTopic="rctmon/battery/state/of/charge/target/percent",transformationPattern="JS:| parseFloat(input) * 100" ]

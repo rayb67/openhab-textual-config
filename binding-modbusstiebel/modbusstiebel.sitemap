@@ -51,10 +51,10 @@ sitemap modbusstiebel label="Modbus Stiebel" {
   Default item=Stiebel_Heizkurve icon="gas"
  }
  Frame label="Paramters" {
-  Setpoint item=Stiebel_KomforttemperaturHKSOLL icon="temperature" step=1 minValue=5 maxValue=30
-  Setpoint item=Stiebel_ECOtemperaturHKSOLL icon="temperature" step=1 minValue=5 maxValue=30
-  Setpoint item=Stiebel_KomforttemperaturWWSOLL icon="temperature" step=1 minValue=10 maxValue=60
-  Setpoint item=Stiebel_ECOtemperaturWWSOLL icon="temperature" step=1 minValue=10 maxValue=60
+  Setpoint item=Stiebel_KomforttemperaturHKSOLL icon="temperature" step=0.5 minValue=5 maxValue=30
+  Setpoint item=Stiebel_ECOtemperaturHKSOLL icon="temperature" step=0.5 minValue=5 maxValue=30
+  Setpoint item=Stiebel_KomforttemperaturWWSOLL icon="temperature" step=0.5 minValue=10 maxValue=60
+  Setpoint item=Stiebel_ECOtemperaturWWSOLL icon="temperature" step=0.5 minValue=10 maxValue=60
  }
  Frame label="Energy consumption" {
   Default item=Stiebel_heat_quantity_today icon="energy"
@@ -68,5 +68,4 @@ sitemap modbusstiebel label="Modbus Stiebel" {
   Default item=Stiebel_power_consumption_for_water_today icon="water"
   Default item=Stiebel_power_consumption_for_water_total icon="water"
  }
-
 }

@@ -24,10 +24,13 @@ if [ ! -d $FILE  ]; then
     exit
 fi
 
-cp ${DATAPATH}/openweathermap.map $OPENHAB_SETUP_CONF/transform/.
-cp ${DATAPATH}/openweathermap.scale $OPENHAB_SETUP_CONF/transform/.
+#echo "conf  >"${OPENHAB_SETUP_CONF}"<"
+#echo "sourc >"${OPENHAB_SETUP_SOURCE}"<"
+#echo "daat  >"${DATAPATH}"<"
+
+cp ${DATAPATH}/openweathermap*.map $OPENHAB_SETUP_CONF/transform/.
 cp ${DATAPATH}/openweathermap.items $OPENHAB_SETUP_CONF/items/.
+cp ${DATAPATH}/openweathermap.rules $OPENHAB_SETUP_CONF/rules/.
 cp ${DATAPATH}/openweathermap.sitemap $OPENHAB_SETUP_CONF/sitemaps/.
-cp ${DATAPATH}/openweathermap.things $OPENHAB_SETUP_CONF/things/.
-#cp ${DATAPATH}/openweathermap.rules $OPENHAB_SETUP_CONF/rules/.
+cp ${DATAPATH}/openweathermap*.things $OPENHAB_SETUP_CONF/things/.
 chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}
