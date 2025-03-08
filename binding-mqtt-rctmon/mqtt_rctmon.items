@@ -6,6 +6,7 @@ Switch			PV_Error_LIM			"RCT Error LIM"						(gPV,gMisc)
 
 
 Number:Energy	PV_Daily_House_Power	"RCT Energy Haus (täglich)"			<energy>		(gPV,AUS_Dach)	["Measurement","Energy"]
+
 Number:Energy	PV_Energy_Household_Sum "RCT Energy Household SUM" 	 		<energy>		(gPV,AUS_Dach)	["Measurement","Energy","Inverter"] 
 { channel="mqtt:topic:rctclient:rctmon:PV_Energy_Household_Sum", stateDescription=" "[ pattern="%.1f kWh" ] }
 

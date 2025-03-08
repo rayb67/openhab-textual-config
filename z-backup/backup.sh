@@ -6,7 +6,7 @@
 #    DATUM            : 01.07.2016
 #
 #    PROG.-SPRACHE    : Shell-Skript
-#    PROG.-NAME       : 2-backup.sh
+#    PROG.-NAME       : backup.sh
 #    PROG.-PFAD       : /usr/local/bin
 #    RECHNER          : beliebig
 #

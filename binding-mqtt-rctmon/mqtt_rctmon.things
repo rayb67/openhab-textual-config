@@ -4,7 +4,6 @@ Bridge mqtt:broker:rctclient "MQTT RCT Client" [ host="192.168.1.68", port="1883
 	Thing topic rctmon "MQTT RCTMON" {
 			Type number : PV_Energy_Household_Sum		"Energy Household SUM" 				[ stateTopic="rctmon/energy/household/sum", transformationPattern="JS:| parseFloat(input) / 1000" ]
 			Type number : PV_Energy_Grid_Load_Sum		"Energy Grid Load SUM" 				[ stateTopic="rctmon/energy/grid/load/sum", transformationPattern="JS:| parseFloat(input) / 1000" ]
-//			Type number : PV_Current_Grid_Feed_Sum 		"Energy Grid Feed SUM"		 		[ stateTopic="rctmon/energy/grid/feed/sum",transformationPattern="JS:| parseFloat(input) / 1000" ]
 			Type number : PV_Energy_Grid_Feed_Sum 		"Energy Grid Feed SUM"		 		[ stateTopic="rctmon/energy/grid/feed/sum",transformationPattern="JS:| parseFloat(input) / 1000" ]
 			Type number : PV_Energy_Solar_Generator_A 	"Energy Solar Generator A"	 		[ stateTopic="rctmon/energy/solar/generator/sum/component_generator_a",transformationPattern="JS:| parseFloat(input) / 1000" ]
 			Type number : PV_Energy_Solar_Generator_B 	"Energy Solar Generator B"	 		[ stateTopic="rctmon/energy/solar/generator/sum/component_generator_b",transformationPattern="JS:| parseFloat(input) / 1000" ]

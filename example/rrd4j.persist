@@ -6,8 +6,5 @@ Strategies {
 	default = everyChange
 }
 Items {
-
 	*			: strategy = everyChange, everyDay, restoreOnStartup
-
 }
-

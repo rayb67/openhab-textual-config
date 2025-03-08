@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-VERSION=0-4
+VERSION=0-5
 #
 #    AUTHOR         : Ralf Berhorst
 #    DATE           : 2022 Jun 06
@@ -320,7 +320,7 @@ docker-default() {
 			docker stop openhab
 			echo "copy defautls"
 
-			inst-defaults
+			inst-default
 
 			# todo - fist check if data from a dev installation is available
 			# 
@@ -415,13 +415,13 @@ inst-default() {
 	cp ${OPENHAB_SETUP_SOURCE}/defaults/users.properties ${OPENHAB_SETUP_USERDATA}/etc/.
 	cp ${OPENHAB_SETUP_SOURCE}/defaults/addons.cfg ${OPENHAB_SETUP_CONF}/services/.
 
-	cp ${OPENHAB_SETUP_SOURCE}/config-prod/default.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
-	cp ${OPENHAB_SETUP_SOURCE}/config-prod/rrd4j.cfg  ${OPENHAB_SETUP_CONF}/services/.
-	cp ${OPENHAB_SETUP_SOURCE}/config-prod/rrd4j.persist  ${OPENHAB_SETUP_CONF}/persistence/.
-	cp ${OPENHAB_SETUP_SOURCE}/config-prod/_group.items  ${OPENHAB_SETUP_CONF}/items/.
-	cp ${OPENHAB_SETUP_SOURCE}/config-prod/boolean.map  ${OPENHAB_SETUP_CONF}/transform/.
-	cp ${OPENHAB_SETUP_SOURCE}/config-prod/uicomponents_habpanel_panelconfig.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
-	cp ${OPENHAB_SETUP_SOURCE}/config-prod/uicomponents_ui_*.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
+	cp ${OPENHAB_SETUP_SOURCE}/config-prd/default.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
+	cp ${OPENHAB_SETUP_SOURCE}/config-prd/rrd4j.cfg  ${OPENHAB_SETUP_CONF}/services/.
+	cp ${OPENHAB_SETUP_SOURCE}/config-prd/rrd4j.persist  ${OPENHAB_SETUP_CONF}/persistence/.
+	cp ${OPENHAB_SETUP_SOURCE}/config-prd/_group.items  ${OPENHAB_SETUP_CONF}/items/.
+	cp ${OPENHAB_SETUP_SOURCE}/config-prd/boolean.map  ${OPENHAB_SETUP_CONF}/transform/.
+	cp ${OPENHAB_SETUP_SOURCE}/config-prd/uicomponents_habpanel_panelconfig.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
+	cp ${OPENHAB_SETUP_SOURCE}/config-prd/uicomponents_ui_*.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
 	cp -r ${OPENHAB_SETUP_SOURCE}/html ${OPENHAB_SETUP_CONF}/html/.
 	mkdir ${OPENHAB_SETUP_CONF}/html/floorplans
 	cp -r ${OPENHAB_SETUP_SOURCE}/images/floorplans/* ${OPENHAB_SETUP_CONF}/html/floorplans
@@ -696,28 +696,37 @@ back-all() {
 	mkdir rules
 	mkdir html
 
-
+	cd ${OPENHAB_SETUP_SOURCE}/configs-${OPENHAB_SRV_TYPE}
+	pwd
 	echo "backup configs"
-	cp ${OPENHAB_SETUP_CONF}/sitemaps/default.sitemap config/.
-	cp ${OPENHAB_SETUP_CONF}/services/*.cfg config/.
-	cp ${OPENHAB_SETUP_CONF}/persistence/*.persist config/.
-	cp -r ${OPENHAB_SETUP_CONF}/html html/.
-	cp -r ${OPENHAB_SETUP_CONF}/rules rules/.
-	cp ${OPENHAB_SETUP_USERDATA}/jsondb/uicomponents_ui_*.json config/.
-	cp ${OPENHAB_SETUP_USERDATA}/jsondb/users.* config/.
-	cp ${OPENHAB_SETUP_USERDATA}/etc/users.* config/.
+	cp ${OPENHAB_SETUP_CONF}/sitemaps/default.sitemap .
+	cp ${OPENHAB_SETUP_CONF}/services/*.cfg .
+	cp ${OPENHAB_SETUP_CONF}/persistence/*.persist .
+	echo "backup userdata"
+	cp ${OPENHAB_SETUP_USERDATA}/jsondb/uicomponents_ui_*.json .
+	cp ${OPENHAB_SETUP_USERDATA}/jsondb/users.* .
+	cp ${OPENHAB_SETUP_USERDATA}/etc/users.* .
+
+	cp -r ${OPENHAB_SETUP_CONF}/html . 
+	cp -r ${OPENHAB_SETUP_CONF}/icons . 
+	cp -r ${OPENHAB_SETUP_CONF}/rules .
 
 
 	if [ "prd" != "${OPENHAB_SRV_TYPE}" ];
 	then
 		echo "!!!!!!!!!!!!1"
 		echo "Full Backup is only possible on the >prd< machine : "${OPENHAB_PRD_HOSTNAME}
+		echo
+		echo "skip binding backup! Do it manually for thoses"
+		echo "you plan to depoly later into prd ;-)"
+		echo
 		echo "!!!!!!!!!!!!1"
 		exit
 	fi
 
 	echo
 	echo "backup bindings related files"
+	exit
 
 
 	#######################################################################

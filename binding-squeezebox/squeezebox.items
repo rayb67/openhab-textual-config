@@ -3,9 +3,9 @@ Group	gSQPlayerMobile			"Music Mobile Player"							<player>	(OG_Buero,gSQBox)	[
 // wird in einer rule genutzt
 Number:Time	SPMobile_CurrentTrackLength	"Music Time Begin"				<time>		(gSQPlayerMobile) { stateDescription=" "[ pattern="%1$ta, %1$ty-%1$tm-%1$td %1$tH:%1$tM"] }
 
-Number:Time	SPMobile_CurrPlaytime	"Music Playing Time [JS(squeezebox.items):%s]"				(gSQPlayerMobile)  
+Number:Time	SPMobile_CurrPlaytime	"Music Playing Time [JS(squeezebox_time.js):%s]"				(gSQPlayerMobile)  
 {channel="squeezebox:squeezeboxplayer:server:mobile:currentPlayingTime" }
-Number:Time	SPMobile_Duration	"Music Duration [JS(squeezebox.items):%s]"         			    (gSQPlayerMobile)  
+Number:Time	SPMobile_Duration	"Music Duration [JS(squeezebox_time.js):%s]"         			    (gSQPlayerMobile)  
 {channel="squeezebox:squeezeboxplayer:server:mobile:duration" }
 
 Switch	SPMobile_Mute			"Music Mute"									<player>	(gSQPlayerMobile) ["Control"] 
@@ -213,7 +213,7 @@ String	SPBad_Stream			"Music stream [%s]"								<player>	(gSQPlayerBad) ["Statu
 {channel="squeezebox:squeezeboxplayer:server:bad:stream"}
 
 
-Group	gSQPlayerBoom		"Music Karen Player"								<player>	(OG_Gaeste,gSQBox)	["Equipment"]
+Group	gSQPlayerBoom		"Music Gast Player"								<player>	(OG_Gaeste,gSQBox)	["Equipment"]
 Switch	SPBoom_Power			"Music Power"									<player>	(gSQPlayerBoom) ["Control"] 
 {channel="squeezebox:squeezeboxplayer:server:karen:power"}
 Switch	SPBoom_Play			"Music Pause/Play"								<player>	(gSQPlayerBoom) ["Control"] 

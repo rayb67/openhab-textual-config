@@ -25,8 +25,8 @@ when
 	Item Test02 changed
 then
 
-	logInfo("StatusStiebelDruck","Stiebel_Heizungsdruck : "+Stiebel_Heizungsdruck.state)
-	logInfo("StatusStiebelDruck","Stiebel_Quellendruck : "+Stiebel_Quellendruck.state)
+	logDebug("StatusStiebelDruck","Stiebel_Heizungsdruck : "+Stiebel_Heizungsdruck.state)
+	logDebug("StatusStiebelDruck","Stiebel_Quellendruck : "+Stiebel_Quellendruck.state)
 	if	(	((( Stiebel_Heizungsdruck.state as QuantityType<Pressure>).toBigDecimal) < 1.6) ||
 			((( Stiebel_Quellendruck.state as QuantityType<Pressure>).toBigDecimal) < 1.3) )
 	{
