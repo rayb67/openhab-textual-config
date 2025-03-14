@@ -367,10 +367,10 @@ inst-example() {
 
 	function-openhab-stop   ## call funtion
 
-#	cp ${OPENHAB_SETUP_SOURCE}/example/users.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
-#	cp ${OPENHAB_SETUP_SOURCE}/example/users.properties ${OPENHAB_SETUP_USERDATA}/etc/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/uicom* ${OPENHAB_SETUP_USERDATA}/jsondb/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/users.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/users.properties ${OPENHAB_SETUP_USERDATA}/etc/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/addons.cfg  ${OPENHAB_SETUP_CONF}/services/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/uicom* ${OPENHAB_SETUP_USERDATA}/jsondb/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/default.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.cfg  ${OPENHAB_SETUP_CONF}/services/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.persist  ${OPENHAB_SETUP_CONF}/persistence/.
@@ -410,10 +410,9 @@ inst-default() {
 
 	function-openhab-stop   ## call funtion
 
-	cp ${OPENHAB_SETUP_SOURCE}/defaults/i18n.config ${OPENHAB_SETUP_USERDATA}/config/org/openhab/.
-	cp ${OPENHAB_SETUP_SOURCE}/defaults/users.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
-	cp ${OPENHAB_SETUP_SOURCE}/defaults/users.properties ${OPENHAB_SETUP_USERDATA}/etc/.
-	cp ${OPENHAB_SETUP_SOURCE}/defaults/addons.cfg ${OPENHAB_SETUP_CONF}/services/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/users.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/users.properties ${OPENHAB_SETUP_USERDATA}/etc/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/addons.cfg  ${OPENHAB_SETUP_CONF}/services/.
 
 	cp ${OPENHAB_SETUP_SOURCE}/config-prd/default.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
 	cp ${OPENHAB_SETUP_SOURCE}/config-prd/rrd4j.cfg  ${OPENHAB_SETUP_CONF}/services/.
@@ -430,7 +429,7 @@ inst-default() {
 	chown -R openhab:openhab ${OPENHAB_SETUP_USERDATA}
 	chown -R openhab:openhab ${OPENHAB_SETUP_CONF}
 
-	export BINDING_SELECT="astro lcn mqtt network systeminfo openweathermap ephemeris"
+	export BINDING_SELECT="astro systeminfo openweathermap ephemeris"
 	echo $BINDING_SELECT
 	inst-select
 	
@@ -811,7 +810,7 @@ inst-list() {
 		echo $FILE
 	done
 	echo
-	echo "Example : ./1-setup.bash -c inst-select -b astro systeminfo network"
+	echo "Example : ./1-setup.bash -c inst-select -b astro systeminfo"
 	echo
 
 	return $RETVAL
@@ -899,13 +898,6 @@ case "$COMMAND" in
         inst-core
 
         echo ; echo "   ...done"; echo
-
-		echo "   please go on with the fist steps in the openhab GUI!"
-		echo "   from the astro bindings, i think your location is : "${OPENHAB_LOCATION}
-
-		echo
-		echo "   than ...."
-		echo
 
         echo "   next install >inst-default<"; echo 
         read -p "   push >Enter< to go on"
@@ -1010,7 +1002,7 @@ case "$COMMAND" in
 		echo 
 		echo "  Example : ./1-setup.bash -c inst-list"
 		echo "  Example : ./1-setup.bash -c inst-select -b astro"
-        echo "  Example : ./1-setup.bash -c inst-select -b astro systeminfo network"
+        echo "  Example : ./1-setup.bash -c inst-select -b astro systeminfo"
    	    echo
 		echo "  -c  one of these commands"
         echo

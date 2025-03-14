@@ -23,7 +23,7 @@ export OPENHAB_LOGPATH=/var/log/openhab
 export BACKUP_PATH=/nas/linux/backups
 
 # this is my production server
-if [ `hostname` == "server-prd" ];
+if [ `hostname` == "nas923" ];
 then
     echo "  env.bash - hostname server-prd"
     export OPENHAB_DB_BASE=/volume4/@appstore/MariaDB10/mysql
@@ -37,7 +37,7 @@ then
 fi
 
 # this is my develpment server
-if [ `hostname` == "server-dev" ];
+if [ `hostname` == "mini" ];
 then
     echo "  env.bash - hostname server-dev"
     export OPENHAB_DB_BASE=/docker/openhab/data_mariadb
