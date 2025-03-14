@@ -30,7 +30,7 @@ fi
 
 cp ${DATAPATH}/openweathermap*.map $OPENHAB_SETUP_CONF/transform/.
 cp ${DATAPATH}/openweathermap.items $OPENHAB_SETUP_CONF/items/.
-cp ${DATAPATH}/openweathermap.rules $OPENHAB_SETUP_CONF/rules/.
+#cp ${DATAPATH}/openweathermap.rules $OPENHAB_SETUP_CONF/rules/.
 cp ${DATAPATH}/openweathermap.sitemap $OPENHAB_SETUP_CONF/sitemaps/.
 cp ${DATAPATH}/openweathermap*.things $OPENHAB_SETUP_CONF/things/.
 chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}

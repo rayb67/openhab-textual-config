@@ -4,7 +4,7 @@
 # The version must match exactly!
 
 export OPENHAB_VERSION=4.3.0
-export JDK_VERSION=17
+export JDK_VERSION=21
 export OPENHAB_USER=openhab
 export OPENHAB_GROUP=openhab
 export OPENHAB_DBNAME=openhab
@@ -23,7 +23,7 @@ export OPENHAB_LOGPATH=/var/log/openhab
 export BACKUP_PATH=/nas/linux/backups
 
 # this is my production server
-if [ `hostname` == "nas923" ];
+if [ `hostname` == "server-prd" ];
 then
     echo "  env.bash - hostname server-prd"
     export OPENHAB_DB_BASE=/volume4/@appstore/MariaDB10/mysql
@@ -37,7 +37,7 @@ then
 fi
 
 # this is my develpment server
-if [ `hostname` == "mini" ];
+if [ `hostname` == "server-dev" ];
 then
     echo "  env.bash - hostname server-dev"
     export OPENHAB_DB_BASE=/docker/openhab/data_mariadb

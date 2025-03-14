@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-VERSION=0-5
+VERSION=0-7
 #
 #    AUTHOR         : Ralf Berhorst
 #    DATE           : 2022 Jun 06
