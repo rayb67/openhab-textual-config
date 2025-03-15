@@ -44,9 +44,9 @@ Group			gHeizung					"Soll Werte"					<temperature>			["Equipment"]
 Group			gMisc						"Settings"						<settings>		
 Group			gWetter						"Wetter"						<rain>					["Outdoor"]
 // ------------------------------------------------------------------------------------
-Group			gRoll_EG_WZ					"Ro Wohnzimmer"					<rollershutter>						["Equipment"]
-Group			gRoll_EG_Kueche				"Ro Kueche"						<rollershutter>						["Equipment"]
-Group			gRoll_OG_Bad				"Ro Bad"						<rollershutter>						["Equipment"]
+Group			gRoll_EG_WZ					"Ro Wohnzimmer"					<rollershutter>		(gEG)			["Equipment"]
+Group			gRoll_EG_Kueche				"Ro Kueche"						<rollershutter>		(gEG)			["Equipment"]
+Group			gRoll_OG_Bad				"Ro Bad"						<rollershutter>		(gOG)			["Equipment"]
 
 // ------------------------------------------------------------------------------------
 Group:Switch:OR(ON, OFF)	gSteckdosenEG			"Steckdosen EG [%d]"							(gAll,gEG)			["Switch"]

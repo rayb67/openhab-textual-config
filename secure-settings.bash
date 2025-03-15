@@ -6,13 +6,12 @@ VERSION=1-0
 #    DATE           : 2022 Juni 04
 #
 #    PROG.-LANGUAGE : Shell-Skript
-#    PROG.-NAME     : openhab-text-install-export.bash 
-#    PROG.-PATH     : /dsnas/install/openhab
+#    PROG.-NAME     : secure-settings.bash
+#    PROG.-PATH     : ../openhab
 #
 #    COMPUTER       : a openhab system
 #
-#    FUNCTION       : export openhab installer files to plublic 
-#                     usage. E.g. GitHub or any other people
+#    FUNCTION       : remove personal information from your setup
 #
 #    PARAMETER      : until now - no
 #
@@ -70,6 +69,5 @@ if [ -f "${FILE}" ]; then
 	sed -i 's/openhab@dummy.de/your-user-name/g' ${FILE}
 	sed -i 's/xxxxxxxxxxxx/your-password/g' ${FILE}
 fi
-
 
 exit 0

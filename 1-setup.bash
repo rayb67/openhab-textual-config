@@ -367,17 +367,12 @@ inst-example() {
 
 	function-openhab-stop   ## call funtion
 
-	cp ${OPENHAB_SETUP_SOURCE}/example/users.json ${OPENHAB_SETUP_USERDATA}/jsondb/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/users.properties ${OPENHAB_SETUP_USERDATA}/etc/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/addons.cfg  ${OPENHAB_SETUP_CONF}/services/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/uicom* ${OPENHAB_SETUP_USERDATA}/jsondb/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/default.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.cfg  ${OPENHAB_SETUP_CONF}/services/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.persist  ${OPENHAB_SETUP_CONF}/persistence/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/jdbc.cfg  ${OPENHAB_SETUP_CONF}/services/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/jdbc.persist  ${OPENHAB_SETUP_CONF}/persistence/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/*.map  ${OPENHAB_SETUP_CONF}/transform/.
-
 	cp ${OPENHAB_SETUP_SOURCE}/example/_groups.items  ${OPENHAB_SETUP_CONF}/items/.
 
 	mkdir ${OPENHAB_SETUP_CONF}/html/floorplans
@@ -385,7 +380,6 @@ inst-example() {
 	cp -r ${OPENHAB_SETUP_SOURCE}/images/classic ${OPENHAB_SETUP_CONF}/icons
 	mkdir ${OPENHAB_SETUP_CONF}/html/fotos
 	cp -r ${OPENHAB_SETUP_SOURCE}/example/fotos ${OPENHAB_SETUP_CONF}/html
-
 
 	chown -R openhab:openhab ${OPENHAB_SETUP_CONF}
 	chown -R openhab:openhab ${OPENHAB_SETUP_USERDATA}
@@ -466,7 +460,7 @@ inst-core() {
 	echo
 	echo "Please logon and make the basic settings!"
 	echo
-	echo "your location is : "${OPENHAB_LOCATION}
+	echo "your location is : 50.941413507071154,6.958217013317433,100"
 	echo
 	echo "klick INSTALL ADDONS LATER... - you can do it via -c inst-select"
 	echo
@@ -630,6 +624,17 @@ function-openhab-start() {
 	fi
 
 	function-openhab-check-running
+
+	return $RETVAL
+}
+
+
+#######################################################################
+#######################################################################
+inst-test() {
+	echo
+	echo "test"
+	echo
 
 	return $RETVAL
 }
@@ -899,7 +904,14 @@ case "$COMMAND" in
 
         echo ; echo "   ...done"; echo
 
-        echo "   next install >inst-default<"; echo 
+    if [ `ls defaults | wc -l` == "1" ];
+    then
+        echo "Folder >defaults< contain only one file"
+        echo "   next install >inst-example<"; echo 
+    else
+        echo "   next install >inst-defautl<"; echo 
+    fi
+
         read -p "   push >Enter< to go on"
 	;;
 
@@ -910,7 +922,6 @@ case "$COMMAND" in
         echo "....................................................................."
 
 		inst-default
-
         echo; echo "...done"; echo
         echo "   next install >inst-db<"; echo 
         read -p "   push >Enter< to go on"
@@ -951,7 +962,7 @@ case "$COMMAND" in
         echo "...................................................................."
         echo "...       backup-all"
         echo "...................................................................."
-        echo
+        ejcho
         echo
         read -p "push >Enter< to go on"
 
@@ -959,6 +970,11 @@ case "$COMMAND" in
 
         echo ; echo "...done"; echo
         read -p "push >Enter< to go on"
+	;;
+
+
+  inst-test)
+        inst-test
 	;;
 
   inst-list)
