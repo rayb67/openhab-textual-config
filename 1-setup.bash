@@ -240,7 +240,7 @@ CREATE USER 'pma'@'172.%.%.%' IDENTIFIED BY 'password';
 CREATE USER 'pma'@'192.168.%.%' IDENTIFIED BY 'password';
 CREATE USER 'pma'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON openhab.* TO 'openhab'@'localhost';
-GRANT ALL PRIVILEGES ON openhab.* TO 'openhab'@'192.186.%.%';
+GRANT ALL PRIVILEGES ON openhab.* TO 'openhab'@'192.168.%.%';
 GRANT ALL PRIVILEGES ON openhab.* TO 'openhab'@'172.%.%.%';
 GRANT ALL PRIVILEGES ON *.* TO 'pma'@'172.%.%.%';
 GRANT ALL PRIVILEGES ON *.* TO 'pma'@'192.168.%.%';
@@ -372,6 +372,8 @@ inst-example() {
 	cp ${OPENHAB_SETUP_SOURCE}/example/default.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.cfg  ${OPENHAB_SETUP_CONF}/services/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.persist  ${OPENHAB_SETUP_CONF}/persistence/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/jdbc.cfg  ${OPENHAB_SETUP_CONF}/services/.
+	cp ${OPENHAB_SETUP_SOURCE}/example/jdbc.persist  ${OPENHAB_SETUP_CONF}/persistence/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/*.map  ${OPENHAB_SETUP_CONF}/transform/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/_groups.items  ${OPENHAB_SETUP_CONF}/items/.
 
