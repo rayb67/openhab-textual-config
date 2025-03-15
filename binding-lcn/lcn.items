@@ -169,16 +169,16 @@ Switch				Steckdose_OG_Buero			"Fenster [MAP(lcn.map):%s]"				<poweroutlet>		(OG
 { channel="lcn:module:bus:S000M125:relay#1" }
 Contact				WetterRegen					"LCN Contact Regen [MAP(lcn.map):%s]"	<water>				(gWetter)							["Switch","OpenState"]
 {channel="lcn:module:bus:S000M125:binarysensor#8"}
-Switch				WetterDaemmerung			"LCN Contact Daemmerung"				<switch>						["Switch"]
+Switch				WetterDaemmerung			"LCN Contact Daemmerung"				<switch>			(gWetter) 			["Switch"]
 {channel="lcn:module:bus:S000M125:relay#5"}
 
-Contact				SchalterWetterDaemmerungOH	"Daemmerung OH"							<switch>						["Switch","OpenState"]
+Contact				SchalterWetterDaemmerungOH	"Daemmerung OH"							<switch>			(gWetter) 			["Switch","OpenState"]
 {channel="lcn:module:bus:S000M125:relay#6"}
 
-Switch				StatusSperreRollo			"Sperre Rollo [MAP(lcn.map):%s]"		<switch>						["Switch","Blinds"]
+Switch				StatusSperreRollo			"Sperre Rollo [MAP(lcn.map):%s]"		<switch>			(AUS_Hof)			["Switch","Blinds"]
 {channel="lcn:module:bus:S000M125:relay#7"}
 
-Switch				StatusRegen					"Regen [MAP(lcn.map):%s]"				<switch>						["Switch","OpenState"]	
+Switch				StatusRegen					"Regen [MAP(lcn.map):%s]"				<switch>			(gWetter) 			["Switch","OpenState"]	
 {channel="lcn:module:bus:S000M125:relay#8"}
 
 Number				TempAussen					"Aussentemp. Dach [%.1f]"				<temperature>		(AUS_Hof,gWetter,gVariablen)	["Temperature","Measurement"]
@@ -268,15 +268,15 @@ Number				StatusHeizungOGSchlafz		"Hz Schlafzimmer [MAP(lcn.map):%s]"	<contact>
 // M150 / SH+       (EG Technik UV-Unten)i
 Switch			Licht_EG_Schleuse			"Schleuse [MAP(lcn.map):%s]"								(EG_Schleuse, gLichtEG,LightS)	["Lightblub"]   
 {channel="lcn:module:bus:S000M150:output#2" }
-Switch			StatusTuerHaus				"Contact Haustuer [MAP(lcn.map):%s]"			<contact>					["Switch"]   
+Switch			StatusTuerHaus				"Contact Haustuer [MAP(lcn.map):%s]"			<contact>	(gMisc)				["Switch"]   
 {channel="lcn:module:bus:S000M150:relay#2"}
-Switch			StatusTuerKueche			"Contact Kuechentuer [MAP(lcn.map):%s]"			<contact>	                ["Switch"]   
+Switch			StatusTuerKueche			"Contact Kuechentuer [MAP(lcn.map):%s]"			<contact>	    (gMisc)          ["Switch"]   
 {channel="lcn:module:bus:S000M150:relay#3"}
-Switch			StatusTuerWohn				"Contact Wohntuer [MAP(lcn.map):%s]"			<contact>	               ["Switch"]   
+Switch			StatusTuerWohn				"Contact Wohntuer [MAP(lcn.map):%s]"			<contact>	    (gMisc)           ["Switch"]   
 {channel="lcn:module:bus:S000M150:relay#4"}
-Switch			StatusFeuer					"Contact Feuer [MAP(lcn.map):%s]"				<contact>	                 ["Switch"]   
+Switch			StatusFeuer					"Contact Feuer [MAP(lcn.map):%s]"				<contact>	    (gMisc)             ["Switch"]   
 {channel="lcn:module:bus:S000M150:relay#5"}
-Switch			ControlAutomatikBewegungsmelder	"Contact Automatik Bewegungsmelder[MAP(lcn.map):%s]"	<motion>   	["Switch","MotionDetector"]
+Switch			ControlAutomatikBewegungsmelder	"Contact Automatik Bewegungsmelder[MAP(lcn.map):%s]"	<motion>  (gMisc) 	["Switch","MotionDetector"]
 {channel="lcn:module:bus:S000M150:relay#6"}
 Switch			StatusWeihnacht				"Weihnacht (Ein/Aus) [MAP(lcn.map):%s]"			<contact>	(gMisc)		["Switch"]   
 {channel="lcn:module:bus:S000M150:relay#7"}
