@@ -1,6 +1,5 @@
 #!/bin/bash
-
-# Some general environment infomration
+# Some general environment infomration.
 # The version must match exactly!
 
 export OPENHAB_VERSION=4.3.0
