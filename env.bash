@@ -2,7 +2,8 @@
 # Some general environment infomration.
 # The version must match exactly!
 
-export OPENHAB_VERSION=4.3.0
+export OPENHAB_VERSION=4.3.3
+#export OPENHAB_VERSION=5.0.0
 export JDK_VERSION=21
 export OPENHAB_USER=openhab
 export OPENHAB_GROUP=openhab

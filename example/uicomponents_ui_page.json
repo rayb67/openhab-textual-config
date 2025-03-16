@@ -8,17 +8,14 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Feb 9, 2025, 2:49:39 PM",
+      "timestamp": "Mar 16, 2025, 8:11:48 AM",
       "component": "oh-chart-page",
       "config": {
         "chartType": "",
         "label": "Admin Wind",
         "order": "69",
         "period": "W",
-        "sidebar": true,
-        "visibleTo": [
-          "role:adserver-devstrator"
-        ]
+        "sidebar": true
       },
       "slots": {
         "dataZoom": [
@@ -369,7 +366,7 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Feb 9, 2025, 11:13:37 AM",
+      "timestamp": "Mar 16, 2025, 8:16:27 AM",
       "component": "oh-layout-page",
       "config": {
         "label": "Overview",
@@ -378,6 +375,7 @@
         }
       },
       "slots": {
+        "canvas": [],
         "default": [
           {
             "component": "oh-block",
@@ -448,6 +446,20 @@
                       {
                         "component": "oh-cell",
                         "config": {
+                          "action": "group",
+                          "actionCommand": "2",
+                          "actionGroupPopupItem": "AUS_Hof",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Wärmepump \u0027 + items.Stiebel_Aussentemperatur.displayState",
+                          "header": "Hof",
+                          "icon": "oh:garden",
+                          "title": "Der Hof",
+                          "trendItem": "Stiebel_Aussentemperatur"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
                           "action": "options",
                           "actionItem": "comfoairFanLevel",
                           "color": "\u003d(items.comfoairFanLevel.state \u003d\u003d 3 ) ? \u0027green\u0027 : \u0027red\u0027",
@@ -506,20 +518,6 @@
                           "header": "Bewasserung",
                           "icon": "oh:faucet",
                           "title": "Bewaesserung"
-                        }
-                      },
-                      {
-                        "component": "oh-cell",
-                        "config": {
-                          "action": "group",
-                          "actionCommand": "2",
-                          "actionGroupPopupItem": "AUS_Hof",
-                          "color": "blue",
-                          "footer": "\u003d\u0027Temperatur Wärmepump \u0027 + items.Stiebel_Aussentemperatur.displayState",
-                          "header": "Hof",
-                          "icon": "oh:garden",
-                          "title": "Der Hof",
-                          "trendItem": "Stiebel_Aussentemperatur"
                         }
                       },
                       {
@@ -609,6 +607,7 @@
             }
           }
         ],
+        "grid": [],
         "masonry": []
       }
     }
@@ -3226,114 +3225,6 @@
       }
     }
   },
-  "page_Systeminfo": {
-    "class": "org.openhab.core.ui.components.RootUIComponent",
-    "value": {
-      "uid": "page_Systeminfo",
-      "tags": [],
-      "props": {
-        "parameters": [],
-        "parameterGroups": []
-      },
-      "timestamp": "Feb 9, 2025, 2:50:04 PM",
-      "component": "oh-chart-page",
-      "config": {
-        "label": "Admin System Information",
-        "order": "69",
-        "period": "h",
-        "sidebar": true,
-        "visibleTo": [
-          "role:adserver-devstrator"
-        ]
-      },
-      "slots": {
-        "dataZoom": [
-          {
-            "component": "oh-chart-datazoom",
-            "config": {
-              "type": "inside"
-            }
-          }
-        ],
-        "grid": [
-          {
-            "component": "oh-chart-grid",
-            "config": {
-              "includeLabels": true
-            }
-          },
-          {
-            "component": "oh-chart-grid",
-            "config": {}
-          },
-          {
-            "component": "oh-chart-grid",
-            "config": {}
-          }
-        ],
-        "legend": [
-          {
-            "component": "oh-chart-legend",
-            "config": {
-              "bottom": 3.0,
-              "type": "scroll"
-            }
-          }
-        ],
-        "series": [
-          {
-            "component": "oh-time-series",
-            "config": {
-              "gridIndex": 0.0,
-              "item": "Systeminfo_Storage_Available_Percent",
-              "name": "Storage Available",
-              "type": "line",
-              "xAxisIndex": 0.0,
-              "yAxisIndex": 0.0
-            }
-          },
-          {
-            "component": "oh-time-series",
-            "config": {
-              "gridIndex": 0.0,
-              "item": "Systeminfo_Memory_Available_Percent",
-              "name": "Memory Available",
-              "type": "line",
-              "xAxisIndex": 0.0,
-              "yAxisIndex": 0.0
-            }
-          },
-          {
-            "component": "oh-time-series",
-            "config": {
-              "gridIndex": 0.0,
-              "item": "Systeminfo_Swap_Available_Percent",
-              "name": "Swap Available",
-              "type": "line",
-              "xAxisIndex": 0.0,
-              "yAxisIndex": 0.0
-            }
-          }
-        ],
-        "xAxis": [
-          {
-            "component": "oh-time-axis",
-            "config": {
-              "gridIndex": 0.0
-            }
-          }
-        ],
-        "yAxis": [
-          {
-            "component": "oh-value-axis",
-            "config": {
-              "gridIndex": 0.0
-            }
-          }
-        ]
-      }
-    }
-  },
   "page_Temp_EG": {
     "class": "org.openhab.core.ui.components.RootUIComponent",
     "value": {
@@ -3343,16 +3234,13 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Apr 22, 2024, 1:32:14 PM",
+      "timestamp": "Mar 16, 2025, 8:12:46 AM",
       "component": "oh-chart-page",
       "config": {
         "label": "Temp EG",
         "order": "52",
         "period": "D",
-        "sidebar": true,
-        "visibleTo": [
-          "role:adserver-devstrator"
-        ]
+        "sidebar": true
       },
       "slots": {
         "dataZoom": [
@@ -4799,132 +4687,6 @@
       }
     }
   },
-  "page_pv2": {
-    "class": "org.openhab.core.ui.components.RootUIComponent",
-    "value": {
-      "uid": "page_pv2",
-      "tags": [],
-      "props": {
-        "parameters": [],
-        "parameterGroups": []
-      },
-      "timestamp": "Jan 29, 2025, 7:27:50 PM",
-      "component": "oh-layout-page",
-      "config": {
-        "icon": "",
-        "label": "PV Anlage",
-        "order": "31",
-        "sidebar": true
-      },
-      "slots": {
-        "canvas": [],
-        "default": [
-          {
-            "component": "oh-block",
-            "config": {},
-            "slots": {
-              "default": [
-                {
-                  "component": "oh-grid-row",
-                  "config": {},
-                  "slots": {
-                    "default": [
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:PV_widget2",
-                              "config": {
-                                "batterylevel": "PV_Battery_SOC",
-                                "batterypower": "PV_Battery_Current_Power",
-                                "gridpower": "PV_Grid_Power_Sum",
-                                "icon_battery": "oh:rct-battery",
-                                "icon_grid": "oh:rct-netz",
-                                "icon_house": "oh:rct-house",
-                                "icon_solar": "oh:rct-solar",
-                                "load": "PV_House_Current_Power",
-                                "solarpower": "PV_Input_Sum",
-                                "solarpower1": "PV_Input_A_Watt",
-                                "solarpower2": "PV_Input_B_Watt",
-                                "solarpowerA": "PV_Input_A_Watt",
-                                "solarpowerB": "PV_Input_B_Watt",
-                                "solarvoltA": "PV_Input_A_Volt",
-                                "solarvoltB": "PV_Input_B_Volt"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:Chart_three_unit",
-                              "config": {
-                                "chart1": "Batterie Ladung",
-                                "chart2": "Hausverbrauch",
-                                "chart3": "Einspeisung",
-                                "item1": "PV_Battery_SOC",
-                                "item2": "PV_House_Current_Power",
-                                "item3": "PV_Input_Sum",
-                                "item_colure1": "green",
-                                "item_colure2": "red",
-                                "item_colure3": "blue",
-                                "item_unit_left": "kWh",
-                                "item_unit_right": "%",
-                                "titleå": "PV Anlage"
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "component": "oh-block",
-            "config": {},
-            "slots": {
-              "default": [
-                {
-                  "component": "oh-grid-row",
-                  "config": {},
-                  "slots": {
-                    "default": [
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:Grafana_Chart02",
-                              "config": {
-                                "URL": "http://server-prd.fritz.box:3350/d/openhab-pv-daily/pv-daily?orgId\u003d2\u0026kiosk\u0026refresh\u003d1m\u0026theme\u003dlight\u0026{period}\u0026panelId\u003d2\u0026from\u003dnow-2y\u0026to\u003dnow",
-                                "height": "370",
-                                "title": "Energie"
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ],
-        "grid": []
-      }
-    }
-  },
   "page_settings": {
     "class": "org.openhab.core.ui.components.RootUIComponent",
     "value": {
@@ -4934,17 +4696,15 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Feb 9, 2025, 11:14:51 AM",
+      "timestamp": "Mar 16, 2025, 8:12:31 AM",
       "component": "oh-layout-page",
       "config": {
         "label": "Einstellungen",
         "order": "3",
-        "sidebar": true,
-        "visibleTo": [
-          "role:adserver-devstrator"
-        ]
+        "sidebar": true
       },
       "slots": {
+        "canvas": [],
         "default": [
           {
             "component": "oh-block",
@@ -5202,170 +4962,8 @@
             }
           }
         ],
+        "grid": [],
         "masonry": []
-      }
-    }
-  },
-  "page_squeezebox": {
-    "class": "org.openhab.core.ui.components.RootUIComponent",
-    "value": {
-      "uid": "page_squeezebox",
-      "tags": [],
-      "props": {
-        "parameters": [],
-        "parameterGroups": []
-      },
-      "timestamp": "May 26, 2024, 4:03:07 PM",
-      "component": "oh-layout-page",
-      "config": {
-        "label": "Musik",
-        "layoutType": "responsive",
-        "order": "6",
-        "sidebar": true
-      },
-      "slots": {
-        "default": [
-          {
-            "component": "oh-block",
-            "config": {},
-            "slots": {
-              "default": [
-                {
-                  "component": "oh-grid-row",
-                  "config": {},
-                  "slots": {
-                    "default": [
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:Cell_Squeez_SelectFavorite",
-                              "config": {
-                                "itemSelect": "SPMobile_PlayFavorite"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:Cell_Squeez_SelectFavorite",
-                              "config": {
-                                "itemSelect": "SPKueche_PlayFavorite"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:Cell_Squeez_SelectFavorite",
-                              "config": {
-                                "itemSelect": "SPWohnz_PlayFavorite"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:Cell_Squeez_SelectFavorite",
-                              "config": {
-                                "itemSelect": "SPBad_PlayFavorite"
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                },
-                {
-                  "component": "oh-grid-row",
-                  "config": {},
-                  "slots": {
-                    "default": [
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:squeezbox_widget",
-                              "config": {
-                                "prefix": "SPMobile",
-                                "title": "Mobile"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:squeezbox_widget",
-                              "config": {
-                                "prefix": "SPKueche",
-                                "title": "Küche"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:squeezbox_widget",
-                              "config": {
-                                "prefix": "SPWohnz",
-                                "title": "Wohnzimmer"
-                              }
-                            }
-                          ]
-                        }
-                      },
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:squeezbox_widget",
-                              "config": {
-                                "prefix": "SPBad",
-                                "title": "Bad"
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
       }
     }
   },
@@ -5378,16 +4976,13 @@
         "parameters": [],
         "parameterGroups": []
       },
-      "timestamp": "Jan 9, 2024, 7:46:32 PM",
+      "timestamp": "Mar 16, 2025, 8:12:56 AM",
       "component": "oh-chart-page",
       "config": {
         "label": "Temp OG",
         "order": "50",
         "period": "3D",
-        "sidebar": true,
-        "visibleTo": [
-          "role:adserver-devstrator"
-        ]
+        "sidebar": true
       },
       "slots": {
         "dataZoom": [
@@ -5530,231 +5125,6 @@
             }
           }
         ]
-      }
-    }
-  },
-  "page_ventilation": {
-    "class": "org.openhab.core.ui.components.RootUIComponent",
-    "value": {
-      "uid": "page_ventilation",
-      "tags": [],
-      "props": {
-        "parameters": [],
-        "parameterGroups": []
-      },
-      "timestamp": "Jan 26, 2025, 8:48:06 AM",
-      "component": "oh-layout-page",
-      "config": {
-        "icon": "",
-        "label": "Lüftung",
-        "order": "21",
-        "sidebar": true
-      },
-      "slots": {
-        "canvas": [],
-        "default": [
-          {
-            "component": "oh-block",
-            "config": {},
-            "slots": {
-              "default": [
-                {
-                  "component": "oh-grid-row",
-                  "config": {},
-                  "slots": {
-                    "default": [
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:ventilation_widget",
-                              "config": {
-                                "FanLevel": "comfoairFanLevel",
-                                "IndoorIncoming": "comfoairIndoorIncomingTemperature",
-                                "IndoorOutgoing": "comfoairIndoorOutgoingTemperature",
-                                "OutdoorIncoming": "comfoairOutdoorIncomingTemperature",
-                                "OutdoorOutgoing": "comfoairOutdoorOutgoingTemperature",
-                                "TargetTemp": "comfoairTargetTemperature",
-                                "icon_Outin": "ventilation-indoorinbound",
-                                "icon_Outout": "ventilation-outdoorinbound",
-                                "icon_battery": "oh:rct-battery",
-                                "icon_fan": "oh:fan",
-                                "icon_grid": "oh:rct-netz",
-                                "icon_house": "oh:rct-house",
-                                "icon_inin": "ventilation-indoorinbound",
-                                "icon_inout": "ventilation-indooroutbound",
-                                "icon_outin": "ventilation-outdoorinbound",
-                                "icon_outout": "ventilation-outdooroutbound",
-                                "icon_solar": "oh:rct-solar",
-                                "icon_ventilation": "ventilation-left",
-                                "item_FanIn": "comfoairVentilationFanInRPM",
-                                "item_FanLevel": "comfoairFanLevel",
-                                "item_FanOut": "comfoairVentilationFanOutRPM",
-                                "item_FilterPeriod": "comfoairFilterPeriod",
-                                "item_FilterRuntime": "comfoairFilterRuntime"
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          },
-          {
-            "component": "oh-block",
-            "config": {},
-            "slots": {
-              "default": [
-                {
-                  "component": "oh-grid-row",
-                  "config": {},
-                  "slots": {
-                    "default": [
-                      {
-                        "component": "oh-grid-col",
-                        "config": {},
-                        "slots": {
-                          "default": [
-                            {
-                              "component": "widget:Chart_one_unit",
-                              "config": {
-                                "chart1": "Outdoor Outgoing",
-                                "chart2": "Outdoor Incoming",
-                                "item3": "comfoairOutdoorOutgoingTemperature",
-                                "item4": "comfoairOutdoorIncomingTemperature",
-                                "title": "\u003dprops.title"
-                              },
-                              "slots": {
-                                "default": [
-                                  {
-                                    "component": "f7-row",
-                                    "config": {
-                                      "class": [
-                                        "margin-top"
-                                      ]
-                                    },
-                                    "slots": {
-                                      "default": [
-                                        {
-                                          "component": "f7-col",
-                                          "config": {
-                                            "width": 100.0
-                                          },
-                                          "slots": {
-                                            "default": [
-                                              {
-                                                "component": "oh-chart",
-                                                "config": {
-                                                  "chartType": "",
-                                                  "label": "\u003dprops.chart1",
-                                                  "period": "1d"
-                                                },
-                                                "slots": {
-                                                  "dataZoom": [
-                                                    {
-                                                      "component": "oh-chart-datazoom",
-                                                      "config": {
-                                                        "type": "inside"
-                                                      }
-                                                    }
-                                                  ],
-                                                  "grid": [
-                                                    {
-                                                      "component": "oh-chart-grid",
-                                                      "config": {
-                                                        "containLabel": false
-                                                      }
-                                                    }
-                                                  ],
-                                                  "legend": [
-                                                    {
-                                                      "component": "oh-chart-legend",
-                                                      "config": {
-                                                        "bottom": 3.0,
-                                                        "type": "scroll"
-                                                      }
-                                                    }
-                                                  ],
-                                                  "series": [
-                                                    {
-                                                      "component": "oh-time-series",
-                                                      "config": {
-                                                        "color": "\u003dprops.item_colure1",
-                                                        "gridIndex": 0.0,
-                                                        "item": "\u003dprops.item3",
-                                                        "name": "\u003dprops.chart1",
-                                                        "type": "line",
-                                                        "xAxisIndex": 0.0,
-                                                        "yAxisIndex": 0.0
-                                                      }
-                                                    },
-                                                    {
-                                                      "component": "oh-time-series",
-                                                      "config": {
-                                                        "color": "\u003dprops.item_colure2",
-                                                        "gridIndex": 0.0,
-                                                        "item": "\u003dprops.item4",
-                                                        "name": "\u003dprops.chart2",
-                                                        "type": "line",
-                                                        "xAxisIndex": 0.0,
-                                                        "yAxisIndex": 0.0
-                                                      }
-                                                    }
-                                                  ],
-                                                  "tooltip": [
-                                                    {
-                                                      "component": "oh-chart-tooltip",
-                                                      "config": {
-                                                        "confine": true,
-                                                        "smartFormatter": true
-                                                      }
-                                                    }
-                                                  ],
-                                                  "xAxis": [
-                                                    {
-                                                      "component": "oh-time-axis",
-                                                      "config": {
-                                                        "gridIndex": 0.0
-                                                      }
-                                                    }
-                                                  ],
-                                                  "yAxis": [
-                                                    {
-                                                      "component": "oh-value-axis",
-                                                      "config": {
-                                                        "gridIndex": 0.0,
-                                                        "min": 0.0,
-                                                        "name": "\u003dprops.item_unit_left"
-                                                      }
-                                                    }
-                                                  ]
-                                                }
-                                              }
-                                            ]
-                                          }
-                                        }
-                                      ]
-                                    }
-                                  }
-                                ]
-                              }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ],
-        "grid": []
       }
     }
   }
