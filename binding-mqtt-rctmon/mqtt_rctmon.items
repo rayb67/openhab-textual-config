@@ -41,7 +41,7 @@ Number:Energy	PV_Energy_Solar_Generator_B "RCT Energy Generator_B"  		<energy>		
 { channel="mqtt:topic:rctclient:rctmon:PV_Energy_Solar_Generator_B", stateDescription=" "[ pattern="%.1f kWh" ] }
 
 // ###############################
-Number:Power PV_Input_Sum				"RCT Input Sum"                     <solarplant>    (gPV,AUS_Dach)   ["Measurement","Power","Inverter"] 
+Number:Power	PV_Input_Sum			"RCT Input Sum"                     <solarplant>    (gPV,AUS_Dach)   ["Measurement","Power","Inverter"] 
 { stateDescription=" "[ pattern="%.1f W" ] }
 Number:Power	PV_Input_A_Watt 		"RCT Input A in Watt" 				<solarplant>	(gPV,AUS_Dach)	["Measurement","Power","Inverter"] 
 { channel="mqtt:topic:rctclient:rctmon:PV_Input_A_Watt", stateDescription=" "[ pattern="%.1f W" ] }

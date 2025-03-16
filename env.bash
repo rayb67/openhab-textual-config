@@ -2,9 +2,8 @@
 # Some general environment infomration.
 # The version must match exactly!
 
-export OPENHAB_VERSION=4.3.3
-#export OPENHAB_VERSION=5.0.0
-export JDK_VERSION=21
+export OPENHAB_VERSION=4.3.0
+export JDK_VERSION=17  # Java 17 for OH 4.x ; Java 21 for OH 5.x
 export OPENHAB_USER=openhab
 export OPENHAB_GROUP=openhab
 export OPENHAB_DBNAME=openhab
