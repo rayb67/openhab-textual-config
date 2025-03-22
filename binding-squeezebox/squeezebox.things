@@ -1,5 +1,5 @@
-//Bridge squeezebox:squeezeboxserver:server-dev   "SB Server" @ "NAS"             [ ipAddress="192.168.1.68", webport=9000, cliport=9090 ]
-Bridge squeezebox:squeezeboxserver:server   "SB Server" @ "NAS"             [ ipAddress="192.168.1.68", webport=9000, cliport=9090 ]
+//Bridge squeezebox:squeezeboxserver:server-dev   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
+Bridge squeezebox:squeezeboxserver:server   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
 {
 	Thing squeezeboxplayer wohnzimmer    "SB Wohnzimmer " @ "Wohnzimmer"	
 	[ mac="74:da:38:58:30:32" , notificationTimeout=30, notificationVolume=50 ] // Wohnzimmer

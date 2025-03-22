@@ -1,4 +1,4 @@
-Bridge mqtt:broker:server-dev [ host="192.168.1.68", port="1883", secure=false ]
+Bridge mqtt:broker:server-dev [ host="10.10.10.68", port="1883", secure=false ]
 {
     Thing topic instar "MQTT instar Hof" {
 		Channels: 

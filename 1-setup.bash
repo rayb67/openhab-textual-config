@@ -652,6 +652,7 @@ inst-select() {
 #	read -p "   push >Enter< to go on  "
 	echo
 
+	function-openhab-stop
 	cd ${OPENHAB_SETUP_SOURCE}
 
 	########################
@@ -674,6 +675,8 @@ inst-select() {
 	sudo rm -rf $OPENHAB_SETUP_USERDATA/cache/*
 	sudo rm -rf $OPENHAB_SETUP_USERDATA/tmp/* 
 	echo; echo "start openhab - wait 1-3 minutes, depend on the machine power !"; echo
+
+	function-openhab-start
 
    return $RETVAL
 }

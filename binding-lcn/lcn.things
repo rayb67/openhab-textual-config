@@ -1,5 +1,5 @@
-//Bridge myuser:pckGateway:bus [ hostname="192.168.1.28", port=4114, username="myuser", password="passwort", mode="native50" ] {
-Bridge myuser:pckGateway:bus [ hostname="192.168.1.97", port=4114, username="myuser", password="passwort", mode="native50" ] {
+//Bridge myuser:pckGateway:bus [ hostname="10.10.10.28", port=4114, username="myuser", password="passwort", mode="native50" ] {
+Bridge myuser:pckGateway:bus [ hostname="10.10.10.97", port=4114, username="myuser", password="passwort", mode="native50" ] {
      Thing module S000M010 "LCN M010 GT6 Switch - EG Technik"			[ moduleId=010, segmentId=0 ] { 
 	 	Channels:
 		Number  : variable#2   [ unit="temperature" ]

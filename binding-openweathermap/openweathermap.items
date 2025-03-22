@@ -37,3 +37,35 @@ Number:Length			Owm_Home_Forcast03_RainVolume	"Regenmenge in 03 Std."		<rain>			
 { channel="openweathermap:weather-and-forecast:api:local:forecastHours03#rain", stateDescription=" "[ pattern="%.1f l/m²" ]  }
 Number:Length			Owm_Home_Forcast24_RainVolume	"Regenmenge in 24 Std."		<rain>			(gWeather,AUS_Service)   ["Rain"]
 { channel="openweathermap:weather-and-forecast:api:local:forecastHours24#rain", stateDescription=" "[ pattern="%.1f l/m²" ]  }
+
+
+DateTime                Owm_Home_localDailyForecastDay2Timestamp "Timestamp of forecast in 2 days  [%1$tY-%1$tm-%1$tdT%1$tH:%1$tM:%1$tS]" <time>
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#time-stamp" }
+String                  Owm_Home_localDailyForecastDay2Condition "Condition in 2 days [%s]" <sun_clouds>
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#condition" }
+Image                   Owm_Home_localDailyForecastDay2ConditionIcon "Icon"
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#icon" }
+Number:Temperature      Owm_Home_localDailyForecastDay2MinTemperature "Minimum temperature in 2 days [%.2f %unit%]" <temperature>   (gWeather,AUS_Service)  ["Temperature"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#min-temperature" }
+Number:Temperature      Owm_Home_localDailyForecastDay2MaxTemperature "Maximum temperature in 2 days [%.2f %unit%]" <temperature>   (gWeather,AUS_Service)  ["Temperature"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#max-temperature" }
+Number:Length           Owm_Home_localDailyForecastDay2RainVolume "Rain volume in 2 days [%.1f %unit%]"    <rain>  (gWeather,AUS_Service)  ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#rain" }
+Number:Length           Owm_Home_localDailyForecastDay2SnowVolume "Snow volume in 2 days [%.1f %unit%]"    <snow>  (gWeather,AUS_Service)  ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#snow" }
+
+
+DateTime                Owm_Home_localDailyForecastDay4Timestamp "Timestamp of forecast in 4 days [%1$tY-%1$tm-%1$tdT%1$tH:%1$tM:%1$tS]" <time>
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#time-stamp" }
+String                  Owm_Home_localDailyForecastDay4Condition "Condition in 4 days [%s]" <sun_clouds>
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#condition" }
+Image                   Owm_Home_localDailyForecastDay4ConditionIcon "Icon"
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#icon" }
+Number:Temperature      Owm_Home_localDailyForecastDay4MinTemperature "Minimum temperature in 4 days [%.2f %unit%]" <temperature>   (gWeather,AUS_Service)  ["Temperature"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#min-temperature" }
+Number:Temperature      Owm_Home_localDailyForecastDay4MaxTemperature "Maximum temperature in 4 days [%.2f %unit%]" <temperature>   (gWeather,AUS_Service)  ["Temperature"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#max-temperature" }
+Number:Length           Owm_Home_localDailyForecastDay4RainVolume "Rain volume in 4 days [%.1f %unit%]"    <rain>  (gWeather,AUS_Service)  ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#rain" }
+Number:Length           Owm_Home_localDailyForecastDay4SnowVolume "Snow volume in 4 days [%.1f %unit%]"    <snow>  (gWeather,AUS_Service)  ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#snow" }

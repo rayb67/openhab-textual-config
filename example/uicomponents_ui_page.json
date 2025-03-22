@@ -1808,8 +1808,8 @@
                               "config": {
                                 "showAudioAlarms": false,
                                 "showMotionAlarms": true,
-                                "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
-                                "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
                               }
                             }
                           ]
@@ -2102,8 +2102,8 @@
                               "config": {
                                 "showAudioAlarms": false,
                                 "showMotionAlarms": true,
-                                "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
-                                "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
                               }
                             }
                           ]
@@ -2383,8 +2383,8 @@
                               "config": {
                                 "showAudioAlarms": false,
                                 "showMotionAlarms": true,
-                                "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
-                                "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
                               }
                             }
                           ]
@@ -4858,9 +4858,9 @@
                         "component": "widget:ClickableCameraImage",
                         "config": {
                           "camera": "Camera_Hof",
-                          "streamURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                          "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
                           "switchItem": "gIPCamera",
-                          "thumbnailURL": "http://192.168.1.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                          "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
                         }
                       },
                       {

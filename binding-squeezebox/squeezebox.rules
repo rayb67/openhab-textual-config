@@ -118,7 +118,7 @@ when
     Item SPMobile_Title changed
 then
 	logInfo("Squeezebox", "Title change")
-	val myURL = 'http://192.168.1.57:9000/jsonrpc.js'
+	val myURL = 'http://10.10.10.57:9000/jsonrpc.js'
 	val payload = '{"id":1,"method":"slim.request","params":["00:00:00:00:00:01",["duration","?"]]}'
 	val String json = sendHttpPostRequest(myURL, "application/json", payload)
 	SPMobile_CurrentTrackLength.postUpdate(Float.valueOf(transform("JSONPATH", "$.result._duration", json)))

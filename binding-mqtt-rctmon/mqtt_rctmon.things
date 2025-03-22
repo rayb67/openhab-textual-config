@@ -1,5 +1,5 @@
 // ... test
-Bridge mqtt:broker:rctclient "MQTT RCT Client" [ host="192.168.1.68", port="1883", secure=false, qos="1" , retained="180"]
+Bridge mqtt:broker:rctclient "MQTT RCT Client" [ host="10.10.10.68", port="1883", secure=false, qos="1" , retained="180"]
 {
 	Thing topic rctmon "MQTT RCTMON" {
 			Type number : PV_Energy_Household_Sum		"Energy Household SUM" 				[ stateTopic="rctmon/energy/household/sum", transformationPattern="JS:| parseFloat(input) / 1000" ]
