@@ -1,0 +1,61 @@
+//    Astro - Binding Geo-Position  geolocation="50.941413507071154,6.958217013317433,100"
+
+
+Thing astro:sun:local			"Astro - Sonnen Daten"		[geolocation="50.941413507071154,6.958217013317433,100", interval=100]
+Thing astro:moon:local			"Astro - Mond Daten"		[geolocation="50.941413507071154,6.958217013317433,100", interval=100]
+
+Thing astro:sun:local:night		"Astro - Sonne Nacht"    [geolocation="50.941413507071154,6.958217013317433,100", interval=100] {
+        Channels: Type rangeEvent : set#event [
+		earliest="21:33"
+	]
+}
+
+Thing astro:sun:local:astroDawn "Astro - astroDawn" [ geolocation="50.941413507071154,6.958217013317433,100", interval=100] {
+	Channels: Type rangeEvent : rise#event [
+		earliest="20:00"
+	]
+}
+
+Thing astro:sun:sunset_15 "Astro - sunset15" [ geolocation="50.941413507071154,6.958217013317433,100", interval=100] {
+	Channels: Type rangeEvent : set#event [
+		earliest="17:30",
+		latest="21:22"
+	]
+}
+
+Thing astro:sun:sunrise_0615 "Astro - Sunrise 0615" [ geolocation="50.941413507071154,6.958217013317433,100", interval=60] {
+	Channels: Type rangeEvent : set#event [
+		earliest="06:15"
+	]
+}
+
+Thing astro:sun:sunset_30 [ geolocation="50.941413507071154,6.958217013317433,100", interval=180] {
+        Channels: Type rangeEvent : set#event [
+                offset=30,
+                earliest="19:20"  // normalerweise 18:23
+        ]
+}
+
+Thing astro:sun:sunset_60 [ geolocation="50.941413507071154,6.958217013317433,100", interval=180] {
+        Channels: Type rangeEvent : set#event [
+                offset=60,
+                earliest="19:20"  // normalerweise 18:23
+        ]
+}
+
+Thing astro:sun:sunset_90 [ geolocation="50.941413507071154,6.958217013317433,100", interval=180] {
+        Channels: Type rangeEvent : set#event [
+                offset=90,
+                earliest="20:45"
+                /* latest="22:35" ...das bringt nix, die Rollos sollen ja runter */
+        ]
+}
+
+Thing astro:sun:sunset_120 [ geolocation="50.941413507071154,6.958217013317433,100", interval=180] {
+        Channels: Type rangeEvent : set#event [
+                offset=120,
+                earliest="21:07",
+                latest="21:05"
+        ]
+}
+

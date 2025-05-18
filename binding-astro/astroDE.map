@@ -1,0 +1,49 @@
+// Zodiac - Sternzeichen
+ARIES=Widder
+TAURUS=Stier
+GEMINI=Zwilling
+CANCER=Krebs
+LEO=Loewe
+VIRGO=Jungfrau
+LIBRA=Waage
+SCORPIO=Skorpion
+SAGITTARIUS=Schuetze
+CAPRICORN=Steinbock
+AQUARIUS=Wassermann
+PISCES=Fische
+
+//seasons
+Season=Jahreszeit
+SPRING=Fruehling
+SUMMER=Sommer
+AUTUMN=Herbst
+WINTER=Winter
+
+// day - night phases
+SUN_RISE=Sonnenaufgang
+ASTRO_DAWN=astronomische Morgendämmerung
+NAUTIC_DAWN=nautische Morgendämmerung
+CIVIL_DAWN=zivile Morgendämmerung
+CIVIL_DUSK=zivile Abenddämmerung
+NAUTIC_DUSK=nautische Abenddämmerung
+ASTRO_DUSK=astronomische Abenddämmerung
+SUN_SET=Sonnenuntergang
+DAYLIGHT=Tag
+NOON=Abend
+NIGHT=Nacht
+Night=Nacht
+
+// moon phases
+NEW=Neumond
+WAXING_CRESCENT=zunehmender Halbmond
+FIRST_QUARTER=erstes Viertel
+WAXING_GIBBOUS=zunehmender Mond
+FULL=Vollmond
+WANING_GIBBOUS=abnehmender Mond
+THIRD_QUARTER=letztes Viertel
+WANING_CRESCENT=abnehmender Halbmond
+
+//error-codes
+NULL=unbekannt
+-=-nicht verfuegbar
+UNDEF=nicht definiert

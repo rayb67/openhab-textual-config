@@ -1,0 +1,28 @@
+//.. mal 
+rule "Ephemeris - Ferien und Feiertag" 
+when
+//	Item Test01 changed
+//	or
+	Time cron "0 0 1 * * ?"
+then
+   val String  currentHoliday     = Ephemeris.getBankHolidayName()
+   val String  nextHoliday        = Ephemeris.getNextBankHoliday()
+   val long    untilHoliday       = Ephemeris.getDaysUntil(nextHoliday)
+   val String  nextHolidayName    = Ephemeris.getHolidayDescription(nextHoliday)  
+   val String  currentHolidayName = Ephemeris.getHolidayDescription(currentHoliday)   
+   
+
+   if (Ephemeris.isBankHoliday == true) {
+        ephemeris_Status.sendCommand(ON)
+        ephemeris_Name.postUpdate(currentHolidayName)         
+	    ephemeris_Description.postUpdate(currentHolidayName)
+      } 
+   if (Ephemeris.isBankHoliday == false) {
+        ephemeris_Status.sendCommand(OFF)
+        ephemeris_Name.postUpdate(nextHolidayName + " in " + untilHoliday + " Tagen")
+	    ephemeris_Description.postUpdate(currentHolidayName)
+      } 
+  ephemeris_NextDay.postUpdate(untilHoliday)
+
+  logInfo("ephermeris","Status : "+ephemeris_Status.state+" Feiertag Name : "+ephemeris_Name.state + " in " + ephemeris_NextDay.state + " Tagen - Beschreibung : "+ephemeris_Description.state)
+ end 

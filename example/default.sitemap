@@ -1,0 +1,45 @@
+sitemap default label="Haussteuerung"
+{
+ 	Frame label="Raueme" icon="house" {
+		Text label="Erdgeschoss" icon="groundfloor" {
+			Text label="Wohnzimmer" icon="sofa" {
+				Switch item=Steckdose_EG_Wohnz_Fernseher
+				Slider item=Licht_EG_Sofa switchSupport
+				Text item=TempEGWohnzFlur icon="temperature"
+            	Setpoint item=SetTeEGWohnz			step=0.5 minValue=16 maxValue=24
+			}
+		}
+		Text label="Obergeschoss" icon="firstfloor" {
+			Text label="Rest" icon="corridor" {
+				Switch item=Licht_OG_Flur
+				Text item=TempOGFlur icon="temperature"
+				Switch item=Rollo_OG_Flur icon="rollershutter"
+				Setpoint item=SetTeOGFlur			step=0.5 minValue=14 maxValue=22
+			}
+		}
+		Text label="Aussen" icon="garden" {
+			Text label="Hof" icon="garage" {
+				Switch item=Licht_AUS_Haustuer
+				Switch item=Licht_AUS_Garage_Vorne
+				Switch item=Steckdose_AUS_Haustuer
+			}
+			Text label="Garten" icon="garage" {
+				Slider item=Licht_AUS_Erker  switchSupport
+				Switch item=Steckdose_AUS_Schleuse
+			}
+		}
+		Text item=TempAussen  icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
+	}
+
+	Frame label="Funktionen" {
+		Group item=gAstro
+	}		
+
+	Frame label="Uebersicht" {
+ 		Switch item=gLichtEG
+ 		Switch item=gSteckdosenEG	icon="poweroutlet"
+		Switch item=LightAll        mappings=[OFF="AUS"]
+	}
+
+}
+

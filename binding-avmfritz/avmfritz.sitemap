@@ -1,0 +1,19 @@
+sitemap avmfritz label="AVM Fritz" {
+
+    Frame label="FRITZ!Box" {
+        Text item=fritzCallRinging
+        Text item=fritzIncomingCall
+        Text item=fritzOutgoingCall
+        Text item=fritzActiveCall
+    }
+    Frame label="Ein" {
+        Text item=fritzLetzterEingehenderRuf
+        Text item=fritzLetzteEingehendeNr
+        Text item=fritzLetzteELeitung
+    }
+    Frame label="Aus" {
+        Text item=fritzLetzterAusgehenderRuf
+        Text item=fritzLetzteAusgendeNr
+        Text item=fritzLetzteALeitung
+    }
+}

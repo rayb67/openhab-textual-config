@@ -1,0 +1,24 @@
+//. ..
+Group			gSolarForcast							"Solar Forecast"								<solarplant>
+
+Number:Energy	ForecastSolarSite_Actual				"Forecast (site) Actual [%.2f %unit%]"			<solarplant> (gSolarForcast,AUS_Service)	["Measurement","Power"]
+{channel="solarforecast:fs-site:home:actual" }
+//Number:Power	ForecastSolarSite_Actual_Power			"Forecast (site) Actual Power [%.2f %unit%]"	<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+//{channel="solarforecast:fs-site:home:actual-power" }
+Number:Energy	ForecastSolarSite_Remaining				"Forecast (site) Remaining [%.2f %unit%]"		<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-site:home:remaining" }
+Number:Energy	ForecastSolarSite_Today					"Forecast (site) Today [%.2f %unit%]"			<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-site:home:today" }                                                                           
+Number:Energy	ForecastSolarSite_Day1					"Forecast (site) Day1 [%.2f %unit%]"			<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-site:home:day1" }                                                                           
+
+Number:Energy	ForecastSolarPlane_Actual_SW			"Forecast (SW) Actual [%.2f %unit%]"			<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-plane:home:SW:actual" }
+//Number:Power	ForecastSolarPlane_Actual_Power_SW		"Forecast (SW) Actual Power [%.2f %unit%]"		<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+//{channel="solarforecast:fs-plane:home:SW:actual-power" }
+Number:Energy	ForecastSolarPlane_Remaining_SW			"Forecast (SW) Remaining [%.2f %unit%]"			<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-plane:home:SW:remaining" }
+Number:Energy	ForecastSolarPlane_Today_SW				"Forecast (SW) Today [%.2f %unit%]"				<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-plane:home:SW:today" }
+Number:Energy	ForecastSolarPlane_Day_SW				"Forecast (SW) Day1 [%.2f %unit%]"				<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-plane:home:SW:day1" }
