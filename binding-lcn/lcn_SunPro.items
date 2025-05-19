@@ -40,23 +40,23 @@ Switch SunProErReActiv		"Steuerung ErkerRe (ein/aus) [MAP(lcn.map):%s]"	(gSunPro
 
 Number:Dimensionless	SunProSollTempWohnzimmer	"SunPro Soll Wohnzimmer (23)"	<temperature>	(gSunPro,gWetter)		["Control","Setpoint"]
 { 
-    widget    ="oh-stepper-card"[ title="SunPro Soll Wohnzimmer", min=18, max=26, step=0.5, icon="oh:temperature" ],
-    listWidget="oh-stepper-item"[ title="SunPro Soll Wohnzimmer", min=19, max=26, step=0.5, icon="oh:temperature" ],
-    cellWidget="oh-stepper-cell"[ title="SunPro Soll Wohnzimmer", min=20, max=26, step=0.5, icon="oh:temperature" ],
+    widget    ="oh-stepper-card"[ title="SunPro Soll Wohnzimmer (23)", min=18, max=26, step=0.5, icon="oh:temperature" ],
+    listWidget="oh-stepper-item"[ title="SunPro Soll Wohnzimmer (23)", min=19, max=26, step=0.5, icon="oh:temperature" ],
+    cellWidget="oh-stepper-cell"[ title="SunPro Soll Wohnzimmer (23)", min=20, max=26, step=0.5, icon="oh:temperature" ],
 	stateDescription=" "[ pattern="%.1f" ]
 }
 Number:Dimensionless	SunProSoll3DTempAussen		"SunPro Soll Aussen 3D (16)"	<temperature>	(gSunPro,gWetter)		["Control","Setpoint"]
 { 
-    widget    ="oh-stepper-card"[ title="SunPro Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
-    listWidget="oh-stepper-item"[ title="SunPro Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
-    cellWidget="oh-stepper-cell"[ title="SunPro Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
+    widget    ="oh-stepper-card"[ title="SunPro Soll Aussen 3D (16)", min=11, max=23, step=0.5, icon="oh:temperature" ],
+    listWidget="oh-stepper-item"[ title="SunPro Soll Aussen 3D (16)", min=11, max=23, step=0.5, icon="oh:temperature" ],
+    cellWidget="oh-stepper-cell"[ title="SunPro Soll Aussen 3D (16)", min=11, max=23, step=0.5, icon="oh:temperature" ],
 	stateDescription=" "[ pattern="%.1f" ]
 }
-Number:Dimensionless	SunProSollTempAussen		"SunPro Soll Aussen (24)"		<temperature>	(gSunPro,gWetter)		["Control","Setpoint"]
+Number:Dimensionless	SunProSollTempAussen		"SunPro Soll Aussen (22)"		<temperature>	(gSunPro,gWetter)		["Control","Setpoint"]
 { 
-    widget    ="oh-stepper-card"[ title="SunPro Soll Aussen", min=10, max=25, step=0.5, icon="oh:temperature" ],
-    listWidget="oh-stepper-item"[ title="SunPro Soll Aussen", min=10, max=25, step=0.5, icon="oh:temperature" ],
-    cellWidget="oh-stepper-cell"[ title="SunPro Soll Aussen", min=10, max=25, step=0.5, icon="oh:temperature" ],
+    widget    ="oh-stepper-card"[ title="SunPro Soll Aussen (22)", min=10, max=25, step=0.5, icon="oh:temperature" ],
+    listWidget="oh-stepper-item"[ title="SunPro Soll Aussen (22)", min=10, max=25, step=0.5, icon="oh:temperature" ],
+    cellWidget="oh-stepper-cell"[ title="SunPro Soll Aussen (22)", min=10, max=25, step=0.5, icon="oh:temperature" ],
 	stateDescription=" "[ pattern="%.1f" ]
 }
 

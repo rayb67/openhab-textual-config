@@ -12,7 +12,7 @@ sitemap lcn label="LCN" {
 		Setpoint item=SunProSoll3DTempAussen label="Soll TempAussen 3D (14)" icon="temperature" step=1 minValue=10 maxValue=25
 		Text item=TempAussenAvg3D icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
 		Setpoint item=SunProSollTempWohnzimmer label="Soll TempWohnzimmer (25)" icon="temperature" step=1 minValue=22 maxValue=28
-		Text item=TempEGWohnzFlur icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
+		Text item=lcn_Temp_EG_WohnzFlur icon="temperature"  valuecolor=[>30="red",>22="orange",>15="green",<=0="blue"]
 		Setpoint item=SunProLichtSollNord label="Soll Lichtstaerke Nord" icon="sun" step=10 minValue=0 maxValue=1200
 		Text item=WetterLichtSAvg icon="info" valuecolor=[>1000="orange",>1130="green",<=1000="blue"]
         Switch item=SunProOstActiv label="Ost aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
@@ -25,18 +25,18 @@ sitemap lcn label="LCN" {
     }
 
     Frame label="Heizung" {
-	Setpoint item=SetTeEGWohnz step=0.5 minValue=14.0
-	Setpoint item=SetTeEGKueche step=0.5 minValue=14.0
-	Setpoint item=SetTeEGGaesteWC step=0.5 minValue=14.0
-	Setpoint item=SetTeEGAbstell step=0.5 minValue=14.0
-	Setpoint item=SetTeEGDiele step=0.5 minValue=14.0
-	Setpoint item=SetTeOGFlur step=0.5 minValue=14.0
-	Setpoint item=SetTeOGBad step=0.5 minValue=14.0
-	Setpoint item=SetTeOGKind step=0.5 minValue=14.0
-	Setpoint item=SetTeOGGaeste step=0.5 minValue=14.0
-	Setpoint item=SetTeOGSchlafz step=0.5 minValue=14.0
-	Setpoint item=SetTeOGAnkleide step=0.5 minValue=14.0
-	Setpoint item=SetTeOGBuero step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_EGWohnz step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_EGKueche step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_EGGaesteWC step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_EGAbstell step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_EGDiele step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_OGFlur step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_OGBad step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_OGKind step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_OGGaeste step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_OGSchlafz step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_OGAnkleide step=0.5 minValue=14.0
+	Setpoint item=lcn_SetTe_OGBuero step=0.5 minValue=14.0
     }
 
     Frame label="Gruppen" {
@@ -45,7 +45,7 @@ sitemap lcn label="LCN" {
 		Group item=gLichtOG
 		Group item=gSteckdosenEG
 		Group item=gSteckdosenOG
-		// Group item=gHeizung
+		// Group item=gHeizung_Soll
 //		Group item=gRolladen
 		Group item=gLED
 		Group item=gVarSensor

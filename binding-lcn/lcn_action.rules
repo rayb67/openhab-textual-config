@@ -80,8 +80,8 @@ when
 	Item TuerHaustuer changed from OFF to ON
 then
 	logInfo("TuerHaustuer","Tueroeffner auf : "+TuerHaustuer.state)
-//	val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
-//	telegramAction.sendTelegram("....da hat jemand auf die Haustuer gedrueckt")
+	val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
+	telegramAction.sendTelegram("....da hat jemand auf die Haustuer gedrueckt")
 
 	createTimer(now.plusSeconds(3), [
 		TuerHaustuer.sendCommand( OFF )
@@ -349,15 +349,26 @@ then
 	createTimer(now.plusSeconds(2), [ 
 		sendCommand( SendKeyOGFlurDachFZu, OFF)
 	])
+
+	// wenn das telefon da ist, ist Kind da und die Rolles gehen nicht hoch
+	if( network_PhoneKindOn==OFF ) 
+	{
+		logInfo("RolloAlleHochManuell","Kind ist nicht da.. also hoch")
+		sendCommand(Rollo_OG_Kind, UP)
+		createTimer(now.plusSeconds( 120 ),  [ |
+			sendCommand(Rollo_OG_Kind, STOP)
+        ])
+	}
+
 end
 
 // ###################################################
 // #18
 rule "BewasserungPumpe" 
 when
-	Item BewaesserungPumpeManuell changed from OFF to ON
+	Item Bewaesserung_Manuell_Pumpe changed from OFF to ON
 then
-	logInfo("BewasserungPumpe","Pumpe manuell gestartet (15min) : "+BewaesserungPumpeManuell.state)
+	logInfo("BewasserungPumpe","Pumpe manuell gestartet (15min) : "+Bewaesserung_Manuell_Pumpe.state)
 //	val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
 //	telegramAction.sendTelegram("....da hat jemand auf die Haustuer gedrueckt")
 
@@ -370,8 +381,8 @@ then
 	])
 
 	createTimer(now.plusSeconds(3), [
-		BewaesserungPumpeManuell.sendCommand( OFF )
-		logInfo("BewasserungPumpe","Pumpe switch reset : "+BewaesserungPumpeManuell.state)
+		Bewaesserung_Manuell_Pumpe.sendCommand( OFF )
+		logInfo("BewasserungPumpe","Pumpe switch reset : "+Bewaesserung_Manuell_Pumpe.state)
 	])
 end
 

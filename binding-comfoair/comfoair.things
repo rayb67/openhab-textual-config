@@ -1,2 +1,3 @@
-// USB0
-Thing comfoair:comfoair:myComfoAir "ComfoAir" [serialPort="/dev/ttyUSB0", refreshInterval="600"]
+// USB device CP210x 
+// dmesg | grep ttyUSB | grep cp210x
+Thing comfoair:comfoair:myComfoAir "ComfoAir" [serialPort="/dev/ttyUSB1", refreshInterval="600"]

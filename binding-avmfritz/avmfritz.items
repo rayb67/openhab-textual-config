@@ -2,7 +2,7 @@ Group   gAVMFritz					"avmfritz"						(EG_Technik)				["Equipment","NetworkAppli
 
 // Points:
 
-Group   gCALLMONITOR				"Call Monitor"						(gAVMFritz,gCALLMONITOR)	["Equipment","NetworkAppliance"]
+Group   gCALLMONITOR				"Call Monitor"						(gAVMFritz)	["Equipment","NetworkAppliance"]
 Call    fritzIncomingCall			"Incoming Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR)	["Status"]
 { channel="avmfritz:fritzbox:avmfb7490:incoming_call" }
 Call    fritzActiveCall			    "Active Call [from %1$s]"           (gAVMFritz,gCALLMONITOR)	["Status"]
@@ -28,3 +28,24 @@ Number  fritzLetzteALeitung         "über ausgehende Nummer"            (gAVMFr
 String  fritzLetzterEingehenderRuf  "Name Anrufer"                      (gAVMFritz)                 ["Status"]
 String  fritzLetzteEingehendeNr     "anrufende Nummer"                  (gAVMFritz)                 ["Status"]
 Number  fritzLetzteELeitung         "über eingende Nummer"              (gAVMFritz)                 ["Status"]
+
+// ########## allgemeine Gruppen ##########
+// ------------------------------------------------------------------------------------
+// Group gFritzAHA          "Fritz!Box AHA Geräte"  <selfMemory>
+// ------------------------------------------------------------------------------------
+Group gFritzPowerline    "Fritz!Powerline"       <selfMemory>    (gFritzPL)
+// ------------------------------------------------------------------------------------
+// ########## Fritz!Powerline 546E über Fritz!Box ##########
+// AIN 08:96:D7:F3:8E:AA
+
+Number FritzPowerline546E_Power         "F!P 546e Stromverbrauch aktuell [%.1f Watt]"   <info>      (gFritzPL)   
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:power" }
+Number FritzPowerline546E_Energy        "F!P 546e Stromverbrauch gesamt [%.1f Wh]"      <info>      (gFritzPL)
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:energy" }
+Number FritzPowerline546E_Voltage       "F!P 546e Spannung [%.1f V]"                    <info>      (gFritzPL) 
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:voltage" }
+String FritzPowerline546E_Mode       "F!P 546e Spannung [%s]"                    <info>      (gFritzPL) 
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:mode" }
+
+Switch FritzPowerline546E_Steckdose "FB PL 546e Steckdose" <socket>  (gFritzPL) 
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:outlet" }

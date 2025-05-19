@@ -27,12 +27,12 @@ sitemap openweathermap label="Open Weather MAP" {
 		Text item=Owm_Home_localDailyForecastDay2SnowVolume
 	}
 	Frame label="Forcast 5 Days" icon="sun" {
-		Text item=Owm_Home_localDailyForecastDay5Timestamp
-		Text item=Owm_Home_localDailyForecastDay5Condition
-		Text item=Owm_Home_localDailyForecastDay5ConditionIcon
-		Text item=Owm_Home_localDailyForecastDay5MinTemperature
-		Text item=Owm_Home_localDailyForecastDay5MaxTemperature
-		Text item=Owm_Home_localDailyForecastDay5RainVolume
-		Text item=Owm_Home_localDailyForecastDay5SnowVolume
+		Text item=Owm_Home_localDailyForecastDay4Timestamp
+		Text item=Owm_Home_localDailyForecastDay4Condition
+		Text item=Owm_Home_localDailyForecastDay4ConditionIcon
+		Text item=Owm_Home_localDailyForecastDay4MinTemperature
+		Text item=Owm_Home_localDailyForecastDay4MaxTemperature
+		Text item=Owm_Home_localDailyForecastDay4RainVolume
+		Text item=Owm_Home_localDailyForecastDay4SnowVolume
 	}
 }

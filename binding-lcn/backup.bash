@@ -30,5 +30,5 @@ cd ${DATAPATH}
 cp ${OPENHAB_SETUP_CONF}/items/lcn*.items .
 cp ${OPENHAB_SETUP_CONF}/things/lcn.things .
 cp ${OPENHAB_SETUP_CONF}/transform/lcn.map .
-cp ${OPENHAB_SETUP_CONF}/sitemaps/lcn.sitemap .
+cp ${OPENHAB_SETUP_CONF}/sitemaps/lcn*.sitemap .
 cp ${OPENHAB_SETUP_CONF}/rules/lcn_*.rules .

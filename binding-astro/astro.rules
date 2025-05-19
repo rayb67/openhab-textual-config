@@ -23,7 +23,7 @@ when
     Channel 'astro:sun:local:set#event' triggered START
 then
 	logInfo("EventMisc11", "Channel 'astro:sun:local:set#event' triggered START")
-	sendCommand(Licht_EG_Treppe, OFF)
+//	sendCommand(Licht_EG_Treppe, OFF)
 end
 
 rule "EventMisc1"

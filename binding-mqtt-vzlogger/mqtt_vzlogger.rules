@@ -3,8 +3,8 @@ when
 //	Time cron "30 */1 * ? * * *"
 //	or
 	Time cron "30 59 23 ? * * *"
-	or
-	Item MailTestSwitch changed
+//	or
+//	Item MailTestSwitch changed
 then
 	logDebug("vzlogger_monitor","info ")
 	if	(
@@ -49,7 +49,7 @@ rule "vzlogger_letzte_stunde"
 	then
 		var Number temp_bezug_h = mqtt_vzlogger_bezug.deltaSince(now.minusHours(1))
 
-		logInfo("vzlogger_letzte_stunde","Wert bezug letzte h : "+temp_bezug_h)
+		logDebug("vzlogger_letzte_stunde","Wert bezug letzte h : "+temp_bezug_h)
 
 		temp_bezug_h = temp_bezug_h *1000
 		mqtt_vzlogger_stunde_bezug.postUpdate (temp_bezug_h)

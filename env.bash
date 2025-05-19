@@ -2,7 +2,7 @@
 # Some general environment infomration.
 # The version must match exactly!
 
-export OPENHAB_VERSION=4.3.0
+export OPENHAB_VERSION=4.3.4
 export JDK_VERSION=17  # Java 17 for OH 4.x ; Java 21 for OH 5.x
 export OPENHAB_USER=openhab
 export OPENHAB_GROUP=openhab
@@ -27,6 +27,7 @@ then
     echo "  env.bash - hostname server-prd"
     export OPENHAB_DB_BASE=/volume4/@appstore/MariaDB10/mysql
     export OPENHAB_DOCKER_BASE=/volume4/docker
+	export OPENHAB_SRV_TYPE=prd
     export OPENHAB_DOCKER=true
     export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/openhab/conf
     export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/openhab/userdata
@@ -41,6 +42,7 @@ then
     echo "  env.bash - hostname server-dev"
     export OPENHAB_DB_BASE=/docker/openhab/data_mariadb
     export OPENHAB_DOCKER_BASE=/docker/openhab
+	export OPENHAB_SRV_TYPE=dev
     export OPENHAB_DOCKER=true
     export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/data/conf
     export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/data/userdata
@@ -52,6 +54,7 @@ fi
 if [ `hostname` == "mac-ubuntu" ];
 then
     echo "  env.bash - hostname mac-ubuntu"
+	export OPENHAB_SRV_TYPE=sbx
 fi
 
 if [ -z ${OPENHAB_SETUP_CONF} ];

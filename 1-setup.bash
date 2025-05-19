@@ -367,13 +367,8 @@ inst-example() {
 
 	function-openhab-stop   ## call funtion
 
-	cp ${OPENHAB_SETUP_SOURCE}/example/addons.cfg  ${OPENHAB_SETUP_CONF}/services/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/uicom* ${OPENHAB_SETUP_USERDATA}/jsondb/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/default.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.cfg  ${OPENHAB_SETUP_CONF}/services/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/rrd4j.persist  ${OPENHAB_SETUP_CONF}/persistence/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/jdbc.cfg  ${OPENHAB_SETUP_CONF}/services/.
-	cp ${OPENHAB_SETUP_SOURCE}/example/jdbc.persist  ${OPENHAB_SETUP_CONF}/persistence/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/*.map  ${OPENHAB_SETUP_CONF}/transform/.
 	cp ${OPENHAB_SETUP_SOURCE}/example/_groups.items  ${OPENHAB_SETUP_CONF}/items/.
 
@@ -464,7 +459,8 @@ inst-core() {
 	echo
 	echo "your location is : 50.941413507071154,6.958217013317433,100"
 	echo
-	echo "klick INSTALL ADDONS LATER... - you can do it via -c inst-select"
+	echo "The default bindings make sense, especially if you have no experiance."
+	echo "But you can klick INSTALL ADDONS LATER... - you can do it via -c inst-select"
 	echo
 
 	while true; do
@@ -735,36 +731,38 @@ back-all() {
 
 	echo
 	echo "backup bindings related files"
-	exit
 
+	cd ${OPENHAB_SETUP_SOURCE}
 
 	#######################################################################
 	# now copy goes on
 	# this list must update manually depends on your setup
 	#######################################################################
-	. ${OPENHAB_SETUP_SOURCE}/binding-1-main/backup.bash binding-1-main
-	. ${OPENHAB_SETUP_SOURCE}/binding-astro/backup.bash binding-astro
-	. ${OPENHAB_SETUP_SOURCE}/binding-avmfritz/backup.bash binding-avmfritz
-	. ${OPENHAB_SETUP_SOURCE}/binding-comfoair/backup.bash binding-comfoair
-	. ${OPENHAB_SETUP_SOURCE}/binding-ephemeris/backup.bash binding-ephemeris
-	. ${OPENHAB_SETUP_SOURCE}/binding-exec/backup.bash binding-exec
-	. ${OPENHAB_SETUP_SOURCE}/binding-ipcamera/backup.bash binding-ipcamera
-	. ${OPENHAB_SETUP_SOURCE}/binding-lcn/backup.bash binding-lcn
-	. ${OPENHAB_SETUP_SOURCE}/binding-landroid/backup.bash binding-landroid
-	. ${OPENHAB_SETUP_SOURCE}/binding-mail/backup.bash binding-mail
-	. ${OPENHAB_SETUP_SOURCE}/binding-mqtt-instar/backup.bash binding-mqtt-instar
-	. ${OPENHAB_SETUP_SOURCE}/binding-mqtt-rctmon/backup.bash binding-mqtt-rctmon
-	. ${OPENHAB_SETUP_SOURCE}/binding-mqtt-vzlogger/backup.bash binding-mqtt-vzlogger
-	. ${OPENHAB_SETUP_SOURCE}/binding-modbusstiebel/backup.bash binding-modbusstiebel
-	. ${OPENHAB_SETUP_SOURCE}/binding-network/backup.bash binding-network
-	. ${OPENHAB_SETUP_SOURCE}/binding-openweathermap/backup.bash binding-openweathermap
-	. ${OPENHAB_SETUP_SOURCE}/binding-shelly/backup.bash binding-shelly
-	. ${OPENHAB_SETUP_SOURCE}/binding-solarforecast/backup.bash binding-solarforecast
-	. ${OPENHAB_SETUP_SOURCE}/binding-squeezebox/backup.bash binding-squeezebox
-	. ${OPENHAB_SETUP_SOURCE}/binding-systeminfo/backup.bash binding-systeminfo
-	. ${OPENHAB_SETUP_SOURCE}/binding-telegram/backup.bash binding-telegram
-	. ${OPENHAB_SETUP_SOURCE}/binding-tr064/backup.bash binding-tr064
-	. ${OPENHAB_SETUP_SOURCE}/binding-testing/backup.bash binding-testing
+	${OPENHAB_SETUP_SOURCE}/binding-1-main/backup.bash binding-1-main
+	${OPENHAB_SETUP_SOURCE}/binding-astro/backup.bash binding-astro
+	${OPENHAB_SETUP_SOURCE}/binding-avmfritz/backup.bash binding-avmfritz
+	${OPENHAB_SETUP_SOURCE}/binding-comfoair/backup.bash binding-comfoair
+	${OPENHAB_SETUP_SOURCE}/binding-ephemeris/backup.bash binding-ephemeris
+	${OPENHAB_SETUP_SOURCE}/binding-exec/backup.bash binding-exec
+	${OPENHAB_SETUP_SOURCE}/binding-ipcamera/backup.bash binding-ipcamera
+	${OPENHAB_SETUP_SOURCE}/binding-lcn/backup.bash binding-lcn
+	${OPENHAB_SETUP_SOURCE}/binding-landroid/backup.bash binding-landroid
+	${OPENHAB_SETUP_SOURCE}/binding-mail/backup.bash binding-mail
+	${OPENHAB_SETUP_SOURCE}/binding-mqtt-instar/backup.bash binding-mqtt-instar
+	${OPENHAB_SETUP_SOURCE}/binding-mqtt-rctmon/backup.bash binding-mqtt-rctmon
+	${OPENHAB_SETUP_SOURCE}/binding-mqtt-vzlogger/backup.bash binding-mqtt-vzlogger
+	${OPENHAB_SETUP_SOURCE}/binding-modbusstiebel/backup.bash binding-modbusstiebel
+	${OPENHAB_SETUP_SOURCE}/binding-network/backup.bash binding-network
+	${OPENHAB_SETUP_SOURCE}/binding-openweathermap/backup.bash binding-openweathermap
+	${OPENHAB_SETUP_SOURCE}/binding-shelly/backup.bash binding-shelly
+	${OPENHAB_SETUP_SOURCE}/binding-sgready/backup.bash binding-sgready
+	${OPENHAB_SETUP_SOURCE}/binding-solarforecast/backup.bash binding-solarforecast
+	${OPENHAB_SETUP_SOURCE}/binding-squeezebox/backup.bash binding-squeezebox
+	${OPENHAB_SETUP_SOURCE}/binding-systeminfo/backup.bash binding-systeminfo
+	${OPENHAB_SETUP_SOURCE}/binding-telegram/backup.bash binding-telegram
+	${OPENHAB_SETUP_SOURCE}/binding-tr064/backup.bash binding-tr064
+	${OPENHAB_SETUP_SOURCE}/binding-testing/backup.bash binding-testing
+
 	return $RETVAL
 }
 
@@ -788,20 +786,22 @@ inst-all() {
 #######################################################################
 env() {
 
-	echo "env ...start..."
-
+	echo
 	echo "OPENHAB_VERSION        : " $OPENHAB_VERSION
+	echo "JDK_VERSION            : " $JDK_VERSION
 	echo "OPENHAB_DOCKER_BASE    : " $OPENHAB_DOCKER_BASE
+	echo "OPENHAB_DOCKER         : " $OPENHAB_DOCKER
 	echo "OPENHAB_SETUP_CONF     : " $OPENHAB_SETUP_CONF
 	echo "OPENHAB_SETUP_USERDATA : " $OPENHAB_SETUP_USERDATA
 	echo "OPENHAB_SETUP_ADDONS   : " $OPENHAB_SETUP_ADDONS
 	echo "OPENHAB_SETUP_SOURCE   : " $OPENHAB_SETUP_SOURCE
-	echo "OPENHAB_DOCKER         : " $OPENHAB_DOCKER
 	echo "OPENHAB_SRV_TYPE       : " $OPENHAB_SRV_TYPE
-	echo "JDK_VERSION            : " $JDK_VERSION
+	echo "OPENHAB_PRD_HOSTNAME   : " $OPENHAB_PRD_HOSTNAME
+	echo "OPENHAB_PRD_IP         : " $OPENHAB_PRD_IP
+	echo "OPENHAB_DEV_HOSTNAME   : " $OPENHAB_DEV_HOSTNAME
+	echo "OPENHAB_DEV_IP         : " $OPENHAB_DEV_IP
+	echo "OPENHAB_RESTORE        : " $OPENHAB_RESTORE
 
-	echo
-	echo "env ...ende..."
 	echo
 	read -p "   push >Enter< to go on  "
 
@@ -967,7 +967,7 @@ case "$COMMAND" in
         echo "...................................................................."
         echo "...       backup-all"
         echo "...................................................................."
-        ejcho
+        echo
         echo
         read -p "push >Enter< to go on"
 

@@ -95,7 +95,7 @@ rule "SolcastAverage"
 //		or
 //        Time cron "40 */1 * * * ?" // trigger whatever you like
     then
-//	(TempOGSchlafTuer.state as QuantityType<Number>).doubleValue
+//	(lcn_Temp_OG_SchlafTuer.state as QuantityType<Number>).doubleValue
 	logDebug("SolcastAverage","1 : "+ForecastSolarSite_Day1.state+" -")
 end
 

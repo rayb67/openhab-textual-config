@@ -25,4 +25,6 @@ if [ ! -d $FILE  ]; then
 fi
 
 cp ${DATAPATH}/_groups.items ${OPENHAB_SETUP_CONF}/items/.
+cp ${DATAPATH}/_holiday.script ${OPENHAB_SETUP_CONF}/scripts/.
+cp ${DATAPATH}/_holiday.rules ${OPENHAB_SETUP_CONF}/rules/.
 chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}

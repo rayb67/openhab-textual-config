@@ -9,5 +9,5 @@ Bridge avmfritz:fritzbox:avmfb7490 "AVMFRITZ FritzBox"
 	asyncTimeout=15000, 
 	syncTimeout=10000 ] 
 {
-    Thing FRITZ_Powerline_546E 08_96_D7_F3_8E_AA "FRITZ!Powerline 546E #x" [ ain="08:96:D7:F3:8E:AA" ]
+    Thing FRITZ_Powerline_546E 08_96_D7_F3_8E_AA "FRITZ!Powerline 546E" [ ain="08:96:D7:F3:8E:AA" ]
 }
