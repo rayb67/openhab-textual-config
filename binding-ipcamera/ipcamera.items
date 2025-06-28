@@ -2,8 +2,8 @@ Group	gIPCamera						"IPCamera Instar"									(AUS_Hof)
 
 Switch	Camera_Hof_Alarm_ffmpegMotion	"1-Kamera Motion Alarm (detect)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
 { channel="ipcamera:instar:hof:ffmpegMotionAlarm" }
-Switch	Camera_Hof_Alarm_Enable_Motion	"1-Kamera Motion Alarm (on/off)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
-{ channel="ipcamera:instar:hof:enableMotionAlarm" }
+//Switch	Camera_Hof_Alarm_Enable_Motion	"1-Kamera Motion Alarm (on/off)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+//{ channel="ipcamera:instar:hof:enableMotionAlarm" }
 Switch	Camera_Hof_Start_HLS_Stream		"1-Kamera Start HLS Stream (on/off)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
 { channel="ipcamera:instar:hof:startStream" }
 Number	Camera_Hof_MP4_Recording		"1-Kamera MP4 Recording"			<Time>				(gIPCamera,AUS_Hof)	["Camera"]

@@ -25,7 +25,6 @@ if [ ! -d $FILE  ]; then
 fi
 
 cd ${DATAPATH}
-pwd
 
 cp ${OPENHAB_SETUP_CONF}/items/mqtt_instar.items .
 cp ${OPENHAB_SETUP_CONF}/things/mqtt_instar.things .

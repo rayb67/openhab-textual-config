@@ -1,7 +1,7 @@
-ON=active
-OFF=inactive
-1=active
-0=inactive
+ON=ON
+OFF=OFF
+1=ON
+0=Off
 undefined=unknown
 -=unknown
 NULL=null

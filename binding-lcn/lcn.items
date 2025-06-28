@@ -33,7 +33,7 @@ Number:Temperature		lcn_Temp_EG_WohnzFlur			"Temp Flur"		<temperature>	(EG_Wohnz
 {channel="lcn:module:bus:S000M020:variable#1", stateDescription=" "[ pattern="%.1f °C"] }
 Number:Temperature		lcn_Temp_EG_WohnzGarten			"Temp Garten"		<temperature>	(EG_Wohnz,gVariablen,gHeizung_Ist)		["Temperature","Measurement"]
 {channel="lcn:module:bus:S000M023:variable#2", stateDescription=" "[ pattern="%.1f °C"] }
-Switch					Steckdose_EG_Wohnz_Leibung		"SD Leibung [MAP(lcn.map):%s]"	<poweroutlet>	(EG_Wohnz,gSteckdosenEG)	["WallSwitch"]
+Switch					Steckdose_EG_Wohnz_Leibung		"SD Leibung [MAP(lcn.map):%s]"	<poweroutlet>	(EG_Wohnz,gSteckdosenEG)	["Switch"]
 {channel="lcn:module:bus:S000M023:relay#1" }
 
 // ------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ Switch					Steckdose_EG_Wohnz_Leibung		"SD Leibung [MAP(lcn.map):%s]"	<poweroutl
 
 // ------------------------------------------------------------------------------------
 // M025 / UPS R1U   (EG Wohnzimmer > Steckdose TV)
-Switch					Steckdose_EG_Wohnz_Fernseher	"SD Fernseher [MAP(lcn.map):%s]"	<poweroutlet>	(EG_Wohnz,gSteckdosenEG)	["WallSwitch"]
+Switch					Steckdose_EG_Wohnz_Fernseher	"SD Fernseher [MAP(lcn.map):%s]"	<poweroutlet>	(EG_Wohnz,gSteckdosenEG)	["Switch"]
 { channel="lcn:module:bus:S000M025:relay#1" }
 
 // M031 / UPS GT12  (EG Kueche > Terasse)
@@ -118,8 +118,20 @@ Number				lcn_SetTe_EGDiele					"Soll Diele"		<temperature>	(EG_Flur,gHeizung_So
 }
 Number:Temperature	lcn_Temp_EG_Haustuer				"Temp Haustuer"			<temperature>		(EG_Flur,gVariablen,gHeizung_Ist)		["Temperature","Measurement"]
 {channel="lcn:module:bus:S000M070:variable#2", stateDescription=" "[ pattern="%.1f °C"] }
-Switch				StatusCooling				"Status Kuehlung [MAP(lcn.map):%s]"			<contact>	(gVariablen)		["Contact","OpenState"]
+
+// Im Sommer kann ueber die Waermepumpe eine Kuehlfunktion aktiviert werden.
+// Damit soll die Temperatur im Haus vorallem an heissen Tagen gesenkt werden.
+// Die Waermepumpe hat einen Relais Kontakt. 
+// Dieser Kontakt wird über ein Eltako Relais auf ein LCN-BT4H (M160Taster-A2) 
+// geführt wird. 
+// Damit wird innerhalb des LCN Bus, die Regler (!) fuer die Heizungsventile gesteuert.
+// Die Regler kennen 2 Funktion a) Heizen und b) Kuehlen. Die Hysterese ist bei kuehlen umgekehrt.
+//
+// Der Taster setzt zusaetzlich im LCN Bus das Relais M000070#1, welcher
+// ueber das Item lcn_status_Cooling im openHAB angezeigt wird. 
+Switch				lcn_status_Cooling				"Status Kuehlung [MAP(lcn.map):%s]"			<contact>	(gVariablen)		["Contact","OpenState"]
 {channel="lcn:module:bus:S000M070:relay#1"}
+
 Switch              StatusGuestMode				"Status Gaeste [MAP(lcn.map):%s]"			<contact>   (gVariablen,OG_Gaeste)		["Contact","OpenState"]
 {channel="lcn:module:bus:S000M070:relay#2"}
 Switch              StatusParty					"Status Party [MAP(lcn.map):%s]"			<contact>	(gVariablen)			["Contact","OpenState"]
@@ -154,28 +166,35 @@ Switch				Steckdose_AUS_Haustuer		"Haustuer [MAP(lcn.map):%s]"			<poweroutlet>		
 { channel="lcn:module:bus:S000M120:relay#4" }
 Switch				Steckdose_AUS_Bogen			"Bogen [MAP(lcn.map):%s]"				<poweroutlet>		(AUS_Terasse, gSteckdosenAUS)	["Switch"]
 { channel="lcn:module:bus:S000M120:relay#2" }
-Switch				Steckdose_AUS_Schleuse		"Schleuse [MAP(lcn.map):%s]"			<poweroutlet>		(AUS_Garten, gSteckdosenAUS)	["Switch"]
+Switch				lcn_relay_AUS_Schleuse		"Schleuse [MAP(lcn.map):%s]"			<poweroutlet>		(AUS_Garten, gSteckdosenAUS)	["Switch"]
 { channel="lcn:module:bus:S000M120:relay#7" }
-Switch				Steckdose_AUS_Tuer_Terasse	"Terasse [MAP(lcn.map):%s]"				<poweroutlet> 		(AUS_Terasse, gSteckdosenAUS)	["Switch"]
+Switch				lcn_relay_AUS_Tuer_Terasse	"Terasse [MAP(lcn.map):%s]"				<poweroutlet> 		(AUS_Terasse, gSteckdosenAUS)	["Switch"]
 { channel="lcn:module:bus:S000M120:relay#8" }
 
 // ------------------------------------------------------------------------------------
 // M125 / SH WIH   (EG Technik UV-Unten) Wetterstation
-Switch				RelaisSperreLoesen			"Relais Sperren loesen [MAP(lcn.map):%s]"	<door>	(EG_Flur)						["Switch","OpenState"]
-{ channel="lcn:module:bus:S000M125:relay#4" }
-Switch				Steckdose_OG_Gaeste			"Fenster [MAP(lcn.map):%s]"				<poweroutlet>		(OG_Gaeste,gSteckdosenOG,LightS)	["Switch"] 
-{ channel="lcn:module:bus:S000M125:relay#2" }
-Switch				Steckdose_OG_Buero			"Fenster [MAP(lcn.map):%s]"				<poweroutlet>		(OG_Buero,LightS)					["Switch"]
+Switch				lcn_relay_OG_Buero			"Fenster [MAP(lcn.map):%s]"				<poweroutlet>		(OG_Buero,LightS)		["Switch"]
 { channel="lcn:module:bus:S000M125:relay#1" }
-Contact				WetterRegen					"LCN Contact Regen [MAP(lcn.map):%s]"	<water>				(gWetter)							["Switch","OpenState"]
+
+Switch				lcn_relay_OG_Gaeste			"Fenster [MAP(lcn.map):%s]"				<poweroutlet>		(OG_Gaeste,gSteckdosenOG,LightS)	["Switch"] 
+{ channel="lcn:module:bus:S000M125:relay#2" }
+
+Switch				lcn_sperre_Rollo11ms		"Sperre Rollo 11ms [MAP(lcn.map):%s]"	<switch>			(gWetter)			["Switch","Blinds"]
+{channel="lcn:module:bus:S000M125:relay#7"}
+
+Switch				lcn_sperre_loesen			"Relais Sperren loesen [MAP(lcn.map):%s]"	<door>			(EG_Flur)			["Switch","OpenState"]
+{ channel="lcn:module:bus:S000M125:relay#4" }
+
+Contact				WetterRegen					"LCN Contact Regen [MAP(lcn.map):%s]"	<water>				(gWetter)			["Switch","OpenState"]
 {channel="lcn:module:bus:S000M125:binarysensor#8"}
+
 Switch				WetterDaemmerung			"LCN Contact Daemmerung"				<switch>			(gWetter) 			["Switch"]
 {channel="lcn:module:bus:S000M125:relay#5"}
 
 Contact				SchalterWetterDaemmerungOH	"Daemmerung OH"							<switch>			(gWetter) 			["Switch","OpenState"]
 {channel="lcn:module:bus:S000M125:relay#6"}
 
-Switch				StatusSperreRollo			"Sperre Rollo [MAP(lcn.map):%s]"		<switch>			(AUS_Hof)			["Switch","Blinds"]
+Switch				lcn_sperre_Rollo16ms			"Sperre Rollo 16ms [MAP(lcn.map):%s]"		<switch>		(gWetter)			["Switch","Blinds"]
 {channel="lcn:module:bus:S000M125:relay#7"}
 
 Switch				StatusRegen					"Regen [MAP(lcn.map):%s]"				<switch>			(gWetter) 			["Switch","OpenState"]	
@@ -277,8 +296,10 @@ Switch			StatusTuerWohn				"Contact Wohntuer [MAP(lcn.map):%s]"			<contact>	    
 {channel="lcn:module:bus:S000M150:relay#4"}
 Switch			StatusFeuer					"Contact Feuer [MAP(lcn.map):%s]"				<contact>	    (gMisc)             ["Switch"]   
 {channel="lcn:module:bus:S000M150:relay#5"}
+
 Switch			ControlAutomatikBewegungsmelder	"Contact Automatik Bewegungsmelder[MAP(lcn.map):%s]"	<motion>  (gMisc) 	["Switch","MotionDetector"]
 {channel="lcn:module:bus:S000M150:relay#6"}
+
 Switch			StatusWeihnacht				"Weihnacht (Ein/Aus) [MAP(lcn.map):%s]"			<contact>	(gMisc)		["Switch"]   
 {channel="lcn:module:bus:S000M150:relay#7"}
 Switch			ControlAutomatikLicht		"Contact Automatik Licht [MAP(lcn.map):%s]"		<contact>	(gMisc)		["Switch"]
@@ -309,46 +330,48 @@ Switch			StatusMusicBadSender2		"Music Bad Top40 (AB) [MAP(lcn.map):%s]"		<music
 // ------------------------------------------------------------------------------------
 // M152 / SH+       (EG Technik UV-Unten)
 // BMI auf Taste 152 B5 R7 EIN / B6 R7 AUS
-Switch				LCN_Relay_Bewegung_OG_Bad			"Bewegung OG Bad [MAP(lcn.map):%s]"			<motion>	(OG_Bad,gVariablen)		["Presence","MotionDetector"]
+Switch				lcn_status_Bewegung_OG_Bad		"Bewegung OG Bad [MAP(lcn.map):%s]"			<motion>	(OG_Bad,gVariablen)		["Presence","MotionDetector"]
 {channel="lcn:module:bus:S000M152:relay#7"}
-Switch				LCN_Keylock_Bewegung_OGBad	"KeyLock 152B5 Bewegungsmelder OG Bad"		<switch>	(AUS_Hof)
+Switch				lcn_keylock_Bewegung_OG_Bad		"KeyLock 152B5 Bewegungsmelder OG Bad"		<switch>	(OG_Bad)
 {channel="lcn:module:bus:S000M152:keylocktableb#5"}
 
 
 // BMI auf Taste 151 B4 LANG/LOS - C5 R8 EIN / C6 R8 AUS
-Switch				LCN_Relay_Bewegung_EG_Diele		"Bewegung EG Diele [MAP(lcn.map):%s]"		<motion>	(EG_Flur,gVariablen)	["Presence","MotionDetector"]
+Switch				lcn_status_Bewegung_EG_Diele		"Bewegung EG Diele [MAP(lcn.map):%s]"		<motion>	(EG_Diele,gVariablen)	["Presence","MotionDetector"]
 {channel="lcn:module:bus:S000M151:relay#8"}
-Switch				LCN_Keylock_Bewegung_EGDiele	"KeyLock 151B4 Bewegungsmelder EG Diele"	<switch>	(AUS_Hof)
+Switch				lcn_keylock_Bewegung_EG_Diele	"KeyLock 151B4 Bewegungsmelder EG Diele"	<switch>	(EG_Diele)
 {channel="lcn:module:bus:S000M151:keylocktableb#4"}
 
 // BMI auf Taste 152 B7 R8 EIN / B7 R8 AUS
-Switch				LCN_Relay_Bewegung_OG_Flur		"Bewegung OG Flur [MAP(lcn.map):%s]"		<motion>	(OG_Flur,gVariablen)	["Presence","MotionDetector"]
+Switch				lcn_status_Bewegung_OG_Flur		"Bewegung OG Flur [MAP(lcn.map):%s]"		<motion>	(OG_Flur,gVariablen)	["Presence","MotionDetector"]
 {channel="lcn:module:bus:S000M152:relay#8"}
-Switch				LCN_Keylock_Bewegung_OGFlur	"KeyLock 152B7 Bewegungsmelder OG Flur"		<switch>	(AUS_Hof)
+
+Switch				lcn_keylock_Bewegung_OG_Flur	"KeyLock 152B7 Bewegungsmelder OG Flur"		<switch>	(OG_Flur)
 {channel="lcn:module:bus:S000M152:keylocktableb#7"}
 
 // BMI auf Taste 155 A1 LANG A6-kurz Ein R7 EIn / Los A5-kurz Aus 
-Switch				LCN_Relay_Bewegung_EG_Hof			"Bewegung EG Hof [MAP(lcn.map):%s]"			<motion>	(AUS_Hof)				["Persence","MotionDetector"]
+Switch				lcn_status_Bewegung_Aus_Hof			"Bewegung Aus Hof [MAP(lcn.map):%s]"			<motion>	(AUS_Hof)				["Persence","MotionDetector"]
 {channel="lcn:module:bus:S000M155:relay#7"}
-Switch				LCN_Keylock_Bewegung_AUSHof	"KeyLock 155A1 Bewegungsmelder AUS Hof"		<switch>	(AUS_Hof)
+
+Switch				lcn_keylock_Bewegung_AUS_Hof	"KeyLock 155A1 Bewegungsmelder AUS Hof"		<switch>	(AUS_Hof)
 {channel="lcn:module:bus:S000M155:keylocktablea#1"}
 
 // BMI auf Taste 41 B4 LANG R7
-Switch				LCN_Relay_Bewegung_EG_GaesteWC	"Bewegung EG GaesteWC [MAP(lcn.map):%s]"	<motion>	(EG_WC,gVariablen)		["Presence","MotionDetector"]
+Switch				lcn_status_Bewegung_EG_GaesteWC	"Bewegung EG GaesteWC [MAP(lcn.map):%s]"	<motion>	(EG_WC,gVariablen)		["Presence","MotionDetector"]
 {channel="lcn:module:bus:S000M041:relay#7"}
-Switch				LCN_Keylock_Bewegung_EGGaesteWC	"KeyLock 041B4 Bewegungsmelder EG WC"	<switch>	(EG_WC)
+Switch				lcn_keylock_Bewegung_EG_GaesteWC	"KeyLock 041B4 Bewegungsmelder EG WC"	<switch>	(EG_WC)
 {channel="lcn:module:bus:S000M041:keylocktableb#4"}
 
 // BMI auf Taste 41 B6 LANG R8
-Switch				LCN_Relay_Bewegung_EG_Schleuse	"Bewegung EG Schleuse [MAP(lcn.map):%s]"	<motion>	(EG_Schleuse,gVariablen)	["Presence","MotionDetector"]
+Switch				lcn_status_Bewegung_EG_Schleuse	"Bewegung EG Schleuse [MAP(lcn.map):%s]"	<motion>	(EG_Schleuse,gVariablen)	["Presence","MotionDetector"]
 {channel="lcn:module:bus:S000M041:relay#8"}
-Switch				LCN_Keylock_Bewegung_EGSchleuse	"KeyLock 041B6 Bewegungsmelder EG Schleuse"	<switch>	(EG_Schleuse)
+Switch				lcn_keylock_Bewegung_EG_Schleuse	"KeyLock 041B6 Bewegungsmelder EG Schleuse"	<switch>	(EG_Schleuse)
 {channel="lcn:module:bus:S000M041:keylocktableb#6"}
 
 // BMI auf Taste 251 B4 LANG R8
-Switch				LCN_Relay_Bewegung_EG_Garage		"Bewegung EG Garage [MAP(lcn.map):%s]"		<motion>	(EG_Garage,gBMI,gVariablen)	["Presence","MotionDetector"]
+Switch				lcn_status_Bewegung_EG_Garage		"Bewegung EG Garage [MAP(lcn.map):%s]"		<motion>	(EG_Garage,gBMI,gVariablen)	["Presence","MotionDetector"]
 {channel="lcn:module:bus:S000M251:relay#8"}
-Switch				LCN_Keylock_Bewegung_EGGarage	"KeyLock 251B4 Bewegungsmelder EG Garage"	<switch>	(EG_Garage)
+Switch				lcn_keylock_Bewegung_EG_Garage	"KeyLock 251B4 Bewegungsmelder EG Garage"	<switch>	(EG_Garage)
 {channel="lcn:module:bus:S000M251:keylocktableb#4"}
 
 Switch				Licht_EG_Abstellraum		"Abstell [MAP(lcn.map):%s]"							(EG_Abstell,gLichtEG,LightS)    ["Lightblub"] 
@@ -359,9 +382,9 @@ Switch				Licht_EG_WC_Decke			"WC [MAP(lcn.map):%s]"								(EG_WC,gLichtEG,Ligh
 
 // ------------------------------------------------------------------------------------
 // M155 / SH+ R4H BT4H/R (EG Technik UV-Unten)
-Switch				Steckdose_OG_Kind2			"Ecke [MAP(lcn.map):%s]"			<poweroutlet>	(OG_Kind,gSteckdosenOG,LightS)	["Switch"]   
+Switch				lcn_relay_OG_Kind2			"Ecke [MAP(lcn.map):%s]"			<poweroutlet>	(OG_Kind,gSteckdosenOG,LightS)	["Switch"]   
 {channel="lcn:module:bus:S000M155:relay#1" }
-Switch				Steckdose_OG_Kind1			"Bett [MAP(lcn.map):%s]"			<poweroutlet>	(OG_Kind,gSteckdosenOG,LightS)	["Switch"]   
+Switch				lcn_relay_OG_Kind1			"Bett [MAP(lcn.map):%s]"			<poweroutlet>	(OG_Kind,gSteckdosenOG,LightS)	["Switch"]   
 {channel="lcn:module:bus:S000M155:relay#2" }
 Switch				Licht_OG_Gaeste				"Decke [MAP(lcn.map):%s]"				<light>		(OG_Gaeste,gLichtOG,LightD)		["Lightblub"]   
 {channel="lcn:module:bus:S000M155:relay#3" }
@@ -373,7 +396,8 @@ Dimmer				Licht_OG_Schlafz			"Decke [%d %%]"							<light>		(OG_Schlafz, gLichtO
 {channel="lcn:module:bus:S000M155:output#2" }	// RALF - Dip-Schalter 1 auf off
 Switch				Licht_OG_Kind				"Decke [MAP(lcn.map):%s]"							(OG_Kind, gLichtOG,LightD)		["Lightblub"]   
 {channel="lcn:module:bus:S000M155:output#1" }
-Switch				StatusSperreBewegungsmelder	"Sperre Bewegungsm. [MAP(lcn.map):%s]"  <contact>	(AUS_Hof)			["Presence"]   
+
+Switch				lcn_sperre_Bewegungsmelder	"Sperre Bewegungsm. Hof [MAP(lcn.map):%s]"  <contact>	(AUS_Hof)		["Presence"]
 {channel="lcn:module:bus:S000M155:relay#8"}
 
 //Switch SendKeySperreBewegungsmelder   "Sperre Hof Bewegungsm."            {lcn="[ON:lcn_pi:KEYS.S0.M155.A2.1s]"}  HIT
@@ -457,15 +481,15 @@ Rollershutter	Rollo_EG_WZ_Fenster         "zRo Fenster"			<rollershutter>		(EG_W
 {channel="lcn:module:bus:S000M180:rollershutterrelay#3"}
 Rollershutter	Rollo_EG_WZ_Garten          "zRo Garten"				<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
 {channel="lcn:module:bus:S000M180:rollershutterrelay#4"} 
-Switch			Licht_EG_Technik			"Licht [MAP(lcn.map):%s]"								(EG_Technik,gLichtEG,LightS)	["Lightblub"]
+Switch			Licht_EG_Technik			"Licht [MAP(lcn.map):%s]"						(EG_Technik,gLichtEG,LightS)	["Lightblub"]
 {channel="lcn:module:bus:S000M180:output#1" }
 
 
 // ------------------------------------------------------------------------------------
 // M185 / SH R8H   (EG Technik UV-Unten) Rollokontakte
-Dimmer			Licht_OG_Schlafz_Rechts		"Bett Rechts [%d %%]"	<light>				(OG_Schlafz,gLichtOG,LightD)		["Setpoint","Lightblub"]
+Dimmer			Licht_OG_Schlafz_Rechts		"Bett Rechts [%d %%]"	<light>				(OG_Schlafz,gLichtOG,LightD)	["Setpoint","Lightblub"]
 {channel="lcn:module:bus:S000M185:output#1"}
-Dimmer			Licht_OG_Schlafz_Links		"Bett Links [%d %%]"	<light>				(OG_Schlafz,gLichtOG,LightD)		["Setpoint","Lightblub"]
+Dimmer			Licht_OG_Schlafz_Links		"Bett Links [%d %%]"	<light>				(OG_Schlafz,gLichtOG,LightD)	["Setpoint","Lightblub"]
 {channel="lcn:module:bus:S000M185:output#2"}
 Rollershutter	Rollo_OG_BadToilette		"zRo Toilette"			<rollershutter>		(OG_Bad,gRoll_OG_Bad)				["Blinds"]
 {channel="lcn:module:bus:S000M185:rollershutterrelay#1"}
@@ -580,7 +604,7 @@ Number:Temperature  lcn_Temp_OG_SchlafLinks        "Temp Schlafz Links"    <temp
 // M233 / UPS GT12   (OG Schlafzimmer)
 Number:Temperature  lcn_Temp_OG_SchlafTuer		"Temp Schlafz Tuer"	<temperature> (OG_Schlafz,gVariablen,gHeizung_Ist)		["Temperature","Measurement"]
 {channel="lcn:module:bus:S000M233:variable#2", stateDescription=" "[ pattern="%.1f °C"] }  //    {lcn="[lcn_pi:VAR_VALUE.S0.M233.2.Celsius]"}
-Switch				Steckdose_OG_Schlafz_Fenster	"Fenster [MAP(lcn.map):%s]"		<poweroutlet>   (OG_Schlafz,gSteckdosenOG,LightS)	["WallSwitch"]
+Switch				lcn_relay_OG_Schlafz_Fenster	"Fenster [MAP(lcn.map):%s]"		<poweroutlet>   (OG_Schlafz,gSteckdosenOG,LightS)	["Switch"]
 { channel="lcn:module:bus:S000M233:output#2" }
 
 
@@ -638,15 +662,15 @@ Number:Temperature		lcn_Temp_EG_Garage			"Temp Garage"		<temperature>	(EG_Garage
 //Rollershutter GaragenTor                "Garagentor LCN"    ( EG_Garage)    
 
 // .... ueber lcn_bewaesserung
-//Switch					Steckdose_EG_Garage_Ecke	"Garage Ecke/Pumpe [MAP(lcn.map):%s]"	<poweroutlet>   (gWasser,EG_Garage, gSteckdosenEG)  ["WallSwitch"]
-//{ channel="lcn:module:bus:S000M253:relay#4" }
-Switch					Steckdose_EG_Garage_Regal	"Garage Regal[MAP(lcn.map):%s]"	<poweroutlet>   (EG_Garage, gSteckdosenEG)	["WallSwitch"]
+Switch		lcn_relay_Wasser_Trafo	"Garage Ecke/Pumpe/Trafo"	<poweroutlet>   (gWasser,EG_Garage,gSteckdosenEG,gWasser)  ["Switch"]
+{ channel="lcn:module:bus:S000M253:relay#4" }
+Switch					lcn_relay_EG_Garage_Regal	"Garage Regal"	<poweroutlet>   (EG_Garage, gSteckdosenEG)	["Switch"]
 { channel="lcn:module:bus:S000M253:relay#5" }
-Switch					Licht_AUS_Garage_Hinten		"Garage Hinten [MAP(lcn.map):%s]"	<poweroutlet>	(AUS_Garten, gLichtAUS)    ["Lightblub"]
+Switch					Licht_AUS_Garage_Hinten		"Garage Hinten"	<poweroutlet>	(AUS_Garten, gLichtAUS)    ["Lightblub"]
 { channel="lcn:module:bus:S000M253:relay#6" }
-Switch					Licht_AUS_Boden_Terasse		"Boden [MAP(lcn.map):%s]"		<light>			(AUS_Terasse, gLichtAUS)    ["Lightblub"]
+Switch					Licht_AUS_Boden_Terasse		"Boden"		<light>			(AUS_Terasse, gLichtAUS)    ["Lightblub"]
 { channel="lcn:module:bus:S000M253:relay#7" }
-Switch 					Steckdose_AUS_Garage_Hinten	"Garage [MAP(lcn.map):%s]"		<light> 		(AUS_Garten, gSteckdosenAUS)    ["WallSwitch"]
+Switch 					lcn_relay_AUS_Garage_Hinten	"Garage"		<light> 		(AUS_Garten, gSteckdosenAUS)    ["Switch"]
 { channel="lcn:module:bus:S000M253:relay#8" }
 
 // ------------------------------------------------------------------------------------
@@ -667,33 +691,33 @@ Group gLed              "LEDs"							<light>
 // Das macht nur sinn, wenn man dann im OH diese Funktion starten moechte.
 // Oder man moechte diese Funktion generell ausschalten.
 // 02.12.2021 nur im V3
-//String LCN_LED_Status_M150_04			"OH Da Trigger [%s]"			(gLed)	    { channel="lcn:module:bus:S000M150:led#4"}
-//tring LCN_LED_Status_M150_05			"OH Da Weihnachten [%s]"		(gLed)	    { channel="lcn:module:bus:S000M150:led#5"}
+//String lcn_led_Status_M150_04			"OH Da Trigger [%s]"			(gLed)	    { channel="lcn:module:bus:S000M150:led#4"}
+//tring lcn_led_Status_M150_05			"OH Da Weihnachten [%s]"		(gLed)	    { channel="lcn:module:bus:S000M150:led#5"}
 // LED 05 ist im Wechsel zu LED06. 
-//String LCN_LED_Status_M150_06			"OH Da kein Weihnachten [%s]"	(gLed)	    { channel="lcn:module:bus:S000M150:led#6"}
+//String lcn_led_Status_M150_06			"OH Da kein Weihnachten [%s]"	(gLed)	    { channel="lcn:module:bus:S000M150:led#6"}
 // Das laeuft alles schon im LCN (LED 09-12)
-//String LCN_LED_Status_Block_Dammerung	"LCN Da automatik [%s]"			(gLed)      { channel="lcn:module:bus:S000M150:led#9"}
-//String LCN_LED_Status_M150_10			"LCN Da Trigger [%s]"			(gLed)	    { channel="lcn:module:bus:S000M150:led#10"}
-String LCN_LED_Status_M150_11			"LCN Da Weihnachten [%s]"		(gLed)	
+//String lcn_led_Status_Block_Dammerung	"LCN Da automatik [%s]"			(gLed)      { channel="lcn:module:bus:S000M150:led#9"}
+//String lcn_led_Status_M150_10			"LCN Da Trigger [%s]"			(gLed)	    { channel="lcn:module:bus:S000M150:led#10"}
+String lcn_led_Status_M150_11			"LCN Da Weihnachten [%s]"		(gLed)	
 { channel="lcn:module:bus:S000M150:led#11"}
 // LED 12 ist im Wechsel zu LED12. Damit wird ueber die Tasten C... ein andere Logik gefahren
-//Number LCN_LED_Status_M150_12			"LCN Da kein Weihnachten [%s]"	(gLed)	    { channel="lcn:module:bus:S000M150:led#12"}
+//Number lcn_led_Status_M150_12			"LCN Da kein Weihnachten [%s]"	(gLed)	    { channel="lcn:module:bus:S000M150:led#12"}
 
 
 // LEDs von der Wetterstation... einfach nur so
 /*
-Number LCN_LED_M125_01			"M125 LED 01 [%s]"		(gLed)	    { channel="lcn:module:bus:S000M125:led#1"}
-Number LCN_LED_M125_02			"M125 LED 02 [%s]"		(gLed)	    { channel="lcn:module:bus:S000M125:led#2"}
-Number LCN_LED_M125_03			"M125 LED 03 [%s]"		(gLed)	    { channel="lcn:module:bus:S000M125:led#3"}
-Number LCN_LED_M125_04			"M125 LED 04 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#4"}
-Number LCN_LED_M125_05			"M125 LED 05 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#5"}
-Number LCN_LED_M125_06			"M125 LED 06 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#6"}
-Number LCN_LED_M125_07			"M125 LED 07 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#7"}
-Number LCN_LED_M125_08			"M125 LED 08 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#8"}
-Number LCN_LED_M125_09			"M125 LED 09 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#9"}
-Number LCN_LED_M125_10			"M125 LED 10 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#10"}
-Number LCN_LED_M125_11			"M125 LED 11 [%s]"      (gLed)	   { channel="lcn:module:bus:S000M125:led#11"}
-Number LCN_LED_M125_12			"M125 LED 12 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#12"}
+Number lcn_led_M125_01			"M125 LED 01 [%s]"		(gLed)	    { channel="lcn:module:bus:S000M125:led#1"}
+Number lcn_led_M125_02			"M125 LED 02 [%s]"		(gLed)	    { channel="lcn:module:bus:S000M125:led#2"}
+Number lcn_led_M125_03			"M125 LED 03 [%s]"		(gLed)	    { channel="lcn:module:bus:S000M125:led#3"}
+Number lcn_led_M125_04			"M125 LED 04 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#4"}
+Number lcn_led_M125_05			"M125 LED 05 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#5"}
+Number lcn_led_M125_06			"M125 LED 06 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#6"}
+Number lcn_led_M125_07			"M125 LED 07 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#7"}
+Number lcn_led_M125_08			"M125 LED 08 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#8"}
+Number lcn_led_M125_09			"M125 LED 09 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#9"}
+Number lcn_led_M125_10			"M125 LED 10 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#10"}
+Number lcn_led_M125_11			"M125 LED 11 [%s]"      (gLed)	   { channel="lcn:module:bus:S000M125:led#11"}
+Number lcn_led_M125_12			"M125 LED 12 [%s]"      (gLed)	    { channel="lcn:module:bus:S000M125:led#12"}
 */
 
 /*
@@ -764,54 +788,41 @@ Switch					OhStatusRolloBueroStrasse	"Ro Buero Strasse Status"				<info>			(gMis
 Switch					OhFrauBesonderheitenStatus	"Status Frau Besonderheiten"	// in der Rule FrauBesonderheiten
 Number:Dimensionless	Oh_Regen_count				"Regen minuten"							<rain>			(gMisc)
 
-Switch					OhControlRolloBueroStrasse	"Ro Buero Strasse Control E/A"			<sun>			(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhUrlaub					"Urlaub E/A"							<sun>			(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhTimerHeizung				"Timer Heitzung auf 43 E/A"				<temperature>	(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhHomeOffice				"Home Office E/A"						<home>			(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhAbwesend					"Abwesend E/A"							<info>			(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhDaemmerungRolloDeko		"Daemmerung Rollo Deko E/A"				<info>			(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhFrauBesonderheitenOnOff	"Gasts Ausnahmen E/A"					<info>			(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhRolloKuecheDaemmerung		"Ro Kueche block Dammerung E/A"			<info>			(gMisc,OG_Buero)	["WallSwitch"]
-Switch					OhBadMusicAutomatic			"Musik Bad automatik E/A"				<player>		(gMisc,OG_Bad)		["WallSwitch"]
-Switch					Oh_Regen_in_24h				"Regen in den letzten 24h"				<rain>			(gMisc)				["WallSwitch"]	
-Switch					OhHoliday					"Public Holiday (Status)"				<info>			(gMisc)				["WallSwitch"]
+Switch					OhControlRolloBueroStrasse	"Ro Buero Strasse Control E/A"			<sun>			(gMisc,OG_Buero)	["Switch"]
+Switch					OhUrlaub					"Urlaub E/A"							<sun>			(gMisc,OG_Buero)	["Switch"]
+Switch					OhTimerHeizung				"Timer Heitzung auf 43 E/A"				<temperature>	(gMisc,OG_Buero)	["Switch"]
+Switch					OhHomeOffice				"Home Office E/A"						<home>			(gMisc,OG_Buero)	["Switch"]
+Switch					OhAbwesend					"Abwesend E/A"							<info>			(gMisc,OG_Buero)	["Switch"]
+Switch					OhDaemmerungRolloDeko		"Daemmerung Rollo Deko E/A"				<info>			(gMisc,OG_Buero)	["Switch"]
+Switch					OhFrauBesonderheitenOnOff	"Gasts Ausnahmen E/A"					<info>			(gMisc,OG_Buero)	["Switch"]
+Switch					OhRolloKuecheDaemmerung		"Ro Kueche block Dammerung E/A"			<info>			(gMisc,OG_Buero)	["Switch"]
+Switch					OhBadMusicAutomatic			"Musik Bad automatik E/A"				<player>		(gMisc,OG_Bad)		["Switch"]
+Switch					Oh_Regen_in_24h				"Regen in den letzten 24h"				<rain>			(gMisc)				["Switch"]	
+Switch					OhHoliday					"Public Holiday (Status)"				<info>			(gMisc)				["Switch"]
 
 // Automatic durch Bewegungsmelder festhalten bzw. abhaengig steuern
 // Das ist nur ein Status, der nicht manuell gesetzt wird
-Switch					StatusAutomaticSPBad         "SP Bad Automatic aktiv"
-
-// Im Sommer kann ueber die Waermepumpe eine Kuehlfunktion aktiviert werden.
-// Damit soll die Temperatur im Haus vorallem an heissen Tagen gesenkt werden.
-// Die Waermepumpe hat einen Relais Kontakt. 
-// Dieser Kontakt wird über ein Eltako Relais auf ein LCN-BT4H (M160Taster-A2) 
-// geführt wird. 
-// Damit wird innerhalb des LCN Bus, die Regler (!) fuer die Heizungsventile gesteuert.
-// Die Regler kennen 2 Funktion a) Heizen und b) Kuehlen. Die Hysterese ist bei kuehlen umgekehrt.
-//
-// Der Taster setzt zusaetzlich im LCN Bus das Relais M000070#1, welcher
-// ueber das Item StatusCooling im openHAB angezeigt wird. 
-
-Contact					KuehlungState				"Kuehlung aktiv"				<info>			(gMisc)		
+Switch					StatusAutomaticSPBad         "SP Bad Automatic aktiv"				(OG_Bad)		["Switch"]
 
 // Die folgenden Funktionen 
 // wird in lcnAction.rules genutzt
-Switch		SendKeyWeihnachtenMorgensEin	"Weihnachten morgens ein"		<info>			(gMisc)         ["WallSwitch"]	
-Switch		SendKeyWeihnachtenMorgensAus	"Weihnachten morgens aus"		<info>			(gMisc)         ["WallSwitch"]
-Switch		SendKeySperreRolloOff			"Ro Sperre >AUS< wegen Wind"	<info>			(gMisc)         ["WallSwitch"]
-Switch		SendKeySperreRolloOGGaeste		"Ro Sperre OG Gaeste"			<info>			(gMisc)         ["WallSwitch"]
+Switch		lcn_action_WeihnachtenMorgensEin	"Weihnachten morgens ein"		<info>			(gMisc)         ["Switch"]	
+Switch		lcn_action_WeihnachtenMorgensAus	"Weihnachten morgens aus"		<info>			(gMisc)         ["Switch"]
+Switch		SendKeySperreRolloOff			"Ro Sperre >AUS< wegen Wind"	<info>			(gMisc)         ["Switch"]
+Switch		SendKeySperreRolloOGGaeste		"Ro Sperre OG Gaeste"			<info>			(gMisc)         ["Switch"]
 
 // Die folgenden Elemente werden über Actins/Rules benutzt
-Switch		SendKeyOGFlurDachFZu			"OGFlurDachFZu"			(OG_Flur)
-Switch		SendKeyOGFlurDachFAuf		"OGFlurDachFAuf"		(OG_Flur)
-Switch		SendKeyOGFlurDachFRunter		"OGFlurDachFRunter"		(OG_Flur)
-Switch		SendKeyOGFlurDachFRauf		"OGFlurDachFRauf"		(OG_Flur)
+Switch		lcn_action_OGFlurDachFZu			"OGFlurDachFZu"			(OG_Flur)			["Switch"]
+Switch		lcn_action_OGFlurDachFAuf			"OGFlurDachFAuf"		(OG_Flur)			["Switch"]
+Switch		lcn_action_OGFlurDachFRunter		"OGFlurDachFRunter"		(OG_Flur)			["Switch"]
+Switch		lcn_action_OGFlurDachFRauf			"OGFlurDachFRauf"		(OG_Flur)			["Switch"]
 
-Switch		SendKeyOGKindDachFZu         "OG KindDachF Zu"		(OG_Kind)
-Switch		SendKeyOGKindDachFAuf        "OG KindDachF Auf"		(OG_Kind)
-Switch		SendKeyOGKindDachFRunter		"OG KindDachF Runter"	(OG_Kind)
-Switch		SendKeyOGKindDachFRauf		"OG KindDachF Rauf"		(OG_Kind)
+Switch		lcn_action_OGKindDachFZu			"OG KindDachF Zu"		(OG_Kind)			["Switch"]
+Switch		lcn_action_OGKindDachFAuf			"OG KindDachF Auf"		(OG_Kind)			["Switch"]
+Switch		lcn_action_SendKeyOGKindDachFRunter		"OG KindDachF Runter"	(OG_Kind)			["Switch"]
+Switch		lcn_action_SendKeyOGKindDachFRauf			"OG KindDachF Rauf"		(OG_Kind)			["Switch"]
 
-Switch		SendKeyGuestWLAN				"Fritzbox Guest WLAN"	
+Switch		lcn_action_SendKeyGuestWLAN				"Fritzbox Guest WLAN"	(EG_Technik)		["Switch"]
 
-Switch		GarageTorUP					"Garage Auf"									(EG_Garage)			["WallSwitch"]
-Switch		GarageTorDOWN				"Garage Ab"										(EG_Garage)			["WallSwitch"]
+Switch		lcn_action_GarageTorUP						"Garage Auf"			(EG_Garage)			["Switch"]
+Switch		lcn_action_GarageTorDOWN					"Garage Ab"				(EG_Garage)			["Switch"]

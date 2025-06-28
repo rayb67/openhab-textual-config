@@ -1,6 +1,8 @@
 //Bridge squeezebox:squeezeboxserver:server-dev   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
 Bridge squeezebox:squeezeboxserver:server   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
 {
+	Thing squeezeboxplayer buero		"SB Buero " @ "Buero"	
+	[ mac="b8:27:eb:2c:a0:02" , notificationTimeout=30, notificationVolume=50 ] // Buero
 	Thing squeezeboxplayer wohnzimmer    "SB Wohnzimmer " @ "Wohnzimmer"	
 	[ mac="74:da:38:58:30:32" , notificationTimeout=30, notificationVolume=50 ] // Wohnzimmer
 	Thing squeezeboxplayer mobile        "SB Mobile" @ "Mobile"             

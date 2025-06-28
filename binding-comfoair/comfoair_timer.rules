@@ -10,9 +10,8 @@ then
 	if(	(OhFrauBesonderheitenOnOff.state == ON) &&
 		(OhAbwesend.state != ON) ) 
 	{
-		sendCommand(comfoairAutoMode, 1) // 1=Auto; 0=Manuell
-		sendCommand(comfoairFanLevel, 3) // 1=Auto; 2=leicht; 3=normal; 4=Stark
-		logInfo("TimerDiverses:LueftungEIN","EIN Besonderheit: "+OhFrauBesonderheitenOnOff.state+"  Level : "+comfoairFanLevel.state)
+		sendCommand(comfoair_FanLevel, 3) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+		logInfo("TimerDiverses:LueftungEIN","EIN Besonderheit: "+OhFrauBesonderheitenOnOff.state+"  Level : "+comfoair_FanLevel.state)
 	}
 	else
 	{
@@ -31,10 +30,9 @@ when
 then
 	if ( OhFrauBesonderheitenOnOff.state == ON) 
 	{
-		sendCommand(comfoairAutoMode, 1) // 1=Auto; 0=Manuell
-		sendCommand(comfoairFanLevel, 2) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+		sendCommand(comfoair_FanLevel, 2) // 1=Auto; 2=leicht; 3=normal; 4=Stark
 
-		logInfo("TimerDiverses:LueftungAUS","AUS Besonderheit: "+OhFrauBesonderheitenOnOff.state+"  Level : "+comfoairFanLevel.state)
+		logInfo("TimerDiverses:LueftungAUS","AUS Besonderheit: "+OhFrauBesonderheitenOnOff.state+"  Level : "+comfoair_FanLevel.state)
 	}
 	else
 	{

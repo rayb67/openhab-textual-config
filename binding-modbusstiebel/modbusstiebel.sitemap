@@ -59,8 +59,8 @@ sitemap modbusstiebel label="Modbus Stiebel" {
  Frame label="Energy consumption" {
   Default item=Stiebel_heat_quantity_today icon="energy"
   Default item=Stiebel_heat_quantity_total icon="energy"
-  Default item=Stiebel_water_heat_quantity_today icon="energy"
-  Default item=Stiebel_water_heat_quantity_total icon="energy"
+  Default item=Stiebel_water_quantity_today icon="energy"
+  Default item=Stiebel_water_quantity_total icon="energy"
  }
  Frame label="Heat quantity" {
   Default item=Stiebel_power_consumption_for_heating_today icon="radiator"

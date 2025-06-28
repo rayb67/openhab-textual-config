@@ -190,9 +190,9 @@ Number:Energy			Stiebel_heat_quantity_today			"Heizen Quantity Today [%.0f kWh]"
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-heat-today" }
 Number:Energy			Stiebel_heat_quantity_total			"Heizen Quantity Total [%.3f MWh]"		<energy>		(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-heat-total" }
-Number:Energy			Stiebel_water_heat_quantity_today	"Warmwasser Quantity Today [%.0f kWh]"	<energy>		(gStiebelEltronHP,gTechnik)
+Number:Energy			Stiebel_water_quantity_today	"Warmwasser Quantity Today [%.0f kWh]"	<energy>		(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-water-today" }
-Number:Energy			Stiebel_water_heat_quantity_total	"Warmwasser Quantity Total [%.3f MWh]"	<energy>		(gStiebelEltronHP,gTechnik)
+Number:Energy			Stiebel_water_quantity_total	"Warmwasser Quantity Total [%.3f MWh]"	<energy>		(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-water-total" }
 
 Number:Energy			Stiebel_nhz_heat_quantity_total		"NHZ Heizen Quantity Total [%.3f MWh]"	<energy>		(gStiebelEltronHP,gTechnik)
@@ -200,18 +200,19 @@ Number:Energy			Stiebel_nhz_heat_quantity_total		"NHZ Heizen Quantity Total [%.3
 Number:Energy			Stiebel_nhz_hotwater_quantity_total	"NHZ Warmwasser Quantity Total [%.3f MWh]"	<energy>	(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-nhz-water-total" }
 
-Number:Energy			Stiebel_power_heating_today			"Stromverbrauch Heizen Today [%.0f kWh]"	<energy>	(gStiebelEltronHP,gTechnik,gStiebel_PT)
+Number:Energy			Stiebel_power_heating_today			"Stromverbrauch Heizen heute [%.0f kWh]"	<energy>	(gStiebelEltronHP,gTechnik,gStiebel_PT)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-heat-today" }
-Number:Energy			Stiebel_power_heating_total			"Stromverbrauch Heizen Total [%.0f kWh]"	<energy>	(gStiebelEltronHP,gTechnik)
+Number:Energy			Stiebel_power_heating_total			"Stromverbrauch Heizen gesamt [%.0f kWh]"	<energy>	(gStiebelEltronHP,gTechnik)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-heat-total" }
 Number:Energy			Stiebel_power_heating_houre			"Stromverbrauch Heizen/h [%.0f kWh]"	<energy>	(gStiebelEltronHP,gTechnik)
 
 
 
-Number:Energy			Stiebel_power_water_today			"Stromverbrauch Water Today [%.0f kWh]"		<energy>	(gStiebelEltronHP,gTechnik,gStiebel_PT)
+Number:Energy			Stiebel_power_water_today			"Stromverbrauch Wasser heute [%.0f kWh]"		<energy>	(gStiebelEltronHP,gTechnik,gStiebel_PT)
 { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-water-today" }
-Number:Energy			Stiebel_power_water_total			"Stromverbrauch Water Total [%.0f kWh]"		<energy>	(gStiebelEltronHP,gTechnik) { channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-water-total" }
-Number:Energy			Stiebel_power_water_houre			"Stromverbrauch Water/h [%.0f kWh]"		<energy>	(gStiebelEltronHP,gTechnik)
+Number:Energy			Stiebel_power_water_total			"Stromverbrauch Wasser gesamt [%.0f kWh]"		<energy>	(gStiebelEltronHP,gTechnik) 
+{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-water-total" }
+Number:Energy			Stiebel_power_water_houre			"Stromverbrauch Wasser/h [%.0f kWh]"		<energy>	(gStiebelEltronHP,gTechnik)
 
 Number:Energy			Stiebel_power_sum_houre				"Stromverbrauch Summe/h [%.0f kWh]"		<energy>	(gStiebelEltronHP,gTechnik)
 

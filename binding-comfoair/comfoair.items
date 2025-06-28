@@ -1,117 +1,109 @@
-Group gComfoAir          "Lueftung"		<climate>	(EG_Technik)	["Equipment"]
-Number	comfoairAutoMode            "Modus"                 <selfAutoMode>      (gComfoAir,gTechnik)
+Group				gComfoAir							"Lueftungsanalge"						<selfinfo>		(EG_Technik)	["Fan"]
 
+//Der Automode muss noch in den Rules eingebaut werden
+Switch				comfoair_AutoMode					"Modus"									<selfAutoMode>	(gComfoAir,gTechnik)	["Switch"]
+
+//##############################################################################
+//##############################################################################
 // Damit wird nachts im Hochsommer das Dachfenster und die Lueftungsstaerke gesteuert.
 // Damit soll zusätzlich die Temperatur im Haus gesenkt werden
-Switch                  BelueftungOnOff             "Belueftung auto E/A"           <info>          (gComfoAir)       ["WallSwitch"]
-Switch                  BelueftungState             "Belueftung (Status)"           <info>          (gComfoAir)         ["Current"]
+Switch				comfoair_auto_onoff					"Belueftung auto E/A"			<info>			(gComfoAir)		["Switch"]
+Switch				comfoair_state_auto					"Belueftung (Status) auto"		<info>			(gComfoAir)		["Switch"]
+Switch				comfoair_control_noon				"Tagesüber Control On/Off"		<info>			(gComfoAir)     ["Switch"] 
+Switch				comfoair_state_heiss				"Belueftung (Status) heiss"		<info>			(gComfoAir)		["Switch"]
 
-Number	comfoairControl				"Controle Activate [MAP(comfoair_on-off.map):%s]"					<computer>	(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:bindingControl#activate"}
-Number	comfoairFanLevel			"Ventilation level"			<chart>		(gComfoAir,gTechnik)	
-{channel="comfoair:comfoair:myComfoAir:ventilation#fanLevel"}
-Number	comfoairErrorReset			"Error reset"					<service>	(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:resets#errorReset"}
-Number	comfoairFilterReset			"Filter reset"					<service>	(gComfoAir,gTechnik)	
-{channel="comfoair:comfoair:myComfoAir:resets#filterReset"}
-Switch	comfoairFilterError			"Filter Error"					<service>	(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:errors#filterError"}
-Number	comfoairFilterPeriod		"Filter period [%d weeks]"			<clock>		(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:menuP2#filterWeeks"}
+
+Switch				comfoair_control					"Steuerung [MAP(comfoair_on-off.map):%s]"	<switch>	(gComfoAir,gTechnik)
+["Point"]	{channel="comfoair:comfoair:myComfoAir:bindingControl#activate"}
+Number				comfoair_FanLevel					"Ventilation level"						<chart>		(gComfoAir,gTechnik)
+["Point"]	{channel="comfoair:comfoair:myComfoAir:ventilation#fanLevel"}
+Number				comfoair_ErrorReset					"Error reset"							<service>	(gComfoAir,gTechnik)
+["Point"]	{channel="comfoair:comfoair:myComfoAir:resets#errorReset"}
+Number				comfoair_FilterReset				"Filter reset"							<service>	(gComfoAir,gTechnik)
+["Point"]	{channel="comfoair:comfoair:myComfoAir:resets#filterReset"}
+Switch				comfoair_FilterError				"Filter Error"							<service>	(gComfoAir,gTechnik)	
+["Point"]	{channel="comfoair:comfoair:myComfoAir:errors#filterError"}
+Number				comfoair_FilterPeriod				"Filter period [%d weeks]"				<clock>		(gComfoAir,gTechnik)
+["Point"]	{channel="comfoair:comfoair:myComfoAir:menuP2#filterWeeks"}
 
 // Messages
-String				comfoairError						"Error: [%s]"							<info>			(gComfoAir,gTechnik)
+String				comfoair_Error						"Error: [%s]"							<info>			(gComfoAir,gTechnik)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:errors#errorsCurrent"}
-String				comfoairErrorLast					"Error Last: [%s]"						<info>			(gComfoAir,gTechnik)
+String				comfoair_ErrorLast					"Error Last: [%s]"						<info>			(gComfoAir,gTechnik)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:errors#errorsLast"}
-String				comfoairErrorPrelast				"ErrorPrelast: [%s]"					<info>			(gComfoAir,gTechnik)
+String				comfoair_ErrorPrelast				"ErrorPrelast: [%s]"					<info>			(gComfoAir,gTechnik)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:errors#errorsPrelast"}
-String				comfoairErrorPrePrelast				"ErrorPrePrelast: [%s]"					<info>			(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:errors#errorsPrePrelast"}
-
-Number:Time			comfoairFilterRuntime				"Filter runtime [%.0f h]"				<clock>			(gComfoAir,gTechnik)
+Number:Time			comfoair_FilterRuntime				"Filter runtime [%d h]"					<clock>			(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:times#filterHours"}
 
 
 // Bypass
-Switch				comfoairBypassSummer				"Bypass Summer Mode"					<switch>		(gComfoAir,gTechnik)
+Switch				comfoair_BypassSummer				"Bypass Summer Mode"					<switch>		(gComfoAir,gTechnik)
 {channel="comfoair:comfoair:myComfoAir:bypass#bypassSummer"}
-Number				comfoairBypassFactor				"Bypass Factor [%d %%]"					<info>			(gComfoAir,gTechnik)
+Number				comfoair_BypassFactor				"Bypass Factor"							<info>			(gComfoAir,gTechnik)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:bypass#bypassFactor"}
-Number				comfoairBypassLevel					"Bypass Level [d% %%]"					<info>			(gComfoAir,gTechnik)
+Number				comfoair_BypassLevel				"Bypass Level"							<info>			(gComfoAir,gTechnik)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:bypass#bypassLevel"}
-Number				comfoairBypassCorrection			"Bypass Correction [d% %%]"				<clock>			(gComfoAir,gTechnik)
+Number				comfoair_BypassCorrection			"Bypass Correction"						<clock>			(gComfoAir,gTechnik)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:bypass#bypassCorrection"}
-Number:Time			comfoairBypassTime					"Bypass Time (h) [%d h]"				<clock>			(gComfoAir,gTechnik)
+Number:Time			comfoair_BypassTime					"Bypass Time (h) [%d h]"				<clock>			(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:times#bypassTime"}
-Switch				comfoairBypassMode					"Bypass [MAP(comfoair_on-off.map):%s]"		<info>	(gComfoAir,gTechnik)
+Switch				comfoair_BypassMode					"Bypass [MAP(comfoair_on-off.map):%s]"	<info>			(gComfoAir,gTechnik)	["Switch"]
 {channel="comfoair:comfoair:myComfoAir:menuP9#bypassState"}
 
-Number				comfoairOptionsBypass				"Option Bypass [MAP(comfoair_on-off.map):%s]"	<info>	(gComfoAir,gTechnik)
+Number				comfoair_OptionsBypass				"Option Bypass [MAP(comfoair_on-off.map):%s]"	<info>	(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:options#isBypass"}
-Number				comfoairOptionsCookerhood			"Option Cookerhood [MAP(comfoair_on-off.map):%s]"	<info>	(gComfoAir,gTechnik)
+Number				comfoair_OptionsCookerhood			"Option Cookerhood [MAP(comfoair_on-off.map):%s]"	<info>	(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:options#isCookerhood"}
 
 // State
-Number:Temperature	comfoairTargetTemperature			"Comfort temperature [%.1f °C]"			<temperature>	(gComfoAir,gTechnik)
+Number:Temperature	comfoair_TargetTemperature			"Comfort temperature [%.1f °C]"			<temperature>	(gComfoAir,gTechnik)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#targetTemperature"}
-Number:Temperature	comfoairOutdoorIncomingTemperature	"Inlet air temperature [%.1f °C]"		<temperature>	(gComfoAir,gTechnik)
+Number:Temperature	comfoair_OutdoorIncomingTemperature	"Inlet air temperature [%.1f °C]"		<temperature>	(gComfoAir,gTechnik)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#outdoorTemperatureIn"}
-Number:Temperature	comfoairIndoorIncomingTemperature	"Supply air temperature [%.1f °C]"		<temperature>	(gComfoAir,gTechnik)
+Number:Temperature	comfoair_IndoorIncomingTemperature	"Supply air temperature [%.1f °C]"		<temperature>	(gComfoAir,gTechnik)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#indoorTemperatureIn"}
-Number:Temperature	comfoairIndoorOutgoingTemperature	"Return air temperature [%.1f °C]"		<temperature>	(gComfoAir,gTechnik)
+Number:Temperature	comfoair_IndoorOutgoingTemperature	"Return air temperature [%.1f °C]"		<temperature>	(gComfoAir,gTechnik)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#indoorTemperatureOut"}
-Number:Temperature	comfoairOutdoorOutgoingTemperature	"Exhaust air temperature [%.1f °C]"		<temperature>	(gComfoAir,gTechnik)
+Number:Temperature	comfoair_OutdoorOutgoingTemperature	"Exhaust air temperature [%.1f °C]"		<temperature>	(gComfoAir,gTechnik)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#outdoorTemperatureOut"}
 
-Number	comfoairIncomingFan								"Supply capacity [%d %%]"				<fan_in>		(gComfoAir,gTechnik)
+Number				comfoair_IncomingFan				"Supply capacity [%d %%]"				<fan_in>		(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanInPercent"}
-Number	comfoairOutgoingFan								"Exhaust capacity [%d %%]"				<fan_out>		(gComfoAir,gTechnik)
+Number				comfoair_OutgoingFan				"Exhaust capacity [%d %%]"				<fan_out>		(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanOutPercent"}
-Number	comfoairFanIn0				"Supply capacity - level 0 [%d %%]"		<fan_in>	(gComfoAir,gTechnik)
+Number				comfoair_FanIn0						"Supply capacity - level 0 [%d %%]"		<fan_in>		(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanIn0"}
-Number	comfoairFanOut0				"Exhaust capacity - level 0 [%d %%]"		<fan_out>	(gComfoAir,gTechnik)
+Number				comfoair_FanOut0					"Exhaust capacity - level 0 [%d %%]"	<fan_out>		(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanOut0"}
 
-
-Number:Frequency	comfoairVentilationFanInRPM		"FanIn Frequenz [%.0f rpm]"			<temperature>	(gComfoAir,gTechnik)
+Number:Frequency	comfoair_FanInRPM					"FanIn Frequenz [%.0f rpm]"				<temperature>	(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanInRPM"}
-Number:Frequency	comfoairVentilationFanOutRPM		"FanOut Frequenz [%.0f rpm]"			<temperature>	(gComfoAir,gTechnik)
+Number:Frequency	comfoair_FanOutRPM					"FanOut Frequenz [%.0f rpm]"			<temperature>	(gComfoAir,gTechnik)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanOutRPM"}
 
 
-Switch	comfoairGHXMode 			"GHX [MAP(comfoair_on-off.map):%s]"		<climate>	(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:menuP9#ewtState"}
-Switch	comfoairChimneyMode								"Fire programme [MAP(comfoair_on-off.map):%s]"	<climate>	(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:menuP9#chimneyState"}
-Switch	comfoairHeaterMode			"Heater [MAP(comfoair_on-off.map):%s]"		<climate>	(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:menuP9#heaterState"}
-Switch	comfoairCookerHoodMode		"Extractor hood [MAP(comfoair_on-off.map):%s]"	<climate>	(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:menuP9#cookerhoodState"}
-Switch	comfoairEnthalpyMode		"Enthalpy [MAP(comfoair_on-off.map):%s]"	<climate>	(gComfoAir,gTechnik)
-{channel="comfoair:comfoair:myComfoAir:menuP9#enthalpyState"}
-Switch	comfoairFreezeMode			"Freeze [MAP(comfoair_freeze.map):%s]"		<climate>	(gComfoAir,gTechnik)	
-{channel="comfoair:comfoair:myComfoAir:menuP9#frostState"}
-
+// Unabhaengig vom Binding
 // Vorgaben
-Switch  comfoairTest				"Comfoair Test"											(gComfoAir,gTechnik)
+Switch					comfoair_Test					"Belueftung Test"					<info>			(gComfoAir,gTechnik)	["Point"]
 
-// 
-Number:Dimensionless    comfoairSollTempWohnzimmer		"Comfoair Soll Wohnzimmer (23)"	<temperature>		(gComfoAir,gTechnik)     ["Control","Setpoint"]
+// BelueftungHeiss
+
+Number:Dimensionless	comfoair_soll_TempWohnzimmer	"Belueftung Soll Wohnzimmer (23)"	<temperature>	(gComfoAir,gTechnik)	["Setpoint"]
 {
     widget    ="oh-stepper-card"[ title="Comfoair Soll Wohnzimmer", min=18, max=26, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="Comfoair Soll Wohnzimmer", min=19, max=26, step=0.5, icon="oh:temperature" ],
     cellWidget="oh-stepper-cell"[ title="Comfoair Soll Wohnzimmer", min=20, max=26, step=0.5, icon="oh:temperature" ],
     stateDescription=" "[ pattern="%.1f" ]
 }
-Number:Dimensionless    comfoairSoll3DTempAussen      "Comfoair Soll Aussen 3D (16)"    <temperature>   (gComfoAir,gTechnik)     ["Control","Setpoint"]
+Number:Dimensionless	comfoair_soll_3DTempAussen	"Belueftung Soll Aussen 3D (19)"	<temperature>	(gComfoAir,gTechnik)	["Setpoint"]
 {
     widget    ="oh-stepper-card"[ title="Comfoair Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="Comfoair Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
     cellWidget="oh-stepper-cell"[ title="Comfoair Soll Aussen 3D", min=11, max=23, step=0.5, icon="oh:temperature" ],
     stateDescription=" "[ pattern="%.1f" ]
 }
-Number:Dimensionless    comfoairSollTempAussen        "Comfoair Soll Aussen (24)"       <temperature>   (gComfoAir,gTechnik)     ["Control","Setpoint"]
+Number:Dimensionless	comfoair_soll_TempAussen	"Belueftung Soll Aussen (25)"		<temperature>	(gComfoAir,gTechnik)	["Setpoint"]
 {
     widget    ="oh-stepper-card"[ title="Comfoair Soll Aussen", min=10, max=25, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="Comfoair Soll Aussen", min=10, max=25, step=0.5, icon="oh:temperature" ],
@@ -119,4 +111,3 @@ Number:Dimensionless    comfoairSollTempAussen        "Comfoair Soll Aussen (24)
     stateDescription=" "[ pattern="%.1f" ]
 }
 
-Switch comfoair_StatusHeiss      "Comfoair Status Heiss"          (gComfoAir)

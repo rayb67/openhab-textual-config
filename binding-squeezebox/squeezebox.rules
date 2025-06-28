@@ -90,11 +90,11 @@ end
 // Diese Funktion kann ein oder ausgeschaltet. 
 rule "OGBadPlayMusicAutomatic"
 when
-	Item LCN_Relay_Bewegung_OG_Bad changed to CLOSED
+	Item lcn_status_Bewegung_OG_Bad changed to CLOSED
 then
 	logDebug("OGBadPlayMusicAutomatic","StatusAutomaticSPBad : "+StatusAutomaticSPBad.state)
 	if(OhBadMusicAutomatic.state == ON) {
-		logInfo("OGBadPlayMusicAutomatic","LCN_Relay_Bewegung_OG_Bad - Play Music...")
+		logInfo("OGBadPlayMusicAutomatic","lcn_status_Bewegung_OG_Bad - Play Music...")
 		sendCommand( SPBad_Control, "PLAY")
 		sendCommand( SPBad_Volume, 40)
 		// Der Timer soll verhindern, das zeitnah der Bewegungsmelder 

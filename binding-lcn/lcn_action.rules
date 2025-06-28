@@ -16,7 +16,6 @@ end
 //Switch SendKeySperreBewegungsmelder "Sperre Hof Bewegungsm."            {lcn="[ON:lcn_pi:KEYS.S0.M155.A2.1s]"}
 // 2023.01.17 Da die Sperre nicht wieder manuell geloest werden kann,
 //            wird diese Rule erst mal deaktiviert.
-/*
 rule "SperreBewegungsmelder"
 when
     Item SendKeySperreBewegungsmelder changed // to ON
@@ -25,7 +24,6 @@ then
     val actions = getActions("lcn","lcn:module:bus:S000M155")
     actions.hitKey("A", 2, "1s")
 end
-*/
 
 // ------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
@@ -54,7 +52,7 @@ end
 // #2
 rule "ChangeWeihnachtsbeleuchtungEin"
 when
-    Item SendKeyWeihnachtenMorgensEin changed to ON // to ON
+    Item lcn_action_WeihnachtenMorgensEin changed to ON // to ON
 then
     logInfo("ChangeWeihnachtsbeleuchtungEin","Schalte Weihnachtsbeleuchtung Ein")
     val actions = getActions("lcn","lcn:module:bus:S000M120")
@@ -66,7 +64,7 @@ end
 // #3
 rule "ChangeWeihnachtsbeleuchtungAus"
 when
-    Item SendKeyWeihnachtenMorgensAus changed to ON // to ON
+    Item lcn_action_WeihnachtenMorgensAus changed to ON // to ON
 then
     logInfo("ChangeWeihnachtsbeleuchtungAus","Schalte Weihnachtsbeleuchtung Aus")
     val actions = getActions("lcn","lcn:module:bus:S000M120")
@@ -91,9 +89,9 @@ end
 
 // ###################################################
 // #5
-rule "RelaisSperreLoesen"
+rule "lcn_sperre_loesen"
 when
-    Item RelaisSperreLoesen changed to ON // to ON
+    Item lcn_sperre_loesen changed to ON // to ON
 then
     logInfo("relaissperreloesen","alle Relais entsperren")
     val actions = getActions("lcn","lcn:module:bus:S000M125")
@@ -105,13 +103,13 @@ end
 // #6
 rule "DachfensterFlur-Runter"
 when
-    Item SendKeyOGFlurDachFRunter changed to ON
+    Item lcn_action_OGFlurDachFRunter changed to ON
 then
 	logInfo("DachfensterFlur-Runter","Dachfenster Flur Runter")
     val actions = getActions("lcn","lcn:module:bus:S000M200")
     actions.hitKey("B", 1, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGFlurDachFRunter, OFF)
+		sendCommand( lcn_action_OGFlurDachFRunter, OFF)
 	])
 end
 
@@ -119,13 +117,13 @@ end
 // #7
 rule "DachfensterFlur-Rauf"
 when
-    Item SendKeyOGFlurDachFRauf changed to ON
+    Item lcn_action_OGFlurDachFRauf changed to ON
 then
 	logInfo("DachfensterFlur-Rauf","Dachfenster Flur Rauf")
     val actions = getActions("lcn","lcn:module:bus:S000M200")
     actions.hitKey("B", 2, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGFlurDachFRauf, OFF)
+		sendCommand( lcn_action_OGFlurDachFRauf, OFF)
 	])
 end
 
@@ -133,13 +131,13 @@ end
 // #8
 rule "DachfensterFlur-Auf"
 when
-    Item SendKeyOGFlurDachFAuf changed to ON
+    Item lcn_action_OGFlurDachFAuf changed to ON
 then
 	logInfo("DachfensterFlur-Auf","Dachfenster Flur Auf")
     val actions = getActions("lcn","lcn:module:bus:S000M200")
     actions.hitKey("A", 8, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGFlurDachFAuf, OFF)
+		sendCommand( lcn_action_OGFlurDachFAuf, OFF)
 	])
 end
 
@@ -147,13 +145,13 @@ end
 // #9
 rule "DachfensterFlur-Zu"
 when
-    Item SendKeyOGFlurDachFZu changed to ON
+    Item lcn_action_OGFlurDachFZu changed to ON
 then
 	logInfo("DachfensterFlur-Zu","Dachfenster Flur Zu")
     val actions = getActions("lcn","lcn:module:bus:S000M200")
     actions.hitKey("A", 7, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGFlurDachFZu, OFF)
+		sendCommand( lcn_action_OGFlurDachFZu, OFF)
 	])
 end
 
@@ -162,13 +160,13 @@ end
 // #10
 rule "DachfensterKind-Rauf"
 when
-    Item SendKeyOGKindDachFRauf changed to ON
+    Item lcn_action_SendKeyOGKindDachFRauf changed to ON
 then
 	logInfo("DachfensterKind-Rauf","Dachfenster Kind Rauf")
     val actions = getActions("lcn","lcn:module:bus:S000M210")
     actions.hitKey("A", 6, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGKindDachFRauf, OFF)
+		sendCommand( lcn_action_SendKeyOGKindDachFRauf, OFF)
 	])
 end
 
@@ -176,13 +174,13 @@ end
 // #11
 rule "DachfensterKind-Runter"
 when
-    Item SendKeyOGKindDachFRunter changed to ON
+    Item lcn_action_SendKeyOGKindDachFRunter changed to ON
 then
 	logInfo("DachfensterKind-Runter","Dachfenster Kind Runter")
     val actions = getActions("lcn","lcn:module:bus:S000M210")
     actions.hitKey("A", 5, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGKindDachFRunter, OFF)
+		sendCommand( lcn_action_SendKeyOGKindDachFRunter, OFF)
 	])
 end
 
@@ -190,13 +188,13 @@ end
 // #12
 rule "DachfensterKind-Auf"
 when
-    Item SendKeyOGKindDachFAuf changed to ON
+    Item lcn_action_OGKindDachFAuf changed to ON
 then
 	logInfo("DachfensterKind-Auf","Dachfenster Kind Auf")
     val actions = getActions("lcn","lcn:module:bus:S000M210")
     actions.hitKey("A", 4, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGKindDachFAuf, OFF)
+		sendCommand( lcn_action_OGKindDachFAuf, OFF)
 	])
 end
 
@@ -204,51 +202,51 @@ end
 // #13
 rule "DachfensterKind-Zu"
 when
-    Item SendKeyOGKindDachFZu changed to ON
+    Item lcn_action_OGKindDachFZu changed to ON
 then
 	logInfo("DachfensterKind-Zu","Dachfenster Kind Zu")
     val actions = getActions("lcn","lcn:module:bus:S000M210")
     actions.hitKey("A", 3, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGKindDachFZu, OFF)
+		sendCommand( lcn_action_OGKindDachFZu, OFF)
 	])
 end
 
 // #14
 rule "garagentor-down"
 when
-    Item GarageTorDOWN changed to ON // to ON
+    Item lcn_action_GarageTorDOWN changed to ON // to ON
 then
 	logInfo("garagentor-down","Tor Ab")
     val actions = getActions("lcn","lcn:module:bus:S000M253")
     actions.hitKey("A", 8, "MAKE")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( GarageTorDOWN, OFF)
+		sendCommand( lcn_action_GarageTorDOWN, OFF)
 	])
 end
 
 // #15
 rule "garagentor-up"
 when
-    Item GarageTorUP changed to ON	// to ON
+    Item lcn_action_GarageTorUP changed to ON	// to ON
 then
 	logInfo("garagentor-up","Tor Auf -> ABer in der Regel off - schau M253 A7 Make")
 	val actions = getActions("lcn","lcn:module:bus:S000M253") 
 	actions.hitKey("A", 7, "MAKE")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( GarageTorUP, OFF)
+		sendCommand( lcn_action_GarageTorUP, OFF)
 	])
 end
 
 
-//Switch SendKeyGuestWLAN    "Guest wLan"   {lcn="[ON:lcn_pi:KEYS.S0.M80.B3.HIT],[OFF:lcn_pi:KEYS.S0.M80.B3.BREAK]"}
+//Switch lcn_action_SendKeyGuestWLAN    "Guest wLan"   {lcn="[ON:lcn_pi:KEYS.S0.M80.B3.HIT],[OFF:lcn_pi:KEYS.S0.M80.B3.BREAK]"}
 // #16
 rule "ChangeGuestWLAN"
 when
-    Item SendKeyGuestWLAN changed to ON
+    Item lcn_action_SendKeyGuestWLAN changed to ON
 then
     logInfo("ChangeGuestWLAN","Guest WLAN ON")
-	if(SendKeyGuestWLAN !=OFF) 
+	if(lcn_action_SendKeyGuestWLAN !=OFF) 
 	{
 	    logInfo("ChangeGuestWLAN","Guest WLAN ON")
     	val actions = getActions("lcn","lcn:module:bus:S000M080")
@@ -347,7 +345,7 @@ then
     val actions = getActions("lcn","lcn:module:bus:S000M200")
     actions.hitKey("A", 7, "HIT")
 	createTimer(now.plusSeconds(2), [ 
-		sendCommand( SendKeyOGFlurDachFZu, OFF)
+		sendCommand( lcn_action_OGFlurDachFZu, OFF)
 	])
 
 	// wenn das telefon da ist, ist Kind da und die Rolles gehen nicht hoch
@@ -372,12 +370,12 @@ then
 //	val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
 //	telegramAction.sendTelegram("....da hat jemand auf die Haustuer gedrueckt")
 
-	Steckdose_EG_Garage_Ecke.sendCommand( ON )
-	logInfo("BewasserungPumpe","Pumpe ein : "+Steckdose_EG_Garage_Ecke.state)
+	lcn_relay_Wasser_Trafo.sendCommand( ON )
+	logInfo("BewasserungPumpe","Pumpe ein : "+lcn_relay_Wasser_Trafo.state)
 
 	createTimer(now.plusMinutes(15), [
-		Steckdose_EG_Garage_Ecke.sendCommand( OFF )
-		logInfo("BewasserungPumpe","Pumpe aus : "+Steckdose_EG_Garage_Ecke.state)
+		lcn_relay_Wasser_Trafo.sendCommand( OFF )
+		logInfo("BewasserungPumpe","Pumpe aus : "+lcn_relay_Wasser_Trafo.state)
 	])
 
 	createTimer(now.plusSeconds(3), [

@@ -1,42 +1,40 @@
 Group gSunPro                       "Sonnenschutz"  <sun>
 
-Switch	SunProTestSwitch	"SunPro Test"		(gTest,gSunPro)
-Switch	OhLamellenMorgensGerade		"Lamellen Gerade"				<sun>			(gSunPro)
+Switch	SunProTestSwitch	"SunPro Test"		(gTest,gSunPro)	["Switch"]
+Switch	oh_LamellenMorgensGerade		"Lamellen Gerade"				<sun>			(gSunPro)	["Switch"]
 
 // Sonnen Schutz aktivieren - Kommand an LCN, wo ueber Tasten die Funktion ausgeloest wird.
-Switch SendKeySunProWestJust            "West Justierung"               <motion>        (gSunPro)
-Switch OhSonnenschutzJustierung    "Sonnenschutz Justierung E/A"           <info>          (gMisc,gSunPro)
+Switch SendKeySunProWestJust            "West Justierung"               <motion>        (gSunPro)	["Switch"]
+Switch oh_SunPro_Justierung    "Sonnenschutz Justierung E/A"           <info>          (gMisc,gSunPro)	["Switch"]
 
 // Den aktuellen Status zwischenspeichern innerhalb der Rule sonnenschutz.rules
-Switch SunProStatusNord      "Status Nord"			(gSunPro)
-Switch SunProStatusSued      "Status Sued"			(gSunPro)
-Switch SunProStatusOst       "Status Ost"			(gSunPro)
-Switch SunProStatusWest      "Status West"			(gSunPro)
-Switch SunProStatusErLi      "Status ErLi"			(gSunPro)
-Switch SunProStatusErRe      "Status ErRe"			(gSunPro)
+Switch SunProStatusNord      "Status Nord"			(gSunPro)	["Switch"]
+Switch SunProStatusSued      "Status Sued"			(gSunPro)	["Switch"]
+Switch SunProStatusOst       "Status Ost"			(gSunPro)	["Switch"]
+Switch SunProStatusWest      "Status West"			(gSunPro)	["Switch"]
+Switch SunProStatusErLi      "Status ErLi"			(gSunPro)	["Switch"]
+Switch SunProStatusErRe      "Status ErRe"			(gSunPro)	["Switch"]
 
 // Fuer ein manuelles Starten
-Switch SendKeySunProOstOn		"manuell trigger Ost"				(gSunPro)
-Switch SendKeySunProSuedOn		"manuell trigger Sued"				(gSunPro)
-Switch SendKeySunProWestOn		"manuell trigger West"				(gSunPro)
-Switch SendKeySunProNordOn		"manuell trigger Nord"				(gSunPro)
-Switch SendKeySunProErLiOn		"manuell trigger ErLi"				(gSunPro)
-Switch SendKeySunProErReOn		"manuell trigger ErRe"				(gSunPro)
+Switch SendKeySunProOstOn		"manuell trigger Ost"				(gSunPro)	["Switch"]
+Switch SendKeySunProSuedOn		"manuell trigger Sued"				(gSunPro)	["Switch"]
+Switch SendKeySunProWestOn		"manuell trigger West"				(gSunPro)	["Switch"]
+Switch SendKeySunProNordOn		"manuell trigger Nord"				(gSunPro)	["Switch"]
+Switch SendKeySunProErLiOn		"manuell trigger ErLi"				(gSunPro)	["Switch"]
+Switch SendKeySunProErReOn		"manuell trigger ErRe"				(gSunPro)	["Switch"]
 
 // Den aktuellen Status zwischenspeichern innerhalb der Rule rollo.rules
-Switch RolloRunterStatus            "RolloRunter Status"		(gSunPro)
-Switch RolloJustierenStatus         "RolloJustieren Status"		(gSunPro)
-
-Switch SunProBlockRolloAbendsHoch   "Sonne Block Abends Hoch"	(gSunPro)
-
+Switch RolloRunterStatus            "RolloRunter Status"		(gSunPro)	["Switch"]
+Switch RolloJustierenStatus         "RolloJustieren Status"		(gSunPro)	["Switch"]
+Switch SunProBlockRolloAbendsHoch   "Sonne Block Abends Hoch"	(gSunPro)	["Switch"]
 
 // LEDs fuer den Sonnenschutz 
-Switch SunProOstActiv		"Steuerung Ost (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)
-Switch SunProSuedActiv		"Steuerung Sued (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)
-Switch SunProWestActiv		"Steuerung West (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)
-Switch SunProNordActiv		"Steuerung Nord (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)
-Switch SunProErLiActiv		"Steuerung ErkerLi (ein/aus) [MAP(lcn.map):%s]"	(gSunPro)
-Switch SunProErReActiv		"Steuerung ErkerRe (ein/aus) [MAP(lcn.map):%s]"	(gSunPro)
+Switch SunProOstActiv		"Steuerung Ost (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)	["Switch"]
+Switch SunProSuedActiv		"Steuerung Sued (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)	["Switch"]
+Switch SunProWestActiv		"Steuerung West (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)	["Switch"]
+Switch SunProNordActiv		"Steuerung Nord (ein/aus) [MAP(lcn.map):%s]"		(gSunPro)	["Switch"]
+Switch SunProErLiActiv		"Steuerung ErkerLi (ein/aus) [MAP(lcn.map):%s]"	(gSunPro)	["Switch"]
+Switch SunProErReActiv		"Steuerung ErkerRe (ein/aus) [MAP(lcn.map):%s]"	(gSunPro)	["Switch"]
 
 Number:Dimensionless	SunProSollTempWohnzimmer	"SunPro Soll Wohnzimmer (23)"	<temperature>	(gSunPro,gWetter)		["Control","Setpoint"]
 { 

@@ -1,15 +1,22 @@
 // https://doc.forecast.solar/account_models
 // https://forecast.solar/#accounts
-Bridge solarforecast:fs-site:home   "ForecastSolar Home" [ 
+// solarforecast.things
+// :w
+Bridge solarforecast:fs-site:home   "Solcast service site definition" 
+	[	 
 	location="50.941413507071154,6.958217013317433,100", 
-	channelRefreshInterval="1"] 
+	apiKey="yourAPIKey",
+	channelRefreshInterval="1"
+	]
+
 	{
-	Thing fs-plane SW   "ForecastSolar Home" [ 
-		refreshInterval=300, 
+	Thing fs-plane SW   "solcast PV plane" 
+	[ 
+		refreshInterval=30, 
 		azimuth=47, 		// Plane is south/west
 		declination=22,		// only 
 		dampAM=1,
 		dampPM=1,
 		kwp=14.25
-		]
+	]
 }

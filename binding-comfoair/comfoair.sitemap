@@ -1,49 +1,50 @@
 sitemap comfoair label="ComfoAir" {
 	Frame label="Control" {
-		Selection item=comfoairFanLevel
-		Setpoint item=comfoairTargetTemperature step=0.5 minValue=15 maxValue=28 valuecolor=["black"]
-		Setpoint item=comfoairSollTempAussen step=0.5 minValue=15 maxValue=28 valuecolor=["black"]
-		Switch item=comfoairTest
-		Text item=comfoairControl valuecolor=[OFF="silver", ON="black"]
-		Text item=comfoairAutoMode
+		Selection item=comfoair_FanLevel
+		Setpoint item=comfoair_TargetTemperature step=0.5 minValue=15 maxValue=28 valuecolor=["black"]
+		Setpoint item=comfoair_soll_TempAussen step=0.5 minValue=15 maxValue=28 valuecolor=["black"]
+		Text item=comfoair_control valuecolor=[OFF="silver", ON="black"]
+		Switch item=comfoair_Test
 	}
 	Frame label="State" {
-		Text item=comfoairIncomingFan valuecolor=["black"]
-		Text item=comfoairOutgoingFan valuecolor=["black"]
-		Text item=comfoairOutdoorIncomingTemperature valuecolor=["black"]
-		Text item=comfoairOutdoorOutgoingTemperature valuecolor=["black"]
-		Text item=comfoairIndoorIncomingTemperature valuecolor=["black"]
-		Text item=comfoairIndoorOutgoingTemperature valuecolor=["black"]
-		Text item=comfoairVentilationFanInRPM valuecolor=["black"]
-		Text item=comfoairVentilationFanOutRPM valuecolor=["black"]
-		Text item=comfoairFanIn0
-		Text item=comfoairFanOut0
+		Text item=comfoair_IncomingFan valuecolor=["black"]
+		Text item=comfoair_OutgoingFan valuecolor=["black"]
+		Text item=comfoair_OutdoorIncomingTemperature valuecolor=["black"]
+		Text item=comfoair_OutdoorOutgoingTemperature valuecolor=["black"]
+		Text item=comfoair_IndoorIncomingTemperature valuecolor=["black"]
+		Text item=comfoair_IndoorOutgoingTemperature valuecolor=["black"]
+		Text item=comfoair_FanInRPM valuecolor=["black"]
+		Text item=comfoair_FanOutRPM valuecolor=["black"]
+		Text item=comfoair_FanIn0
+		Text item=comfoair_FanOut0
 	}
 	Frame label="Main" {
-		Switch item=comfoairControl mappings=[OFF="CCEase", ON="Computer"]
-		Switch item=comfoairErrorReset mappings=[1="Reset"]
-		Text item=comfoairFilterPeriod valuecolor=["black"]
-		Switch item=comfoairFilterReset mappings=[1="Reset"]
-		Text item=comfoairFilterRuntime
-		Text item=comfoairError labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
-		Text item=comfoairErrorLast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
-		Text item=comfoairErrorPrelast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
-		Text item=comfoairErrorPrePrelast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
-	}
-	Frame label="misc" {
-		Text item=comfoairGHXMode valuecolor=[OFF="silver", ON="black"]
-		Text item=comfoairFreezeMode valuecolor=[OFF="black", ON="red"]
-		Text item=comfoairChimneyMode valuecolor=[OFF="silver", ON="black"]
-	}
-	Frame label="Option" {
-		Text item=comfoairOptionsCookerhood valuecolor=[1="green", 0="red"]
+		Switch item=comfoair_control mappings=[OFF="CCEase", ON="Computer"]
+		Switch item=comfoair_ErrorReset mappings=[1="Reset"]
+		Text item=comfoair_FilterPeriod valuecolor=["black"]
+		Switch item=comfoair_FilterReset mappings=[1="Reset"]
+		Text item=comfoair_FilterRuntime
+		Text item=comfoair_Error labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
+		Text item=comfoair_ErrorLast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
+		Text item=comfoair_ErrorPrelast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
 	}
 	Frame label="Bypass" {
-		Text item=comfoairOptionsBypass valuecolor=[1="green", 0="red"]
-		Text item=comfoairBypassMode valuecolor=["black"]
-		Text item=comfoairBypassFactor
-		Text item=comfoairBypassLevel
-		Text item=comfoairBypassCorrection
-		Text item=comfoairBypassTime
+		Text item=comfoair_OptionsBypass valuecolor=[1="green", 0="red"]
+		Text item=comfoair_BypassMode valuecolor=["black"]
+		Switch item=comfoair_BypassMode valuecolor=["black"]
+		Text item=comfoair_BypassFactor
+		Text item=comfoair_BypassLevel
+		Text item=comfoair_BypassCorrection
+		Text item=comfoair_BypassTime
+	}
+	Frame label="Option" {
+		Text item=comfoair_OptionsCookerhood valuecolor=[1="green", 0="red"]
+		Text item=comfoair_GHXMode valuecolor=[OFF="red", ON="green"]
+		Text item=comfoairChimneyMode valuecolor=[OFF="red", ON="green"]
+		Text item=comfoairFreezeMode valuecolor=[OFF="red", ON="green"]
+	}
+	Frame label="Automode" {
+		Switch item=comfoair_auto_onoff
+		Switch item=comfoair_auto_status
 	}
 }
