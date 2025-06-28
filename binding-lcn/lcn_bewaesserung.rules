@@ -1,0 +1,355 @@
+var Number bewaesserung_avg_time = 24	// Seit soviel Stunden die Durchschnitsstemperatur
+var Number bewaesserung_temperature = 6 // Seit soviel Stunden die Durchschnitsstemperatur
+var Number tmp_temperatur	           
+var Number tmp_minutes = 45 
+
+rule "Bewasserung:RegenMenge24h"
+when
+	Item Bewaesserung_Test changed or
+    Time cron "0 * * * * ?"
+then
+
+//	logInfo("Bewasserung:RegenMenge24h","....."+ Oh_Regen_count.state+" > "+tmp_minutes)
+
+    if ( WetterRegen.state != OPEN) 
+	{
+		Oh_Regen_count.postUpdate(Oh_Regen_count.state as Number + 1)
+		logDebug("Bewasserung:RegenMenge24h","Status :"+WetterRegen.state+" count : "+Oh_Regen_count.state+" ....kein regen mehr als : "+tmp_minutes+" minuten")
+	}
+
+    if ((Oh_Regen_count.state as Number  > tmp_minutes) &&
+		(Oh_Regen_in_24h.state != ON))
+	{
+		logDebug("Bewasserung:RegenMenge24h","es regnet mehr als :"+tmp_minutes+" minuten")
+		Oh_Regen_in_24h.postUpdate(ON)
+	} 
+	else { logDebug("Bewasserung:RegenMenge24h","Status :"+WetterRegen.state+" count : "+Oh_Regen_count.state+" ....kein regen mehr als : "+tmp_minutes+" minuten") }
+
+// Um 9 Uhr wird der Wert auf 0 gesetzt
+// da zu dem Zeitpunkt die Bewaesserung gestartet ist
+    if (now.getHour() == 9 && now.getMinute() == 53)
+	{
+		logDebug("Bewasserung:RegenMenge24h","set 0, was : "+Oh_Regen_count.state)
+		Oh_Regen_count.postUpdate(0)
+		Oh_Regen_in_24h.postUpdate(OFF)
+    }
+	logDebug("Bewasserung:RegenMenge24h","Ende")
+end
+
+rule "Bewaesserung"
+	when
+//		Time cron "0 */1 * * * ?" //   0sec 1min
+//	Item Bewaesserung_Test changed or
+	Time cron "0 */5 * * * ?" //   0sec 20min
+	then
+
+	logDebug("bewaesserung","XXXXX Start  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX----XXXXXXXXX")
+
+	var Number month = now.getMonthValue
+    if (month < 10) { month = '0' + month.toString() } else { month = month.toString() }
+    var Number day = now.dayOfMonth
+    if (day < 10) { day = '0' + day.toString() } else { day = day.toString() }
+    var Number year = now.getYear
+
+//	var bewaesserung_monat_von = ZonedDateTime.parse(year+"-04-05T03:32:00.349+02:00")
+//	var bewaesserung_monat_bis = ZonedDateTime.parse(year+"-10-25T23:32:00.349+02:00")
+
+
+	logDebug("bewaesserung","1")
+	var Number tmp_temperatur = TempAussen.averageSince(now.minusHours(bewaesserung_avg_time))
+
+	logDebug("bewaesserung","---------------------------------------------------------")
+	logDebug("bewaesserung","TempAussen   : "+TempAussen.state.toString.format("%.2f")+" Regen : "+WetterRegen.state.toString)
+	logDebug("bewaesserung","monat_von   : "+ZonedDateTime.parse(year+"-"+Bewaesserung_control_monat_von.state.format("%1$tm-%1$td")+"T20:20:00.150+02:00"))
+	logDebug("bewaesserung","monat_bis   : "+ZonedDateTime.parse(year+"-"+Bewaesserung_control_monat_bis.state.format("%1$tm-%1$td")+"T20:20:00.150+02:00"))
+
+    if (    (now.isAfter(ZonedDateTime.parse(year+"-"+Bewaesserung_control_monat_von.state.format("%1$tm-%1$td")+"T20:20:00.150+02:00"))) &&
+            (now.isBefore(ZonedDateTime.parse(year+"-"+Bewaesserung_control_monat_bis.state.format("%1$tm-%1$td")+"T20:20:00.150+02:00")))  )
+	{
+		logDebug("bewaesserung","In der warmen Jahreszeit .....") 
+		logDebug("bewaesserung","Durchschnitt "+tmp_temperatur+" > "+bewaesserung_temperature+" (Schwellwert)")
+	
+		if ( TempAussen.averageSince(now.minusHours(bewaesserung_avg_time)) > bewaesserung_temperature )
+		{  
+			logDebug("bewaesserung","Die Temperatur stimmt......     ") 
+			logDebug("bewaesserung","Bewaesserung Auto Vorne : "+Bewaesserung_Auto_Vorne.state.toString+" Hinten : "+Bewaesserung_Auto_Hinten.state.toString+" Kies : "+Bewaesserung_Auto_Kies.state.toString+" Beet : "+Bewaesserung_Auto_Beet.state.toString)
+			logDebug("bewaesserung","WasserMorgens  : "+Bewaesserung_Auto_Morgens.state.toString)
+			logDebug("bewaesserung","WasserAbends   : "+Bewaesserung_Auto_Abends.state.toString)
+			logDebug("bewaesserung","Regen  : "+WetterRegen.state)
+			logDebug("bewaesserung","Party  : "+StatusParty.state)
+			logDebug("bewaesserung","Bewaesserung_StatusVorne  : "+Bewaesserung_StatusVorne.state)
+			logDebug("bewaesserung","vorn_morgens_von      : "+Bewaesserung_control_vorn_morgens_von.state.format("%1$tH:%1$tM"))
+			logDebug("bewaesserung","vorn_morgens_bis      : "+Bewaesserung_control_vorn_morgens_bis.state.format("%1$tH:%1$tM"))
+
+      /*************** Vorne **************************************************/
+			if (	( Bewaesserung_Auto_Vorne.state != OFF ) &&
+					( Bewaesserung_Auto_Morgens.state != OFF ) &&
+					( WetterRegen.state == OPEN ) &&
+					( Oh_Regen_in_24h.state != ON ) &&
+					( StatusParty.state != CLOSED ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_vorn_morgens_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_vorn_morgens_bis.state.format("%1$tH:%1$tM")+":00.150+02:00")))
+
+				)
+			{
+				if (Bewaesserung_StatusVorne.state != ON )
+				{
+					sendCommand(LCN_Relay_Wasser_Vornee, ON)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					sendCommand(LCN_Relay_Wasser_Beet, OFF)
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+					sendCommand(LCN_Relay_Wasser_Hinten, OFF)
+					Bewaesserung_StatusVorne.postUpdate("ON")
+					logInfo("bewaesserung","vorn morgens - nu wird es nass....") 
+				}
+			}
+			else if (	( Bewaesserung_Auto_Vorne.state != OFF ) &&
+						( Bewaesserung_Auto_Abends.state != OFF ) &&
+						( WetterRegen.state == OPEN ) &&
+						( Oh_Regen_in_24h.state != ON ) &&
+						( StatusParty.state != CLOSED ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_vorn_abends_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_vorn_abends_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))))
+			{
+				if (Bewaesserung_StatusVorne.state != ON )
+				{
+					sendCommand(LCN_Relay_Wasser_Vornee, ON)
+					sendCommand(LCN_Relay_Wasser_Beet, OFF)
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+					sendCommand(LCN_Relay_Wasser_Hinten, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					Bewaesserung_StatusVorne.postUpdate("ON")
+					logInfo("bewaesserung","vorn abends - nu wird es nass....: ")
+				}
+			}
+			else
+			{
+				if (Bewaesserung_StatusVorne.state == ON )
+				{
+					sendCommand(LCN_Relay_Wasser_Vornee, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, OFF)
+					Bewaesserung_StatusVorne.postUpdate("OFF")
+					logInfo("bewaesserung","vorn-aus")
+				}
+			}
+
+       /*************** Hinten **************************************************/
+			logDebug("bewaesserung","2.")
+			logDebug("bewaesserung","hinten_morgens_von    : "+Bewaesserung_control_hinten_morgens_von.state.format("%1$tH:%1$tM"))
+			logDebug("bewaesserung","hinten_morgens_bis    : "+Bewaesserung_control_hinten_morgens_bis.state.format("%1$tH:%1$tM"))
+			if (	( Bewaesserung_Auto_Hinten.state != OFF) &&
+					( Bewaesserung_Auto_Morgens.state != OFF ) &&
+					( WetterRegen.state == OPEN ) &&
+						( Oh_Regen_in_24h.state != ON ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hinten_morgens_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hinten_morgens_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&
+					( StatusParty.state != CLOSED ) 
+				)
+			{
+				logDebug("bewaesserung","hinten morgens - in der Regel....") 
+				if (Bewaesserung_StatusHinten.state != ON)
+				{
+					sendCommand(LCN_Relay_Wasser_Hinten, ON)
+					sendCommand(LCN_Relay_Wasser_Hochbeet, OFF)
+					sendCommand(LCN_Relay_Wasser_Beet, OFF)
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+					sendCommand(LCN_Relay_Wasser_Vornee, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					Bewaesserung_StatusHinten.postUpdate("ON")
+					logInfo("bewaesserung","hinten morgens - nu wird es nass....") 
+				}
+			}
+			else if (	( Bewaesserung_Auto_Hinten.state != OFF) &&
+						( Bewaesserung_Auto_Abends.state != OFF ) &&
+						( WetterRegen.state == OPEN ) &&
+						( Oh_Regen_in_24h.state != ON ) &&
+						( StatusParty.state != CLOSED ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hinten_abends_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hinten_abends_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&
+						( now.isAfter(bewaesserung_hinten_abends_von) ) &&
+						( now.isBefore(bewaesserung_hinten_abends_bis) ) )
+			{
+				if (Bewaesserung_StatusHinten.state != ON)
+				{
+					sendCommand(LCN_Relay_Wasser_Hinten, ON)
+					sendCommand(LCN_Relay_Wasser_Hochbeet, OFF)
+					sendCommand(LCN_Relay_Wasser_Beet, OFF)
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+					sendCommand(LCN_Relay_Wasser_Vornee, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					Bewaesserung_StatusHinten.postUpdate("ON")
+					logInfo("bewaesserung","hinten abends - nu wird es nass....")
+				}
+			}
+			else
+			{
+				if (Bewaesserung_StatusHinten.state == ON )
+				{
+					sendCommand(LCN_Relay_Wasser_Hinten, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, OFF)
+					Bewaesserung_StatusHinten.postUpdate("OFF")
+					logInfo("bewaesserung","hinten-aus")
+				}
+			}
+
+            /*************** Beet  **************************************************/
+			logDebug("bewaesserung","3. ")
+			logDebug("bewaesserung","beet_morgens_von      : "+Bewaesserung_control_beet_morgens_von.state.format("%1$tH:%1$tM"))
+			logDebug("bewaesserung","beet_morgens_bis      : "+Bewaesserung_control_beet_morgens_bis.state.format("%1$tH:%1$tM"))
+			if (	( Bewaesserung_Auto_Beet.state != OFF) &&
+					( Bewaesserung_Auto_Morgens.state != OFF ) &&
+					( Oh_Regen_in_24h.state != ON ) &&
+					( WetterRegen.state == OPEN ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_beet_morgens_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_beet_morgens_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) )
+			{
+				if (Bewaesserung_StatusBeet.state != ON )
+				{
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+					sendCommand(LCN_Relay_Wasser_Hochbeet, OFF)
+					sendCommand(LCN_Relay_Wasser_Beet, ON)
+					sendCommand(LCN_Relay_Wasser_Hinten, OFF)
+					sendCommand(LCN_Relay_Wasser_Vornee, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					Bewaesserung_StatusBeet.postUpdate("ON")
+					logInfo("bewaesserung","Beet morgens - nu wird es nass....") 
+				}
+			}
+			else if (	( Bewaesserung_Auto_Hinten.state != OFF) &&
+						( Bewaesserung_Auto_Abends.state != OFF ) &&
+						( WetterRegen.state == OPEN ) &&
+						( Oh_Regen_in_24h.state != ON ) &&
+						( StatusParty.state != CLOSED ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_beet_abends_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_beet_abends_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) ) 
+			{
+				if (Bewaesserung_StatusHinten.state != ON)
+				{
+					sendCommand(LCN_Relay_Wasser_Hinten, OFF)
+					sendCommand(LCN_Relay_Wasser_Hochbeet, OFF)
+					sendCommand(LCN_Relay_Wasser_Beet, ON)
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+					sendCommand(LCN_Relay_Wasser_Vornee, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					Bewaesserung_StatusBeet.postUpdate("ON")
+					logInfo("bewaesserung","Beet abends - nu wird es nass....")
+				}
+			}
+			else
+			{
+				if (Bewaesserung_StatusBeet.state == ON )
+				{
+					logInfo("bewaesserung","beet-aus")
+					sendCommand(LCN_Relay_Wasser_Beet, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, OFF)
+					Bewaesserung_StatusBeet.postUpdate("OFF")
+				}
+			}
+
+            /*************** Hochhochbeet  **************************************************/
+			logDebug("bewaesserung","4. ")
+			logDebug("bewaesserung","hochbeet_morgens_von      : "+Bewaesserung_control_hochbeet_morgens_von.state.format("%1$tH:%1$tM"))
+			logDebug("bewaesserung","hochbeet_morgens_bis      : "+Bewaesserung_control_hochbeet_morgens_bis.state.format("%1$tH:%1$tM"))
+			if (	( Bewaesserung_Auto_Hochbeet.state != OFF) &&
+					( Bewaesserung_Auto_Morgens.state != OFF ) &&
+					( WetterRegen.state == OPEN ) &&
+					( Oh_Regen_in_24h.state != ON ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hochbeet_morgens_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hochbeet_morgens_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) )
+			{
+				if (Bewaesserung_StatusHochbeet.state != ON )
+				{
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+					sendCommand(LCN_Relay_Wasser_Hochbeet, ON)
+					sendCommand(LCN_Relay_Wasser_Beet, OFF)
+					sendCommand(LCN_Relay_Wasser_Hinten, OFF)
+					sendCommand(LCN_Relay_Wasser_Vornee, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					Bewaesserung_StatusHochbeet.postUpdate("ON")
+					logInfo("bewaesserung","Hochbeet morgens - nu wird es nass....") 
+				}
+			}
+			else if (	( Bewaesserung_Auto_Hinten.state != OFF) &&
+						( Bewaesserung_Auto_Abends.state != OFF ) &&
+						( WetterRegen.state == OPEN ) &&
+						( Oh_Regen_in_24h.state != ON ) &&
+						( StatusParty.state != CLOSED ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hochbeet_abends_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hochbeet_abends_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) )
+			{
+				if (Bewaesserung_StatusHinten.state != ON)
+				{
+					sendCommand(LCN_Relay_Wasser_Hinten, OFF)
+					sendCommand(LCN_Relay_Wasser_Hochbeet, ON)
+					sendCommand(LCN_Relay_Wasser_Beet, OFF)
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+					sendCommand(LCN_Relay_Wasser_Vornee, OFF)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					Bewaesserung_StatusHochbeet.postUpdate("ON")
+					logInfo("bewaesserung","Hochbeet abends - nu wird es nass....")
+				}
+			}
+			else
+			{
+				if (Bewaesserung_StatusHochbeet.state == ON )
+				{
+					logInfo("bewaesserung","Hochbeet-aus")
+					sendCommand(LCN_Relay_Wasser_Trafo, OFF)
+					sendCommand(LCN_Relay_Wasser_Hochbeet, OFF)
+					Bewaesserung_StatusHochbeet.postUpdate("OFF")
+				}
+			}
+
+
+
+            /*************** Kies  **************************************************/
+			logDebug("bewaesserung","5. ")
+			logDebug("bewaesserung","kies_morgens_von      : "+Bewaesserung_control_kies_morgens_von.state.format("%1$tH:%1$tM"))
+			logDebug("bewaesserung","kies_morgens_bis      : "+Bewaesserung_control_kies_morgens_bis.state.format("%1$tH:%1$tM"))
+			if (	( Bewaesserung_Auto_Kies.state != OFF) &&
+					( Bewaesserung_Auto_Morgens.state != OFF ) &&
+					( WetterRegen.state == OPEN ) &&
+					( Oh_Regen_in_24h.state != ON ) &&
+    ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_kies_morgens_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
+    ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_kies_morgens_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) )
+			{
+				logDebug("bewaesserung","5.1")
+				if (Bewaesserung_StatusKies.state != ON )
+				{
+					sendCommand(LCN_Relay_Wasser_Kies, ON)
+					sendCommand(LCN_Relay_Wasser_Hochbeet, OFF)
+					sendCommand(LCN_Relay_Wasser_Beet, OFF)
+					sendCommand(LCN_Relay_Wasser_Hinten, OFF)
+					sendCommand(LCN_Relay_Wasser_Vornee, OFF)
+					postUpdate(Bewaesserung_StatusKies, ON)
+					sendCommand(LCN_Relay_Wasser_Trafo, ON)
+					Bewaesserung_StatusKies.postUpdate("ON")
+					logInfo("bewaesserung","Kies morgens - nu wird es nass....") 
+				}
+			}
+			else
+			{
+				logDebug("bewaesserung","5.2 ")
+				if (Bewaesserung_StatusKies.state == ON )
+				{
+					logInfo("bewaesserung","kies-aus")
+					Bewaesserung_StatusKies.postUpdate("OFF")
+					sendCommand(LCN_Relay_Wasser_Trafo, OFF)
+					sendCommand(LCN_Relay_Wasser_Kies, OFF)
+				}
+			}
+
+			logDebug("bewaesserung","5.3")
+		}
+		else
+		{
+			logDebug("bewaesserung",".. zu kalt .... Durchschnitt "+tmp_temperatur+" > "+bewaesserung_temperature+" (Schwellwert)")
+		}
+
+	}
+	else
+	{
+		logDebug("bewaesserung","Kalte Jahreszeit... daher keine Automatische Bewaesserung!") 
+	}
+	logDebug("bewaesserung","XXXXX ENDE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+end

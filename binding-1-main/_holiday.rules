@@ -1,0 +1,12 @@
+rule "HolidayCalculation"
+when
+	Time cron "1 0 0 * * ?" 
+	or
+	System started
+	or
+	Item TestSwitch changed
+then
+	postUpdate(OhHoliday,OFF)
+	callScript('_holiday')
+	logInfo("HolidayCalculation","OhHoliday : "+OhHoliday.state)
+end

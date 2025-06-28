@@ -1,0 +1,38 @@
+// ... test
+Bridge mqtt:broker:rctclient "MQTT RCT Client" [ host="10.10.10.68", port="1883", secure=false, qos="1" , retained="180"]
+{
+	Thing topic rctmon "MQTT RCTMON" {
+			Type number : PV_Energy_Household_Sum		"Energy Household SUM" 				[ stateTopic="rctmon/energy/household/sum", transformationPattern="JS:| parseFloat(input) / 1000" ]
+			Type number : PV_Energy_Grid_Load_Sum		"Energy Grid Load SUM" 				[ stateTopic="rctmon/energy/grid/load/sum", transformationPattern="JS:| parseFloat(input) / 1000" ]
+			Type number : PV_Energy_Grid_Feed_Sum 		"Energy Grid Feed SUM"		 		[ stateTopic="rctmon/energy/grid/feed/sum",transformationPattern="JS:| parseFloat(input) / 1000" ]
+			Type number : PV_Energy_Solar_Generator_A 	"Energy Solar Generator A"	 		[ stateTopic="rctmon/energy/solar/generator/sum/component_generator_a",transformationPattern="JS:| parseFloat(input) / 1000" ]
+			Type number : PV_Energy_Solar_Generator_B 	"Energy Solar Generator B"	 		[ stateTopic="rctmon/energy/solar/generator/sum/component_generator_b",transformationPattern="JS:| parseFloat(input) / 1000" ]
+
+			Type number : PV_Grid_Power_Phase1		"Grid Power Phase 1" 				[ stateTopic="rctmon/grid/power/watt/phase_l1"]
+			Type number : PV_Grid_Power_Phase2		"Grid Power Phase 2" 				[ stateTopic="rctmon/grid/power/watt/phase_l2"]
+			Type number : PV_Grid_Power_Phase3		"Grid Power Phase 3" 				[ stateTopic="rctmon/grid/power/watt/phase_l3"]
+
+			Type number : PV_Battery_Voltage 			"Battery Voltage" 				 	[ stateTopic="rctmon/battery/voltage" ]
+			Type number : PV_Battery_Energy_From	 	"Battery Energey From kW"	 		
+			[ stateTopic="rctmon/battery/stored/energy", transformationPattern="JS:| parseFloat(input) / 1000" ]
+			Type number : PV_Battery_Energy_Into	 	"Battery Energey Into kW"	 		[ stateTopic="rctmon/battery/used/energy",transformationPattern="JS:| parseFloat(input) / 1000" ]
+			Type number : PV_Battery_Current_Power		"Battery Current Power" 			[ stateTopic="rctmon/battery/power" ]
+			Type number : PV_Input_B_Volt 				"Input B in Volt"			 		[ stateTopic="rctmon/generator/voltage/volt/generator_b" ]
+			Type number : PV_Input_A_Volt 				"Input A in Volt"					[ stateTopic="rctmon/generator/voltage/volt/generator_a" ]
+			Type number : PV_Temperature_Sensor_Heatsink "Temperator Heatsink"				[ stateTopic="rctmon/temperature/sensor_heatsink" ]
+			Type number : PV_Temperature_Sensor_Core	"Temperator Core"					[ stateTopic="rctmon/temperature/sensor_core" ]
+			Type number : PV_Battery_Temperature 		"Battery Temperature" 		 		[ stateTopic="rctmon/battery/temperature" ]
+			Type number : PV_Battery_Upper_SOC		 	"Battery Upper SOC Limit in %" 		
+			[ stateTopic="rctmon/battery/state/of/charge/target/percent",transformationPattern="JS:| parseFloat(input) * 100" ]
+
+			Type number : PV_Battery_SOC 				"Battery State of Charge in %"  	
+			[ stateTopic="rctmon/battery/state/of/charge/percent",transformationPattern="JS:| parseFloat(input) * 100" ]
+			Type number : PV_House_Current_Power		"House Current Power" 				
+			[ stateTopic="rctmon/household/load" ]
+			Type number : PV_Input_A_Watt 				"Input A in Watt" 					
+			[ stateTopic="rctmon/generator/power/watt/generator_a", transformationPattern="JS:mqtt_rctmon_e45.js" ]
+			Type number : PV_Input_B_Watt 				"Input B in Watt" 				 	
+			[ stateTopic="rctmon/generator/power/watt/generator_b", transformationPattern="JS:mqtt_rctmon_e45.js" ]
+			
+	}
+}

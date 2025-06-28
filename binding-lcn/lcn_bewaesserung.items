@@ -1,0 +1,103 @@
+//... das alte Zeug
+
+Group:Switch:OR(ON, OFF)	gWasser					"Bewaesserung [%d]"			<water>		(AUS_Garten)			["Water"]
+
+Switch		Bewaesserung_Test						"Bewasserung Test"			<water>		(gWasser,AUS_Garten)				["WallSwitch"]
+
+// Bewasserung - Relais die im LCN Bus liegen
+Switch		LCN_Relay_Wasser_Hochbeet				"Bew. 3 Hochbett"				<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#4"}
+Switch		LCN_Relay_Wasser_Kies					"Bew. 5 Zaun Kies"			<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#5"}
+Switch		LCN_Relay_Wasser_Beet					"Bew. 4 Hochbeet2"			<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#6"}
+Switch		LCN_Relay_Wasser_Hinten					"Bew. 1 Rasen Hinten"			<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#7"}
+Switch		LCN_Relay_Wasser_Vornee					"Bew. 2 Rasen Vorne"			<faucet>	(gWasser,AUS_Garten)	["WallSwitch"]
+{ channel="lcn:module:bus:S000M250:relay#8"}
+Switch		LCN_Relay_Wasser_Trafo					"Bew. 0 Trafo"				<faucet>	(gWasser,EG_Garage)		["WallSwitch"]
+{ channel="lcn:module:bus:S000M253:relay#4" }
+
+
+// Den aktuellen Status zwischenspeichern innerhalb der Rule bewaesserung.rules
+Switch		Bewaesserung_Manuell_Pumpe					"Pumpe Manuell"				<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+Switch		Bewaesserung_StatusVorne					"Status Vorn"				<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+Switch		Bewaesserung_StatusHinten					"Status Hinten"				<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung 
+Switch		Bewaesserung_StatusKies						"Status Kies"				<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+Switch		Bewaesserung_StatusBeet						"Status Hochbeet 2 (Kindaten)"	<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+Switch		Bewaesserung_StatusHochbeet					"Status Hochbeet"			<water>		(gWasser,AUS_Garten)    // in der Rule Bewaesserung
+
+Switch		Bewaesserung_Auto_Morgens					"Automatik alles Morgens"	<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Abends					"Automatik alles Abends"	<water>		(gWasser,AUS_Garten)	["Water"]
+
+Switch		Bewaesserung_Auto_Vorne						"Automatik Vorne"			<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Hinten					"Automatik Hinten"			<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Kies						"Automatik Kies"			<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Beet						"Automatik Beet 2"			<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Hochbeet					"Automatik Hochbeet"		<water>		(gWasser,AUS_Garten)	["Water"]
+
+Switch		Bewaesserung_Auto_Abends_Vorne				"Automatik Abends Vorne"	<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Abends_Hinten				"Automatik Abends Hinten"	<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Abends_Kies				"Automatik Abends Kies"		<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Abends_Beet				"Automatik Abends Beet 2"	<water>		(gWasser,AUS_Garten)	["Water"]
+Switch		Bewaesserung_Auto_Abends_Hochbeet			"Automatik Abends Hochbeet"	<water>		(gWasser,AUS_Garten)	["Water"]
+
+//####################################################################
+DateTime	Bewaesserung_control_monat_von				"Starte im Jahr"			<time>      (gWasser,AUS_Garten)		["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tY.%1$tm.%1$td"] }
+DateTime	Bewaesserung_control_monat_bis				"Endet im Jahr"				<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tY.%1$tm.%1$td"] }
+
+//####################################################################
+
+DateTime	Bewaesserung_control_vorn_morgens_von		"vor morgens von"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_vorn_morgens_bis		"vor morgens bis"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+DateTime	Bewaesserung_control_kies_morgens_von		"kies morgens von"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_kies_morgens_bis		"kies morgens bis"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+DateTime	Bewaesserung_control_hochbeet_morgens_von	"hochbeet morgens von"		<time>		(gWasser,AUS_Garten)		["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_hochbeet_morgens_bis	"hochbeet morgens bis"		<time>		(gWasser,AUS_Garten)		["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+DateTime	Bewaesserung_control_beet_morgens_von		"hochbeet2 morgens von"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_beet_morgens_bis		"hochbeet2 morgens bis"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+DateTime	Bewaesserung_control_hinten_morgens_von		"hinten morgens von"		<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_hinten_morgens_bis		"hinten morgens bis"		<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+//####################################################################
+
+DateTime	Bewaesserung_control_hochbeet_abends_von	"hochbeet abends von"		<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_hochbeet_abends_bis	"hochbeet abends bis"		<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+DateTime	Bewaesserung_control_beet_abends_von		"hochbeet2 abends von"			<time>		(gWasser,AUS_Garten)		["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_beet_abends_bis		"hochbeet2 abends bis"			<time>      (gWasser,AUS_Garten)		["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+DateTime	Bewaesserung_control_vorn_abends_von		"vor abends von"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_vorn_abends_bis		"vor abends bis"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+DateTime	Bewaesserung_control_hinten_abends_von		"hinten abends von"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_hinten_abends_bis		"hinten abends bis"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+
+DateTime	Bewaesserung_control_kies_abends_von		"kies abends von"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }
+DateTime	Bewaesserung_control_kies_abends_bis		"kies abends bis"			<time>      (gWasser,AUS_Garten)       ["Control","Setpoint"]
+{ stateDescription=" "[ pattern="%1$tH:%1$tM"] }

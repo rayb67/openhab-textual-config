@@ -1,0 +1,6 @@
+ON=frozen
+OFF=OK
+undefined=unknown
+-=unknown
+NULL=unknown
+UNDEF=unknown

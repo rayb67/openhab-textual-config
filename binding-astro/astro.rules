@@ -1,0 +1,67 @@
+// Die nachfolgende Rule ist fuer einen kurne Zeitraum am morgen relevant,
+// wenn der Bewegungsmelder aktiv ist und licht an macht, dann aber die 
+// Lichtstaerke so hoch wird, das das ausschalten nicht mehr passiert.
+// So am 8.2.23 um 7:16 Uhr.
+rule "EventMorgens"
+when
+    Channel "astro:sun:local:civilDawn#event" triggered START
+then
+    logInfo("EventsMorgens", "Channel 'astro:sun:home:civilDawn#event' triggered START")
+	sendCommand( Licht_AUS_Haustuer , OFF)
+end
+
+rule "EventMisc3"
+when
+	Channel 'astro:sun:sunset_30:set#event' triggered START
+then
+	logInfo("EventMisc3", "Channel 'astro:sun:sunset_30:set#event' triggered START")
+	sendCommand( Steckdose_EG_Wohnz_Fernseher, ON)
+end
+
+rule "EventMisc10-Sunset"
+when
+    Channel 'astro:sun:local:set#event' triggered START
+then
+	logInfo("EventMisc11", "Channel 'astro:sun:local:set#event' triggered START")
+//	sendCommand(Licht_EG_Treppe, OFF)
+end
+
+rule "EventMisc1"
+when
+	Channel 'astro:sun:local:night#event' triggered START
+then
+	logDebug("EventMisc1", "Channel 'astro:sun:local:night#event' triggered START")
+end
+
+
+rule "EventMisc2"
+when
+	Channel 'astro:sun:sunset_60:set#event' triggered START
+then
+	logDebug("EventMisc2", "Channel 'astro:sun:sunset_60:set#event' triggered START")
+end
+
+
+rule "EventMisc4"
+when
+	Channel 'astro:sun:local:eveningNight#event' triggered START
+then
+	logDebug("EventMisc4", "Channel astro:sun:local:eveningNight triggered START")
+end
+
+
+rule "EventMisc5"
+when
+	Channel 'astro:sun:sunset_120:set#event' triggered START
+then
+	logDebug("EventMisc5", "Channel 'astro:sun:sunset_90:set#event' triggered START")
+	logDebug("EventMisc5", "Steckdose_EG_Wohnz_Fernseher ON")
+end
+
+rule "EventMisc12-Sunrise"
+when
+	Channel 'astro:sun:local:rise#end' triggered START
+then
+	logDebug("EventMisc12", "Channel 'astro:sun:local:rise#end' triggered START")
+	logDebug("EventMisc12", " Zeit : "+astro_Sunrise_Time)
+end

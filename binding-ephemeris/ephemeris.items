@@ -1,0 +1,4 @@
+Switch	ephemeris_Status		"Feiertag Status"			<info>
+String	ephemeris_Name			"Feiertag Name"				<info>
+String	ephemeris_Description	"Feiertag Beschreibung"		<info>
+Number	ephemeris_NextDay		"Feiertag Next Day"		<info>

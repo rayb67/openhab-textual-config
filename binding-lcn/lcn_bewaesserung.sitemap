@@ -1,0 +1,31 @@
+sitemap lcn_bewaesserung label="Es wird nass." {
+	Frame label="Steuerung" {
+		Switch	item=Test_Switch
+		Default item=Bewaesserung_control_monat_von icon="time"
+		Default item=Bewaesserung_control_monat_bis icon="time"
+	}
+	Frame label="Morgens" {
+		Default item=Bewaesserung_control_vorn_morgens_von icon="time"
+		Default item=Bewaesserung_control_vorn_morgens_bis icon="time"
+		Default item=Bewaesserung_control_hinten_morgens_von icon="time"
+		Default item=Bewaesserung_control_hinten_morgens_bis icon="time"
+		Default item=Bewaesserung_control_beet_morgens_von icon="time"
+		Default item=Bewaesserung_control_beet_morgens_bis icon="time"
+		Default item=Bewaesserung_control_hochbeet_morgens_von icon="time"
+		Default item=Bewaesserung_control_hochbeet_morgens_bis icon="time"
+		Default item=Bewaesserung_control_kies_morgens_von icon="time"
+		Default item=Bewaesserung_control_kies_morgens_bis icon="time"
+	}
+	Frame label="Abends" {
+		Default item=Bewaesserung_control_vorn_abends_von icon="time"
+		Default item=Bewaesserung_control_vorn_abends_bis icon="time"
+		Default item=Bewaesserung_control_hinten_abends_von icon="time"
+		Default item=Bewaesserung_control_hinten_abends_bis icon="time"
+		Default item=Bewaesserung_control_beet_abends_von icon="time"
+		Default item=Bewaesserung_control_beet_abends_bis icon="time"
+		Default item=Bewaesserung_control_hochbeet_abends_von icon="time"
+		Default item=Bewaesserung_control_hochbeet_abends_bis icon="time"
+		Default item=Bewaesserung_control_kies_abends_von icon="time"
+		Default item=Bewaesserung_control_kies_abends_bis icon="time"
+	}
+}

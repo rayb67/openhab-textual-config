@@ -1,0 +1,15 @@
+Thing ipcamera:instar:hof "Hof Camera"
+[
+    ipAddress="10.10.10.80",
+    username="openhab",
+    password="password",
+    onvifPort=8080, //normally 80 check what it needs
+	ptzContinuous="OFF",
+	gifOutOptions="-r 2 -filter_complex scale=-2:360:flags=lanczos,setpts=0.5*PTS,split[o1][o2];[o1]palettegen[p];[o2]fifo[o3];[o3][p]paletteuse",
+	hlsOutOptions="-strict -2 -f lavfi -i aevalsrc=0 -acodec aac -vcodec copy -hls_flags delete_segments -hls_time 2 -hls_list_size 4",
+	mjpegOptions="-q:v 5 -r 2 -vf scale=640:-2 -update 1",
+    port=80,
+    ffmpegOutput="/volume4/docker/openhab/userdata/ipcamera/hof/",
+    ffmpegInput="rtsp://10.10.10.80:554/ISAPI/Streaming/channels/401"
+]
+//	mjpegUrl="http://10.10.10.68:8080/ipcamera/hof/ipcamera.mjpeg",

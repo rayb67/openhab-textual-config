@@ -1,0 +1,64 @@
+// ------------------------------------------------------------------------------------
+// setpoint beispiel https://community.openhab.org/t/lcn-binding-setpoint-on-ios-app-via-sitemapfile-and-textual-item-definitions-via-channels/132101
+//Number:Speed			WindAvg						"Wind Avg"						<wind>			(gWetter)			["Measurement","Wind"]
+Group			gAll							"alles"
+// ------------------------------------------------------------------------------------
+Group			gVariablen					"LCN Variablen"					<motion>		(EG_Technik)		["Equipment"]
+Group			gBMI						"Status Bewegung"				<motion>		(EG_Technik)		["Equipment"]
+
+Group			gGrundstueck 				"Grundstueck"					<outdoor>							["Outdoor"]	{ widgetOrder="3"}
+Group			gHaus						"Haus"							<house>			(gGrundstueck)		["Indoor"]	{ widgetOrder="4"}
+Group			gTechnik					"Technik"						<cellar>		(gHaus)				["Cellar"]
+Group			AUS_Dach					"Dach(Boden)"					<garden>		(gHaus)				["Attic"]
+Group			AUS_Service					"Outside(Service)"				<garden>		(gGrundstueck)		["Outdoor"]
+Group			AUS_Hof						"Hof"							<garden>		(gGrundstueck)		["Driveway"]
+Group			AUS_Terasse					"Terasse"						<terrace>		(gGrundstueck)		["Terrace"]	
+Group			AUS_Garten					"Garten"						<garden>		(gGrundstueck)		["Garden"]
+
+
+// ------------------------------------------------------------------------------------
+Group			gEG 						"EG-Erdgeschoss"				<groundfloor>	(gHaus)				["GroundFloor"] { widgetOrder="1"}
+Group			EG_Kueche					"EG Kueche" 					<kitchen>		(gEG)				["Kitchen"]
+Group			EG_Technik					"EG Technik" 					<energy>		(gEG)				["Room"]
+Group			EG_Wohnz					"EG Wohnzimmer"					<sofa>			(gEG)				["LivingRoom"]
+Group			EG_Abstell					"EG Abstellraum"				<corridor>		(gEG)				["Room"]
+Group			EG_Flur						"EG Flur"						<corridor>		(gEG)				["Corridor"]
+Group			EG_WC						"EG WC"							<bath>			(gEG)				["Bathroom"]
+Group			EG_Schleuse					"EG Schleuse"					<whitegood>		(gEG)				["Room"]
+Group			EG_Vorrat					"EG Vorrat"						<corridor>		(gEG)				["Room"]
+Group			EG_Garage					"EG Garage"						<garage>		(gEG)				["Garage"]
+
+// ------------------------------------------------------------------------------------
+Group			gOG							"OG Obergeschoss"				<firstfloor>	(gHaus)				["GroundFloor"] { widgetOrder="2"}
+Group			OG_Schlafz					"OG Schlafzimmer"				<bedroom>		(gOG)				["Bedroom"]
+Group			OG_Ankleide					"OG Ankleide"					<bedroom>		(gOG)				["Room"]
+Group			OG_Bad						"OG Bad"						<bath>			(gOG)				["Bathroom"]
+Group			OG_Kind						"OG Kinder"						<boy1>			(gOG)				["Room"]
+Group			OG_Gaeste					"OG Gaeste"						<sun>			(gOG)				["Room"]
+Group			OG_Buero					"OG Buero"						<office>		(gOG)				["Room"]
+Group			OG_Flur						"OG Flur"						<corridor>		(gOG)				["Corridor"]
+Group			OG_Spitzboden				"OG Spitzboden"					<corridor>		(gOG)				["Attic"]
+Group			DG_Dachboden				"DG Dachboden"					<attic>			(gOG)				["Attic"]
+// ------------------------------------------------------------------------------------
+Group			gHeizung					"Soll Werte"					<temperature>	(EG_Technik)		["Equipment"]
+Group			gMisc						"Settings"						<settings>		(EG_Technik)
+Group			gWetter						"Wetter"						<rain>			(EG_Technik)		["Outdoor"]
+// ------------------------------------------------------------------------------------
+Group			gRoll_EG_WZ					"Ro Wohnzimmer"					<rollershutter>						["Equipment"]
+Group			gRoll_EG_Kueche				"Ro Kueche"						<rollershutter>						["Equipment"]
+Group			gRoll_OG_Bad				"Ro Bad"						<rollershutter>						["Equipment"]
+
+// ------------------------------------------------------------------------------------
+Group:Switch:OR(ON, OFF)	gSteckdosenEG			"Steckdosen EG [%d]"							(gAll,gEG)			["Switch"]
+Group:Switch:OR(ON, OFF)	gLichtEG				"Licht EG [%d]"			<selflight>				(gAll,gEG)			["Lightbulb"]	{autoupdate="false"}
+Group:Switch:OR(ON, OFF)	gSteckdosenOG			"Steckdosen OG [%d]"							(gAll,gOG)			["Switch"]
+Group:Switch:OR(ON, OFF)	gLichtOG				"Licht OG [%d]"			<selflight>				(gAll,gOG)			["Lightbulb"]	{autoupdate="false"}
+Group:Switch:OR(ON, OFF)	gSteckdosenAUS			"Steckdosen Aussen [%d]"						(gAll,gGrundstueck)	["Switch"]
+Group:Switch:OR(ON, OFF)	gLichtDG				"Licht DG [%d]"			<selflight>				(gAll,DG_Dachboden)	["Lightbulb"]	{autoupdate="false"}
+Group:Switch:OR(ON, OFF)	gLichtAUS				"Licht Aussen [%d]"		<selflight>				(gAll,gGrundstueck)	["Lightbulb"]	{autoupdate="false"}
+
+// ------------------------------------------------------------------------------------
+Group						LightAll				"Alle Lichter"					<light> 		(gHaus)				["Lightbulb"]
+Group:Switch:OR(ON,OFF)		LightS					"Licht S"						<light>			(LightAll)			["Lightbulb"]	{autoupdate="false"}
+Group:Dimmer				LightD					"Licht D"						<light> 		(LightAll)			["Lightbulb"]
+Group:Dimmer				LightDimEG				"Licht Dim EG"					<light>			(LightAll)			["Lightbulb"]
