@@ -1,0 +1,30 @@
+
+rule "ForecastSolarCalc"
+when
+	Time cron "0 */4 * * * ?" //  15 Min zum testen
+//	or Item ForecastSolarHome_Today received update
+	or Item ForecastSolarHome_Test changed
+then
+    // Get Actions for specific fs-site
+	val solarforecastActions = getActions("solarforecast","solarforecast:fs-site:homeSite")
+
+    // Get earliest and latest forecast dates
+	val beginDT = solarforecastActions.getForecastBegin
+	val endDT = solarforecastActions.getForecastEnd
+	logDebug("ForecastSolarCalc", "Forecast Begin: " + beginDT)
+	logDebug("ForecastSolarCalc", "Forecast End:   " + endDT)
+
+	val energyState = solarforecastActions.getEnergyOfDay(LocalDate.now.plusDays(1))
+	logDebug("ForecastSolarCalc","{}",energyState)
+	ForecastSolarHome_Day1.postUpdate(energyState)
+
+	val energyState2 = solarforecastActions.getEnergyOfDay(LocalDate.now.plusDays(2))
+	logDebug("ForecastSolarCalc","{}",energyState2)
+	ForecastSolarHome_Day2.postUpdate(energyState2)
+
+	val energyState3 = solarforecastActions.getEnergyOfDay(LocalDate.now.plusDays(3))
+	logDebug("ForecastSolarCalc","{}",energyState3)
+	ForecastSolarHome_Day3.postUpdate(energyState3)
+
+end
+

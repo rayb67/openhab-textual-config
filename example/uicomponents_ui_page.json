@@ -1,0 +1,5131 @@
+{
+  "Wind": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "Wind",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Mar 16, 2025, 8:11:48 AM",
+      "component": "oh-chart-page",
+      "config": {
+        "chartType": "",
+        "label": "Admin Wind",
+        "order": "69",
+        "period": "W",
+        "sidebar": true
+      },
+      "slots": {
+        "dataZoom": [
+          {
+            "component": "oh-chart-datazoom",
+            "config": {
+              "type": "inside"
+            }
+          }
+        ],
+        "grid": [
+          {
+            "component": "oh-chart-grid",
+            "config": {
+              "includeLabels": true
+            }
+          }
+        ],
+        "legend": [
+          {
+            "component": "oh-chart-legend",
+            "config": {
+              "bottom": 3.0,
+              "type": "scroll"
+            }
+          }
+        ],
+        "series": [
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "Wind",
+              "name": "Wind Dach",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "Owm_Home_Current_WindSpeed",
+              "name": "Wind (Open Weather)",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          }
+        ],
+        "tooltip": [
+          {
+            "component": "oh-chart-tooltip",
+            "config": {
+              "confine": true,
+              "smartFormatter": true
+            }
+          }
+        ],
+        "xAxis": [
+          {
+            "component": "oh-time-axis",
+            "config": {
+              "gridIndex": 0.0
+            }
+          }
+        ],
+        "yAxis": [
+          {
+            "component": "oh-value-axis",
+            "config": {
+              "gridIndex": 0.0
+            }
+          }
+        ]
+      }
+    }
+  },
+  "home": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "home",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jan 16, 2024, 10:50:27 PM",
+      "component": "oh-home-page",
+      "config": {
+        "label": "Home Page"
+      },
+      "slots": {
+        "equipment": [
+          {
+            "component": "oh-equipment-tab",
+            "config": {},
+            "slots": {}
+          }
+        ],
+        "locations": [
+          {
+            "component": "oh-locations-tab",
+            "config": {
+              "cardOrder": [
+                "EG_Kueche",
+                "EG_Technik",
+                "EG_Wohnz",
+                "AUS_Garten",
+                "gHaus",
+                "AUS_Hof",
+                "AUS_Terasse",
+                "gTechnik",
+                "EG_Flur",
+                "EG_Garage",
+                "EG_Schleuse",
+                "EG_WC",
+                "OG_Buero",
+                "OG_Gaeste",
+                "OG_Schlafz",
+                "OG_Ankleide",
+                "OG_Bad",
+                "OG_Flur",
+                "OG_Kind",
+                "EG_Abstell",
+                "OG_Spitzboden",
+                "gGrundstueck",
+                "DG_Dachboden",
+                "gEG",
+                "EG_Vorrat",
+                "gOG",
+                "AUS_Dach",
+                "AUS_Service",
+                "Owm_Home_StationId",
+                "Owm_Home_StationLocation",
+                "Owm_Home_StationName"
+              ]
+            },
+            "slots": {
+              "AUS_Garten": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/garten-hinten.jpeg"
+                  }
+                }
+              ],
+              "AUS_Hof": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/hof.jpeg"
+                  }
+                }
+              ],
+              "AUS_Service": [
+                {
+                  "component": "oh-location-card",
+                  "config": {}
+                }
+              ],
+              "AUS_Terasse": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/terasse.jpeg"
+                  }
+                }
+              ],
+              "EG_Flur": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/flur.jpeg"
+                  }
+                }
+              ],
+              "EG_Garage": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/garage.jpeg"
+                  }
+                }
+              ],
+              "EG_Kueche": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/kueche.jpeg"
+                  }
+                }
+              ],
+              "EG_Schleuse": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/schleuse.jpeg"
+                  }
+                }
+              ],
+              "EG_Technik": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/technik.jpeg"
+                  }
+                }
+              ],
+              "EG_WC": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/wc.jpeg"
+                  }
+                }
+              ],
+              "EG_Wohnz": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/wohnzimmer.jpeg"
+                  }
+                }
+              ],
+              "OG_Ankleide": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/ankleide.jpeg"
+                  }
+                }
+              ],
+              "OG_Bad": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/bad.jpeg"
+                  }
+                }
+              ],
+              "OG_Buero": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/buero.jpeg"
+                  }
+                }
+              ],
+              "OG_Flur": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/og-flur.jpeg"
+                  }
+                }
+              ],
+              "OG_Gaeste": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/gaeste.jpeg"
+                  }
+                }
+              ],
+              "OG_Kind": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/kind.jpeg"
+                  }
+                }
+              ],
+              "OG_Schlafz": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/schlafzimmer.jpeg"
+                  }
+                }
+              ],
+              "OG_Spitzboden": [
+                {
+                  "component": "oh-location-card",
+                  "config": {}
+                }
+              ],
+              "gEG": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/erdgeschoss.jpeg"
+                  }
+                }
+              ],
+              "gGrundstueck": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/grundstueck.jpeg"
+                  }
+                }
+              ],
+              "gHaus": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/haus.jpeg"
+                  }
+                }
+              ],
+              "gOG": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/obergeschoss.jpeg"
+                  }
+                }
+              ],
+              "gTechnik": [
+                {
+                  "component": "oh-location-card",
+                  "config": {
+                    "backgroundImage": "/static/fotos/technik.jpeg"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "properties": [
+          {
+            "component": "oh-properties-tab",
+            "config": {},
+            "slots": {}
+          }
+        ]
+      }
+    }
+  },
+  "overview": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "overview",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Mar 16, 2025, 8:16:27 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "Overview",
+        "style": {
+          "background": "linear-gradient(to top left,#151924 0%,#993F4D 100%)"
+        }
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {
+              "title": "Haus"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-cells",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "gEG",
+                          "actionPage": "page:page_Erdgeschoss",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Sofa \u0027 + items.TempEGWohnzSofa.displayState",
+                          "icon": "oh:groundfloor",
+                          "title": "Erdgeschoss",
+                          "trendItem": "TempEGWohnzSofa"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "1",
+                          "actionGroupPopupItem": "gOG",
+                          "actionPage": "page:page_Obergeschoss",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Flur \u0027 + items.TempOGFlur.displayState",
+                          "icon": "oh:firstfloor",
+                          "title": "Obergeschoss",
+                          "trendItem": "TempOGFlur"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "2",
+                          "actionGroupPopupItem": "AUS_Garten",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Dach \u0027 + items.TempAussen.displayState",
+                          "icon": "oh:garden",
+                          "title": "Aussen",
+                          "trendItem": "TempAussen"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "2",
+                          "actionGroupPopupItem": "AUS_Terasse",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Dach \u0027 + items.TempAussen.displayState",
+                          "icon": "oh:terrace",
+                          "title": "Terasse",
+                          "trendItem": "TempAussen"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "2",
+                          "actionGroupPopupItem": "AUS_Hof",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Wärmepump \u0027 + items.Stiebel_Aussentemperatur.displayState",
+                          "header": "Hof",
+                          "icon": "oh:garden",
+                          "title": "Der Hof",
+                          "trendItem": "Stiebel_Aussentemperatur"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "options",
+                          "actionItem": "comfoairFanLevel",
+                          "color": "\u003d(items.comfoairFanLevel.state \u003d\u003d 3 ) ? \u0027green\u0027 : \u0027red\u0027",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Betriebsart \u0027 + items.comfoairFanLevel.displayState",
+                          "icon": "fan",
+                          "on": "\u003d(items.comfoairFanLevel.state \u003d\u003d 3)",
+                          "title": "Lueftungsanlage"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "options",
+                          "actionItem": "Stiebel_Betriebsart",
+                          "color": "\u003d(items.OhAbwesend.state \u003d\u003d 3 ) ? \u0027red\u0027 : \u0027green\u0027",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Modus \u0027 + items.Stiebel_Betriebsart.displayState",
+                          "icon": "pump",
+                          "item": "Stiebel_Betriebsart",
+                          "on": "\u003d(items.Stiebel_Betriebsart.state \u003d\u003d 3)",
+                          "title": "Heizung Modus",
+                          "vertical": true
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "command",
+                          "actionCommand": "ON",
+                          "actionItem": "TuerHaustuer",
+                          "header": "Türöffner",
+                          "icon": "oh:frontdoor",
+                          "title": "Öffnen der Haustür"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gPV",
+                          "color": "\u003d(items.PV_Error_LIM.state \u003d\u003d \u0027ON\u0027) ? \u0027red\u0027 : \u0027green\u0027",
+                          "footer": "\u003d\u0027Batterie Ladung \u0027 + items.PV_Battery_SOC.displayState +\u0027 %\u0027",
+                          "icon": "solarplant",
+                          "off": "\u003d(items.PV_Error_LIM.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.PV_Error_LIM.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Photovoltaik",
+                          "trendItem": "PV_Battery_SOC"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gWasser",
+                          "header": "Bewasserung",
+                          "icon": "oh:faucet",
+                          "title": "Bewaesserung"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "toggle",
+                          "actionCommand": "ON",
+                          "actionCommandAlt": "OFF",
+                          "actionItem": "StatusGuestMode",
+                          "color": "\u003d(items.StatusGuestMode.state \u003d\u003d \u0027ON\u0027) ? \u0027green\u0027 : \u0027red\u0027",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Status \u0027 + items.StatusGuestMode.state",
+                          "icon": "vacation",
+                          "item": "StatusGuestMode",
+                          "off": "\u003d(items.StatusGuestMode.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.StatusGuestMode.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Gaeste im Haus",
+                          "vertical": true
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "toggle",
+                          "actionCommand": "ON",
+                          "actionCommandAlt": "OFF",
+                          "actionItem": "OhAbwesend",
+                          "color": "\u003d(items.OhAbwesend.state \u003d\u003d ON ) ? \u0027green\u0027 : \u0027red\u0027",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Status \u0027 + items.OhAbwesend.state",
+                          "icon": "camera",
+                          "item": "OhUrlaub",
+                          "off": "\u003d(items.OhAbwesend.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.OhAbwesend.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Abwesenheits Modus",
+                          "vertical": true
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "toggle",
+                          "actionItem": "StatusCooling",
+                          "color": "\u003d(items.StatusCooling.state \u003d\u003d \u0027OFF\u0027) ? \u0027gray\u0027 : \u0027blue\u0027",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Status \u0027 + items.StatusCooling.state",
+                          "icon": "snow",
+                          "item": "StatusCooling",
+                          "on": "\u003d(items.StatusCooling.state \u003d\u003d \"ON\")? \"gray\": \"blue\"",
+                          "title": "Kühlung",
+                          "vertical": true
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "actionGroupPopupItem": "gSGReady",
+                          "actionPage": "page:page_Settings",
+                          "actionPageTransition": "f7-cover-v",
+                          "color": "\u003d(items.ephemeris_Status.state)\u003d\u003d\"OFF\" ? \"gray\":\"blue\"",
+                          "fontSize": "16px",
+                          "header": "Feiertag",
+                          "icon": "sun",
+                          "on": "\u003d(items.ephemeris_Status.state \u003d\u003d \"ON\")? \"red\": \"yellow\"",
+                          "title": "\u003d items.ephemeris_Name.state",
+                          "vertical": true
+                        },
+                        "slots": {
+                          "after": [
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "background": "\u003d(items.ephemeris_Status.state \u003d\u003d \"ON\") ? \"orange\": \"green\"",
+                                  "color": "\u003d(items.ephemeris_Status.state \u003d\u003d \"ON\") \u0026\u0026 \"red\""
+                                },
+                                "text": "\u003ditems.ephemeris_Status.state"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": [],
+        "masonry": []
+      }
+    }
+  },
+  "page_EG_Flur": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_EG_Flur",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:54:01 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "EG Flur",
+        "sidebar": false
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Decke",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_Flur",
+                                "item_schalter": "Licht_EG_Flur",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Treppe",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_Treppe",
+                                "item_schalter": "Licht_EG_Treppe",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Temp_Card_1",
+                              "config": {
+                                "heating_item": "StatusBewegungEGDiele",
+                                "icon": "thermometer",
+                                "set_temp_item": "SetTeEGDiele",
+                                "temp_item": "TempEGHaustuer",
+                                "title": "Temperatur"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Toggle_Card_1",
+                              "config": {
+                                "header": "Öffner",
+                                "icon": "circle_fill",
+                                "item_schalter": "TuerHaustuer",
+                                "title": "Haustür"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_EG_Kueche": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_EG_Kueche",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "May 26, 2024, 9:58:39 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "EG Küche",
+        "sidebar": false
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Insel",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_Kueche_Insel",
+                                "item_schalter": "Licht_EG_Kueche_Insel",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Tisch",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_Kueche_Tisch",
+                                "item_schalter": "Licht_EG_Kueche_Tisch",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Kranz",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_Kueche_Kranz",
+                                "item_schalter": "Licht_EG_Kueche_Kranz",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Spüle",
+                                "icon": "lightbulb",
+                                "item_schalter": "Licht_EG_Kueche_Spuele",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Fenster",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_KuecheFenster",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Erker Links",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_KuecheErkerLinks",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Erker Rechts",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_KuecheErkerRechts",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Rollo",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_KuecheTuer",
+                                "title": "Tür"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Temp_Card_1",
+                              "config": {
+                                "heating_item": "StatusHeizungEGKueche",
+                                "icon": "thermometer",
+                                "set_temp_item": "SetTeEGKueche",
+                                "temp_item": "TempEGKuecheWz",
+                                "title": "Temperatur"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Toggle_Card_1",
+                              "config": {
+                                "header": "Öffner",
+                                "icon": "circle_fill",
+                                "item_schalter": "TuerHaustuer",
+                                "title": "Haustür"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Squeez_SelectFavorite",
+                              "config": {
+                                "itemSelect": "SPKueche_PlayFavorite"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:squeezbox_widget",
+                              "config": {
+                                "prefix": "SPKueche"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_EG_WC": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_EG_WC",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 24, 2024, 6:46:45 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "EG Gäste WC",
+        "sidebar": false
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Spiegel",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_WC_Spiegel",
+                                "item_schalter": "Licht_EG_WC_Spiegel",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Decke",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_WC_Decke",
+                                "item_schalter": "Licht_EG_WC_Decke",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Temp_Card_1",
+                              "config": {
+                                "heating_item": "StatusHeizungEGGaesteWC",
+                                "icon": "thermometer",
+                                "set_temp_item": "SetTeEGGaesteWC",
+                                "temp_item": "TempEGWC",
+                                "title": "Temperatur"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_EG_Wohnzimmer": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_EG_Wohnzimmer",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jun 16, 2024, 5:59:45 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "EG Wohnzimmer",
+        "sidebar": false
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Sofa",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_Sofa",
+                                "item_schalter": "Licht_EG_Sofa",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Essen",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_EG_Ess",
+                                "item_schalter": "Licht_EG_Ess",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Sekretaer",
+                                "icon": "lightbulb",
+                                "item_schalter": "Licht_EG_Sekretaer",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Fernseher",
+                                "icon": "lightbulb",
+                                "item_schalter": "Steckdose_EG_Wohnz_Fernseher",
+                                "title": "Steckdose"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Leibung",
+                                "icon": "lightbulb",
+                                "item_schalter": "Steckdose_EG_Wohnz_Leibung",
+                                "title": "Steckdose"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "50",
+                          "width": "100",
+                          "xlarge": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Temp_Card_1",
+                              "config": {
+                                "heating_item": "StatusHeizungEGWohnz",
+                                "humidity_item": "Stiebel_Raumfeuchte",
+                                "icon": "thermometer",
+                                "set_temp_item": "SetTeEGWohnz",
+                                "temp_item": "TempEGWohnzSofa",
+                                "title": "Temperatur"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Strasse",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_WZ_Strasse",
+                                "title": "Rollos"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Fenster",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_WZ_Fenster",
+                                "title": "Rollos"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Garten",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_WZ_Garten",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Erker Links",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_WZ_ErkerLinks",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "33",
+                          "width": "50",
+                          "xlarge": "33"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Erker Rechts",
+                                "icon": "arrow_up_arrow_down",
+                                "item": "Rollo_EG_WZ_ErkerRechts",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Squeez_SelectFavorite",
+                              "config": {
+                                "itemSelect": "SPWohnz_PlayFavorite"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:squeezbox_widget",
+                              "config": {
+                                "prefix": "SWohnz"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_Erdgeschoss": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_Erdgeschoss",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jan 4, 2025, 3:56:01 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "Erdgeschoss",
+        "order": "1",
+        "sidebar": true
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {
+              "title": "Haus"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-cells",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionPage": "page:overview",
+                          "title": "Start"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "EG_Wohnz",
+                          "actionPage": "page:page_EG_Wohnzimmer",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Sofa \u0027 + items.TempEGWohnzSofa.displayState",
+                          "header": "Wohnzimmer",
+                          "icon": "oh:sofa",
+                          "title": "Wohnzimmer"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "EG_Kueche",
+                          "actionPage": "page:page_EG_Kueche",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempEGKuecheTerasse.displayState",
+                          "header": "Kueche",
+                          "icon": "oh:kitchen",
+                          "title": "Kueche"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "EG_WC",
+                          "actionPage": "page:page_EG_WC",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempEGWC.displayState",
+                          "header": "Gaeste WC",
+                          "icon": "oh:bath",
+                          "title": "Gaeste WC"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "EG_Flur",
+                          "actionPage": "page:page_EG_Flur",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempEGHaustuer.displayState",
+                          "header": "Flur",
+                          "icon": "oh:corridor",
+                          "title": "Flur"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "EG_Abstell",
+                          "actionPage": "page:page_Erdgeschoss",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempEGAbstell.displayState",
+                          "header": "Abstell",
+                          "icon": "oh:corridor",
+                          "title": "Abstell"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "EG_Schleuse",
+                          "actionPage": "page:page_Erdgeschoss",
+                          "color": "blue",
+                          "header": "Schleuse",
+                          "icon": "oh:whitegood",
+                          "title": "Schleuse"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "EG_Technik",
+                          "actionPage": "page:page_Erdgeschoss",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempEGTechnik.displayState",
+                          "header": "Technik",
+                          "icon": "oh:energy",
+                          "title": "Technik"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "EG_Garage",
+                          "actionPage": "page:page_Erdgeschoss",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempEGGarage.displayState",
+                          "header": "Garage",
+                          "icon": "oh:garage",
+                          "title": "Garage"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_OG_Buero": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_OG_Buero",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Feb 11, 2025, 5:53:24 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "OG Büro",
+        "sidebar": false
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Decke",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_OG_Buero_Decke",
+                                "item_schalter": "Licht_OG_Buero_Decke",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Schreibtisch",
+                                "icon": "lightbulb",
+                                "item_schalter": "Licht_OG_Buero_Schreibtisch",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Strasse",
+                                "icon": "poweroutlet",
+                                "item_schalter": "Steckdose_OG_Buero",
+                                "title": "Steckdose"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Temp_Card_1",
+                              "config": {
+                                "heating_item": "StatusHeizungOGBuero",
+                                "icon": "thermometer",
+                                "set_temp_item": "SetTeOGBuero",
+                                "temp_item": "TempOGBuero",
+                                "title": "Büro"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Toggle_Card_1",
+                              "config": {
+                                "header": "Öffner",
+                                "icon": "circle_fill",
+                                "item_schalter": "TuerHaustuer",
+                                "title": "Haustür"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:ClickableCameraImage",
+                              "config": {
+                                "showAudioAlarms": false,
+                                "showMotionAlarms": true,
+                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Hinten",
+                                "icon": "arrow_up_arrow_down",
+                                "iconimage": "oh:classic:rollershutter",
+                                "item": "Rollo_OG_BueroHinten",
+                                "title": "Büro"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Strasse",
+                                "icon": "arrow_up_arrow_down",
+                                "iconimage": "f7:rollershutter",
+                                "item": "Rollo_OG_BueroStrasse",
+                                "title": "Büro"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Garten",
+                                "icon": "arrow_up_arrow_down",
+                                "iconimage": "oh:rollershutter",
+                                "item": "Rollo_OG_BueroGarten",
+                                "title": "Büro"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "50",
+                          "medium": "100",
+                          "small": "100",
+                          "width": "100",
+                          "xlarge": "50",
+                          "xsmall": "100"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Squeez_Card_1",
+                              "config": {
+                                "bgcolor": "rgba(200,180,180,.3)",
+                                "header": "Mobile (im Buero)",
+                                "icon": "speaker_3",
+                                "item": "SPMobile_Control",
+                                "item_cover": "SPMobile_CoverArtData",
+                                "item_favorit": "SPMobile_PlayFavorite",
+                                "item_volume": "SPMobile_Volume"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:PV_widget2",
+                              "config": {
+                                "batterylevel": "PV_Battery_SOC",
+                                "batterypower": "PV_Battery_Current_Power",
+                                "gridpower": "PV_Grid_Power_Sum",
+                                "icon_battery": "oh:rct-battery",
+                                "icon_grid": "oh:rct-netz",
+                                "icon_house": "oh:rct-house",
+                                "icon_solar": "oh:rct-solar",
+                                "load": "PV_House_Current_Power",
+                                "solarpower": "PV_Input_Sum",
+                                "solarpower1": "PV_Input_A_Watt",
+                                "solarpower2": "PV_Input_B_Watt",
+                                "solarpowerA": "PV_Input_A_Watt",
+                                "solarpowerB": "PV_Input_B_Watt",
+                                "solarvoltA": "PV_Input_A_Volt",
+                                "solarvoltB": "PV_Input_B_Volt"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": []
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_OG_Gaeste": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_OG_Gaeste",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Feb 11, 2025, 5:54:43 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "OG Gast",
+        "sidebar": false
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Decke",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_OG_Buero_Decke",
+                                "item_schalter": "Licht_OG_Gaeste",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Fenster Links",
+                                "icon": "powerplug",
+                                "item_schalter": "Steckdose_OG_Gaeste",
+                                "title": "Steckdose"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Temp_Card_1",
+                              "config": {
+                                "heating_item": "StatusHeizungOGGaeste",
+                                "icon": "thermometer",
+                                "set_temp_item": "SetTeOGGaeste",
+                                "temp_item": "TempOGGaeste",
+                                "title": "OG Gast"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Toggle_Card_1",
+                              "config": {
+                                "header": "Öffner",
+                                "icon": "circle_fill",
+                                "item_schalter": "TuerHaustuer",
+                                "title": "Haustür"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:ClickableCameraImage",
+                              "config": {
+                                "showAudioAlarms": false,
+                                "showMotionAlarms": true,
+                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Links",
+                                "icon": "arrow_up_arrow_down",
+                                "iconimage": "oh:classic:rollershutter",
+                                "item": "Rollo_OG_GaesteLinks",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Rechts",
+                                "icon": "arrow_up_arrow_down",
+                                "iconimage": "f7:rollershutter",
+                                "item": "Rollo_OG_GaesteRechts",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "50",
+                          "medium": "100",
+                          "small": "100",
+                          "width": "100",
+                          "xlarge": "50",
+                          "xsmall": "100"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Squeez_Card_1",
+                              "config": {
+                                "bgcolor": "rgba(200,180,180,.3)",
+                                "header": "Mobile (im Buero)",
+                                "icon": "speaker_3",
+                                "item": "SPMobile_Control",
+                                "item_cover": "SPMobile_CoverArtData",
+                                "item_favorit": "SPMobile_PlayFavorite",
+                                "item_volume": "SPMobile_Volume"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": [],
+        "masonry": []
+      }
+    }
+  },
+  "page_OG_Kind": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_OG_Kind",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jul 7, 2024, 10:25:11 PM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "OG Kind",
+        "sidebar": false
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Decke",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_OG_Kind",
+                                "item_schalter": "Licht_OG_Kind",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Ecke",
+                                "icon": "poweroutlet",
+                                "item_schalter": "Steckdose_OG_Kind2",
+                                "title": "Steckdose"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Bett",
+                                "icon": "poweroutlet",
+                                "item_schalter": "Steckdose_OG_Kind1",
+                                "title": "Steckdose"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Toggle_Card_1",
+                              "config": {
+                                "header": "Öffner",
+                                "icon": "circle_fill",
+                                "item_schalter": "TuerHaustuer",
+                                "title": "Haustür"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Temp_Card_1",
+                              "config": {
+                                "heating_item": "StatusHeizungOGKind",
+                                "icon": "thermometer",
+                                "set_temp_item": "SetTeOGKind",
+                                "temp_item": "TempOGKind",
+                                "title": "Kind"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "oh-toggle-card",
+                              "config": {
+                                "header": "Öffner",
+                                "icon": "circle_fill",
+                                "item": "GarageTorUP",
+                                "item_schalter": "TuerHaustuer",
+                                "title": "Garage AUF"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:ClickableCameraImage",
+                              "config": {
+                                "showAudioAlarms": false,
+                                "showMotionAlarms": true,
+                                "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                                "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Straße",
+                                "icon": "arrow_up_arrow_down",
+                                "iconimage": "oh:classic:rollershutter",
+                                "item": "Rollo_OG_Kind",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "widget:Cell_Shutter_Card_2",
+                        "config": {
+                          "header": "Rollo Runter",
+                          "icon": "arrow_down",
+                          "item": "Rollo_OG_KindDDown",
+                          "title": "Dachfenster"
+                        }
+                      },
+                      {
+                        "component": "widget:Cell_Shutter_Card_3",
+                        "config": {
+                          "header": "Rollo Rauf",
+                          "icon": "arrow_up",
+                          "item": "Rollo_OG_KindDUp",
+                          "title": "Dachfenster"
+                        }
+                      },
+                      {
+                        "component": "widget:Cell_Shutter_Card_2",
+                        "config": {
+                          "header": "Zu",
+                          "icon": "arrow_down",
+                          "item": "SendKeyOGKindDachFZu",
+                          "title": "Dachfenster"
+                        }
+                      },
+                      {
+                        "component": "widget:Cell_Shutter_Card_3",
+                        "config": {
+                          "header": "Auf",
+                          "icon": "arrow_up",
+                          "item": "SendKeyOGKindDachFAuf",
+                          "title": "Dachfenster"
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": []
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-cells",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "widget:Cell_Shutter_Card_2",
+                        "config": {
+                          "header": "Rollo Runter",
+                          "icon": "arrow_down",
+                          "item": "Rollo_OG_KindDDown",
+                          "title": "Dachfenster"
+                        }
+                      },
+                      {
+                        "component": "widget:Cell_Shutter_Card_3",
+                        "config": {
+                          "header": "Rollo Rauf",
+                          "icon": "arrow_up",
+                          "item": "Rollo_OG_KindDUp",
+                          "title": "Dachfenster"
+                        }
+                      },
+                      {
+                        "component": "widget:Cell_Shutter_Card_2",
+                        "config": {
+                          "header": "Zu",
+                          "icon": "arrow_down",
+                          "item": "SendKeyOGKindDachFZu",
+                          "title": "Dachfenster"
+                        }
+                      },
+                      {
+                        "component": "widget:Cell_Shutter_Card_3",
+                        "config": {
+                          "header": "Auf",
+                          "icon": "arrow_up",
+                          "item": "SendKeyOGKindDachFAuf",
+                          "title": "Dachfenster"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_OG_Schlafzimmer": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_OG_Schlafzimmer",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Dec 18, 2024, 8:23:00 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "OG Schlafzimmer",
+        "sidebar": false
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Decke",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_OG_Schlafz",
+                                "item_schalter": "Licht_OG_Schlafz",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Bett Links",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_OG_Schlafz_Rechts",
+                                "item_schalter": "Licht_OG_Schlafz_Rechts",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_1",
+                              "config": {
+                                "header": "Bett Rechts",
+                                "icon": "lightbulb",
+                                "item_brightness": "Licht_OG_Schlafz_Links",
+                                "item_schalter": "Licht_OG_Schlafz_Links",
+                                "title": "Licht"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "width": "50"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Light_Card_2",
+                              "config": {
+                                "header": "Fenster",
+                                "icon": "poweroutlet",
+                                "item_schalter": "Steckdose_OG_Schlafz_Fenster",
+                                "title": "Steckdose"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Temp_Card_1",
+                              "config": {
+                                "heating_item": "StatusHeizungOGSchlafz",
+                                "icon": "thermometer",
+                                "set_temp_item": "SetTeOGSchlafz",
+                                "temp_item": "TempOGSchlafRechts",
+                                "title": "Temperaturen"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Shutter_Card_1",
+                              "config": {
+                                "header": "Fenster",
+                                "icon": "arrow_up_arrow_down",
+                                "iconimage": "f7:rollershutter",
+                                "item": "Rollo_OG_Schlafz",
+                                "title": "Rollo"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {
+                          "large": "50",
+                          "medium": "100",
+                          "small": "100",
+                          "width": "100",
+                          "xlarge": "50",
+                          "xsmall": "100"
+                        },
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Cell_Squeez_Card_1",
+                              "config": {
+                                "bgcolor": "rgba(200,180,180,.3)",
+                                "icon": "speaker_3",
+                                "item": "SPSchlafz_Control",
+                                "item_cover": "SPSchlafz_CoverArtData",
+                                "item_favorit": "SPSchlafz_PlayFavorite",
+                                "item_volume": "SPSchlafz_Volume",
+                                "title": "Musik"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_Obergeschoss": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_Obergeschoss",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Oct 21, 2024, 8:23:01 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "Obergeschoss",
+        "order": "2",
+        "sidebar": true
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {
+              "title": "Obergeschoss"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-cells",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionPage": "page:overview",
+                          "title": "Start"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "OG_Buero",
+                          "actionPage": "page:page_OG_Buero",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Soll \u0027 + items.SetTeOGBuero.displayState",
+                          "header": "\u003d \u0027Büro\u0027",
+                          "icon": "oh:office",
+                          "title": "\u003d\u0027Temperatur Ist \u0027+ items.TempOGBuero.displayState"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "OG_Gaeste",
+                          "actionPage": "page:page_OG_Gaeste",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Soll \u0027 + items.SetTeOGGaeste.displayState",
+                          "header": "\u003d \u0027Gast\u0027",
+                          "icon": "oh:sun",
+                          "title": "\u003d\u0027Temperatur Ist \u0027+ items.TempOGGaeste.displayState"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "OG_Schlafzimmer",
+                          "actionPage": "page:page_OG_Schlafzimmer",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempOGSchlafLinks.displayState",
+                          "header": "Schlafzimmer",
+                          "icon": "oh:bedroom",
+                          "title": "Schlafzimmer"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "OG_Ankleide",
+                          "actionPage": "page:page_Obergeschoss",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur Soll \u0027 + items.SetTeOGAnkleide.displayState",
+                          "header": "Ankleide",
+                          "icon": "oh:suitcase",
+                          "title": "\u003d\u0027Temperatur Ist \u0027 + items.TempOGAnkleide.displayState"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "OG_Bad",
+                          "actionPage": "page:page_Obergeschoss",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempOGBad.displayState",
+                          "header": "Bad",
+                          "icon": "oh:bath",
+                          "title": "Bad"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "OG_Kind",
+                          "actionPage": "page:page_OG_Kind",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempOGKind.displayState",
+                          "icon": "oh:boy_1",
+                          "title": "Kind"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "OG_Flur",
+                          "actionPage": "page:page_Obergeschoss",
+                          "color": "blue",
+                          "footer": "\u003d\u0027Temperatur \u0027 + items.TempOGFlur.displayState",
+                          "header": "Flur",
+                          "icon": "oh:corridor",
+                          "title": "Flur"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "OG_Spitzboden",
+                          "actionPage": "page:page_Obergeschoss",
+                          "color": "blue",
+                          "header": "Dachboden",
+                          "icon": "oh:attic",
+                          "title": "Dachboden"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": []
+      }
+    }
+  },
+  "page_Startseite": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_Startseite",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Aug 20, 2024, 8:30:01 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "Startseite",
+        "order": "1",
+        "sidebar": false,
+        "style": {
+          "background": "linear-gradient(to top left,#151924 0%,#993F4D 100%)"
+        }
+      },
+      "slots": {
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {
+              "title": "Haus"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-cells",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "0",
+                          "actionGroupPopupItem": "gEG",
+                          "actionPage": "page:page_Erdgeschoss",
+                          "color": "blue",
+                          "header": "Erdgeschoss",
+                          "icon": "oh:groundfloor",
+                          "title": "Erdgeschoss"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionCommand": "1",
+                          "actionGroupPopupItem": "gOG",
+                          "actionPage": "page:page_Obergeschoss",
+                          "color": "blue",
+                          "header": "Obergeschoss",
+                          "icon": "oh:firstfloor",
+                          "title": "Obergeschoss"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "2",
+                          "actionGroupPopupItem": "AUS_Garten",
+                          "color": "blue",
+                          "header": "Garten",
+                          "icon": "oh:garden",
+                          "title": "Alles was draußen ist"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "2",
+                          "actionGroupPopupItem": "AUS_Hof",
+                          "color": "blue",
+                          "header": "Hof",
+                          "icon": "oh:garden",
+                          "title": "Der Hof"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "2",
+                          "actionGroupPopupItem": "AUS_Terasse",
+                          "color": "blue",
+                          "header": "Terasse",
+                          "icon": "oh:terrace",
+                          "title": "Die Terasse"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionCommand": "2",
+                          "actionGroupPopupItem": "gSQBox",
+                          "color": "blue",
+                          "header": "sound",
+                          "icon": "f7:speaker_3",
+                          "title": "Musik"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "command",
+                          "actionCommand": "ON",
+                          "actionItem": "TuerHaustuer",
+                          "header": "Türöffner",
+                          "icon": "oh:frontdoor",
+                          "title": "Öffnen der Haustür"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gShelly",
+                          "header": "Shelly Devices",
+                          "icon": "oh:poweroutlet",
+                          "title": "Shelly Devices"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gPV",
+                          "footer": "\u003d\u0027Batterie Ladung \u0027 + items.PV_Battery_SOC.displayState +\u0027 %\u0027",
+                          "header": "Einstellungen",
+                          "icon": "solarplant",
+                          "title": "Photovoltaik",
+                          "trendItem": "PV_Battery_SOC"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "toggle",
+                          "actionCommand": "ON",
+                          "actionItem": "OhUrlaub",
+                          "header": "Urlaub",
+                          "icon": "oh:frontdoor",
+                          "title": "Umstellung Urlaub"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {
+              "title": "Einstellungen"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-cells",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gStatusImLCN",
+                          "actionPage": "page:page_Settings",
+                          "actionPageTransition": "f7-cover-v",
+                          "header": "Status",
+                          "icon": "oh:pie",
+                          "title": "Status im LCN"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gMisc",
+                          "actionPage": "page:page_Settings",
+                          "actionPageTransition": "f7-cover-v",
+                          "header": "Einstellungen",
+                          "icon": "oh:pie",
+                          "title": "Diverse Settings"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gHeizung",
+                          "actionPage": "page:page_Settings",
+                          "actionPageTransition": "f7-cover-v",
+                          "header": "Einstellungen",
+                          "icon": "f7:thermometer",
+                          "title": "Heizung"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gWeather",
+                          "header": "Open Weather",
+                          "icon": "oh:humidity",
+                          "title": "Daten"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gModbusStiebel",
+                          "header": "Einstellungen",
+                          "icon": "f7:thermometer",
+                          "title": "Waermepumpe (Modbus)"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gStiebel",
+                          "header": "Einstellungen",
+                          "icon": "f7:thermometer",
+                          "title": "Waermepumpe (MQTT)"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gWetter",
+                          "header": "Wetter Dach",
+                          "icon": "oh:humidity",
+                          "title": "Daten"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gWasser",
+                          "header": "Bewasserung",
+                          "icon": "oh:faucet",
+                          "title": "Bewaesserung"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gPV",
+                          "footer": "\u003d\u0027Batterie Ladung \u0027 + items.PV_Battery_SOC.displayState +\u0027 %\u0027",
+                          "header": "Einstellungen",
+                          "icon": "solarplant",
+                          "title": "Photovoltaik",
+                          "trendItem": "PV_Battery_SOC"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gStiebel",
+                          "header": "Einstellungen",
+                          "icon": "f7:thermometer",
+                          "title": "Waermepumpe (MQTT)"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:PV_widget",
+                              "config": {
+                                "batterylevel": "PV_Battery_SOC",
+                                "batterypower": "PV_Battery_Current_Power",
+                                "gridpower": "PV_Grid_Power_Sum",
+                                "load": "PV_House_Current_Power",
+                                "solarpower": "PV_Input_Sum"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "masonry": []
+      }
+    }
+  },
+  "page_Temp_EG": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_Temp_EG",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Mar 16, 2025, 8:12:46 AM",
+      "component": "oh-chart-page",
+      "config": {
+        "label": "Temp EG",
+        "order": "52",
+        "period": "D",
+        "sidebar": true
+      },
+      "slots": {
+        "dataZoom": [
+          {
+            "component": "oh-chart-datazoom",
+            "config": {
+              "type": "inside"
+            }
+          }
+        ],
+        "grid": [
+          {
+            "component": "oh-chart-grid",
+            "config": {
+              "includeLabels": true
+            }
+          },
+          {
+            "component": "oh-chart-grid",
+            "config": {}
+          },
+          {
+            "component": "oh-chart-grid",
+            "config": {}
+          }
+        ],
+        "legend": [
+          {
+            "component": "oh-chart-legend",
+            "config": {
+              "bottom": 3.0,
+              "type": "scroll"
+            }
+          }
+        ],
+        "series": [
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempEGKuecheErker",
+              "name": "Küche Erker",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempEGWC",
+              "name": "WC",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempEGWohnzSofa",
+              "name": "Wz Sofa",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempEGTechnik",
+              "name": "Technik",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "Stiebel_Aussentemperatur",
+              "name": "Temp Aussen Heizung",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempAussen",
+              "name": "Temp Aussen Dach",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempAussenAvg1W",
+              "name": "Temp Aussen Avg1W",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempAussenAvg3D",
+              "name": "Temp Aussen Avg3D",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          }
+        ],
+        "tooltip": [
+          {
+            "component": "oh-chart-tooltip",
+            "config": {
+              "confine": true,
+              "smartFormatter": true
+            }
+          }
+        ],
+        "xAxis": [
+          {
+            "component": "oh-time-axis",
+            "config": {
+              "gridIndex": 0.0
+            }
+          }
+        ],
+        "yAxis": [
+          {
+            "component": "oh-value-axis",
+            "config": {
+              "gridIndex": 0.0
+            }
+          }
+        ]
+      }
+    }
+  },
+  "page_e515e1b20e": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_e515e1b20e",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jan 26, 2025, 8:41:22 AM",
+      "component": "oh-chart-page",
+      "config": {
+        "chartType": "day",
+        "label": "WetterChart",
+        "order": "40",
+        "sidebar": true
+      },
+      "slots": {
+        "dataZoom": [
+          {
+            "component": "oh-chart-datazoom",
+            "config": {
+              "type": "inside"
+            }
+          }
+        ],
+        "grid": [
+          {
+            "component": "oh-chart-grid",
+            "config": {
+              "height": "35%",
+              "includeLabels": true,
+              "top": "50px"
+            }
+          },
+          {
+            "component": "oh-chart-grid",
+            "config": {
+              "bottom": "50px",
+              "height": "35%",
+              "includeLabels": true,
+              "show": false
+            }
+          }
+        ],
+        "legend": [
+          {
+            "component": "oh-chart-legend",
+            "config": {
+              "bottom": 3.0,
+              "type": "scroll"
+            }
+          }
+        ],
+        "series": [
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempAussen",
+              "name": "Aussentemperatur",
+              "smooth": true,
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "Stiebel_Raumfeuchte",
+              "name": "Luftfeuchtigkeit",
+              "smooth": true,
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 1.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 1.0,
+              "item": "Owm_Home_Current_RainVolume",
+              "name": "Regen letzte Stunde",
+              "smooth": true,
+              "type": "line",
+              "xAxisIndex": 1.0,
+              "yAxisIndex": 2.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "aggregationFunction": "average",
+              "dimension1": "hour",
+              "gridIndex": 1.0,
+              "item": "Wind",
+              "lineStyle": {
+                "color": "rgba(70, 123, 168,0.2)"
+              },
+              "markPoint": {
+                "data": [
+                  {
+                    "name": "Max",
+                    "type": "max"
+                  }
+                ],
+                "itemStyle": {
+                  "color": "rgba(70, 123, 168,1)"
+                }
+              },
+              "name": "Wind",
+              "smooth": true,
+              "type": "line",
+              "xAxisIndex": 1.0,
+              "yAxisIndex": 3.0
+            }
+          },
+          {
+            "component": "oh-aggregate-series",
+            "config": {
+              "aggregationFunction": "average",
+              "dimension1": "hour",
+              "gridIndex": 1.0,
+              "item": "Wind",
+              "name": "Wind Durchschnitt",
+              "smooth": true,
+              "type": "line",
+              "xAxisIndex": 2.0,
+              "yAxisIndex": 3.0
+            }
+          }
+        ],
+        "tooltip": [
+          {
+            "component": "oh-chart-tooltip",
+            "config": {
+              "orient": "vertical",
+              "show": true,
+              "trigger": "axis"
+            }
+          }
+        ],
+        "xAxis": [
+          {
+            "component": "oh-time-axis",
+            "config": {
+              "gridIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-axis",
+            "config": {
+              "gridIndex": 1.0
+            }
+          },
+          {
+            "component": "oh-category-axis",
+            "config": {
+              "categoryType": "day",
+              "gridIndex": 1.0,
+              "monthFormat": "default",
+              "show": false,
+              "weekdayFormat": "default"
+            }
+          }
+        ],
+        "yAxis": [
+          {
+            "component": "oh-value-axis",
+            "config": {
+              "gridIndex": 0.0,
+              "name": "°C",
+              "scale": true
+            }
+          },
+          {
+            "component": "oh-value-axis",
+            "config": {
+              "gridIndex": 0.0,
+              "name": "%",
+              "scale": true
+            }
+          },
+          {
+            "component": "oh-value-axis",
+            "config": {
+              "gridIndex": 1.0,
+              "name": "mm",
+              "scale": true
+            }
+          },
+          {
+            "component": "oh-value-axis",
+            "config": {
+              "gridIndex": 1.0,
+              "name": "km/h",
+              "scale": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "page_fixed_display": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_fixed_display",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Jan 26, 2025, 10:54:26 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "fixedType": "grid",
+        "label": "Display Küche",
+        "layoutType": "fixed",
+        "order": "3",
+        "sidebar": true
+      },
+      "slots": {
+        "canvas": [],
+        "default": [],
+        "grid": [
+          {
+            "component": "oh-grid-item",
+            "config": {
+              "h": 1.0,
+              "w": 3.0,
+              "x": 0.0,
+              "y": 0.0
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "widget:Cell_Card_Nav1",
+                  "config": {
+                    "header": "Startseite",
+                    "icon": "info",
+                    "navigate": "page:overview",
+                    "title": "Startseite"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-grid-item",
+            "config": {
+              "h": 3.0,
+              "w": 3.0,
+              "x": 6.0,
+              "y": 1.0
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "widget:Squeeze_Cover",
+                  "config": {
+                    "prefix": "SPKueche"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-grid-item",
+            "config": {
+              "h": 2.0,
+              "w": 3.0,
+              "x": 3.0,
+              "y": 2.0
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "widget:Squeezbox_Control2",
+                  "config": {
+                    "prefix": "SPKueche"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-grid-item",
+            "config": {
+              "h": 1.0,
+              "w": 3.0,
+              "x": 3.0,
+              "y": 0.0
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "widget:Cell_Card_Nav1",
+                  "config": {
+                    "icon": "info",
+                    "navigate": "page:page_Erdgeschoss",
+                    "title": "Erdgeschoss"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-grid-item",
+            "config": {
+              "h": 2.0,
+              "w": 3.0,
+              "x": 0.0,
+              "y": 2.0
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "widget:Squeezbox_Control",
+                  "config": {
+                    "prefix": "SPKueche"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-grid-item",
+            "config": {
+              "h": 1.0,
+              "w": 3.0,
+              "x": 6.0,
+              "y": 0.0
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "widget:Cell_Card_Nav1",
+                  "config": {
+                    "icon": "info",
+                    "navigate": "page:page_EG_Kueche",
+                    "title": "Küche"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-grid-item",
+            "config": {
+              "h": 1.0,
+              "w": 6.0,
+              "x": 0.0,
+              "y": 1.0
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "widget:Cell_Squeez_SelectFavorite",
+                  "config": {
+                    "itemSelect": "SPKueche_PlayFavorite"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "masonry": []
+      }
+    }
+  },
+  "page_floorplan_eg": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_floorplan_eg",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Oct 16, 2024, 10:54:45 PM",
+      "component": "oh-plan-page",
+      "config": {
+        "imageUrl": "/static/floorplans/eg.png",
+        "label": "Erdgeschoss VISU ",
+        "order": "4",
+        "sidebar": true
+      },
+      "slots": {
+        "default": [
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_AUS_Schleuse",
+              "coords": "920,450",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_AUS_Schleuse",
+              "name": "Aussen Schleuse"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Schleuse",
+              "coords": "700,500",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Schleuse",
+              "name": "Licht Schleuse"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_AUS_Garage_Hinten",
+              "coords": "985,805",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_AUS_Garage_Hinten",
+              "name": "Aussen Garage Hinten"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_AUS_Garage_Vorne",
+              "coords": "380,780",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_AUS_Garage_Vorne",
+              "name": "Aussen Garage Vorn"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Garage",
+              "coords": "650,780",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Garage",
+              "name": "Licht Garage"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_WC_Spiegel",
+              "coords": "481.99757134082313,658.9965769158748",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_WC_Spiegel",
+              "name": "Licht WC Spiegel"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_AUS_Haustuer",
+              "coords": "320,580",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_AUS_Haustuer",
+              "name": "Licht Haustuer"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Flur",
+              "coords": "350,430",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Flur",
+              "name": "Licht Flur"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Technik",
+              "coords": "102,450",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Technik",
+              "name": "Licht Technik"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_WC_Decke",
+              "coords": "483.00040477652954,589.9965769158748",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_WC_Decke",
+              "name": "Licht WC Decke"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Treppe",
+              "coords": "450,500",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Treppe",
+              "name": "Licht Treppe"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Kueche_Tisch",
+              "coords": "860.0026985101965,145.00777973664805",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Kueche_Tisch",
+              "name": "EG Kueche Tisch"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_AUS_Terasse",
+              "coords": "720,30",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_AUS_Terasse",
+              "name": "Aussen Terasse"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Kueche_Insel",
+              "coords": "714.0021588081572,124.00124475786367",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Kueche_Insel",
+              "name": "EG Kueche Insel"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Kueche_Spuele",
+              "coords": "798.0064764244717,311.00964687344356",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Kueche_Spuele",
+              "name": "EG Kueche Spuele"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Kueche_Kranz",
+              "coords": "635.9981110428624,241.9975104842726",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Kueche_Kranz",
+              "name": "EG Kueche Kranz"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Sofa",
+              "coords": "233.7270805200115,241.31657363833392",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Sofa",
+              "name": "Wohnzimmer Sofa"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Steckdose_EG_Wohnz_Leibung",
+              "coords": "522.9158566908849,45.46530470285135",
+              "icon": "oh:poweroutlet",
+              "iconUseState": true,
+              "item": "Steckdose_EG_Wohnz_Leibung",
+              "name": "EG Wohnzimmer Leibung"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Steckdose_EG_Wohnz_Fernseher",
+              "coords": "296.7139849890138,313.3982027866047",
+              "icon": "oh:poweroutlet",
+              "iconUseState": true,
+              "item": "Steckdose_EG_Wohnz_Fernseher",
+              "name": "EG Wohnzimmer Fernseher"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_EG_Sekretaer",
+              "coords": "529.4781201397743,289.71916370392256",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_EG_Sekretaer",
+              "name": "EG Wohnzimmer Sekretaer"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempEGAbstell"
+              ],
+              "coords": "830,640",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempEGAbstell",
+              "title": "Abstell",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempEGGarage"
+              ],
+              "coords": "876.000809553059,940.0140035259665",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempEGGarage",
+              "title": "Garage",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempEGWC"
+              ],
+              "coords": "554.0005397020393,650.0031118946591",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempEGWC",
+              "title": "Gaeste WC",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempEGVorrat"
+              ],
+              "coords": "548.007016126511,357.0015559473296",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempEGVorrat",
+              "title": "Vorrat",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempEGKuecheErker"
+              ],
+              "coords": "790,160",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempEGKuecheErker",
+              "title": "Kueche",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempEGWohnzSofa"
+              ],
+              "coords": "350,160",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempEGWohnzSofa",
+              "title": "Wohnzimmer",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempEGHaustuer"
+              ],
+              "coords": "250,370",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempEGHaustuer",
+              "title": "Haustuer",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempEGTechnik"
+              ],
+              "coords": "160,370",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempEGTechnik",
+              "title": "Technik",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempAussen"
+              ],
+              "coords": "166.99554745817568,808.0180489890236",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempAussen",
+              "title": "Aussen",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Steckdose_AUS_Tuer_Terasse",
+              "coords": "646.665109242788,25.042262756217333",
+              "icon": "oh:poweroutlet",
+              "iconUseState": true,
+              "item": "Steckdose_AUS_Tuer_Terasse",
+              "name": "AUS Terasse"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Steckdose_AUS_Haustuer",
+              "coords": "185.11773359226072,580.752260066791",
+              "icon": "oh:poweroutlet",
+              "iconUseState": true,
+              "item": "Steckdose_AUS_Haustuer",
+              "name": "AUS Haustuer"
+            },
+            "slots": {
+              "default": []
+            }
+          }
+        ]
+      }
+    }
+  },
+  "page_floorplan_og": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_floorplan_og",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Oct 16, 2024, 10:52:19 PM",
+      "component": "oh-plan-page",
+      "config": {
+        "imageUrl": "/static/floorplans/og.png",
+        "label": "Obergeschoss VISU",
+        "order": "5",
+        "sidebar": true
+      },
+      "slots": {
+        "default": [
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Schlafz_Links",
+              "coords": "630,130",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Schlafz_Links",
+              "name": "OG Schlafz Rechts"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Schlafz_Rechts",
+              "coords": "820,130",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Schlafz_Rechts",
+              "name": "OG Schlafz Rechts"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Schlafz",
+              "coords": "750,230",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Schlafz",
+              "name": "Licht_OG_Schlafz"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Steckdose_OG_Schlafz_Fenster",
+              "coords": "841,277.0006223789319",
+              "icon": "oh:poweroutlet",
+              "iconUseState": true,
+              "item": "Steckdose_OG_Schlafz_Fenster",
+              "name": "Steckdose"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_DG_Kofferlager",
+              "coords": "920,430",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_DG_Kofferlager",
+              "name": "Licht_DG_Kofferlager"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Ankleide",
+              "coords": "750,430",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Ankleide",
+              "name": "Licht_OG_Ankleide"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_DG_Spitzboden",
+              "coords": "650,780",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_DG_Spitzboden",
+              "name": "Licht_DG_Spitzboden"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Steckdose_OG_Buero",
+              "coords": "480,570",
+              "icon": "oh:poweroutlet",
+              "iconUseState": true,
+              "item": "Steckdose_OG_Buero",
+              "name": "Steckdose"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Buero_Decke",
+              "coords": "641.9989205959214,602.9915978844201",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Buero_Decke",
+              "name": "Licht_OG_Buero_Decke"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Buero_Schreibtisch",
+              "coords": "820,630",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Buero_Schreibtisch",
+              "name": "Licht_OG_Buero_Schreibtisch"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Gaeste",
+              "coords": "470,230",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Gaeste",
+              "name": "Licht_OG_Gaeste"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Steckdose_OG_Gaeste",
+              "coords": "405,55",
+              "icon": "oh:poweroutlet",
+              "iconUseState": true,
+              "item": "Steckdose_OG_Gaeste",
+              "name": "Steckdose"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Kind",
+              "coords": "270,230",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Kind",
+              "name": "Licht_OG_Kind"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Bad_Kranz",
+              "coords": "129.00377791427513,369.99595453694303",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Bad_Kranz",
+              "name": "Licht_OG_Bad_Kranz"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Bad_Spiegel",
+              "coords": "220,420",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Bad_Spiegel",
+              "name": "Licht_OG_Bad_Spiegel"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_DG_Dachboden",
+              "coords": "242.98853133166483,585",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_DG_Dachboden",
+              "name": "Licht_DG_Dachboden"
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "toggle",
+              "actionCommand": "ON",
+              "actionCommandAlt": "OFF",
+              "actionItem": "Licht_OG_Flur",
+              "coords": "450.99743641531325,420",
+              "icon": "oh:light",
+              "iconUseState": true,
+              "item": "Licht_OG_Flur",
+              "name": "Licht_OG_Flur"
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "Owm_Home_Current_Temperature"
+              ],
+              "coords": "183.99784119184278,794.0136923365005",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "Owm_Home_Current_Temperature",
+              "title": "Aussen Temperatur",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempOGGaeste"
+              ],
+              "coords": "530,140",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempOGGaeste",
+              "title": "Gaeste",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempOGFlur"
+              ],
+              "coords": "530,400",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempOGFlur",
+              "title": "Flur",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempOGKind"
+              ],
+              "coords": "178.99851581939197,209.01836017848944",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempOGKind",
+              "title": "Kind",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempOGBad"
+              ],
+              "coords": "284.01673076321845,368.00248951572735",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempOGBad",
+              "title": "Bad",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempOGAnkleide"
+              ],
+              "coords": "820,380",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempOGAnkleide",
+              "title": "Ankleide",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempOGSchlafRechts"
+              ],
+              "coords": "826.0021588081572,169",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempOGSchlafRechts",
+              "title": "Schlaftzimmer",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          },
+          {
+            "component": "oh-plan-marker",
+            "config": {
+              "action": "analyzer",
+              "actionAnalyzerCoordSystem": "time",
+              "actionAnalyzerItems": [
+                "TempOGBuero"
+              ],
+              "coords": "750,650",
+              "icon": "f7:thermometer",
+              "iconColor": "blue",
+              "item": "TempOGBuero",
+              "title": "Büro",
+              "tooltipPermanent": true
+            },
+            "slots": {
+              "default": []
+            }
+          }
+        ]
+      }
+    }
+  },
+  "page_settings": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_settings",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Mar 16, 2025, 8:12:31 AM",
+      "component": "oh-layout-page",
+      "config": {
+        "label": "Einstellungen",
+        "order": "3",
+        "sidebar": true
+      },
+      "slots": {
+        "canvas": [],
+        "default": [
+          {
+            "component": "oh-block",
+            "config": {
+              "title": "Einstellungen"
+            },
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-cells",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "navigate",
+                          "actionPage": "page:overview",
+                          "title": "Start"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gWasser",
+                          "header": "Bewasserung",
+                          "icon": "oh:faucet",
+                          "title": "Bewaesserung"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "options",
+                          "actionItem": "Stiebel_Betriebsart",
+                          "color": "\u003d(items.OhAbwesend.state \u003d\u003d 3 ) ? \u0027red\u0027 : \u0027green\u0027",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Modus \u0027 + items.Stiebel_Betriebsart.displayState",
+                          "icon": "radiator",
+                          "item": "Stiebel_Betriebsart",
+                          "on": "\u003d(items.Stiebel_Betriebsart.state \u003d\u003d 3)",
+                          "title": "Heizung Modus",
+                          "vertical": true
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "options",
+                          "actionItem": "comfoairFanLevel",
+                          "color": "\u003d(items.comfoairFanLevel.state \u003d\u003d 3) ?  \"green\":\"gray\"",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Betriebsart \u0027 + items.comfoairFanLevel.displayState",
+                          "icon": "fan",
+                          "on": "\u003d(items.comfoairFanLevel.state \u003d\u003d 3)",
+                          "title": "Lueftungsanlage"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "toggle",
+                          "actionCommand": "ON",
+                          "actionCommandAlt": "OFF",
+                          "actionItem": "OhUrlaub",
+                          "color": "\u003d(items.OhUrlaub.state \u003d\u003d ON ) ? \u0027green\u0027 : \u0027red\u0027",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Status \u0027 + items.OhUrlaub.state",
+                          "icon": "vacation",
+                          "item": "OhUrlaub",
+                          "off": "\u003d(items.OhUrlaub.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.OhUrlaub.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Urlaub Modus",
+                          "vertical": true
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "toggle",
+                          "actionCommand": "ON",
+                          "actionCommandAlt": "OFF",
+                          "actionItem": "StatusGuestMode",
+                          "color": "\u003d(items.StatusGuestMode.state \u003d\u003d \u0027ON\u0027) ? \u0027green\u0027 : \u0027red\u0027",
+                          "fontSize": "16px",
+                          "footer": "\u003d\u0027Status \u0027 + items.StatusGuestMode.state",
+                          "icon": "vacation",
+                          "item": "StatusGuestMode",
+                          "off": "\u003d(items.StatusGuestMode.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.StatusGuestMode.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Gaeste im Haus",
+                          "vertical": true
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gMisc",
+                          "actionPage": "page:page_Settings",
+                          "actionPageTransition": "f7-cover-v",
+                          "header": "Einstellungen",
+                          "icon": "settings",
+                          "title": "Diverse Settings"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gWeather",
+                          "icon": "oh:humidity",
+                          "title": "OpenWeather"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gPV",
+                          "color": "\u003d(items.PV_Error_LIM.state \u003d\u003d \u0027ON\u0027) ? \u0027red\u0027 : \u0027green\u0027",
+                          "footer": "\u003d\u0027Batterie Ladung \u0027 + items.PV_Battery_SOC.displayState +\u0027 %\u0027",
+                          "icon": "solarplant",
+                          "off": "\u003d(items.PV_Error_LIM.state \u003d\u003d \u0027OFF\u0027)",
+                          "on": "\u003d(items.PV_Error_LIM.state \u003d\u003d \u0027ON\u0027)",
+                          "title": "Photovoltaik"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gSunPro",
+                          "header": "Sonnenschutz",
+                          "icon": "oh:sun",
+                          "title": "Daten"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "action": "group",
+                          "actionGroupPopupItem": "gWetter",
+                          "header": "Wetter Dach",
+                          "icon": "oh:humidity",
+                          "title": "Daten"
+                        }
+                      },
+                      {
+                        "component": "widget:ClickableCameraImage",
+                        "config": {
+                          "camera": "Camera_Hof",
+                          "streamURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg",
+                          "switchItem": "gIPCamera",
+                          "thumbnailURL": "http://10.10.10.57:8080/ipcamera/hof/ipcamera.mjpeg"
+                        }
+                      },
+                      {
+                        "component": "oh-cell",
+                        "config": {
+                          "actionGroupPopupItem": "gSGReady",
+                          "actionPage": "page:page_Settings",
+                          "actionPageTransition": "f7-cover-v",
+                          "color": "\u003d(items.ephemeris_Status.state)\u003d\u003d\"OFF\" ? \"gray\":\"blue\"",
+                          "fontSize": "16px",
+                          "header": "Feiertag",
+                          "icon": "sun",
+                          "on": "\u003d(items.ephemeris_Status.state \u003d\u003d \"ON\")? \"red\": \"yellow\"",
+                          "title": "\u003d items.ephemeris_Name.state",
+                          "vertical": true
+                        },
+                        "slots": {
+                          "after": [
+                            {
+                              "component": "Label",
+                              "config": {
+                                "style": {
+                                  "background": "\u003d(items.ephemeris_Status.state \u003d\u003d \"ON\") ? \"orange\": \"green\"",
+                                  "color": "\u003d(items.ephemeris_Status.state \u003d\u003d \"ON\") \u0026\u0026 \"red\""
+                                },
+                                "text": "\u003ditems.ephemeris_Status.state"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "component": "oh-block",
+            "config": {},
+            "slots": {
+              "default": [
+                {
+                  "component": "oh-grid-row",
+                  "config": {},
+                  "slots": {
+                    "default": [
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:PV_widget2",
+                              "config": {
+                                "batterylevel": "PV_Battery_SOC",
+                                "batterypower": "PV_Battery_Current_Power",
+                                "gridpower": "PV_Grid_Power_Sum",
+                                "icon_battery": "oh:rct-battery",
+                                "icon_grid": "oh:rct-netz",
+                                "icon_house": "oh:rct-house",
+                                "icon_solar": "oh:rct-solar",
+                                "load": "PV_House_Current_Power",
+                                "solarpower": "PV_Input_Sum",
+                                "solarpower1": "PV_Input_A_Watt",
+                                "solarpower2": "PV_Input_B_Watt",
+                                "solarpowerA": "PV_Input_A_Watt",
+                                "solarpowerB": "PV_Input_B_Watt",
+                                "solarvoltA": "PV_Input_A_Volt",
+                                "solarvoltB": "PV_Input_B_Volt"
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "component": "oh-grid-col",
+                        "config": {},
+                        "slots": {
+                          "default": [
+                            {
+                              "component": "widget:Chart_one_unit",
+                              "config": {
+                                "axlabel": "xxx",
+                                "chart1": "Load",
+                                "item3": "PV_Battery_SOC",
+                                "item_colure1": "blue",
+                                "item_unit_left": "%",
+                                "title": "Battery"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "grid": [],
+        "masonry": []
+      }
+    }
+  },
+  "page_temp_og": {
+    "class": "org.openhab.core.ui.components.RootUIComponent",
+    "value": {
+      "uid": "page_temp_og",
+      "tags": [],
+      "props": {
+        "parameters": [],
+        "parameterGroups": []
+      },
+      "timestamp": "Mar 16, 2025, 8:12:56 AM",
+      "component": "oh-chart-page",
+      "config": {
+        "label": "Temp OG",
+        "order": "50",
+        "period": "3D",
+        "sidebar": true
+      },
+      "slots": {
+        "dataZoom": [
+          {
+            "component": "oh-chart-datazoom",
+            "config": {
+              "type": "inside"
+            }
+          }
+        ],
+        "grid": [
+          {
+            "component": "oh-chart-grid",
+            "config": {
+              "includeLabels": true
+            }
+          }
+        ],
+        "legend": [
+          {
+            "component": "oh-chart-legend",
+            "config": {
+              "bottom": 3.0,
+              "type": "scroll"
+            }
+          }
+        ],
+        "series": [
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempOGBuero",
+              "name": "Büro",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempOGSchlafRechts",
+              "name": "Schlafzimmer Rechts",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempOGKind",
+              "name": "Kind",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempOGFlur",
+              "name": "Flur",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempOGBad",
+              "name": "Bad",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempAussen",
+              "name": "Aussen",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempOGAnkleide",
+              "name": "Ankleide",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          },
+          {
+            "component": "oh-time-series",
+            "config": {
+              "gridIndex": 0.0,
+              "item": "TempOGGaeste",
+              "name": "Oase",
+              "type": "line",
+              "xAxisIndex": 0.0,
+              "yAxisIndex": 0.0
+            }
+          }
+        ],
+        "tooltip": [
+          {
+            "component": "oh-chart-tooltip",
+            "config": {
+              "confine": true,
+              "smartFormatter": true
+            }
+          }
+        ],
+        "xAxis": [
+          {
+            "component": "oh-time-axis",
+            "config": {
+              "gridIndex": 0.0
+            }
+          }
+        ],
+        "yAxis": [
+          {
+            "component": "oh-value-axis",
+            "config": {
+              "gridIndex": 0.0
+            }
+          }
+        ]
+      }
+    }
+  }
+}

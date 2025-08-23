@@ -1,0 +1,28 @@
+Group		gtr064						"tr064"						<ic_illu_fbox7490>		["Equipment","NetworkAppliance"]
+
+Switch		tr064phoneRalf				"Ralf Telefon"				<presence>	(gtr064)	["Control"] 
+{channel="tr064:subdeviceLan:fb7490:maconline:30:D7:A1:6C:73:E5"}
+
+Switch		tr064Wifi24					"1 2,4GHz Wifi"				<network>	(gtr064)	["Control"] 
+{channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifi24GHzEnable" }
+Switch		tr064Wifi50					"1 5,0GHz Wifi"				<network>	(gtr064)	["Control"]
+{channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifi5GHzEnable" }
+Switch		tr064GuestWifi				"1 Guest Wifi"				<network>	(gtr064)	["Control"]
+{channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifiGuestEnable"}
+
+String		tr064WanIP					"2 tr064 WAN IP [%s]"		<network>	(gtr064)	["Status"]
+{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:wanIpAddress"}
+String		tr064WanConnectionStatus	"2 tr064 WAN Status [%s]"	<network>	(gtr064)	["Status"]
+{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:wanConnectionStatus"}
+Number:Time	tr064WanUptime				"2 tr064 WAN Uptime "		<network>	(gtr064)	["Status"]
+{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:uptime"}
+
+// Incoming, Outgoing and missed calls in the last 7 days
+//Number tr064IncomingCalls "Incoming Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:inboundCalls_7" }
+//Number tr064OutgoingCalls "Outgoing Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:outboundCalls_7" }
+//Number tr064MissedCalls "Missed Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:missedCalls_7" }P
+
+Switch		tr064tamEnable				"3 AB Ein/Aus"				<phone>		(gtr064)	["Control"]
+{ channel="tr064:fritzbox:fb7490:tamEnable_0 " }
+Number		tr064tamNewMessages			"3 AB Anrufe [%d]"			<phone>		(gtr064)	["Status"]
+{ channel="tr064:fritzbox:fb7490:tamNewMessages_0" }

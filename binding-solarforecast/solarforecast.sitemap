@@ -1,0 +1,20 @@
+sitemap solarforecast label="Solar Forecase" {
+	Frame label="Startpage" icon="sun" {
+		Text item=ForecastSolarHome_Actual
+		Text item=ForecastSolarHome_Today
+		Text item=ForecastSolarHome_Day1
+		Text item=ForecastSolarHome_Actual_SW
+		Text item=ForecastSolarHome_Today_SW
+		Text item=ForecastSolarHome_Day_SW
+		Text item=ForecastSolarHome_Actual_Power_SW
+		Text item=ForecastSolarHome_Remaining_SW
+		Text item=ForecastSolarHome_Actual_Power
+		Text item=ForecastSolarHome_Remaining
+	}
+	Frame label="Startpage" icon="sun" {
+		Text item=ForecastSolarHome_Day_low_SW
+		Text item=ForecastSolarHome_Day_high_SW
+		Text item=ForecastSolarHome_Day1_low
+		Text item=ForecastSolarHome_Day1_high
+	}
+}

@@ -1,0 +1,29 @@
+
+// ############################################################################################################################Ypp
+// ############################################################################################################################Ypp
+// ############################################################################################################################Ypp
+/*
+Diese.Settings wurden i.d.R. im lcn.items benutzt
+Hier bewusst ausgelagert, da es nix mit LCN als solches zu tun hat
+Alles was heir steht, wird fuer Rules und anderen Dingen innerhalb
+der OpenHab Steuerung verwendet und beginnt mit Oh....
+*/
+Switch					Oh_Status_RolloBueroStrasse	"Ro Buero Strasse Status"				<info>			(gMisc,OG_Buero)
+Switch					Oh_Status_WifeExceptions	"Status Frau Besonderheiten"	// in der Rule FrauBesonderheiten
+Number:Dimensionless	Oh_Regen_count				"Regen minuten"							<rain>			(gMisc)
+
+Switch					Oh_Control_RolloBueroStrasse	"Ro Buero Strasse Control E/A"			<sun>			(gMisc,OG_Buero)	["Switch"]
+Switch					Oh_Control_Urlaub					"Urlaub E/A"							<sun>			(gMisc,OG_Buero)	["Switch"]
+Switch					Oh_Control_TimerHeizung				"Timer Heitzung auf 43 E/A"				<temperature>	(gMisc,OG_Buero)	["Switch"]
+Switch					Oh_Control_HomeOffice				"Home Office E/A"						<home>			(gMisc,OG_Buero)	["Switch"]
+Switch					Oh_Control_Abwesend					"Abwesend E/A"							<info>			(gMisc,OG_Buero)	["Switch"]
+Switch					Oh_Control_DaemmerungRolloDeko		"Daemmerung Rollo Deko E/A"				<info>			(gMisc,OG_Buero)	["Switch"]
+Switch					Oh_Control_WifeExceptions	"Gasts Ausnahmen E/A"					<info>			(gMisc,OG_Buero)	["Switch"]
+Switch					Oh_Control_RolloBlockKuecheDaemmerung		"Ro Kueche block Dammerung E/A"			<info>			(gMisc,OG_Buero)	["Switch"]
+Switch					Oh_Control_BadMusicAutomatic			"Musik Bad automatik E/A"				<player>		(gMisc,OG_Bad)		["Switch"]
+Switch					Oh_Regen_in_24h				"Regen in den letzten 24h"				<rain>			(gMisc)				["Switch"]	
+Switch					Oh_Control_Holiday					"Public Holiday (Status)"				<info>			(gMisc)				["Switch"]
+
+// Automatic durch Bewegungsmelder festhalten bzw. abhaengig steuern
+// Das ist nur ein Status, der nicht manuell gesetzt wird
+Switch					Oh_Status_SPBadAutomatic         "SP Bad Automatic aktiv"				(OG_Bad)		["Switch"]

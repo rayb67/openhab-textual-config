@@ -1,0 +1,42 @@
+// Gast Lueftung EIN
+rule "TimerDiverses:LueftungEIN"
+when
+	Time cron "0 30 18 ? * *"
+	or
+	Time cron "0 40 1 ? * SAT,SUN" // Wochenende
+	or
+	Time cron "0 40 23 ? * 1-5"  // in der Woche  So-Do
+then
+	if(	(Oh_Control_WifeExceptions.state == ON) &&
+		(Oh_Control_Abwesend.state != ON) ) 
+	{
+		sendCommand(comfoair_FanLevel, 3) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+		logInfo("TimerDiverses:LueftungEIN","EIN Besonderheit: "+Oh_Control_WifeExceptions.state+"  Level : "+comfoair_FanLevel.state)
+	}
+	else
+	{
+		logInfo("TimerDiverses:LueftungEIN","... es passiert nix ")
+	}
+end
+
+// Gast Lueftung AUS
+rule "TimerDiverses:LueftungAUS"
+when
+	Time cron "0 50 7 ? * THU,FRI"
+	or
+	Time cron "0 0 23 ? * FRI,SAT"  // Fr-Sa - Wochenende
+	or
+	Time cron "0 0 22 ? * SUN,MON,THU,WED,THU"  // So-Do - in der Woche
+then
+	if ( Oh_Control_WifeExceptions.state == ON) 
+	{
+		sendCommand(comfoair_FanLevel, 2) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+
+		logInfo("TimerDiverses:LueftungAUS","AUS Besonderheit: "+Oh_Control_WifeExceptions.state+"  Level : "+comfoair_FanLevel.state)
+	}
+	else
+	{
+		logInfo("TimerDiverses:LueftungAUS","... es passiert nix ")
+	}
+end
+

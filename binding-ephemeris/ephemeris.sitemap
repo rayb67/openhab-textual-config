@@ -1,0 +1,6 @@
+sitemap ephemeris label="Wichtige Tage" {
+	Frame label="misc" {
+		Switch	item=ephemeris_Status
+		Switch	item=ephemeris_Name
+	}
+}

@@ -1,0 +1,43 @@
+rule "StatusStiebelIstTemp" 
+when
+    Time cron "1 1 */6 * * ?" // Einmal pro Stunde
+    or  
+    Item Stiebel_WarmwasserIST changed
+then
+
+	logDebug("StatusStiebelIstTemp","Stiebel IST Temperatur : "+Stiebel_WarmwasserIST.state)
+	if ((( Stiebel_WarmwasserIST.state as QuantityType<Temperature>).toBigDecimal) < 23)
+	{
+		logInfo("StatusStiebelIstTemp","Stiebel Eltron Störung !!!! IstTemperatur : "+Stiebel_WarmwasserIST.state)
+		val mailActions = getActions("mail","mail:smtp:samplesmtp")
+		mailActions.sendMail("yourmail@localhost","WICHTIG - Heizung IstTemp zu tief","Die ist Temperatur ist zu tief gefallen. Heizung kontrolliern !!!!")
+	}
+end
+
+rule "StatusStiebelDruck" 
+when
+    Time cron "1 1 */6 * * ?" // Einmal pro Stunde
+    or  
+    Item Stiebel_Heizungsdruck changed
+	or
+    Item Stiebel_Quellendruck changed
+	or
+	Item Test02 changed
+then
+
+	logDebug("StatusStiebelDruck","Stiebel_Heizungsdruck : "+Stiebel_Heizungsdruck.state)
+	logDebug("StatusStiebelDruck","Stiebel_Quellendruck : "+Stiebel_Quellendruck.state)
+	if	(	((( Stiebel_Heizungsdruck.state as QuantityType<Pressure>).toBigDecimal) < 1.6) ||
+			((( Stiebel_Quellendruck.state as QuantityType<Pressure>).toBigDecimal) < 1.3) )
+	{
+		logInfo("StatusStiebelDruck","Stiebel Eltron Störung ! Druck : "+Stiebel_Heizungsdruck.state)
+		logInfo("StatusStiebelDruck","Stiebel Eltron Störung ! Druck : "+Stiebel_Quellendruck.state)
+
+		val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
+        telegramAction.sendTelegram("Wärmepumpe ! Der Druck ist zu tief")
+
+		val mailActions = getActions("mail","mail:smtp:samplesmtp")
+		mailActions.sendMail("yourmail@localhost","Wärmepumpe - Druck zu tief","Bitte den Druck für die Quelle und/oder dem Heizkreislauf prüfen. Der ist zu niedrig.")
+	}
+end
+

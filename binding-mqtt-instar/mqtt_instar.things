@@ -1,0 +1,59 @@
+Bridge mqtt:broker:server-dev [ host="10.10.10.68", port="1883", secure=false ]
+{
+    Thing topic instar "MQTT instar Hof" {
+		Channels: 
+		Type switch : status_area_alarm_red_enable	"red"	
+			[	stateTopic="instar/E009BF6A5434/alarm/areas/red/enable", 
+				commandTopic="instar/E009BF6A5434/status/alarm/areas/red/enable", 
+				formatBeforePublish="{ “val”:%s}",
+				on="1", off="0" ]
+		Type dimmer : status_area_alarm_red_sensitivity	"sensitivity"	
+			[	stateTopic="instar/E009BF6A5434/alarm/areas/red/sensitivity", 
+				commandTopic="instar/E009BF6A5434/status/alarm/areas/red/sensitivity", 
+				min=0, max=100, step=1 ]
+
+		Type switch : status_area_alarm_yellow	"yellow"	
+			[	stateTopic="instar/E009BF6A5434/alarm/areas/yellow/enable", 
+				commandTopic="instar/E009BF6A5434/status/alarm/areas/yellow/enable", 
+				on="1", off="0" ]
+		Type dimmer : status_area_alarm_yellow_sensitivity	"sensitivity"	
+			[	stateTopic="instar/E009BF6A5434/alarm/areas/yellow/sensitivity", 
+				commandTopic="instar/E009BF6A5434/status/alarm/areas/yellow/sensitivity", 
+				min=0, max=100, step=1 ]
+
+		Type switch : status_area_alarm_green	"green"	
+			[	stateTopic="instar/E009BF6A5434/alarm/areas/green/enable", 
+				commandTopic="instar/E009BF6A5434/status/alarm/areas/green/enable", 
+				on="1", off="0" ]
+		Type dimmer : status_area_alarm_green_sensitivity	"sensitivity"	
+			[	stateTopic="instar/E009BF6A5434/alarm/areas/green/sensitivity", 
+				commandTopic="instar/E009BF6A5434/status/alarm/areas/green/sensitivity", 
+				min=0, max=100, step=1 ]
+
+		Type switch : status_area_alarm_blue	"blue"
+			[	stateTopic="instar/E009BF6A5434/alarm/areas/blue/enable", 
+				commandTopic="instar/E009BF6A5434/status/alarm/areas/blue/enable", 
+				on="1", off="0" ]
+		Type dimmer : status_area_alarm_blue_sensitivity	"sensitivity"	
+			[	stateTopic="instar/E009BF6A5434/alarm/areas/blue/sensitivity", 
+				commandTopic="instar/E009BF6A5434/status/alarm/areas/blue/sensitivity", 
+				min=0, max=100, step=1 ]
+
+		Type switch : status_alarm_action_pir	"pir"
+			[	stateTopic="instar/E009BF6A5434/status/alarm/actions/pir/link", 
+				commandTopic="instar/E009BF6A5434/status/alarm/actions/pir/link", 
+				on="1", off="0" ]
+		Type number : status_alarm_triggerd	"triggered"
+			[ stateTopic="instar/E009BF6A5434/status/alarm/triggered" ]
+		Type number : status_alarm_triggerd_object	"triggered object"
+			[ stateTopic="instar/E009BF6A5434/status/alarm/triggered/object" ]
+	}
+}
+/*
+		instar/E009BF6A5434/status/alarm/actions/pir/link
+		Type switch : lamp "Kitchen Lamp" [ stateTopic="lamp/enabled", commandTopic="lamp/enabled/set" ]
+		Type switch : fancylamp "Fancy Lamp" [ stateTopic="fancy/lamp/state", commandTopic="fancy/lamp/command", on="i-am-on", off="i-am-off" ]
+		Type string : alarmpanel "Alarm system" [ stateTopic="alarm/panel/state", commandTopic="alarm/panel/set", allowedStates="ARMED_HOME,ARMED_AWAY,UNARMED" ]
+		Type color : lampcolor "Kitchen Lamp color" [ stateTopic="lamp/color", commandTopic="lamp/color/set", colorMode="RGB" ]
+		Type dimmer : blind "Blind" [ stateTopic="blind/state", commandTopic="blind/set", min=0, max=5, step=1 ]
+*/

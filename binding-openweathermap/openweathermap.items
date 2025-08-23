@@ -1,0 +1,71 @@
+//.. STATION ITEMS
+Group					gWeather						"OWM Weather"				<rain>			(AUS_Service)	["Equipment"]
+String					Owm_Home_StationId				"Station: ID [%s]"				<info>			(gWeather)	["Outdoor"]
+{ channel="openweathermap:weather-and-forecast:api:local:station#id" }
+String					Owm_Home_StationName			"Station: Name [%s]"				<info>			(gWeather)	["Outdoor"]
+{ channel="openweathermap:weather-and-forecast:api:local:station#name" }
+Location				Owm_Home_StationLocation		"Station: Location [%2$s°N %3$s°E]"			<info>			(gWeather)	["Outdoor"]
+{ channel="openweathermap:weather-and-forecast:api:local:station#location" }
+
+// WEATHER CURRENT
+DateTime				Owm_Home_LastMeasurement         "Time of Last Measurement [%1$tY-%1$tm-%1$tdT%1$tH:%1$tM:%1$tS]"   <time> (gWeather)
+{ channel="openweathermap:weather-and-forecast:api:local:current#time-stamp" }
+String					Owm_Home_Current_Condition       "Aktuelle Wetterlage [%s]"		<sun_clouds>    (gWeather)
+{ channel="openweathermap:weather-and-forecast:api:local:current#condition" }
+Image					Owm_Home_Current_ConditionIcon   "Bild"										(gWeather)
+{ channel="openweathermap:weather-and-forecast:api:local:current#icon" }
+Number:Temperature		Owm_Home_Current_Temperature     "Temperatur [%.1f °C]"				<temperature>   (gWeather)	["Temperature"] 
+{ channel="openweathermap:weather-and-forecast:api:local:current#temperature"  }
+Number:Pressure			Owm_Home_Current_Pressure        "Luftdruck [%.1f hPa]"				<pressure>      (gWeather)	["Pressure"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#pressure" }
+Number:Dimensionless	Owm_Home_Current_Humidity        "Luftfeuchtigkeit [%.1f %%]"			<humidity>      (gWeather)	["Humidity"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#humidity" }
+Number:Speed			Owm_Home_Current_WindSpeed       "Wind Geschwindigkeit [%.1f km/h]"		<wind>          (gWeather)	["Wind"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#wind-speed" }
+Number:Angle			Owm_Home_Current_WindDirection   "Wind Richtung [%.0f °]"			<wind>          (gWeather)	["Measurement","Angle"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#wind-direction" }
+Number:Dimensionless	Owm_Home_Current_Cloudiness      "Aktuelle Bewölkungi [%d %]"		<sun_clouds>    (gWeather)	["Status"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#cloudiness" }
+Number:Length			Owm_Home_Current_RainVolume      "Regenmenge [%.1f l/m²]"				<rain>          (gWeather)	["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#rain" }
+Number:Length			Owm_Home_Current_SnowVolume      "Schneemenge [%.1f l/m²]"				<snow>          (gWeather)	["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:current#snow" }
+Number:Length			Owm_Home_Current_Visibility      "Fernsicht [%.1f km]"				<visibility>    (gWeather)	
+{ channel="openweathermap:weather-and-forecast:api:local:current#visibility" }
+
+Number:Length			Owm_Home_Forcast03_RainVolume	"Regenmenge in 03 Std. [%.1f l/m²]"		<rain>			(gWeather)   ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastHours03#rain" }
+Number:Length			Owm_Home_Forcast24_RainVolume	"Regenmenge in 24 Std. [%.1f l/m²]"		<rain>			(gWeather)   ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastHours24#rain" }
+
+
+DateTime                Owm_Home_localDailyForecastDay2Timestamp "Timestamp of forecast in 2 days  [%1$tY-%1$tm-%1$tdT%1$tH:%1$tM:%1$tS]" <time>
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#time-stamp" }
+String                  Owm_Home_localDailyForecastDay2Condition "Condition in 2 days [%s]" <sun_clouds>
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#condition" }
+Image                   Owm_Home_localDailyForecastDay2ConditionIcon "Icon"
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#icon" }
+Number:Temperature      Owm_Home_localDailyForecastDay2MinTemperature "Minimum temperature in 2 days [%.2f %unit%]" <temperature>   (gWeather)  ["Temperature"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#min-temperature" }
+Number:Temperature      Owm_Home_localDailyForecastDay2MaxTemperature "Maximum temperature in 2 days [%.2f %unit%]" <temperature>   (gWeather)  ["Temperature"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#max-temperature" }
+Number:Length           Owm_Home_localDailyForecastDay2RainVolume "Rain volume in 2 days [%.1f %unit%]"    <rain>  (gWeather)  ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#rain" }
+Number:Length           Owm_Home_localDailyForecastDay2SnowVolume "Snow volume in 2 days [%.1f %unit%]"    <snow>  (gWeather)  ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay2#snow" }
+
+
+DateTime                Owm_Home_localDailyForecastDay4Timestamp "Timestamp of forecast in 4 days [%1$tY-%1$tm-%1$tdT%1$tH:%1$tM:%1$tS]" <time>
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#time-stamp" }
+String                  Owm_Home_localDailyForecastDay4Condition "Condition in 4 days [%s]" <sun_clouds>
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#condition" }
+Image                   Owm_Home_localDailyForecastDay4ConditionIcon "Icon"
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#icon" }
+Number:Temperature      Owm_Home_localDailyForecastDay4MinTemperature "Minimum temperature in 4 days [%.2f %unit%]" <temperature>   (gWeather)  ["Temperature"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#min-temperature" }
+Number:Temperature      Owm_Home_localDailyForecastDay4MaxTemperature "Maximum temperature in 4 days [%.2f %unit%]" <temperature>   (gWeather)  ["Temperature"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#max-temperature" }
+Number:Length           Owm_Home_localDailyForecastDay4RainVolume "Rain volume in 4 days [%.1f %unit%]"    <rain>  (gWeather)  ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#rain" }
+Number:Length           Owm_Home_localDailyForecastDay4SnowVolume "Snow volume in 4 days [%.1f %unit%]"    <snow>  (gWeather)  ["Rain"]
+{ channel="openweathermap:weather-and-forecast:api:local:forecastDay4#snow" }

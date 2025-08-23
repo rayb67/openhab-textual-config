@@ -1,0 +1,7 @@
+Group	gEphemeris				"Sonnenschutz"				<sun>
+Switch  ephemeris_TestSwitch    "ephemeris Test"			<wallswitch>	(gEphemeris)
+
+Switch	ephemeris_Status		"Feiertag Status"			<info>			(gEphemeris)
+String	ephemeris_Name			"Feiertag Name"				<info>			(gEphemeris)
+String	ephemeris_Description	"Feiertag Beschreibung"		<info>			(gEphemeris)
+Number	ephemeris_NextDay		"Feiertag Next Day"			<info>			(gEphemeris)

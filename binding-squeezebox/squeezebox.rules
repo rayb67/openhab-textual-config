@@ -1,0 +1,146 @@
+// Diese Rule wird genutzt, um ueber die LCN-GT12 Glasflaechenschalter
+// im Bad die Musik im Bad zu steuern. D.h. eine Pi mit Squeezelight
+// ist in Openhab eingebunden. Über Virtuelle Relais, welche ueber
+// den Schalter im LCN Bus angesprochen werden, wird mithilfe
+// dieser Rule, der Squeezelight client gesteuert.
+
+//********************************************************************
+rule "StatusMusicBadSender1"
+when
+	Item StatusMusicBadSender1 changed to ON
+then
+	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play")
+	sendCommand( SPBad_PlayFavorite, 2) // 2 = WDR 2
+end
+
+//********************************************************************
+rule "StatusMusicBadSender2"
+when
+	Item StatusMusicBadSender2 changed to ON
+then
+	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play")
+	sendCommand( SPBad_PlayFavorite, 6) // 6 = Antenne Bayern Top 40
+end
+
+//********************************************************************
+rule "StatusMusicBadPlay"
+when
+	Item StatusMusicBadPlay changed to ON
+then
+	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play")
+	sendCommand( SPBad_Control, PLAY)
+	sendCommand( StatusMusicBadPlay, OFF)
+	sendCommand( Oh_Status_SPBadAutomatic, ON) // Zur Umgehung des Bewegungsmelder auto Stop
+end
+
+//********************************************************************
+rule "StatusMusicBadStop"
+when
+	Item StatusMusicBadStop changed to ON
+then
+	logInfo("StatusMusicBadStop","StatusMusicBadStop Pause")
+	sendCommand( SPBad_Control, PAUSE)
+	sendCommand( StatusMusicBadStop, OFF)
+	sendCommand( Oh_Status_SPBadAutomatic, OFF) // Zur Umgehung des Bewegungsmelder auto Stop
+end
+
+//********************************************************************
+rule "StatususicBadVolumeAdd"
+when
+	Item StatusMusicBadVolumeAdd changed to ON
+then
+	logDebug("StatusMusicBadVolumeAdd","StatusMusicBadVolumeAdd old : "+SPBad_Volume.state)
+	if(SPBad_Volume.state < 91) {
+		sendCommand( SPBad_Volume, ((SPBad_Volume.state as DecimalType) + 10 ))
+//		SPBad_Volume.postUpdate((SPBad_Volume.state) as Number + 10 ) // OK
+		logInfo("StatusMusicBadVolumeAdd","+ 10")
+	} else {
+		sendCommand( SPBad_Volume, 100 )
+//		SPBad_Volume.postUpdate(100 ) // OK
+		logInfo("StatusMusicBadVolumeAdd","100 maximum")
+	}
+	logDebug("StatusMusicBadVolumeAdd","StatusMusicBadVolumeAdd new : "+SPBad_Volume.state)
+	sendCommand( StatusMusicBadVolumeAdd, OFF)
+	sendCommand( Oh_Status_SPBadAutomatic, ON) // Zur Umgehung des Bewegungsmelder auto Stop
+end
+
+//********************************************************************
+// Handle squeezebox radio station UI
+rule "StatusMusicBadVolumeSub"
+when
+	Item StatusMusicBadVolumeSub changed to ON
+then
+	logDebug("StatusMusicBadVolumeSub","StatusMusicBadVolumeSub old : "+SPBad_Volume.state)
+	if(SPBad_Volume.state > 29) {
+//		SPBad_Volume.postUpdate((SPBad_Volume.state) as Number - 10 ) // OK
+		sendCommand( SPBad_Volume, ((SPBad_Volume.state as DecimalType) - 10 ))
+		logDebug("StatusMusicBadVolumeSub","- 10")
+	} else {
+//		SPBad_Volume.postUpdate(20 ) // OK
+		sendCommand( SPBad_Volume,  20 )
+		logDebug("StatusMusicBadVolumeSub","20 server-devmum")
+	}
+	logDebug("StatusMusicBadVolumeSub","StatusMusicBadVolumeSub new : "+SPBad_Volume.state)
+	sendCommand( StatusMusicBadVolumeSub, OFF)
+	sendCommand( Oh_Status_SPBadAutomatic, ON) // Zur Umgehung des Bewegungsmelder auto Stop
+end
+
+//********************************************************************
+// Die Automatik wird Ueber einen Bewegungsmelder getriggert
+// Diese Funktion kann ein oder ausgeschaltet. 
+rule "OGBadPlayMusicAutomatic"
+when
+	Item lcn_status_Bewegung_OG_Bad changed to CLOSED
+then
+	logDebug("OGBadPlayMusicAutomatic","Oh_Status_SPBadAutomatic : "+Oh_Status_SPBadAutomatic.state)
+	if(Oh_Control_BadMusicAutomatic.state == ON) {
+		logInfo("OGBadPlayMusicAutomatic","lcn_status_Bewegung_OG_Bad - Play Music...")
+		sendCommand( SPBad_Control, "PLAY")
+		sendCommand( SPBad_Volume, 40)
+		// Der Timer soll verhindern, das zeitnah der Bewegungsmelder 
+		// von sich aus wieder die Lautstaerke veraendert
+		createTimer(now.plusSeconds(600)) [
+			if (Oh_Status_SPBadAutomatic.state == OFF) {
+				sendCommand( SPBad_Control, "PAUSE")
+		    	logInfo("OGBadPlayMusicAutomatic","Timer abgelaufen...beendet")
+			} else {
+		    	logDebug("OGBadPlayMusicAutomatic","Timer ausgesetzt")
+			}
+		]   
+	} else {
+		logDebug("OGBadPlayMusicAutomatic","Oh_Status_SPBadAutomatic : ",Oh_Status_SPBadAutomatic.state)
+	}
+end
+
+/*
+rule "SPMobile_mPlayerData"
+when
+    Item SPMobile_Title changed
+then
+	logInfo("Squeezebox", "Title change")
+	val myURL = 'http://10.10.10.57:9000/jsonrpc.js'
+	val payload = '{"id":1,"method":"slim.request","params":["00:00:00:00:00:01",["duration","?"]]}'
+	val String json = sendHttpPostRequest(myURL, "application/json", payload)
+	SPMobile_CurrentTrackLength.postUpdate(Float.valueOf(transform("JSONPATH", "$.result._duration", json)))
+	logInfo("Squeezebox", "Track length: " + SPMobile_CurrentTrackLength.state + " seconds.")
+end
+*/
+
+
+rule "SyncKuecheMitWohnzimmerOn"
+when
+	Item SPKueche_Trigger_Sync changed to ON
+then
+// https://community.openhab.org/t/starting-squeezebox-synced/52825
+// https://community.openhab.org/t/logitech-squeezebox-setup-issues/97065
+	SPKueche_Sync.sendCommand("74:da:38:58:30:32")  // Wohnzimmer
+	logInfo("SyncKuecheMitWohnzimmerOn", "on....")
+end
+
+rule "SyncKuecheMitWohnzimmerOFF"
+when
+	Item SPKueche_Trigger_Sync changed to OFF
+then
+	SPKueche_Unsync.sendCommand(ON)  // Wohnzimmer
+	logInfo("SyncKuecheMitWohnzimmerOn", "off....")
+end

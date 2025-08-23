@@ -1,0 +1,214 @@
+config:
+  label: Musik
+  layoutType: responsive
+  order: "6"
+  sidebar: true
+blocks:
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: options
+                        actionItem: SPMobile_PlayFavorite
+                        expandable: false
+                        fontSize: 14px
+                        label: =items.SPMobile_PlayFavorite.displayState.slice(0,20)
+                        title: Favorite Mobile
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: options
+                        actionItem: SPBad_PlayFavorite
+                        expandable: false
+                        fontSize: 14px
+                        label: =items.SPBad_PlayFavorite.displayState.slice(0,20)
+                        title: Favorite Bad
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: options
+                        actionItem: SPKueche_PlayFavorite
+                        expandable: false
+                        fontSize: 14px
+                        label: =items.SPKueche_PlayFavorite.displayState.slice(0,20)
+                        title: Favoritemmer Kueche
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: options
+                        actionItem: SPWohnz_PlayFavorite
+                        expandable: false
+                        fontSize: 14px
+                        label: =items.SPWohnz_PlayFavorite.displayState.slice(0,20)
+                        title: Favorite Wohnzi
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        fontSize: 14px
+                        item: SPMobile_Title
+                        title: aktelller Titel
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        fontSize: 14px
+                        item: SPBad_Title
+                        title: aktelller Titel
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        fontSize: 14px
+                        item: SPKueche_Title
+                        title: aktelller Titel
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        fontSize: 14px
+                        item: SPWohnz_Title
+                        title: aktelller Titel
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-player-card
+                      config:
+                        item: SPMobile_Control
+                        title: Mobile
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-player-card
+                      config:
+                        item: SPBad_Control
+                        title: Bad
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-player-card
+                      config:
+                        item: SPKueche_Control
+                        title: Kueche
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-player-card
+                      config:
+                        item: SPWohnz_Control
+                        title: Wohnzimmer
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: SPMobile_Volume
+                        title: Lautstärke
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: SPBad_Volume
+                        title: Lautstärke
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: SPKueche_Volume
+                        title: Lautstärke
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: SPWohnz_Volume
+                        title: Lautstärke
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-image-card
+                      config:
+                        item: SPMobile_CoverArtData
+                        title: Cover Art
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-image-card
+                      config:
+                        item: SPBad_CoverArtData
+                        title: Cover Art
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-image-card
+                      config:
+                        item: SPKueche_CoverArtData
+                        title: Cover Art
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-image-card
+                      config:
+                        item: SPWohnz_CoverArtData
+                        title: Cover Art
+masonry: null
+grid: null
+canvas: null
+

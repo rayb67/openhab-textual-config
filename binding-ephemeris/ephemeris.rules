@@ -1,0 +1,36 @@
+//.. mal 
+rule "Ephemeris:FerienAndFeiertag" 
+when
+	Time cron "0 0 1 * * ?"
+//	or
+then
+   val String  currentHoliday     = Ephemeris.getBankHolidayName()
+   val String  nextHoliday        = Ephemeris.getNextBankHoliday()
+   val long    untilHoliday       = Ephemeris.getDaysUntil(nextHoliday)
+   val String  nextHolidayName    = Ephemeris.getHolidayDescription(nextHoliday)  
+   val String  currentHolidayName = Ephemeris.getHolidayDescription(currentHoliday)   
+   
+
+   if (Ephemeris.isBankHoliday == true) {
+        ephemeris_Status.sendCommand(ON)
+        ephemeris_Name.postUpdate(currentHolidayName)         
+	    ephemeris_Description.postUpdate(currentHolidayName)
+      } 
+   if (Ephemeris.isBankHoliday == false) {
+        ephemeris_Status.sendCommand(OFF)
+        ephemeris_Name.postUpdate(nextHolidayName + " in " + untilHoliday + " Tagen")
+	    ephemeris_Description.postUpdate(currentHolidayName)
+      } 
+  ephemeris_NextDay.postUpdate(untilHoliday)
+
+  logInfo("ephermeris","Status : "+ephemeris_Status.state+" Feiertag Name : "+ephemeris_Name.state + " in " + ephemeris_NextDay.state + " Tagen - Beschreibung : "+ephemeris_Description.state)
+ end 
+
+rule "Ephemeris:Message"
+when 
+//	Time cron "0/10 1 * * * ?"
+	Time cron "1 0 1 * * ?"
+then
+	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("${OPENHAB_SETUP_CONF}/misc/ephemeris/MyEntry_de.xml"))
+	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("${OPENHAB_SETUP_CONF}/openhab/misc/ephemeris/Holidays_de.xml"))
+end

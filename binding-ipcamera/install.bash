@@ -1,0 +1,36 @@
+#!/bin/bash
+
+BINDING=`pwd | awk -F/ '{print $NF}'`
+
+if [ -z ${OPENHAB_SETUP_SOURCE} ];
+then
+        echo "  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        echo "  \$OPENHAB_SETUP_SOURCE not defined"
+        echo "  ...please set e.g.:"
+        echo "  export OPENHAB_SETUP_SOURCE=/dsnas/install/openhab"
+        exit
+fi
+
+if [ "$#" -gt "0" ];
+then
+    DATAPATH=$OPENHAB_SETUP_SOURCE/$1
+else
+	DATAPATH=${OPENHAB_SETUP_SOURCE}/${BINDING}
+fi
+
+FILE=$DATAPATH
+if [ ! -d $FILE  ]; then
+    echo "Wrong call because folder does not exist : "$FILE
+    exit
+fi
+
+#echo "conf  >"${OPENHAB_SETUP_CONF}"<"
+#echo "sourc >"${OPENHAB_SETUP_SOURCE}"<"
+#echo "daat  >"${DATAPATH}"<"
+
+#cp ${DATAPATH}/ipcamera*.map $OPENHAB_SETUP_CONF/transform/.
+cp ${DATAPATH}/ipcamera.items $OPENHAB_SETUP_CONF/items/.
+#cp ${DATAPATH}/ipcamera.rules $OPENHAB_SETUP_CONF/rules/.
+cp ${DATAPATH}/ipcamera.sitemap $OPENHAB_SETUP_CONF/sitemaps/.
+cp ${DATAPATH}/ipcamera*.things $OPENHAB_SETUP_CONF/things/.
+chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}

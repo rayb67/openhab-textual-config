@@ -1,0 +1,51 @@
+Group   gAVMFritz					"avmfritz"						(EG_Technik)				["Equipment"]
+
+// Points:
+
+Group   gCALLMONITOR				"Call Monitor"						(gAVMFritz)
+Call    fritzIncomingCall			"Incoming Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR)	
+{ channel="avmfritz:fritzbox:avmfb7490:incoming_call" }
+Call    fritzActiveCall			    "Active Call [from %1$s]"           (gAVMFritz,gCALLMONITOR)
+{ channel="avmfritz:fritzbox:avmfb7490:active_call" }
+Call    fritzOutgoingCall			"Outgoing Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR)
+{ channel="avmfritz:fritzbox:avmfb7490:outgoing_call" }
+String  fritzCallRinging			"Status [%s]"                       (gAVMFritz,gCALLMONITOR)
+{ channel="avmfritz:fritzbox:avmfb7490:call_state" }
+String  fritzTemplate			    "Vorlage anwenden"                  (gAVMFritz,gCALLMONITOR)
+{ channel="avmfritz:fritzbox:avmfb7490:apply_template" }
+
+// resolved numbers (only if TR-064 binding is installed)
+
+String  fritzIncomingCallCaller     "Incoming Call - Caller [%s]"		(gAVMFritz,gCALLMONITOR)
+{ channel="tr064:fritzbox:fb7490:incoming_call" [profile="transform:PHONEBOOK", phonebook="tr064_3Afritzbox_3Afb7490", phoneNumberIndex=1, matchcount="8"] }
+String  fritzActiveCallCaller	    "Active Call - Caller [%s]"			(gAVMFritz,gCALLMONITOR)
+{ channel="tr064:fritzbox:fb7490:active_call" [profile="transform:PHONEBOOK", phonebook="tr064_3Afritzbox_3Afb7490"] }
+String  fritzOutgoingCallCaller     "Outgoing Call - Caller [%s]"		(gAVMFritz,gCALLMONITOR)
+{ channel="tr064:fritzbox:fb7490:outgoing_call" [profile="transform:PHONEBOOK", phonebook="tr064_3Afritzbox_3Afb7490", phoneNumberIndex=1, matchcount="8"] }
+String  fritzLetzterAusgehenderRuf  "Name Angerufener"                  (gAVMFritz)                 ["Status"] 
+String  fritzLetzteAusgendeNr       "angerufene Nummer"                 (gAVMFritz)                 ["Status"]
+Number  fritzLetzteALeitung         "über ausgehende Nummer"            (gAVMFritz)                 ["Status"]
+String  fritzLetzterEingehenderRuf  "Name Anrufer"                      (gAVMFritz)                 ["Status"]
+String  fritzLetzteEingehendeNr     "anrufende Nummer"                  (gAVMFritz)                 ["Status"]
+Number  fritzLetzteELeitung         "über eingende Nummer"              (gAVMFritz)                 ["Status"]
+
+// ########## allgemeine Gruppen ##########
+// ------------------------------------------------------------------------------------
+// Group gFritzAHA          "Fritz!Box AHA Geräte"  <selfMemory>
+// ------------------------------------------------------------------------------------
+Group gFritzPowerline    "Fritz!Powerline"       <selfMemory>    (gFritzPL)
+// ------------------------------------------------------------------------------------
+// ########## Fritz!Powerline 546E über Fritz!Box ##########
+// AIN 08:96:D7:F3:8E:AA
+
+Number FritzPowerline546E_Power         "F!P 546e Stromverbrauch aktuell [%.1f Watt]"   <info>      (gFritzPL)   
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:power" }
+Number FritzPowerline546E_Energy        "F!P 546e Stromverbrauch gesamt [%.1f Wh]"      <info>      (gFritzPL)
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:energy" }
+Number FritzPowerline546E_Voltage       "F!P 546e Spannung [%.1f V]"                    <info>      (gFritzPL) 
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:voltage" }
+String FritzPowerline546E_Mode       "F!P 546e Spannung [%s]"                    <info>      (gFritzPL) 
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:mode" }
+
+Switch FritzPowerline546E_Steckdose "FB PL 546e Steckdose" <socket>  (gFritzPL) 
+{ channel="avmfritz:FRITZ_Powerline_546E:avmfb7490:08_96_D7_F3_8E_AA:outlet" }

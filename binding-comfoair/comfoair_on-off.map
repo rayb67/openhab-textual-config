@@ -1,0 +1,8 @@
+ON=ON
+OFF=OFF
+1=ON
+0=Off
+undefined=unknown
+-=unknown
+NULL=null
+UNDEF=unknown

@@ -1,0 +1,43 @@
+Group	gIPCamera						"IPCamera Instar"									(AUS_Hof)
+
+Switch	Camera_Hof_ffmpegMotionAlarm	"1-Kamera Motion Alarm (detect)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:ffmpegMotionAlarm" }
+Switch	Camera_Hof_enableMotionAlarm	"1-Kamera Motion Alarm (on/off)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:enableMotionAlarm" }
+Switch	Camera_Hof_Start_HLS_Stream		"1-Kamera Start HLS Stream (on/off)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:startStream" }
+Number	Camera_Hof_MP4_Recording		"1-Kamera MP4 Recording"			<Time>				(gIPCamera,AUS_Hof)	["Camera"]
+{ channel="ipcamera:instar:hof:recordingMp4" }
+Number	Camera_Hof_GIF_Recording		"1-Kamera GIF Recording"			<Time>				(gIPCamera,AUS_Hof)	["Camera"]
+{ channel="ipcamera:instar:hof:recordingGif" }
+String	Camera_Hof_Image_URL			"1-Kamera Image URL"				<Camera>			(gIPCamera,AUS_Hof)	["Camera"]
+{ channel="ipcamera:instar:hof:imageUrl", stateDescription="http://10.10.10.68:8080/ipcamera/hof/ipcamera.jpg" }
+String	Camera_Hof_HLS_URL				"1-Kamera HLS URL"				<Camera>			(gIPCamera,AUS_Hof)	["Camera"]
+{ channel="ipcamera:instar:hof:hlsUrl", stateDescription="http://10.10.10.68:8080/ipcamera/hof/ipcamera.m3u8" }
+String	Camera_Hof_MJPEG_URL			"1-Kamera MJPEG URL"				<Camera>		(gIPCamera,AUS_Hof)	["Camera"]
+{ channel="ipcamera:instar:hof:mjpegUrl", stateDescription="http://10.10.10.68:8080/ipcamera/hof/ipcamera.mjpeg" }
+
+Switch	Camera_Hof_Poll					"1-Kamera Poll (on/off)"			<switch>			(gIPCamera,AUS_Hof)	["Camera"]
+{ channel="ipcamera:instar:hof:pollImage" }
+Switch	Camera_Hof_Pir_Alarm				"1-Kamera pirAlarm (detect)"		<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:pirAlarm" }
+Switch	Camera_Hof_lastEventData		"1-Kamera lastEventData"						(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:lastEventData" }
+
+Switch	Camera_Hof_enablePirAlarm		"1-Kamera pirAlarm on/off"		<switch>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:enablePirAlarm" }
+Switch	Camera_Hof_autoLED				"1-Kamera autoLED on/off"			<switch>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:autoLED" }
+
+Switch	Camera_Hof_Motion_Alarm			"1-Kamera Motion Alarm (detect)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:motionAlarm" }
+String	Camera_Hof_lastMotionType		"1-Kamera lastMotionType"			<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:lastMotionType" }
+Switch	Camera_Hof_Car_Alarm				"1-Kamera carAlarm (detect"		<alarm>				(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:carAlarm" }
+Switch	Camera_Hof_Human_Alarm			"1-Kamera humanAlarm (detect)"	<alarm>				(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:humanAlarm" }
+Switch	Camera_Hof_Animal_Alarm		"1-Kamera animalAlarm (detect)"	<alarm>				(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:animalAlarm" }
+Switch	Camera_Hof_Audio_Alarm			"1-Kamera audioAlarm (triggered)"	<motion>			(gIPCamera,AUS_Hof)	["Alarm","Presens"]
+{ channel="ipcamera:instar:hof:audioAlarm" }

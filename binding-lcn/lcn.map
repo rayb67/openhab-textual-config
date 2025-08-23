@@ -1,0 +1,14 @@
+NULL=unknown
+0=AUS
+0.0=AUS
+CLOSED=aktiv
+1=EIN
+1.0=EIN
+OPEN=inaktiv
+-=unbekannt
+1=Opened
+0=Closed
+undefined=unknown
+-=unknown
+ON=EIN
+OFF=AUS

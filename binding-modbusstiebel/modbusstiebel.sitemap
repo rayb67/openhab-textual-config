@@ -1,0 +1,67 @@
+sitemap modbusstiebel label="Modbus Stiebel" {
+ Frame label= "State" {
+  Selection item=Stiebel_Betriebsart icon="settings" 
+    valuecolor=[4="red",1="blue",3="green",2="orange",0="black",5="black",6="black"] 
+    label="Betriebsart [MAP(modbusstiebel_mode.map):%d]"
+  Default item=Stiebel_Aussentemperatur  icon="temperature"
+  Default item=Stiebel_hk1_temperature  icon="temperature"
+  Default item=Stiebel_flow_temperature  icon="flow"
+  Default item=Stiebel_return_temperature  icon="temperature"
+  Default item=Stiebel_buffer_temperature  icon="temperature"
+  Default item=Stiebel_FEKTemperaturIST icon="temperature"
+//  Setpoint item=Stiebel_FEKTemperaturSOLLStiebel_FEKTemperaturSOLL icon="temperature" step=0.5 minValue=20 maxValue=24
+  Default item=Stiebel_Raumfeuchte icon="humidity"
+  Default item=Stiebel_Taupunkttemperatur icon="temperature"
+  Default item=Stiebel_Volumenstrom icon="flow"
+  Default item=Stiebel_WarmwasserIST icon="temperature"
+  Default item=Stiebel_source_temperature icon="temperature"
+  Default item=Stiebel_server-devmal_source_temperature icon="temperature"
+  Default item=Stiebel_source_pressure icon="pressure"
+  Default item=Stiebel_high_pressure icon="pressure"
+  Default item=Stiebel_low_pressure icon="pressure"
+  Default item=Stiebel_hot_gas_temperature icon="gas"
+  Default item=Stiebel_Heizkurve icon="gas"
+ }
+ Frame label="SG Ready" {
+  Default item=SGReadyStatus icon="energy"
+  Default item=SGReadyControl icon="energy"
+  Setpoint item=SGReadyWasserTempSoll icon="temperature" step=1 minValue=40 maxValue=50
+  Setpoint item=SGReadySoCON icon="battery" step=10 minValue=10 maxValue=90
+  Setpoint item=SGReadySoCOFF icon="battery" step=10 minValue=10 maxValue=90
+  Setpoint item=SGReadyForcastToday icon="energy" step=2 minValue=10 maxValue=50
+  Setpoint item=SGReadyElevation icon="energy" step=2 minValue=10 maxValue=50
+//  Default item=Stiebel_sgready_onoff_switch icon="energy"
+  Default item=Stiebel_sgready_input_lines icon="energy"
+  Default item=Stiebel_sgready_controller icon="energy"
+    label="Controller Identifier [MAP(modbusstiebel_identifier.map):%d]"
+  Default item=Stiebel_Betriebsart icon="energy"
+    label="Operation State"
+//    label="Operation State [MAP(boolean.map):%d]"
+ }
+ Frame label="Paramters" {
+  Setpoint item=Stiebel_KomforttemperaturHKSOLL icon="temperature" step=0.5 minValue=5 maxValue=30
+  Setpoint item=Stiebel_ECOtemperaturHKSOLL icon="temperature" step=0.5 minValue=5 maxValue=30
+  Setpoint item=Stiebel_KomforttemperaturWWSOLL icon="temperature" step=0.5 minValue=10 maxValue=60
+  Setpoint item=Stiebel_ECOtemperaturWWSOLL icon="temperature" step=0.5 minValue=10 maxValue=60
+ }
+ Frame label="Optation Mode" {
+  Default item=Stiebel_hk1_pump_active icon="info" label="Pumpe [MAP(boolean.map):%d]" 
+  Default item=Stiebel_currently_heating icon="info" label="Heizen [MAP(boolean.map):%d]"
+  Default item=Stiebel_currently_hot_water icon="water" label="Wasser [MAP(boolean.map):%d]"
+  Default item=Stiebel_currently_cooling icon="info" label="Kuehlung [MAP(boolean.map):%d]"
+  Default item=Stiebel_compressor_running icon="info" label="Kompressor [MAP(boolean.map):%d]"
+  Default item=Stiebel_summer_mode_active icon="sun" label="Sommer [MAP(boolean.map):%d]"
+ }
+ Frame label="Energy consumption" {
+  Default item=Stiebel_heat_quantity_today icon="energy"
+  Default item=Stiebel_heat_quantity_total icon="energy"
+  Default item=Stiebel_water_quantity_today icon="energy"
+  Default item=Stiebel_water_quantity_total icon="energy"
+ }
+ Frame label="Heat quantity" {
+  Default item=Stiebel_power_heating_today icon="radiator"
+  Default item=Stiebel_power_heating_total icon="radiator"
+  Default item=Stiebel_power_water_today icon="water"
+  Default item=Stiebel_power_water_total icon="water"
+ }
+}

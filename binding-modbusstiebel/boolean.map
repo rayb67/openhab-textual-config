@@ -1,0 +1,6 @@
+CLOSED=close
+OPEN=open
+NULL=undefind
+1=ON
+0=OFF
+0.0=OFF

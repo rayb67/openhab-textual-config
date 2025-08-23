@@ -1,0 +1,23 @@
+// Astro items
+Group             gAstro					"Astro - Wetter"                                    <sun_clouds>    (gMisc)
+
+DateTime			astro_Sunset_Time			"Sonnenuntergang [%1$tH:%1$tM]"					<sunset>		(gAstro)
+{channel="astro:sun:local:set#start"}
+DateTime			astro_Sunrise_Time			"Sonnenaufgang [%1$tH:%1$tM]"					<sunrise>		(gAstro)
+{channel="astro:sun:local:rise#end"}
+String				astro_Day_Phase				"Tagesphase [MAP(astroDE.map):%s]"				<sunmoon>		(gAstro)
+{channel="astro:sun:local:phase#name"}
+String				astro_Season_Name			"Jahreszeit [MAP(astroDE.map):%s]"				<season>		(gAstro)
+{channel="astro:sun:local:season#name"}
+String				astro_Zodiac_Sign			"Sternzeichen [MAP(astroDE.map):%s]"			<zodiac>		(gAstro)
+{channel="astro:sun:local:zodiac#sign"}
+Number:Angle		astro_Elevation				"Sonnenstand"									<incline>		(gAstro)
+{channel="astro:sun:local:position#elevation"}
+Number:Angle		astro_Azimuth				"Azimuth"										<incline>		(gAstro)
+{channel="astro:sun:local:position#azimuth"}
+Number:Intensity	astro_Radiation_Direct		"Direkte Sonneneinstrahlung [%.2f %unit%]"		<solarplant>	(gAstro)
+{channel="astro:sun:local:radiation#direct"}
+Number:Intensity	astro_Radiation_Diffuse		"Indirekte Sonneneinstrahlung [%.2f %unit%]"	<solarplant>	(gAstro)
+{channel="astro:sun:local:radiation#diffuse"}
+Number:Intensity	astro_Radiation_Total		"Gesamteinstrahlung [%.2f %unit%]"				<solarplant>	(gAstro)
+{channel="astro:sun:local:radiation#total"}

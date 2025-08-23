@@ -1,0 +1,106 @@
+// Ralf Berhorst
+// Funktionstest idR zur Vor- und Nachbereitung einen Updates
+// 2024.07.25
+
+// number of houres to calculate average temperature
+var Number belueftung_avg_time = 72
+// Target value
+// BelueftungSollTempAussen = 20
+var Number belueftung_temperature_soll = 20
+// Wenn die temp ueberschritten wird, wird tagsueber auf Fan auf 1 und AutoMode aktiviert
+// 26.7. von 25. auf 22. runter
+var Number belueftung_temperature_max_aussen = 22
+// average temperature
+var Number tmp_temperatur
+
+rule "Test-Belueftung"
+when
+    Item comfoair_Test changed
+//  or
+//  Time cron "0 */1 * * * ?" //   1 Min zum testen
+//  Time cron "0 */2 * * * ?" //   30 sec zum testen
+//  Time cron "20 */5 * * * ?" // alle 5 min
+then
+
+    logInfo("Test-Belueftung","#######################################################")
+    logInfo("Test-Belueftung","Erwartet werden keine Fehler und zum Schluss ein 'ENDE'")
+    logInfo("Test-Belueftung","#######################################################")
+	if	( 
+			(BelueftungOnOff.state == ON) 
+		)
+	{
+		logInfo("Test-Belueftung","1 yes - (BelueftungOnOff.state == ON)") 
+	} else {
+		logInfo("Test-Belueftung","1 no")
+	}
+
+    var Number month = now.getMonthValue
+    if (month < 10) { month = '0' + month.toString() } else { month = month.toString() }
+    var Number day = now.dayOfMonth
+    if (day < 10) { day = '0' + day.toString() } else { day = day.toString() }
+    var Number year = now.getYear
+
+    // Ab Monat MAI
+    var belueftung_monat_von = ZonedDateTime.parse(year+"-05-01T00:00:00.349+01:00")
+    // Bis zum 1. Oktober
+    var belueftung_monat_bis = ZonedDateTime.parse(year+"-10-01T00:00:00.349+01:00")
+
+    // Nachts - soll es im Haus kuehler werden. Dazu wir das Dachfenster geoeffnet und die Lueftung auf volle Pulle gestellt!
+    var belueftung_nacht_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T22:30:00.349+01:00")
+    var belueftung_nacht_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T07:00:00.349+01:00")
+
+	logInfo("Test-Belueftung","TempAussenAvg1W     : "+(TempAussenAvg1W.state as QuantityType<Number>).doubleValue )
+	logInfo("Test-Belueftung","belueftung_tempSoll : "+belueftung_temperature_soll) 
+	if	( 
+			((TempAussenAvg1W.state as QuantityType<Number>).doubleValue > belueftung_temperature_soll) 
+		)
+	{
+		logInfo("Test-Belueftung","2 yes - (TempAussenAvg1W.state > belueftung_temperature_soll)") 
+	} else {
+		logInfo("Test-Belueftung","2 no - (TempAussenAvg1W.state > belueftung_temperature_soll)") 
+	}
+
+	if	( 
+			(now.isAfter(belueftung_monat_von))
+		)
+	{
+		logInfo("Test-Belueftung","3 yes - (now.isAfter(belueftung_monat_von)") 
+	} else {
+		logInfo("Test-Belueftung","3 no - (now.isAfter(belueftung_monat_von)") 
+	}
+
+	if	( 
+			(now.isBefore(belueftung_monat_bis)) 
+		)
+	{
+		logInfo("Test-Belueftung","4 yes - (now.isBefore(belueftung_monat_bis)") 
+	} else {
+		logInfo("Test-Belueftung","4 no - (now.isBefore(belueftung_monat_bis)") 
+	}
+
+	logInfo("Test-Belueftung","belueftung_nacht_stunde_von : "+belueftung_nacht_stunde_von) 
+	if	(
+			(now.isAfter(belueftung_nacht_stunde_von))
+		)
+//           (now.isBefore(belueftung_nacht_stunde_bis)) )   // Stunde
+	{
+		logInfo("Test-Belueftung","5 yes - (now.isAfter(belueftung_nacht_stunde_von)") 
+	} else {
+		logInfo("Test-Belueftung","5 no - (now.isAfter(belueftung_nacht_stunde_von)") 
+	}
+
+	logInfo("Test-Belueftung","belueftung_nacht_stunde_bis : "+belueftung_nacht_stunde_bis) 
+	if	(
+           (now.isBefore(belueftung_nacht_stunde_bis))
+		)
+	{
+		logInfo("Test-Belueftung","6 yes - (now.isBefore(belueftung_nacht_stunde_bis)") 
+	} else {
+		logInfo("Test-Belueftung","6 no - (now.isBefore(belueftung_nacht_stunde_bis)") 
+	}
+
+
+
+	logInfo("Test-Belueftung","ENDE")
+end
+

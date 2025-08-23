@@ -1,0 +1,38 @@
+sitemap openweathermap label="Open Weather MAP" {
+	Frame label="Startpage" icon="sun" {
+		Text item=Owm_Home_StationId
+		Text item=Owm_Home_StationName
+		Text item=Owm_Home_LastMeasurement
+		Text item=Owm_Home_StationLocation
+		Text item=Owm_Home_Current_Condition
+		Text item=Owm_Home_Current_Temperature
+		Text item=Owm_Home_Current_Pressure
+		Text item=Owm_Home_Current_Humidity
+		Text item=Owm_Home_Current_WindSpeed
+		Text item=Owm_Home_Current_WindDirection
+		Text item=Owm_Home_Current_Cloudiness
+		Text item=Owm_Home_Current_RainVolume
+		Text item=Owm_Home_Current_SnowVolume
+		Text item=Owm_Home_Current_Visibility
+		Text item=Owm_Home_Forcast03_RainVolume
+		Text item=Owm_Home_Forcast24_RainVolume
+	}
+	Frame label="Forcast 2 Days" icon="sun" {
+		Text item=Owm_Home_localDailyForecastDay2Timestamp
+		Text item=Owm_Home_localDailyForecastDay2Condition
+		Text item=Owm_Home_localDailyForecastDay2ConditionIcon
+		Text item=Owm_Home_localDailyForecastDay2MinTemperature
+		Text item=Owm_Home_localDailyForecastDay2MaxTemperature
+		Text item=Owm_Home_localDailyForecastDay2RainVolume
+		Text item=Owm_Home_localDailyForecastDay2SnowVolume
+	}
+	Frame label="Forcast 5 Days" icon="sun" {
+		Text item=Owm_Home_localDailyForecastDay4Timestamp
+		Text item=Owm_Home_localDailyForecastDay4Condition
+		Text item=Owm_Home_localDailyForecastDay4ConditionIcon
+		Text item=Owm_Home_localDailyForecastDay4MinTemperature
+		Text item=Owm_Home_localDailyForecastDay4MaxTemperature
+		Text item=Owm_Home_localDailyForecastDay4RainVolume
+		Text item=Owm_Home_localDailyForecastDay4SnowVolume
+	}
+}

@@ -1,0 +1,213 @@
+//Bridge myuser:pckGateway:bus [ hostname="10.10.10.28", port=4114, username="myuser", password="passwort", mode="native50" ] {
+Bridge myuser:pckGateway:bus [ hostname="10.10.10.97", port=4114, username="myuser", password="passwort", mode="native50" ] {
+     Thing module S000M010 "LCN M010 GT6 Switch - EG Technik"			[ moduleId=010, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2   [ unit="temperature" ]
+	 }
+     Thing module S000M180 "LCN M180 EG Technik Rollosteuerung EG"		[ moduleId=180, segmentId=0 ] { 
+	 	Channels:
+	 	Rollershutter : rollershutterrelay#1 "Technik" [ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#2 "WZ Strasse" [ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#3 "WZ Fenster" [ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#4 "WZ Garten" [ invertUpDown = false ]
+	 }
+     Thing module S000M020 "LCN M020 UPS GT12 EG WohnzFlur"				[ moduleId=020, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : variable#1     [ unit="temperature" ]
+	 }
+     Thing module S000M022 "LCN M022 UPS GT6  EG WohnzSofa"				[ moduleId=022, segmentId=0 ] { 
+	 	Channels:
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M023 "LCN M023 UPS GT12 EG WohnzTerasse"			[ moduleId=023, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M024 "LCN M024 UPS GT12 EG WohnzKueche"			[ moduleId=024, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M025 "LCN M025 UPS R1U  EG WohnzSteckdose"		[ moduleId=025, segmentId=0 ] { }
+     Thing module S000M031 "LCN M031 UPS GT12 EG Kueche Terasse"		[ moduleId=031, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M032 "LCN M032 UPS GT6  EG Kueche Wohnz"			[ moduleId=032, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M033 "LCN M033 UPS GT2  EG Kueche Arbeitsp"		[ moduleId=033, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M035 "LCN M035 UPS GT6  EG Kueche Erker"			[ moduleId=035, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M041 "LCN M041 UPS B4R  EG Schleuse Flur"			[ moduleId=041, segmentId=0 ] {
+	 	Channels:
+		Number  : variable#3   //  [ unit="illuminance" ]			// :Illuminance
+		Number  : variable#6     [ unit="temperature" ]
+	 }
+     Thing module S000M042 "LCN M042 UPS B4R  EG Schleuse Ausg"			[ moduleId=042, segmentId=0 ] { }
+     Thing module S000M050 "LCN M050 UPS GT2  EG Gaeste WC" 			[ moduleId=050, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M055 "LCN M055 UPS GT6  EG Abstell"				[ moduleId=055, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M070 "LCN M070 UPS GT10D EG Flur Haustuer"		[ moduleId=070, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M071 "LCN M071 ....unbekannt"						[ moduleId=071, segmentId=0 ] { 
+	 	Channels:
+		/*
+		Number  : variable#2     [ unit="temperature" ]
+		*/
+	 }
+     Thing module S000M080 "LCN M080 UPS GT12 EG Vorrat"				[ moduleId=080, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M120 "LCN M120 SH+ Technik Unterverteilung"		[ moduleId=120, segmentId=0 ] { }
+
+     Thing module S000M125 "LCN M125 SH+ WIH Technik Unterverteilung"		[ moduleId=125, segmentId=0 ] { 
+	 	Channels:
+		Contact : binarysensor#8	[ invertState=true ]
+		Number  : variable#1 		[ unit="native" ]			// Lux Light Average by calculation rule in variable definition
+		Number  : variable#6		[ unit="temperature" ]		// Temperatur
+		Number  : variable#7		[ unit="windspeed" ]		// Wind ms
+		Number  : variable#8		[ unit="native" ] 			// Lux Light Ost
+		Number  : variable#9		[ unit="native" ]			// Lux Light Sued
+		Number  : variable#10 		[ unit="native" ] 			// Lux Light West
+		Number  : variable#11 		[ unit="angle" ]			// Azimut
+		Number  : variable#12		[ unit="angle" ]			// Elevation
+	 }
+
+     Thing module S000M126 "LCN M126 SH+ Technik Unterverteilung"		[ moduleId=126, segmentId=0 ] { }
+     Thing module S000M140 "LCN M140 SHS Technik Heizung EG"			[ moduleId=140, segmentId=0 ] { 
+		Channels:
+		Contact : binarysensor#1 [ invertState=true ]
+		Contact : binarysensor#2 [ invertState=true ]
+		Contact : binarysensor#3 [ invertState=true ]
+		Contact : binarysensor#4 [ invertState=true ]
+	 }
+     Thing module S000M145 "LCN M145 SHS Technik Heizung OG"			[ moduleId=145, segmentId=0 ] { }
+     Thing module S000M150 "LCN M150 EG Technik Unterverteilung"		[ moduleId=150, segmentId=0 ] { }
+     Thing module S000M151 "LCN M151 EG Technik Unterverteilung"		[ moduleId=151, segmentId=0 ] { }
+     Thing module S000M152 "LCN M152 EG Technik Unterverteilung"		[ moduleId=152, segmentId=0 ] { }
+     Thing module S000M155 "LCN M155 EG Technik Unterverteilung"		[ moduleId=155, segmentId=0 ] { }
+	 
+     Thing module S000M160 "LCN M160 EG Technik Rollosteuerung EG"		[ moduleId=160, segmentId=0 ] { 
+	 	Channels:
+	 	Rollershutter : rollershutterrelay#1 "Kueche Erker Links"		[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#2 "Kueche Erker Rechts"		[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#3 "Werkstatt"				[ invertUpDown = false ]
+	 }
+     Thing module S000M165 "LCN M165 EG Technik Rollosteuerung OG"		[ moduleId=165, segmentId=0 ] { 
+	 	Channels:
+	 	Rollershutter : rollershutterrelay#1 "Buero Garten"				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#2 "Buero Hinten"				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#3 "Buero Hof"				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#4 "Flur Hof"					[ invertUpDown = false ]
+	 }
+     Thing module S000M170 "LCN M170 EG Technik Rollosteuerung EG"		[ moduleId=170, segmentId=0 ] { 
+	 	Channels:
+	 	Rollershutter : rollershutterrelay#1 "WZ Erker links"			[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#2 "WZ Erker rechts"			[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#3 "Kueche Tuer "				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#4 "Kueche Fenster"			[ invertUpDown = false ]
+	 }
+     Thing module S000M175 "LCN M175 EG Technik Rollosteuerung OG"		[ moduleId=175, segmentId=0 ] { 
+	 	Channels:
+	 	Rollershutter : rollershutterrelay#1 "Gaeste links"				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#2 "Gaeste rechts"			[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#3 "Schlafzimmer"				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#4 "Ankleide"					[ invertUpDown = false ]
+	 }
+     Thing module S000M185 "LCN M185 EG Technik Rollosteuerung OG"		[ moduleId=185, segmentId=0 ] { 
+	 	Channels:
+	 	Rollershutter : rollershutterrelay#1 "Bad Toilette"				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#2 "Bad Dusche"				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#3 "Bad Strasse"				[ invertUpDown = false ]
+	 	Rollershutter : rollershutterrelay#4 "Kind"						[ invertUpDown = false ]
+	 }
+     Thing module S000M200 "LCN M200 OG Flur Tereppe"					[ moduleId=200, segmentId=0 ] {
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+/*
+		Number  : variable#1  		[ unit="windspeed" ]		// Wind ms
+*/
+     Thing module S000M201 "LCN M201 Wetterstation"						[ moduleId=201, segmentId=0 ] {
+	 	Channels:
+		Number  : variable#1 		[ unit="native" ]			// native LCN value
+	 }
+     Thing module S000M204 "LCN M204 OG Flur Gaeste"					[ moduleId=204, segmentId=0 ] { }
+     Thing module S000M205 "LCN M205 OG Bad"							[ moduleId=205, segmentId=0 ] {
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M206 "LCN M206 OG Bad Waschbecken li"				[ moduleId=206, segmentId=0 ] { }
+
+     Thing module S000M210 "LCN M210 OG Kind"							[ moduleId=210, segmentId=0 ] {
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+
+     Thing module S000M220 "LCN M220 OG Gaeste"							[ moduleId=220, segmentId=0 ] {
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M231 "LCN M231 OG Schlafz Bett re"				[ moduleId=231, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M232 "LCN M232 OG Schlafz Bett li"				[ moduleId=232, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#3     [ unit="temperature" ]
+	 }
+     Thing module S000M233 "LCN M233 OG Schlafz Tuer"					[ moduleId=233, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M235 "LCN M235 OG Ankleide"						[ moduleId=235, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M241 "LCN M241 OG Buero Flur"						[ moduleId=241, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+		Number  : rvarsetpoint#1 [ unit="temperature" ]
+	 }
+     Thing module S000M242 "LCN M242 OG Buero Schreibtisch"				[ moduleId=242, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M249 "LCN M249 EG Technik Dachfenster"			[ moduleId=249, segmentId=0 ] { }
+     Thing module S000M250 "LCN M250 Garage Licht u Pumpe"				[ moduleId=250, segmentId=0 ] { 
+	 	Channels:
+		Number  : variable#2     [ unit="temperature" ]
+	 }
+     Thing module S000M251 "LCN M251 Garage Schleuse"					[ moduleId=251, segmentId=0 ] { }
+     Thing module S000M252 "LCN M252 Garage Hof"						[ moduleId=252, segmentId=0 ] { }
+     Thing module S000M253 "LCN M253 Garage Tor u Steckdose"			[ moduleId=253, segmentId=0 ] { }
+     Thing module S000M254 "LCN M254 LinHK Calender"					[ moduleId=254, segmentId=0 ] { }
+}
+
+

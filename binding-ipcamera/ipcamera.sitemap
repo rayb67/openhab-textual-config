@@ -1,0 +1,30 @@
+sitemap ipcamera label="Instar Camera"
+{	
+//	Video url="http://10.10.10.57:8080/ipcamera/hof/snapshots.mjpeg" encoding="mjpeg"
+	Frame label="Einstellungen" {
+		Switch item=Camera_Hof_enableMotionAlarm
+		Switch item=Camera_Hof_Start_HLS_Stream
+		Switch item=Camera_Hof_Poll 
+		Switch item=Camera_Hof_enablePirAlarm
+		Switch item=Camera_Hof_autoLED
+    }
+	Frame label="Status" {
+		Switch item=Camera_Hof_carAlarm
+		Switch item=Camera_Hof_humanAlarm
+		Switch item=Camera_Hof_animalAlarm
+		Switch item=Camera_Hof_ffmpegMotionAlarm
+		Switch item=Camera_Hof_pirAlarm
+		Switch item=Camera_Hof_audioAlarm
+    }
+	Frame label="neu" {
+		Text item=Camera_Hof_MP4_Recording
+		Text item=Camera_Hof_GIF_Recording
+		Default item=Camera_Hof_Start_HLS_Stream
+    }
+	Frame label="misc" {
+		Text label="Mjpeg Stream" icon="camera"{Video url="http://10.10.10.68:8080/ipcamera/hof/ipcamera.mjpeg" encoding="mjpeg"}
+		Text label="HLS Stream" icon="camera"{Webview url="http://10.10.10.68:8080/ipcamera/hof/ipcamera.m3u8" height=15}
+		Video url="http://10.10.10.68:8080/ipcamera/hof/ipcamera.mjpeg" encoding="mjpeg"
+    }
+}
+

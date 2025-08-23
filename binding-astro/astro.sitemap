@@ -1,0 +1,14 @@
+sitemap astro label="Astro Binding" {
+	Frame label="Startpage" icon="sun" {
+		Text item=astro_Sunset_Time
+		Text item=astro_Sunrise_Time
+		Text item=astro_Day_Phase
+		Text item=astro_Season_Name
+		Text item=astro_Zodiac_Sign
+		Text item=astro_Elevation
+		Text item=astro_Azimuth
+		Text item=astro_Radiation_Direct
+		Text item=astro_Radiation_Diffuse
+		Text item=astro_Radiation_Total
+	}
+}

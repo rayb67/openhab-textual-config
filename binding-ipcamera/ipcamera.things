@@ -1,0 +1,13 @@
+Thing ipcamera:instar:hof "Hof Camera"
+[
+    ipAddress="10.10.10.80",
+    username="openhab",
+    password="password",
+    onvifPort=8080, //normally 80 check what it needs
+//	onvifMediaProfileNumber=1,
+//	onvifEventServiceType=1,
+    port=80,
+    ffmpegOutput="/volume4/docker/openhab/userdata/ipcamera/hof/",
+    ffmpegInput="rtsp://10.10.10.80:554/ISAPI/Streaming/channels/401"
+]
+//	mjpegUrl="http://10.10.10.68:8080/ipcamera/hof/ipcamera.mjpeg",

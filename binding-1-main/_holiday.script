@@ -1,0 +1,75 @@
+logDebug("Holiday-Script", "Script startet!" )
+var int year = now.getYear
+//var int month =now.getMonth
+
+var int a = year % 19
+var int b = year / 100
+var int c = year % 100
+var int d = b / 4
+var int e = b % 4
+var int f = (b + 8) / 25
+var int g = (b - f + 1) / 3
+var int h = (19 * a + b - d - g + 15) % 30
+var int i = c / 4
+var int k = c % 4
+var int L = (32 + 2 * e + 2 * i - h - k) % 7
+var int m = (a + 11 * h + 22 * L) / 451
+
+logDebug("Holiday-Script", "1")
+
+var int month = (h + L - 7 * m + 114) / 31
+var int day = ((h + L - 7 * m + 114) % 31) + 1
+
+logDebug("Holiday-Script", "year  : "+year)
+logDebug("Holiday-Script", "month : "+month)
+logDebug("Holiday-Script", "day   : "+day)
+
+ var easterSunday =  ZonedDateTime.now().with(LocalTime.MIDNIGHT).plusHours(7) // 7:00
+
+// val easterSunday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm"))
+//var org.joda.time.DateTime easterSunday = parse(year+"-"+month+"-"+day)
+
+// Feiertag 
+var boolean holiday = false
+var String holidayName = null
+
+var int dayOfYear = now.getDayOfYear()
+
+logDebug("Holiday-Script", "Heute ist Tag " + dayOfYear + " von "+ year)
+logDebug("Holiday-Script", "Ostersonntag ist: "+ easterSunday)
+
+logInfo("Holiday-Script", "dayOfYear : "+dayOfYear)
+
+// bundesweiter Feiertag
+// var dayOfYear = (year+"-01-01").getDayOfYear
+/*
+if (dayOfYear == ZonedDateTime.parse(year+"-01-1T00:00:10.001+01:00")) {
+    holidayName = "new_years_day" // Neujahr
+    holiday = true
+}
+else {
+    holidayName = "no_holiday" // Kein Feiertag
+    holiday = false
+}
+*/
+
+
+// var dummy = easterSunday.getDayOfYear-2
+//var dummy = ZonedDateTime.parse(year+"-01-1T00:00:10.001+01:00")
+//logInfo("Holiday-Script", "dummy     : "+dummy.state)
+
+
+// Name Feiertag setzen
+if (holidayName!==null) {
+    logInfo("Holiday-Script", "Feiertag: "+holidayName) 
+}
+
+// Schalter Feiertag setzen
+if (holiday) {
+    logInfo("Holiday-Script","Der Name ist : "+holidayName)
+    postUpdate(Oh_Control_Holiday,ON)
+}
+else {
+    postUpdate(Oh_Control_Holiday,OFF)
+}
+

@@ -1,0 +1,20 @@
+//. .. ..
+Group			gSolarForcast					"Solar Forecast"								<solarplant>
+Switch			ForecastSolarHome_Test			"Test Switch"									<wallSwitch>	(gSolarForcast)		["Switch"]
+
+// channel items
+Number:Power	ForecastSolarHome_Actual_Power	"Power prediction for this moment"			<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Energy"]
+{channel="solarforecast:fs-site:homeSite:power-actual", stateDescription=" "[ pattern="%.0f %unit%" ], unit="W"}
+Number:Energy	ForecastSolarHome_Actual		"Today's forecast till now"					<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-site:homeSite:energy-actual", stateDescription=" "[ pattern="%.1f %unit%" ], unit="kWh"}
+Number:Energy	ForecastSolarHome_Remaining		"Today's remaining forecast till sunset"	<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-site:homeSite:energy-remain", stateDescription=" "[ pattern="%.1f %unit%" ], unit="kWh"}
+Number:Energy	ForecastSolarHome_Today			"Today's total energy forecast"				<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{channel="solarforecast:fs-site:homeSite:energy-today", stateDescription=" "[ pattern="%.1f %unit%" ], unit="kWh"}
+// calculated by rule
+Number:Energy	ForecastSolarHome_Day1		"Kindorrow's total energy forecast" 			<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{stateDescription=" "[ pattern="%.1f %unit%" ], unit="kWh"}
+Number:Energy	ForecastSolarHome_Day2		"Kindorrow2's total energy forecast"			<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{stateDescription=" "[ pattern="%.1f %unit%" ], unit="kWh"}
+Number:Energy	ForecastSolarHome_Day3		"Kindorrow3's total energy forecast"			<solarplant> (gSolarForcast,AUS_Service)    ["Measurement","Power"]
+{stateDescription=" "[ pattern="%.1f %unit%" ], unit="kWh"}

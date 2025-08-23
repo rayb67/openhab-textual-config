@@ -1,0 +1,16 @@
+sitemap mqtt_vzlogger label="Energiezaehler"
+{	
+	Frame label="VZLogger Rohdaten" {
+		Text item=mqtt_vzlogger_bezug
+		Text item=mqtt_vzlogger_lieferung
+		Text item=mqtt_vzlogger_aktuell
+//		Text item=mqtt_vzlogger_atest
+		Switch item=mqtt_vzlogger_TestSwitch
+	}
+	Frame label="Engergiedaten Berechnet" {
+		Text item=mqtt_vzlogger_tag_bezug
+		Text item=mqtt_vzlogger_tag_lieferung
+		Text item=mqtt_vzlogger_stunde_bezug
+		Text item=mqtt_vzlogger_stunde_lieferung
+	}
+}

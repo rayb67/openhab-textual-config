@@ -1,0 +1,23 @@
+ /*
+ https://github.com/weymann/OH3-SolarForecast-Drops/blob/main/README-BeforeTimeSeries.md
+ https://doc.forecast.solar/account_models
+ https://forecast.solar/#accounts
+ */
+
+Bridge solarforecast:fs-site:homeSite   "Solcast service site definition" 
+	[	 
+		location="51.734693,08.562562" 
+		, apiKey="yourAPIKey" 
+		,channelRefreshInterval="30"
+	]
+
+	{
+	Thing fs-plane homeSouthWest   "solcast PV plane" [ 
+		refreshInterval=30
+		, azimuth=47
+		, declination=22 
+		, kwp=14.25
+		, dampAM=1  // damping why ... https://doc.forecast.solar/doku.php?id=damping
+		, dampPM=1
+	]
+}
