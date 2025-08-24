@@ -27,7 +27,7 @@ then
     echo "  env.bash - hostname server-prd"
     export OPENHAB_DB_BASE=/volume4/@appstore/MariaDB10/mysql
     export OPENHAB_DOCKER_BASE=/volume4/docker
-	export OPENHAB_SRV_TYPE=prd
+    export OPENHAB_SRV_TYPE=prd
     export OPENHAB_DOCKER=true
     export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/openhab/conf
     export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/openhab/userdata
@@ -42,7 +42,7 @@ then
     echo "  env.bash - hostname server-dev"
     export OPENHAB_DB_BASE=/docker/openhab/data_mariadb
     export OPENHAB_DOCKER_BASE=/docker/openhab
-	export OPENHAB_SRV_TYPE=dev
+    export OPENHAB_SRV_TYPE=dev
     export OPENHAB_DOCKER=true
     export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/data/conf
     export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/data/userdata
@@ -50,11 +50,19 @@ then
     export OPENHAB_LOGPATH=${OPENHAB_SETUP_USERDATA}/logs
 fi
 
+# this is my develpment server
+if [ `hostname` == "MacBookPro.fritz.box" ];
+then
+    echo "  env.bash - hostname server-dev"
+    export OPENHAB_SRV_TYPE=github
+    export OPENHAB_SETUP_SOURCE=/Volumes/default/linux/install/openhab
+fi
+
 # this is my sandbox server
 if [ `hostname` == "mac-ubuntu" ];
 then
     echo "  env.bash - hostname mac-ubuntu"
-	export OPENHAB_SRV_TYPE=sbx
+    export OPENHAB_SRV_TYPE=sbx
 fi
 
 if [ -z ${OPENHAB_SETUP_CONF} ];

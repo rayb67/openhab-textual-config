@@ -1,0 +1,55 @@
+Group					gWetterStation							"Group Wetterstation"					<heating> 
+
+Number:Temperature		Wetter_Station_temperature_indoor		"Wetter Temperatur Innen [%.1f %unit%]"				<temperature>   (gWetterStation)   ["Measurement","Temperature"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:temperature-indoor" }
+Number:Temperature		Wetter_Station_temperature_outdoor		"Wetter Temperatur Aussen [%.1f %unit%]"			<temperature>   (gWetterStation)   ["Measurement","Temperature"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:temperature-outdoor" }
+Number:Dimensionless    Wetter_Station_humidity_indoor			"Wetter Luftfeuchtigkeit Innen [%.1f %%]"           <humidity>      (gWetterStation) ["Measurement","Humidity"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:humidity-indoor" }
+Number:Dimensionless    Wetter_Station_humidity_outdoor			"Wetter Luftfeuchtigkeit Aussen [%.1f %%]"          <humidity>      (gWetterStation) ["Measurement","Humidity"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:humidity-outdoor" }
+Number:Dimensionless    Wetter_Station_moisture_soil_channel_1	"Wetter Bodenfeuchtigkeit CH1 [%.0f %%]"	<humidity>      (gWetterStation) ["Measurement","Humidity"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:moisture-soil-channel-1" }
+Number:Pressure         Wetter_Station_pressure_absolute        "Wetter Druck Absolute [%.1f hPa]"			<pressure>      (gWetterStation)  ["Pressure"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:pressure-absolute" }
+Number:Pressure         Wetter_Station_pressure_relative        "Wetter Druck Relative [%.1f hPa]"			<pressure>      (gWetterStation)  ["Pressure"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:pressure-relative" }
+
+
+Number:Angle			Wetter_Station_direction_wind			"Wetter Wind Richtung [%.0f %unit%]"			<pressure>      (gWetterStation)  ["Measurement","Wind"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:direction-wind" }
+Number:Speed			Wetter_Station_speed_wind				"Wetter Wind Speed [%.0f %unit%]"			<wind>      (gWetterStation)  ["Measurement","Wind"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:speed-wind" }
+
+
+Number:Speed			Wetter_Station_speed_gust				"Wetter Wind Böhen [%.0f %unit%]"			<wind>      (gWetterStation)  ["Measurement","Wind"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:speed-gust" }
+
+
+Number:Illuminance		Wetter_Station_illumination				"Wetter Lichtstärke [%.0f %unit%]"			<sun>      (gWetterStation)  ["Measurement","Light"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:illumination" }
+
+
+Number:Intensity		Wetter_Station_irradiation_uv			"Wetter UV-Strahlung [%.0f %unit%]"			<sun>      (gWetterStation)  ["Measurement","Ultraviolet"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:irradiation-uv" }
+Number:Dimensionless	Wetter_Station_uv_index					"Wetter UV-Index [%.0f %unit%]"				<sun>      (gWetterStation)  ["Measurement","Ultraviolet"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:uv-index" }
+
+Number:Speed			Wetter_Station_wind_max_day				"Wetter Wind Max/day [%.0f %unit%]"			<wind>      (gWetterStation)  ["Measurement","Wind"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:wind-max-day" }
+
+Number:Speed			Wetter_Station_rain_rate				"Wetter Niederschlagsrate [%.2f %unit%]"	<rain>      (gWetterStation)  ["Measurement","Rain"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:rain-rate" }
+
+Number:Length			Wetter_Station_rain_day					"Wetter Niederschlagsmenge heute [%.1f %unit%]"	<rain>      (gWetterStation)  ["Measurement","Rain"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:rain-day" }
+Number:Length			Wetter_Station_rain_event				"Wetter Niederschlagsmenge zuletzt [%.1f %unit%]"	<rain>      (gWetterStation)  ["Measurement","Rain"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:rain-event" }
+Number:Length			Wetter_Station_rain_hour				"Wetter Niederschlagsmenge aktuelle Stunde [%.1f %unit%]"	<rain>      (gWetterStation)  ["Measurement","Rain"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:rain-hour" }
+Number:Length			Wetter_Station_rain_week				"Wetter Niederschlagsmenge Woche [%.1f %unit%]"	<rain>      (gWetterStation)  ["Measurement","Rain"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:rain-week" }
+Number:Length			Wetter_Station_rain_month				"Wetter Niederschlagsmenge Monat [%.1f %unit%]"	<rain>      (gWetterStation)  ["Measurement","Rain"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:rain-month" }
+Number:Length			Wetter_Station_rain_year				"Wetter Niederschlagsmenge Jahr [%.1f %unit%]"	<rain>      (gWetterStation)  ["Measurement","Rain"]
+{ channel="fineoffsetweatherstation:gateway:ecowitt:rain-year" }
