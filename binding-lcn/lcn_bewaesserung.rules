@@ -46,10 +46,10 @@ then
 			{
 				logDebug("Bewasserung:Pumpe","4-Timer OFF")
 				// Das funktioniert noch nicht, da der Status der automatischen Bewaesserung nicht sauber abgefangen wird.
-				sendCommand(lcn_relay_Wasser_Trafo, OFF)
+//				sendCommand(lcn_relay_Wasser_Trafo, OFF)
 			} else
 			{
-				logInfo("Bewasserung:Pumpe","4-Timer ....nix")
+				logInfo("Bewasserung:Pumpe","4-Timer ON")
 				sendCommand(lcn_relay_Wasser_Trafo, ON)
 			}
 		]
@@ -65,19 +65,25 @@ when
     Time cron "0 * * * * ?"
 then
 
+	Oh_Regen_in_24h.postUpdate(OFF)
+	Oh_Regen_count.postUpdate(0)
+	WetterRegen.postUpdate(OPEN)
+/*	
 	logDebug("Bewasserung:RegenMenge24h","....."+ Oh_Regen_count.state+" > "+tmp_minutes)
 
     if ( WetterRegen.state != OPEN) 
 	{
 		Oh_Regen_count.postUpdate(Oh_Regen_count.state as Number + 1)
-		logDebug("Bewasserung:RegenMenge24h","Status :"+WetterRegen.state+" count : "+Oh_Regen_count.state+" ....kein regen mehr als : "+tmp_minutes+" minuten")
+		logInfo("Bewasserung:RegenMenge24h","Status :"+WetterRegen.state+" count : "+Oh_Regen_count.state+" ....kein regen mehr als : "+tmp_minutes+" minuten")
 	}
 
-    if ((Oh_Regen_count.state as Number  > tmp_minutes) &&
-		(Oh_Regen_in_24h.state != ON))
+    if (
+		(Oh_Regen_count.state as Number  > tmp_minutes) &&
+		(Oh_Regen_in_24h.state != ON)
+	)	
 	{
-		logDebug("Bewasserung:RegenMenge24h","es regnet mehr als :"+tmp_minutes+" minuten")
 		Oh_Regen_in_24h.postUpdate(ON)
+		logDebug("Bewasserung:RegenMenge24h","es regnet mehr als :"+tmp_minutes+" minuten")
 	} 
 	else { logDebug("Bewasserung:RegenMenge24h","Status :"+WetterRegen.state+" count : "+Oh_Regen_count.state+" ....kein regen mehr als : "+tmp_minutes+" minuten") }
 
@@ -90,6 +96,8 @@ then
 		Oh_Regen_in_24h.postUpdate(OFF)
     }
 	logDebug("Bewasserung:RegenMenge24h","Ende")
+	Oh_Regen_in_24h.postUpdate(OFF)
+	*/
 end
 
 rule "Bewaesserung"
@@ -111,7 +119,6 @@ rule "Bewaesserung"
 //	var bewaesserung_monat_bis = ZonedDateTime.parse(year+"-10-25T23:32:00.349+02:00")
 
 
-	logDebug("bewaesserung","1")
 	var Number tmp_temperatur = TempAussen.averageSince(now.minusHours(bewaesserung_avg_time))
 
 	logDebug("bewaesserung","---------------------------------------------------------")
@@ -129,6 +136,7 @@ rule "Bewaesserung"
 	
 		if ( TempAussen.averageSince(now.minusHours(bewaesserung_avg_time)) > bewaesserung_temperature )
 		{  
+			logDebug("bewaesserung","1.")
 			logDebug("bewaesserung","Die Temperatur stimmt......     ") 
 			logDebug("bewaesserung","Regen Count   : "+Oh_Regen_count.state)
 			logDebug("bewaesserung","Regen 24h     : "+Oh_Regen_in_24h.state)
@@ -286,7 +294,7 @@ rule "Bewaesserung"
   ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_beet_morgens_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
   ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_beet_morgens_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) )
 			{
-				logDebug("bewaesserung","Beet morgens drin....") 
+				logInfo("bewaesserung","Beet morgens drin....") 
 				if (Bewaesserung_StatusBeet.state != ON )
 				{
 					sendCommand(lcn_relay_Wasser_Trafo, ON)
@@ -351,11 +359,11 @@ rule "Bewaesserung"
 			if (	( Bewaesserung_Auto_Morgens_Hochbeet.state != OFF) &&
 					( Bewaesserung_Auto_Morgens.state != OFF ) &&
 					( WetterRegen.state == OPEN ) &&
-					( Oh_Regen_in_24h.state != ON ) &&
+//					( Oh_Regen_in_24h.state != ON ) &&
 ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hochbeet_morgens_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) && 
 ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_hochbeet_morgens_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) )
 			{
-				logDebug("bewaesserung","Hochbeet morgens drin....") 
+				logInfo("bewaesserung","Hochbeet morgens drin....") 
 				if (Bewaesserung_StatusHochbeet.state != ON )
 				{
 					sendCommand(lcn_relay_Wasser_Trafo, ON)
@@ -416,7 +424,7 @@ rule "Bewaesserung"
     ( now.isAfter(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_kies_morgens_von.state.format("%1$tH:%1$tM")+":00.150+02:00"))) &&   
     ( now.isBefore(ZonedDateTime.parse(year+"-"+month+"-"+day+"T"+Bewaesserung_control_kies_morgens_bis.state.format("%1$tH:%1$tM")+":00.150+02:00"))) )
 			{
-				logDebug("bewaesserung","5.1")
+				logInfo("bewaesserung","5.1")
 				if (Bewaesserung_StatusKies.state != ON )
 				{
 					sendCommand(lcn_relay_Wasser_Trafo, ON)

@@ -1,8 +1,8 @@
 Bridge fineoffsetweatherstation:gateway:ecowitt "Weather station" 
 [
-     ip="10.10.10.162",
+     ip="10.10.10.39",
      port="45000",
      discoverInterval="900",
-     pollingInterval="16",
+     pollingInterval="60",
      protocol="DEFAULT"
 ] { }

@@ -1,25 +1,25 @@
 sitemap ecowitt label="Weather Station" {
 	Frame label="Startpage" icon="sun" {
-		Text item=Wetter_Station_temperature_outdoor label="Temperatur Aussen"
-		Text item=Wetter_Station_humidity_outdoor label="Luftfeuchtigkeit Aussen"
-		Text item=Wetter_Station_temperature_indoor	label="Temperatur Innen"
-		Text item=Wetter_Station_humidity_indoor label="Luftfeuchtigkeit Innen"
-		Text item=Wetter_Station_pressure_absolute label="Luftdruck abs."
-		Text item=Wetter_Station_pressure_relative label="Luftdruck rel."
+		Text item=weather_temperature_outdoor label="Temperatur Aussen"
+		Text item=weather_humidity_outdoor label="Luftfeuchtigkeit Aussen"
+		Text item=weather_temperature_indoor	label="Temperatur Innen"
+		Text item=weather_humidity_indoor label="Luftfeuchtigkeit Innen"
+		Text item=weather_pressure_absolute label="Luftdruck abs."
+		Text item=weather_pressure_relative label="Luftdruck rel."
 	}
 	Frame label="Wind" icon="wind" {
-		Text item=Wetter_Station_direction_wind label="Richtung"
-		Text item=Wetter_Station_speed_wind label="Geschwindigkeit"
-		Text item=Wetter_Station_speed_gust label="Böhen"
-		Text item=Wetter_Station_wind_max_day label="Max/heute"
+		Text item=weather_direction_wind label="Richtung"
+		Text item=weather_speed_wind label="Geschwindigkeit"
+		Text item=weather_speed_gust label="Böhen"
+		Text item=weather_wind_max_day label="Max/heute"
 	}
 	Frame label="Licht / UV" icon="wave" {
-		Text item=Wetter_Station_illumination label="Stärke"
-		Text item=Wetter_Station_irradiation_uv label="UV-Strahlung"
-		Text item=Wetter_Station_uv_index label="UV Index"
+		Text item=weather_illumination label="Stärke"
+		Text item=weather_irradiation_uv label="UV-Strahlung"
+		Text item=weather_uv_index label="UV Index"
 	}
 	Frame label="Regen" icon="water" {
-		Text item=Wetter_Station_rain_rate label="Niederschlagsrate"
+		Text item=weather_rain_rate label="Niederschlagsrate"
 		Text item=Wetter_Station_rain_day label="Menge/Tag"
 		Text item=Wetter_Station_rain_event label="Menge zuletzt"
 		Text item=Wetter_Station_rain_hour label="Menge/Stunde"
@@ -28,6 +28,6 @@ sitemap ecowitt label="Weather Station" {
 		Text item=Wetter_Station_rain_year label="Menge/Jahr"
 	}
 	Frame label="Garten Feuchte" icon="water" {
-		Text item=Wetter_Station_moisture_soil_channel_1 label="Hochbeet"
+		Text item=weather_moisture_soil_channel_1 label="Hochbeet"
 	}
 }

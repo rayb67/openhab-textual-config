@@ -1,5 +1,5 @@
 // Astro items
-Group             gAstro					"Astro - Wetter"                                    <sun_clouds>    (gMisc)
+Group             gAstro					"Astro - Wetter"                                    <sun_clouds>    (AUS_Service)	["Equipment"]
 
 DateTime			astro_Sunset_Time			"Sonnenuntergang [%1$tH:%1$tM]"					<sunset>		(gAstro)
 {channel="astro:sun:local:set#start"}

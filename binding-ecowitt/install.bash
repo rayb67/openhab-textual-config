@@ -26,5 +26,5 @@ fi
 
 cp ${DATAPATH}/ecowitt.items ${OPENHAB_SETUP_CONF}/items/.
 cp ${DATAPATH}/ecowitt.things ${OPENHAB_SETUP_CONF}/things/.
-cp ${DATAPATH}/ecowitt.sitemap ${OPENHAB_SETUP_CONF}/sitemap/.
+cp ${DATAPATH}/ecowitt.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
 chown -R ${OPENHAB_USER}:${OPENHAB_GROUP} ${OPENHAB_SETUP_CONF}

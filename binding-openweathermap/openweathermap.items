@@ -1,10 +1,10 @@
 //.. STATION ITEMS
 Group					gWeather						"OWM Weather"				<rain>			(AUS_Service)	["Equipment"]
-String					Owm_Home_StationId				"Station: ID [%s]"				<info>			(gWeather)	["Outdoor"]
+String					Owm_Home_StationId				"Station: ID [%s]"				<info>			(gWeather)
 { channel="openweathermap:weather-and-forecast:api:local:station#id" }
-String					Owm_Home_StationName			"Station: Name [%s]"				<info>			(gWeather)	["Outdoor"]
+String					Owm_Home_StationName			"Station: Name [%s]"				<info>			(gWeather)
 { channel="openweathermap:weather-and-forecast:api:local:station#name" }
-Location				Owm_Home_StationLocation		"Station: Location [%2$s°N %3$s°E]"			<info>			(gWeather)	["Outdoor"]
+Location				Owm_Home_StationLocation		"Station: Location [%2$s°N %3$s°E]"			<info>			(gWeather)
 { channel="openweathermap:weather-and-forecast:api:local:station#location" }
 
 // WEATHER CURRENT

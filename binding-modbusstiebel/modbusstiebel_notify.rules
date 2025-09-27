@@ -17,12 +17,9 @@ end
 rule "StatusStiebelDruck" 
 when
     Time cron "1 1 */6 * * ?" // Einmal pro Stunde
-    or  
-    Item Stiebel_Heizungsdruck changed
-	or
-    Item Stiebel_Quellendruck changed
-	or
-	Item Test02 changed
+    or Item Stiebel_Heizungsdruck changed
+	or Item Stiebel_Quellendruck changed
+//	or Item Test02 changed
 then
 
 	logDebug("StatusStiebelDruck","Stiebel_Heizungsdruck : "+Stiebel_Heizungsdruck.state)

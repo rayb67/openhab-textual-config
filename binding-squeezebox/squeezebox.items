@@ -1,4 +1,4 @@
-Group	gSQPlayerMobile			"Music Mobile Player"							<player>	(gSQBox)	["Receiver"]
+Group	gSQPlayerMobile			"Music Mobile Player"							<player>	(gSQBox,gTechnik)	["Receiver"]
 
 // wird in einer rule genutzt .
 Number:Time	SPMobile_CurrentTrackLength	"Music Time Begin"				<time>		(gSQPlayerMobile) 
@@ -63,7 +63,7 @@ Number	SPMobile_NumPlaylistTracks "Music numberPlaylistTracks [%d]"			<player>	(
 {channel="squeezebox:squeezeboxplayer:server:mobile:numberPlaylistTracks"}
 
 
-Group	gSQPlayerBuero			"Music Buero Player"							<player>	(gSQBox)	["Receiver"]
+Group	gSQPlayerBuero			"Music Buero Player"							<player>	(gSQBox,OG_Buero)	["Receiver"]
 
 // wird in einer rule genutzt
 Number:Time	SPBuero_CurrentTrackLength	"Music Time Begin"						<time>		(gSQPlayerBuero) 
@@ -126,7 +126,7 @@ Number	SPBuero_NumPlaylistTracks "Music numberPlaylistTracks [%d]"				<player>	(
 {channel="squeezebox:squeezeboxplayer:server:buero:numberPlaylistTracks"}
 
 
-Group	gSQPlayerKueche			"Music Kueche Player"							<player>	(gSQBox)	["Receiver"]
+Group	gSQPlayerKueche			"Music Kueche Player"							<player>	(gSQBox,EG_Kueche)	["Receiver"]
 Switch	SPKueche_Trigger_Sync	"Music Kueche Sync WZ ON/OFF"					<player>	(gSQPlayerKueche)	["Switch"] 
 String	SPKueche_Sync			"Music Sync [%s]"								<player>	(gSQPlayerKueche)	["Control"] 
 {channel="squeezebox:squeezeboxplayer:server:kueche:sync"}
@@ -177,7 +177,7 @@ String	SPKueche_Stream			"Music stream [%s]"								<player>	(gSQPlayerKueche) [
 
 
 
-Group	gSQPlayerWohnz			"Music Wohnz Player"							<player>	(gSQBox)	["Receiver"]
+Group	gSQPlayerWohnz			"Music Wohnz Player"							<player>	(gSQBox,EG_Wohnz)	["Receiver"]
 Switch	SPWohnz_Power			"Music Power"									<player>	(gSQPlayerWohnz) ["Control"] 
 {channel="squeezebox:squeezeboxplayer:server:wohnzimmer:power"}
 Switch	SPWohnz_Play			"Music Pause/Play"								<player>	(gSQPlayerWohnz) ["Control"] 
@@ -221,7 +221,7 @@ Number	SPWohnz_CurPlalShuffle "Music currentPlaylistShuffle [%s]"				<player>	(g
 String	SPWohnz_Stream			"Music stream [%s]"								<player>	(gSQPlayerWohnz) ["Status"] 
 {channel="squeezebox:squeezeboxplayer:server:wohnzimmer:stream"}
 
-Group	gSQPlayerBad		"Music Bad Player"								<player>	(gSQBox)	["Receiver"]
+Group	gSQPlayerBad		"Music Bad Player"								<player>	(gSQBox,OG_Bad)	["Receiver"]
 Switch	SPBad_Power			"Music Power"									<player>	(gSQPlayerBad)	["Control"] 
 {channel="squeezebox:squeezeboxplayer:server:bad:power"}
 Switch	SPBad_Play			"Music Pause/Play"								<player>	(gSQPlayerBad)	["Control"] 
@@ -266,7 +266,7 @@ String	SPBad_Stream			"Music stream [%s]"								<player>	(gSQPlayerBad) ["Statu
 {channel="squeezebox:squeezeboxplayer:server:bad:stream"}
 
 
-Group	gSQPlayerBoom		"Music Gast Player"								<player>	(gSQBox)	["Equipment"]
+Group	gSQPlayerBoom		"Music Boom Player"								<player>	(gSQBox,gTechnik)	["Equipment"]
 Switch	SPBoom_Power			"Music Power"									<player>	(gSQPlayerBoom) ["Control"] 
 {channel="squeezebox:squeezeboxplayer:server:karen:power"}
 Switch	SPBoom_Play			"Music Pause/Play"								<player>	(gSQPlayerBoom) ["Control"] 
@@ -313,7 +313,7 @@ String	SPBoom_Stream			"Music stream [%s]"								<player>	(gSQPlayerBoom) ["Sta
 {channel="squeezebox:squeezeboxplayer:server:karen:stream"}
 
 
-Group	gSQPlayerSchlafz		"Music Player Schalfzimmer"						<player>		["Receiver"]
+Group	gSQPlayerSchlafz		"Music Player Schalfzimmer"						<player>	(gSQBox,OG_Schlafz)	["Receiver"]
 Switch	SPSchlafz_Power			"Music Power"									<player>	(gSQPlayerSchlafz)			["Control"] 
 {channel="squeezebox:squeezeboxplayer:server:kueche:power"}
 Switch	SPSchlafz_Play			"Music Pause/Play"								<player>	(gSQPlayerSchlafz) ["Control"] 

@@ -1,55 +1,55 @@
-Group gSunPro                       "Sonnenschutz"  <sun>
+Group		gSunPro								"Sonnenschutz"				  <sun>	(AUS_Dach)		["Outdoor"]
 
-Switch	oh_SunPro_TestSwitch	"SunPro Test"		(gTest,gSunPro)	["Switch"]
-Switch					oh_LamellenMorgensGerade		"Lamellen Gerade"				<sun>			(gSunPro)	["Switch"]
+Switch		oh_SunPro_TestSwitch				"SunPro Test"			(gSunPro)	["Switch"]
+Switch		oh_LamellenMorgensGerade			"Lamellen Gerade"				<sun>			(gSunPro)	["Switch"]
 
 // Sonnen Schutz aktivieren - Kommand an LCN, wo ueber Tasten die Funktion ausgeloest wird.
-Switch					lcn_action_SendKeySunProWestJust	"West Justierung"               <motion>        (gSunPro)	["Switch"]
-Switch					oh_SunPro_Justierung				"Sonnenschutz Justierung E/A"	<info>          (gSunPro)	["Switch"]
+Switch		lcn_action_SendKeySunProWestJust	"West Justierung"               <motion>        (gSunPro)	["Switch"]
+Switch		oh_SunPro_Justierung				"Sonnenschutz Justierung E/A"	<info>          (gSunPro)	["Switch"]
 
 // Den aktuellen Status zwischenspeichern innerhalb der Rule sonnenschutz.rules
-Switch					oh_SunPro_Status_Nord				"Status Nord"			(gSunPro)	["Switch"]
-Switch					oh_SunPro_Status_Sued				"Status Sued"			(gSunPro)	["Switch"]
-Switch					oh_SunPro_Status_Ost				"Status Ost"			(gSunPro)	["Switch"]
-Switch					oh_SunPro_Status_West				"Status West"			(gSunPro)	["Switch"]
-Switch					oh_SunPro_Status_ErLi				"Status ErLi"			(gSunPro)	["Switch"]
-Switch					oh_SunPro_Status_ErRe				"Status ErRe"			(gSunPro)	["Switch"]
+Switch		oh_SunPro_Status_Nord				"Status Nord"			(gSunPro)	["Switch"]
+Switch		oh_SunPro_Status_Sued				"Status Sued"			(gSunPro)	["Switch"]
+Switch		oh_SunPro_Status_Ost				"Status Ost"			(gSunPro)	["Switch"]
+Switch		oh_SunPro_Status_West				"Status West"			(gSunPro)	["Switch"]
+Switch		oh_SunPro_Status_ErLi				"Status ErLi"			(gSunPro)	["Switch"]
+Switch		oh_SunPro_Status_ErRe				"Status ErRe"			(gSunPro)	["Switch"]
 
 // Fuer ein manuelles Starten
-Switch					lcn_action_SendKeySunProOstOn		"manuell trigger Ost"				(gSunPro)	["Switch"]
-Switch					lcn_action_SendKeySunProSuedOn		"manuell trigger Sued"				(gSunPro)	["Switch"]
-Switch					lcn_action_SendKeySunProWestOn		"manuell trigger West"				(gSunPro)	["Switch"]
-Switch					lcn_action_SendKeySunProNordOn		"manuell trigger Nord"				(gSunPro)	["Switch"]
-Switch					lcn_action_SendKeySunProErLiOn		"manuell trigger ErLi"				(gSunPro)	["Switch"]
-Switch					lcn_action_SendKeySunProErReOn		"manuell trigger ErRe"				(gSunPro)	["Switch"]
+Switch		lcn_action_SendKeySunProOstOn		"manuell trigger Ost"				(gSunPro)	["Switch"]
+Switch		lcn_action_SendKeySunProSuedOn		"manuell trigger Sued"				(gSunPro)	["Switch"]
+Switch		lcn_action_SendKeySunProWestOn		"manuell trigger West"				(gSunPro)	["Switch"]
+Switch		lcn_action_SendKeySunProNordOn		"manuell trigger Nord"				(gSunPro)	["Switch"]
+Switch		lcn_action_SendKeySunProErLiOn		"manuell trigger ErLi"				(gSunPro)	["Switch"]
+Switch		lcn_action_SendKeySunProErReOn		"manuell trigger ErRe"				(gSunPro)	["Switch"]
 
 // Den aktuellen Status zwischenspeichern innerhalb der Rule rollo.rules
-Switch					oh_SunPro_Status_Justieren			"RolloJustieren Status"		(gSunPro)	["Switch"]
-Switch					oh_SunPro_BlockAbendsHoch			"Sonne Block Abends Hoch"	(gSunPro)	["Switch"]
+Switch		oh_SunPro_Status_Justieren			"RolloJustieren Status"		(gSunPro)	["Switch"]
+Switch		oh_SunPro_BlockAbendsHoch			"Sonne Block Abends Hoch"	(gSunPro)	["Switch"]
 
 // Steuerung fuer den Sonnenschutz 
-Switch					oh_SunPro_control_Ost				"Steuerung Ost (ein/aus)"		(gSunPro)	["Switch"]
-Switch					oh_SunPro_control_Sued				"Steuerung Sued (ein/aus)"		(gSunPro)	["Switch"]
-Switch					oh_SunPro_control_West				"Steuerung West (ein/aus)"		(gSunPro)	["Switch"]
-Switch					oh_SunPro_control_Nord				"Steuerung Nord (ein/aus)"		(gSunPro)	["Switch"]
-Switch					oh_SunPro_control_ErLi				"Steuerung ErkerLi (ein/aus)"	(gSunPro)	["Switch"]
-Switch					oh_SunPro_control_ErRe				"Steuerung ErkerRe (ein/aus)"	(gSunPro)	["Switch"]
+Switch		oh_SunPro_control_Ost				"Steuerung Ost (ein/aus)"		(gSunPro)	["Switch"]
+Switch		oh_SunPro_control_Sued				"Steuerung Sued (ein/aus)"		(gSunPro)	["Switch"]
+Switch		oh_SunPro_control_West				"Steuerung West (ein/aus)"		(gSunPro)	["Switch"]
+Switch		oh_SunPro_control_Nord				"Steuerung Nord (ein/aus)"		(gSunPro)	["Switch"]
+Switch		oh_SunPro_control_ErLi				"Steuerung ErkerLi (ein/aus)"	(gSunPro)	["Switch"]
+Switch		oh_SunPro_control_ErRe				"Steuerung ErkerRe (ein/aus)"	(gSunPro)	["Switch"]
 
-Number:Dimensionless	oh_SunPro_SollTemp_Wohnz			"SunPro Soll Wohnzimmer (23)"	<temperature>	(gSunPro,gWetter)		["Control"]
+Number:Dimensionless	oh_SunPro_SollTemp_Wohnz			"SunPro Soll Wohnzimmer (23)"	<temperature>	(gSunPro)		["Control"]
 { 
     widget    ="oh-stepper-card"[ title="SunPro Soll Wohnzimmer (23)", min=18, max=26, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="SunPro Soll Wohnzimmer (23)", min=19, max=26, step=0.5, icon="oh:temperature" ],
     cellWidget="oh-stepper-cell"[ title="SunPro Soll Wohnzimmer (23)", min=20, max=26, step=0.5, icon="oh:temperature" ],
 	stateDescription=" "[ pattern="%.1f" ]
 }
-Number:Dimensionless	oh_SunPro_SollTemp_3DAussen		"SunPro Soll Aussen 3D (13)"	<temperature>	(gSunPro,gWetter)		["Control"]
+Number:Dimensionless	oh_SunPro_SollTemp_3DAussen		"SunPro Soll Aussen 3D (13)"	<temperature>	(gSunPro)		["Control"]
 { 
     widget    ="oh-stepper-card"[ title="SunPro Soll Aussen 3D (13)", min=11, max=23, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="SunPro Soll Aussen 3D (13)", min=11, max=23, step=0.5, icon="oh:temperature" ],
     cellWidget="oh-stepper-cell"[ title="SunPro Soll Aussen 3D (13)", min=11, max=23, step=0.5, icon="oh:temperature" ],
 	stateDescription=" "[ pattern="%.1f" ]
 }
-Number:Dimensionless	oh_SunPro_SollTemp_Aussen		"SunPro Soll Aussen (22)"		<temperature>	(gSunPro,gWetter)		["Control"]
+Number:Dimensionless	oh_SunPro_SollTemp_Aussen		"SunPro Soll Aussen (22)"		<temperature>	(gSunPro)		["Control"]
 { 
     widget    ="oh-stepper-card"[ title="SunPro Soll Aussen (22)", min=10, max=25, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="SunPro Soll Aussen (22)", min=10, max=25, step=0.5, icon="oh:temperature" ],

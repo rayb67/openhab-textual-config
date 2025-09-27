@@ -1,14 +1,14 @@
 // ------------------------------------------------------------------------------------
-Group			gAll						"alles"
+Group			gAll						"alles"							<info>
 // ------------------------------------------------------------------------------------
-Group			gVariablen					"LCN Variablen"					<motion>		(EG_Technik)		["Equipment"]
-Group			gBMI						"Status Bewegung"				<motion>		(EG_Technik)		["Equipment"]
+Group			gVariablen					"LCN Variablen"					<motion>		(EG_Technik)
+Group			gBMI						"Status Bewegung"				<motion>		(EG_Technik)
 
-Group			gGrundstueck 				"Grundstueck"					<outdoor>							["Outdoor"]	{ widgetOrder="3"}
+Group			gGrundstueck 				"Grundstueck"					<garden>							["Outdoor"]	{ widgetOrder="3"}
 Group			gHaus						"Haus"							<house>			(gGrundstueck)		["Indoor"]	{ widgetOrder="4"}
 Group			gTechnik					"Technik"						<cellar>		(gHaus)				["Cellar"]
-Group			AUS_Dach					"Dach(Boden)"					<garden>		(gHaus)				["Attic"]
-Group			AUS_Service					"Outside(Service)"				<garden>		(gGrundstueck)		["Outdoor"]
+Group			AUS_Dach					"Dach(Boden)"					<garden>		(gHaus)				["Outdoor"]
+Group			AUS_Service					"Outside(Service)"				<garden>							["Outdoor"]
 Group			AUS_Hof						"Hof"							<garden>		(gGrundstueck)		["Driveway"]
 Group			AUS_Terasse					"Terasse"						<terrace>		(gGrundstueck)		["Terrace"]	
 Group			AUS_Garten					"Garten"						<garden>		(gGrundstueck)		["Garden"]
@@ -39,25 +39,25 @@ Group			DG_Dachboden				"DG Dachboden"					<attic>			(gOG)				["Attic"]
 // ------------------------------------------------------------------------------------
 Group			gHeizung_Soll				"Heizung Soll"					<temperature>	(EG_Technik)		
 Group			gHeizung_Ist				"Heizung Ist"					<temperature>	(EG_Technik)		
-Group			gHeizung_Status				"Heizung Status"				<info>	(EG_Technik)				
+Group			gHeizung_Status				"Heizung Status"				<info>			(EG_Technik)				
 Group			gMisc						"Settings"						<settings>		(EG_Technik)		
-Group			gWetter						"Wetter"						<rain>			(EG_Technik)		["Outdoor"]
+Group			gWetter						"Wetter"						<rain>			(AUS_Dach)			["Outdoor"]
 // ------------------------------------------------------------------------------------
 Group			gRoll_EG_WZ					"Ro Wohnzimmer"					<rollershutter>		(gEG)			
 Group			gRoll_EG_Kueche				"Ro Kueche"						<rollershutter>		(gEG)			
 Group			gRoll_OG_Bad				"Ro Bad"						<rollershutter>		(gOG) 			
 
 // ------------------------------------------------------------------------------------
-Group:Switch:OR(ON, OFF)	gSteckdosenEG			"Steckdosen EG [%d]"							(gAll,gEG)			["Switch"]
-Group:Switch:OR(ON, OFF)	gLichtEG				"Licht EG [%d]"			<selflight>				(gAll,gEG)			["Lightbulb"]	{autoupdate="false"}
-Group:Switch:OR(ON, OFF)	gSteckdosenOG			"Steckdosen OG [%d]"							(gAll,gOG)			["Switch"]
-Group:Switch:OR(ON, OFF)	gLichtOG				"Licht OG [%d]"			<selflight>				(gAll,gOG)			["Lightbulb"]	{autoupdate="false"}
-Group:Switch:OR(ON, OFF)	gSteckdosenAUS			"Steckdosen Aussen [%d]"						(gAll,gGrundstueck)	["Switch"]
-Group:Switch:OR(ON, OFF)	gLichtDG				"Licht DG [%d]"			<selflight>				(gAll,DG_Dachboden)	["Lightbulb"]	{autoupdate="false"}
-Group:Switch:OR(ON, OFF)	gLichtAUS				"Licht Aussen [%d]"		<selflight>				(gAll,gGrundstueck)	["Lightbulb"]	{autoupdate="false"}
+Group:Switch:OR(ON, OFF)	gSteckdosenEG			"Steckdosen EG [%d]"	<poweroutlet>		(gAll,gEG)	
+Group:Switch:OR(ON, OFF)	gLichtEG				"Licht EG [%d]"			<light>				(gAll,gEG)			{autoupdate="false"}
+Group:Switch:OR(ON, OFF)	gSteckdosenOG			"Steckdosen OG [%d]"	<poweroutlet>		(gAll,gOG)	
+Group:Switch:OR(ON, OFF)	gLichtOG				"Licht OG [%d]"			<light>				(gAll,gOG)			{autoupdate="false"}
+Group:Switch:OR(ON, OFF)	gSteckdosenAUS			"Steckdosen AUS [%d]"	<poweroutlet>		(gAll,gGrundstueck)
+Group:Switch:OR(ON, OFF)	gLichtDG				"Licht DG [%d]"			<light>				(gAll,DG_Dachboden)	{autoupdate="false"}
+Group:Switch:OR(ON, OFF)	gLichtAUS				"Licht Aussen [%d]"		<light>				(gAll,gGrundstueck)	{autoupdate="false"}
 
 // ------------------------------------------------------------------------------------
-Group						LightAll				"Alle Lichter"					<light> 		(gHaus)				["Equipment"]
-Group:Switch:OR(ON,OFF)		LightS					"Licht S"						<light>			(LightAll)			["Equipment"]	{autoupdate="false"}
-Group:Dimmer				LightD					"Licht D"						<light> 		(LightAll)			["Equipment"]
-Group:Dimmer				LightDimEG				"Licht Dim EG"					<light>			(LightAll)			["Equipment"]
+Group						LightAll				"Alle Lichter"					<light> 		(gHaus)		
+Group:Switch:OR(ON,OFF)		LightS					"Licht S"						<light>			(LightAll)		{autoupdate="false"}
+Group:Dimmer				LightD					"Licht D"						<light> 		(LightAll)		
+Group:Dimmer				LightDimEG				"Licht Dim EG"					<light>			(LightAll)	

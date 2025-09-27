@@ -1,4 +1,4 @@
-Group				gComfoAir							"Lueftungsanalge"						<selfinfo>		(EG_Technik)	["Fan"]
+Group				gComfoAir							"Lueftungsanalge"						<selfinfo>		(EG_Technik)	["Equipment"]
 
 //Der Automode muss noch in den Rules eingebaut werden
 Switch				comfoair_AutoMode					"Modus"									<selfAutoMode>	(gComfoAir)	["Control"]
@@ -13,73 +13,73 @@ Switch				comfoair_control_noon				"Tagesüber Control On/Off"		<info>			(gComfo
 Switch				comfoair_state_heiss				"Belueftung (Status) heiss"		<info>			(gComfoAir)		["Control"]
 
 
-Switch				comfoair_control					"Steuerung [%s]"	<switch>	(gComfoAir)	
-["Control"]	{channel="comfoair:comfoair:myComfoAir:bindingControl#activate"}
-Number				comfoair_FanLevel					"Ventilation level"						<chart>		(gComfoAir)
-["Control"]	{channel="comfoair:comfoair:myComfoAir:ventilation#fanLevel"}
-Number				comfoair_ErrorReset					"Error reset"							<service>	(gComfoAir)
-["State"]	{channel="comfoair:comfoair:myComfoAir:resets#errorReset"}
-Number				comfoair_FilterReset				"Filter reset"							<service>	(gComfoAir)
-["State"]	{channel="comfoair:comfoair:myComfoAir:resets#filterReset"}
-Switch				comfoair_FilterError				"Filter Error"							<service>	(gComfoAir)	
-["State"]	{channel="comfoair:comfoair:myComfoAir:errors#filterError"}
-Number				comfoair_FilterPeriod				"Filter period [%d weeks]"				<clock>		(gComfoAir)
-["State"]	{channel="comfoair:comfoair:myComfoAir:menuP2#filterWeeks"}
+Switch				comfoair_control					"Steuerung [%s]"				<switch>	(gComfoAir)	["Control"]	
+{channel="comfoair:comfoair:myComfoAir:bindingControl#activate"}
+Number				comfoair_FanLevel					"Ventilation level"				<chart>		(gComfoAir) ["Control"]	
+{channel="comfoair:comfoair:myComfoAir:ventilation#fanLevel"}
+Number				comfoair_ErrorReset					"Error reset"					<service>	(gComfoAir) ["State"]
+{channel="comfoair:comfoair:myComfoAir:resets#errorReset"}
+Number				comfoair_FilterReset				"Filter reset"					<service>	(gComfoAir) ["State"]
+{channel="comfoair:comfoair:myComfoAir:resets#filterReset"}
+Switch				comfoair_FilterError				"Filter Error"					<service>	(gComfoAir)	["State"]
+{channel="comfoair:comfoair:myComfoAir:errors#filterError"}
+Number				comfoair_FilterPeriod				"Filter period [%d weeks]"		<clock>		(gComfoAir) ["State"]
+{channel="comfoair:comfoair:myComfoAir:menuP2#filterWeeks"}
 
 // Messages
-String				comfoair_Error						"Error: [%s]"							<info>			(gComfoAir)	["Property"]
+String				comfoair_Error						"Error: [%s]"					<info>			(gComfoAir)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:errors#errorsCurrent"}
-String				comfoair_ErrorLast					"Error Last: [%s]"						<info>			(gComfoAir)	["Property"]
+String				comfoair_ErrorLast					"Error Last: [%s]"				<info>			(gComfoAir)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:errors#errorsLast"}
-String				comfoair_ErrorPrelast				"ErrorPrelast: [%s]"					<info>			(gComfoAir)	["Property"]
+String				comfoair_ErrorPrelast				"ErrorPrelast: [%s]"			<info>			(gComfoAir)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:errors#errorsPrelast"}
-Number:Time			comfoair_FilterRuntime				"Filter runtime [%d h]"					<clock>			(gComfoAir)	["Measuremet"]
+Number:Time			comfoair_FilterRuntime				"Filter runtime [%d h]"			<clock>			(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:times#filterHours"}
 
 
 // Bypass
-Switch				comfoair_BypassSummer				"Bypass Summer Mode"					<switch>		(gComfoAir)
+Switch				comfoair_BypassSummer				"Bypass Summer Mode"			<switch>		(gComfoAir)
 {channel="comfoair:comfoair:myComfoAir:bypass#bypassSummer"}
-Number				comfoair_BypassFactor				"Bypass Factor"							<info>			(gComfoAir)	["Property"]
+Number				comfoair_BypassFactor				"Bypass Factor"					<info>			(gComfoAir)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:bypass#bypassFactor"}
-Number				comfoair_BypassLevel				"Bypass Level"							<info>			(gComfoAir)	["Property"]
+Number				comfoair_BypassLevel				"Bypass Level"					<info>			(gComfoAir)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:bypass#bypassLevel"}
-Number				comfoair_BypassCorrection			"Bypass Correction"						<clock>			(gComfoAir)	["Property"]
+Number				comfoair_BypassCorrection			"Bypass Correction"				<clock>			(gComfoAir)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:bypass#bypassCorrection"}
-Number:Time			comfoair_BypassTime					"Bypass Time (h) [%d h]"				<clock>			(gComfoAir)	["Measuremet"]
+Number:Time			comfoair_BypassTime					"Bypass Time (h) [%d h]"		<clock>			(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:times#bypassTime"}
-Switch				comfoair_BypassMode					"Bypass [MAP(comfoair_on-off.map):%s]"	<info>			(gComfoAir)	["Switch"]
+Switch				comfoair_BypassMode				"Bypass [MAP(comfoair_on-off.map):%s]"	<info>			(gComfoAir)	["Switch"]
 {channel="comfoair:comfoair:myComfoAir:menuP9#bypassState"}
 
-Number				comfoair_OptionsBypass				"Option Bypass [MAP(comfoair_on-off.map):%s]"	<info>	(gComfoAir)	["Measuremet"]
+Number				comfoair_OptionsBypass			"Option Bypass [MAP(comfoair_on-off.map):%s]"	<info>	(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:options#isBypass"}
-Number				comfoair_OptionsCookerhood			"Option Cookerhood [MAP(comfoair_on-off.map):%s]"	<info>	(gComfoAir)	["Measuremet"]
+Number				comfoair_OptionsCookerhood		"Option Cookerhood [MAP(comfoair_on-off.map):%s]"	<info>	(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:options#isCookerhood"}
 
 // State
-Number:Temperature	comfoair_TargetTemperature			"Comfort temperature [%.1f °C]"			<temperature>	(gComfoAir)	["Temperature"]
+Number:Temperature	comfoair_TargetTemperature			"Comfort temperature [%.1f °C]"		<temperature>	(gComfoAir)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#targetTemperature"}
-Number:Temperature	comfoair_OutdoorIncomingTemperature	"Inlet air temperature [%.1f °C]"		<temperature>	(gComfoAir)	["Temperature"]
+Number:Temperature	comfoair_OutdoorIncomingTemperature	"Inlet air temperature [%.1f °C]"	<temperature>	(gComfoAir)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#outdoorTemperatureIn"}
-Number:Temperature	comfoair_IndoorIncomingTemperature	"Supply air temperature [%.1f °C]"		<temperature>	(gComfoAir)	["Temperature"]
+Number:Temperature	comfoair_IndoorIncomingTemperature	"Supply air temperature [%.1f °C]"	<temperature>	(gComfoAir)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#indoorTemperatureIn"}
-Number:Temperature	comfoair_IndoorOutgoingTemperature	"Return air temperature [%.1f °C]"		<temperature>	(gComfoAir)	["Temperature"]
+Number:Temperature	comfoair_IndoorOutgoingTemperature	"Return air temperature [%.1f °C]"	<temperature>	(gComfoAir)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#indoorTemperatureOut"}
-Number:Temperature	comfoair_OutdoorOutgoingTemperature	"Exhaust air temperature [%.1f °C]"		<temperature>	(gComfoAir)	["Temperature"]
+Number:Temperature	comfoair_OutdoorOutgoingTemperature	"Exhaust air temperature [%.1f °C]"	<temperature>	(gComfoAir)	["Temperature"]
 {channel="comfoair:comfoair:myComfoAir:temperatures#outdoorTemperatureOut"}
 
-Number				comfoair_IncomingFan				"Supply capacity [%d %%]"				<fan_in>		(gComfoAir)	["Measuremet"]
+Number				comfoair_IncomingFan				"Supply capacity [%d %%]"			<fan_in>		(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanInPercent"}
-Number				comfoair_OutgoingFan				"Exhaust capacity [%d %%]"				<fan_out>		(gComfoAir)	["Measuremet"]
+Number				comfoair_OutgoingFan				"Exhaust capacity [%d %%]"			<fan_out>		(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanOutPercent"}
-Number				comfoair_FanIn0						"Supply capacity - level 0 [%d %%]"		<fan_in>		(gComfoAir)	["Measuremet"]
+Number				comfoair_FanIn0						"Supply capacity - level 0 [%d %%]"	<fan_in>		(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanIn0"}
-Number				comfoair_FanOut0					"Exhaust capacity - level 0 [%d %%]"	<fan_out>		(gComfoAir)	["Measuremet"]
+Number				comfoair_FanOut0					"Exhaust capacity - level 0 [%d %%]"<fan_out>		(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanOut0"}
 
-Number:Frequency	comfoair_FanInRPM					"FanIn Frequenz [%.0f rpm]"				<temperature>	(gComfoAir)	["Measuremet"]
+Number:Frequency	comfoair_FanInRPM					"FanIn Frequenz [%.0f rpm]"			<temperature>	(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanInRPM"}
-Number:Frequency	comfoair_FanOutRPM					"FanOut Frequenz [%.0f rpm]"			<temperature>	(gComfoAir)	["Measuremet"]
+Number:Frequency	comfoair_FanOutRPM					"FanOut Frequenz [%.0f rpm]"		<temperature>	(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:ventilation#fanOutRPM"}
 
 

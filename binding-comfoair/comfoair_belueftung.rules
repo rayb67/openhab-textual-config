@@ -9,12 +9,11 @@
 // Wenn die Solltemperatur (belueftung_temperature_soll) im Mittel (belueftung_avg_time) 
 // ueberschritten wird, wird die Lueftungsanlage auf 1 (server-devmal) gestellt.
 //
-
 // number of houres to calculate average temperature
 var Number belueftung_avg_time = 72
 // Target value
 //oh_SunPro_SollTemp_Aussen.state
-// BelueftungSollTempAussen = 20
+// BelueftungSollTempAuussen= 20
 var Number belueftung_temperature_soll = 20
 // Wenn die temp ueberschritten wird, wird tagsueber auf Fan auf 1 und AutoMode aktiviert 
 // 26.7. von 25. auf 22. runter
@@ -22,15 +21,12 @@ var Number belueftung_temperature_max_aussen = 22
 // average temperature
 var Number tmp_temperatur
 
-// Der Wert TempAussenAvg1W, wird in der Rule Datalogging.rules ermittelt
-
 rule "BelueftungNacht"
 when
 //	Time cron "0 */2 * * * ?"      // every two minute only for testing
 //	or
 	Time cron "0 2 */1 * * ?"      //   every houre
-	or
-	Item comfoair_auto_onoff changed
+//	or Item comfoair_auto_onoff changed
 then
 
     var Number month = now.getMonthValue
@@ -60,10 +56,9 @@ then
 
     val String sgr_str1 = "\r\nBelueft Controle auto     : "+comfoair_auto_onoff.state
     val String sgr_str2 = "\r\nBelueft Temp Aussen Ist   : "+TempAussen.state.format("%.1f")+" > Soll    : "+belueftung_temperature_soll
-    val String sgr_str3 = "\r\nBelueft Temp Aussen Avg1W : "+TempAussenAvg1W.state.format("%.1f")+" > Soll : "+belueftung_temperature_soll
-    val String sgr_all = sgr_str1 + sgr_str2 + sgr_str3 
+    val String sgr_all = sgr_str1 + sgr_str2 
 
-	logDebug("BelueftungNacht","TempAussenAvg1W  : "+TempAussenAvg1W.state.format("%.1f")+" > "+belueftung_temperature_soll+" (Schwellwert) ")
+	logDebug("BelueftungNacht","TempAussen  : "+TempAussen.state.format("%.1f")+" > "+belueftung_temperature_soll+" (Schwellwert) ")
 	logDebug("BelueftungNacht","Temperaturen avg : "+tmp_temperatur+" > "+belueftung_temperature_soll+" (Schwellwert)  ueber "+belueftung_avg_time+" h")
 	logDebug("BelueftungNacht","START Level/Mode : "+comfoair_FanLevel.state+" Temp "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll+" State: "+comfoair_state_auto.state)
 
@@ -71,7 +66,7 @@ then
 
 	if ( 
 		(comfoair_auto_onoff.state == ON) && 
-		((TempAussenAvg1W.state as QuantityType<Number>).doubleValue > belueftung_temperature_soll) &&
+		((TempAussen.state as QuantityType<Number>).doubleValue > belueftung_temperature_soll) &&
 		(now.isAfter(belueftung_monat_von)) && 
 		(now.isBefore(belueftung_monat_bis)) )        // Monat 
 	{
@@ -80,7 +75,7 @@ then
 			(now.isAfter(belueftung_nacht_stunde_von)) &&
 			(now.isBefore(belueftung_nacht_stunde_bis)) )   // Stunde
 		{
-			logInfo("BelueftungNacht","10-nachts und los geht es TempAussen    : "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll)
+			logInfo("BelueftungNacht","10-nachts und los geht es TempAussen.   : "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll)
 
 			if ((TempAussen.state <= belueftung_temperature_soll) &&
 				(comfoair_state_auto.state != ON ) )
@@ -98,7 +93,7 @@ then
 			}
 		} else if (
 				(now.isAfter(belueftung_tag_stunde_von)) &&
-				(TempAussenAvg.state > belueftung_temperature_soll) &&
+				(TempAussen.state > belueftung_temperature_soll) &&
 				(now.isBefore(belueftung_tag_stunde_bis)) )
 		{
 			logInfo("BelueftungNacht","35-tagsueber Lueftung auf Auto  ....     ") 

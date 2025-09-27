@@ -1,4 +1,4 @@
-//Bridge squeezebox:squeezeboxserver:server-dev   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
+// Bridge squeezebox:squeezeboxserver:server-dev   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
 Bridge squeezebox:squeezeboxserver:server   "SB Server" @ "NAS"             [ ipAddress="10.10.10.68", webport=9000, cliport=9090 ]
 {
 	Thing squeezeboxplayer buero		"SB Buero " @ "Buero"	

@@ -744,6 +744,7 @@ back-all() {
 	${OPENHAB_SETUP_SOURCE}/binding-astro/backup.bash binding-astro
 	${OPENHAB_SETUP_SOURCE}/binding-avmfritz/backup.bash binding-avmfritz
 	${OPENHAB_SETUP_SOURCE}/binding-comfoair/backup.bash binding-comfoair
+	${OPENHAB_SETUP_SOURCE}/binding-ecowitt/backup.bash binding-ecowitt
 	${OPENHAB_SETUP_SOURCE}/binding-ephemeris/backup.bash binding-ephemeris
 	${OPENHAB_SETUP_SOURCE}/binding-exec/backup.bash binding-exec
 	${OPENHAB_SETUP_SOURCE}/binding-ipcamera/backup.bash binding-ipcamera
@@ -752,7 +753,7 @@ back-all() {
 	${OPENHAB_SETUP_SOURCE}/binding-mail/backup.bash binding-mail
 	${OPENHAB_SETUP_SOURCE}/binding-miele/backup.bash binding-miele
 	${OPENHAB_SETUP_SOURCE}/binding-modbusstiebel/backup.bash binding-modbusstiebel
-#	${OPENHAB_SETUP_SOURCE}/binding-mqtt-instar/backup.bash binding-mqtt-instar
+	${OPENHAB_SETUP_SOURCE}/binding-mqtt-instar/backup.bash binding-mqtt-instar
 	${OPENHAB_SETUP_SOURCE}/binding-mqtt-rctmon/backup.bash binding-mqtt-rctmon
 	${OPENHAB_SETUP_SOURCE}/binding-mqtt-vzlogger/backup.bash binding-mqtt-vzlogger
 	${OPENHAB_SETUP_SOURCE}/binding-network/backup.bash binding-network

@@ -1,62 +1,64 @@
+rule "vzlogger_letzte_stunde"
+	when
+		Time cron "0 */1 * * * ?"
+		or Time cron "1 59 * * * * ?"
+//		or Item mqtt_vzlogger_Test changed
+	then
+		logDebug("vzlogger_letzte_stunde","...start...")
+		var Number temp_bezug_h = mqtt_vzlogger_bezug.deltaSince(now.minusHours(1))
+
+		logDebug("vzlogger_letzte_stunde","Wert bezug letzte h : "+temp_bezug_h)
+
+		temp_bezug_h = temp_bezug_h *1000
+		mqtt_vzlogger_stunde_bezug.postUpdate(temp_bezug_h)
+		logDebug("vzlogger_letzte_stunde","bezug h  : "+ temp_bezug_h)
+
+		var Number temp_lief_h = mqtt_vzlogger_lieferung.deltaSince(now.minusHours(1))
+		temp_lief_h = temp_lief_h*1000
+		mqtt_vzlogger_stunde_lieferung.postUpdate(temp_lief_h)
+		logDebug("vzlogger_letzte_stunde","lief d  : "+ temp_lief_h)
+end
+
+
 rule "vzlogger_monitor"
 when
-//	Time cron "30 */1 * ? * * *"
-//	or
-	Time cron "30 59 23 ? * * *"
-//	or
-//	Item MailTestSwitch changed
+	Time cron "30 59 23 * * * ?"
+//	or Time cron "30 46 10 * * * ?"
+//	or Item mqtt_vzlogger_Test changed to ON
 then
-	logDebug("vzlogger_monitor","info ")
+	logInfo("vzlogger_monitor","info ")
 	if	(
 			((( mqtt_vzlogger_tag_bezug.state  as QuantityType<Energy>).toBigDecimal) == 0) &&
-			((( mqtt_vzlogger_tag_lieferung.state  as QuantityType<Energy>).toBigDecimal) == 0)
-//			((( mqtt_vzlogger_stunde_bezug.state  as QuantityType<Energy>).toBigDecimal) == 0) &&
-//			((( mqtt_vzlogger_stunde_lieferung.state  as QuantityType<Energy>).toBigDecimal) == 0)
+			((( mqtt_vzlogger_tag_lieferung.state  as QuantityType<Energy>).toBigDecimal) == 0) &&
+			((( mqtt_vzlogger_stunde_bezug.state  as QuantityType<Energy>).toBigDecimal) == 0) &&
+			((( mqtt_vzlogger_stunde_lieferung.state  as QuantityType<Energy>).toBigDecimal) == 0)
 		)
 	{   
 		logInfo("vzlogger_monitor","vzlogger Störung !!!! bezug und lieferung 0 seit heut")
+		val mailActions = getActions("mail","mail:smtp:samplesmtp")
+		mailActions.sendMail("yourmail@localhost","vzlogger bezug + lieferung seit 24h 0","Entweder ist soviel sonnne da, oder .... prufen")
 		logInfo("vzlogger_monitor","lieferung stunde  : "+ mqtt_vzlogger_stunde_bezug.state)
 		logInfo("vzlogger_monitor","bezug     stunde  : "+ mqtt_vzlogger_stunde_lieferung.state)
 		logInfo("vzlogger_monitor","lieferung tag  : "+ mqtt_vzlogger_tag_bezug.state)
 		logInfo("vzlogger_monitor","bezug     tag  : "+ mqtt_vzlogger_tag_lieferung.state)
-		val mailActions = getActions("mail","mail:smtp:samplesmtp")
-		mailActions.sendMail("yourmail@localhost","vzlogger bezug + lieferung seit 24h 0","Entweder ist soviel sonnne da, oder .... prufen")
 	}
 
 end
 
 rule "vzlogger_letzter_tag"
 	when
-		Time cron "1 59 23 ? * * *"
+		Time cron "1 59 23 * * * ?"
+//		or Time cron "50 46 10 * * * ?"
 	then
 
 		var Number temp_lief_d = mqtt_vzlogger_lieferung.deltaSince(now.minusDays(1))
 		temp_lief_d = temp_lief_d*1000
-		mqtt_vzlogger_tag_lieferung.postUpdate (temp_lief_d)
-		logDebug("vzlogger_letzter_tag","lief d  : "+ temp_lief_d)
+		mqtt_vzlogger_tag_lieferung.postUpdate(temp_lief_d)
+		logInfo("vzlogger_letzter_tag","lief d  : "+ temp_lief_d)
 
 		var Number temp_bezug_d = mqtt_vzlogger_bezug.deltaSince(now.minusDays(1))
 		temp_bezug_d = temp_bezug_d*1000
-		mqtt_vzlogger_tag_bezug.postUpdate (temp_bezug_d)
-		logDebug("vzlogger_letzter_tag","bezug d  : "+ temp_bezug_d)
+		mqtt_vzlogger_tag_bezug.postUpdate(temp_bezug_d)
+		logInfo("vzlogger_letzter_tag","bezug d  : "+ temp_bezug_d)
 end
 
-rule "vzlogger_letzte_stunde"
-	when
-		Time cron "1 59 * ? * * *"
-		or
-		Item mqtt_vzlogger_TestSwitch changed
-	then
-		var Number temp_bezug_h = mqtt_vzlogger_bezug.deltaSince(now.minusHours(1))
-
-		logDebug("vzlogger_letzte_stunde","Wert bezug letzte h : "+temp_bezug_h)
-
-		temp_bezug_h = temp_bezug_h *1000
-		mqtt_vzlogger_stunde_bezug.postUpdate (temp_bezug_h)
-		logDebug("vzlogger_letzte_stunde","bezug h  : "+ temp_bezug_h)
-
-		var Number temp_lief_h = mqtt_vzlogger_lieferung.deltaSince(now.minusHours(1))
-		temp_lief_h = temp_lief_h*1000
-		mqtt_vzlogger_stunde_lieferung.postUpdate (temp_lief_h)
-		logDebug("vzlogger_letzte_stunde","lief d  : "+ temp_lief_h)
-end
