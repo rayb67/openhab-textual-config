@@ -1,0 +1,14 @@
+Group	gVWConnect				"VW Golf" [Equipment]
+
+DateTime VWCar_Inspection_At "Inspektion am" (gVWConnect) [Status, Timestamp] { channel="mqtt:topic:server-dev:golf:inspection_at" }
+DateTime VWCar_Oil_Service_At "Oelservice am" (gVWConnect) [Status, Timestamp] { channel="mqtt:topic:server-dev:golf:oil_service_at" }
+Number VWCar_Longitude "Longitude" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:longitude" }
+Number VWCar_Latitude "Latitude" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:latitude" }
+Number VWCar_Oil_Service_After "Oelservice nach" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:oil_service_after" }
+Number VWCar_Inspection_After "Inspektion nach" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:inspection_after" }
+Number VWCar_Odometer "Kilomenterstand" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:odometer" }
+Switch VWCar_Lights "Licht On/Off [%s]" (gVWConnect) [Power, Switch] { channel="mqtt:topic:server-dev:golf:lights" }
+String VWCar_Position_Type "Position Type" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:position_type" }
+String VWCar_State "Status" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:state" }
+String VWCar_Name "Name" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:name" }
+String VWCar_Model "Model" (gVWConnect) [Point] { channel="mqtt:topic:server-dev:golf:model" }

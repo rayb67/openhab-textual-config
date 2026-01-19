@@ -1,0 +1,20 @@
+Bridge mqtt:broker:server-dev [ host="10.10.10.68", port="1883", secure=false ]
+{
+   Thing topic golf  "MQTT VW Golf" {
+    Channels:
+      Type number : latitude          [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/position/latitude"]
+      Type number : longitude         [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/position/longitude"]
+      Type string : position_type     [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/position/position_type"]
+      Type string : state             [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/state"]
+      Type number : odometer		  [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/odometer"]
+      Type switch : lights            [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/lights/light_state" ,on="on", off="off"]
+      Type switch : lights_left       [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/lights/left/light_state", on="on", off="off"]
+      Type switch : lights_right      [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/lights/right/light_state", on="on", off="off"]
+      Type datetime : inspection_at   [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/maintenance/inspection_due_at"]
+      Type datetime : oil_service_at  [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/maintenance/oil_service_due_at"]
+      Type number : inspection_after  [ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/maintenance/inspection_due_after"]
+      Type number : oil_service_after	[ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/maintenance/oil_service_due_after"]
+      Type string : name				[ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/name"]
+      Type string : model				[ stateTopic="carconnectivity/0/garage/WVWZZZCD8PW122791/model"]
+	}
+}
