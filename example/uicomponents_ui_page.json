@@ -1248,7 +1248,7 @@
                               "config": {
                                 "header": "Sekretaer",
                                 "icon": "lightbulb",
-                                "item_schalter": "Licht_EG_Sekretaer",
+                                "item_schalter": "lcn_Licht_EG_Sekretaer",
                                 "title": "Licht"
                               }
                             }
@@ -1267,7 +1267,7 @@
                               "config": {
                                 "header": "Fernseher",
                                 "icon": "lightbulb",
-                                "item_schalter": "Steckdose_EG_Wohnz_Fernseher",
+                                "item_schalter": "Steckdose_EG_Wohnz_Schrank",
                                 "title": "Steckdose"
                               }
                             }
@@ -3819,11 +3819,11 @@
               "action": "toggle",
               "actionCommand": "ON",
               "actionCommandAlt": "OFF",
-              "actionItem": "Licht_AUS_Garage_Hinten",
+              "actionItem": "lcn_Licht_AUS_Garage_Hinten",
               "coords": "985,805",
               "icon": "oh:light",
               "iconUseState": true,
-              "item": "Licht_AUS_Garage_Hinten",
+              "item": "lcn_Licht_AUS_Garage_Hinten",
               "name": "Aussen Garage Hinten"
             }
           },
@@ -4043,11 +4043,11 @@
               "action": "toggle",
               "actionCommand": "ON",
               "actionCommandAlt": "OFF",
-              "actionItem": "Steckdose_EG_Wohnz_Fernseher",
+              "actionItem": "Steckdose_EG_Wohnz_Schrank",
               "coords": "296.7139849890138,313.3982027866047",
               "icon": "oh:poweroutlet",
               "iconUseState": true,
-              "item": "Steckdose_EG_Wohnz_Fernseher",
+              "item": "Steckdose_EG_Wohnz_Schrank",
               "name": "EG Wohnzimmer Fernseher"
             }
           },
@@ -4057,11 +4057,11 @@
               "action": "toggle",
               "actionCommand": "ON",
               "actionCommandAlt": "OFF",
-              "actionItem": "Licht_EG_Sekretaer",
+              "actionItem": "lcn_Licht_EG_Sekretaer",
               "coords": "529.4781201397743,289.71916370392256",
               "icon": "oh:light",
               "iconUseState": true,
-              "item": "Licht_EG_Sekretaer",
+              "item": "lcn_Licht_EG_Sekretaer",
               "name": "EG Wohnzimmer Sekretaer"
             }
           },

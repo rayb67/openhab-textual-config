@@ -81,7 +81,8 @@ then
 	val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
 	telegramAction.sendTelegram("....da hat jemand auf die Haustuer gedrueckt")
 
-	createTimer(now.plusSeconds(3), [
+	logDebug("lcn_relay_TuerHaustuer","...trigger...")
+	createTimer(now.plusSeconds(2), [
 		lcn_relay_TuerHaustuer.sendCommand( OFF )
 	])
 	logInfo("lcn_relay_TuerHaustuer","Tueroeffner zu : "+lcn_relay_TuerHaustuer.state)
@@ -358,6 +359,10 @@ then
         ])
 	}
 
+	// Der Status ist ein Relay im LCN. Dieser kann auch aus der Oberflaeche
+	// vom Openhab getriggert werden. Daher muss der Status / das Relay
+	// wieder ausgeschaltet werden.
+	sendCommand( StatusAlleRolloHoch, OFF) 
 end
 
 // ###################################################

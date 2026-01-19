@@ -1,0 +1,33 @@
+// for relative volume changes
+rule "VolumeUpDown"
+when Item LG_TV1_VolDummy received command
+then
+    switch receivedCommand{
+        case 0: LG_TV1_Volume.sendCommand(DECREASE)
+        case 1: LG_TV1_Volume.sendCommand(INCREASE)
+    }
+end
+
+// for relative channel changes
+rule "ChannelUpDown"
+when Item LG_TV1_ChannelDummy received command
+then
+    val actions = getActions("lgwebos","lgwebos:WebOSTV:tv1")
+    if(null === actions) {
+        logInfo("actions", "Actions not found, check thing ID")
+        return
+    }
+
+    switch receivedCommand{
+                    case 0: actions.decreaseChannel()
+                    case 1: actions.increaseChannel()
+    }
+end
+
+rule "lgwebeos-test"
+when Item LG_TV1_TestSwitch received command
+then
+//	LG_TV1_Toast.sendCommand("Hello ..test")
+    val actions = getActions("lgwebos","lgwebos:WebOSTV:tv1")
+	actions.launchBrowser("http://server-prd.fritz.box:8080/ipcamera/hof/ipcamera.mjpeg")
+end

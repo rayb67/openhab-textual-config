@@ -1,0 +1,16 @@
+Thing ipcamera:instar:hof "Hof Camera" [
+    ipAddress="10.10.10.80",
+    username="openhab",
+    password="openHAB99!1234",
+    onvifPort="8080",
+	onvifEventServiceType="0",
+	pollTime="1000",
+	port="80"
+]
+/*
+	updateImageWhen="0",
+    onvifMediaProfile="0",
+	ffmpegLocation="/usr/bin/ffmpeg",
+	ffmpegOutput="/tmp",
+
+*/

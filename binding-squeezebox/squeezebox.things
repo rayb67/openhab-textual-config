@@ -11,8 +11,6 @@ Bridge squeezebox:squeezeboxserver:server   "SB Server" @ "NAS"             [ ip
 	[ mac="b8:27:eb:73:c0:bf" , notificationTimeout=30, notificationVolume=50 ] // Bad
 	Thing squeezeboxplayer kueche        "SB Kueche" @ "Kueche"
 	[ mac="dc:a6:32:04:70:83" , notificationTimeout=30, notificationVolume=50 ] // Kueche
-	Thing squeezeboxplayer karen		"SB Gast" @ "Oase"			
-	[ mac="b8:27:eb:fd:79:92" , notificationTimeout=30, notificationVolume=50 ] // Display Kaaren
 }
 /*
 	Thing squeezeboxplayer boom          "SB Boom" @ "Boom"					

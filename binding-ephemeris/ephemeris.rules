@@ -30,7 +30,9 @@ rule "Ephemeris:Message"
 when 
 //	Time cron "0/10 1 * * * ?"
 	Time cron "1 0 1 * * ?"
+	or
+	Time cron "0 */60 * * * ?" //  15 Min zum testen
 then
-	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("${OPENHAB_SETUP_CONF}/misc/ephemeris/MyEntry_de.xml"))
-	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("${OPENHAB_SETUP_CONF}/openhab/misc/ephemeris/Holidays_de.xml"))
+	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("/docker/openhab/data/conf/misc/ephemeris/MyEntry_de.xml"))
+	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("/docker/openhab/data/conf/misc/ephemeris/Holidays_de.xml"))
 end

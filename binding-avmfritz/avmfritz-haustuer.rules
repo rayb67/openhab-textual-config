@@ -1,0 +1,33 @@
+rule "Haustür klingelt"
+when
+    Item Fritz_IncomingCall changed
+then
+    if (Fritz_IncomingCall.state == NULL || Fritz_IncomingCall.state == UNDEF) return
+
+    // AVM liefert manchmal String, manchmal CallType
+    val raw = Fritz_IncomingCall.state.toString
+
+    // Format: 0123456789,**620   oder   **610,**620
+    if (!raw.contains(",")) return
+
+    val parts = raw.split(",")
+    if (parts.length < 2) return
+
+    val caller = parts.get(0)
+    val target = parts.get(1)
+
+    logInfo("HAUSTUER", "Call from " + caller + " to " + target)
+
+    // Haustür = **610 oder Tür-Rufnummer
+    if (caller == "**610" || caller.endsWith("0933377")) {
+
+        Fritz_Haustuer_Status.postUpdate("🔔 Es klingelt an der Haustür")
+        Fritz_Haustuer_Klingel.sendCommand(ON)
+
+        createTimer(now.plusSeconds(15), [ |
+            Fritz_Haustuer_Status.postUpdate("Bereit")
+            Fritz_Haustuer_Klingel.sendCommand(OFF)
+        ])
+    }
+end
+

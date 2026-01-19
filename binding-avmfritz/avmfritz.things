@@ -1,5 +1,5 @@
 // https://community.openhab.org/t/missing-call-monitor-for-fritzbox-after-oh3-upgrade/111561/5
-Bridge avmfritz:fritzbox:avmfb7490 "AVMFRITZ FritzBox" 
+Bridge avmfritz:fritzbox:fritz7590 "AVMFRITZ FritzBox" 
 [ ipAddress="10.10.10.1", 
 	password="passwort", 
 	user="openhab",

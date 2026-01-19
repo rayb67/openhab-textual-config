@@ -1,28 +1,41 @@
-Group		gtr064						"tr064"						<ic_illu_fbox7490>	(gTechnik)		["NetworkAppliance"]
+Group		gtr064						"tr064"						<network>	(gTechnik)		["NetworkAppliance"]
 
-Switch		tr064phoneRalf				"Ralf Telefon"				<presence>	(gtr064)	["Control","Presence"] 
-{channel="tr064:subdeviceLan:fb7490:maconline:30:D7:A1:6C:73:E5"}
+//{channel="tr064:subdeviceLan:fb7590:LAN:maconline_30_3AD7_3AA1_3A6C_3A73_3AE5"}
+//{channel="tr064:subdeviceLan:fb7590:LAN:maconline:30:D7:A1:6C:73:E5"}
+
 
 Switch		tr064Wifi24					"1 2,4GHz Wifi"				<network>	(gtr064)	["Control","Network"] 
-{channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifi24GHzEnable" }
+{channel="tr064:subdeviceLan:fb7590:LAN:wifi1Enable " }
 Switch		tr064Wifi50					"1 5,0GHz Wifi"				<network>	(gtr064)	["Control","Network"]
-{channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifi5GHzEnable" }
+{channel="tr064:subdeviceLan:fb7590:LAN:wifi2Enable " }
 Switch		tr064GuestWifi				"1 Guest Wifi"				<network>	(gtr064)	["Control","Network"]
-{channel="tr064:subdeviceLan:fb7490:fritzboxLAN:wifiGuestEnable"}
+{channel="tr064:subdeviceLan:fb7590:LAN:wifi3Enable"}
 
 String		tr064WanIP					"2 tr064 WAN IP [%s]"		<network>	(gtr064)	["Measurement","Network"]
-{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:wanIpAddress"}
+{channel="tr064:subdevice:fb7590:WAN:wanIpAddress"}
 String		tr064WanConnectionStatus	"2 tr064 WAN Status [%s]"	<network>	(gtr064)	["Status","Network"]
-{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:wanConnectionStatus"}
+{channel="tr064:subdevice:fb7590:WAN:wanConnectionStatus"}
 Number:Time	tr064WanUptime				"2 tr064 WAN Uptime "		<network>	(gtr064)	["Measurement","Duration"]
-{channel="tr064:subdeviceLan:fb7490:fritzboxWANCon:uptime"}
+{channel="tr064:subdevice:fb7590:WAN:uptime"}
+
+
+Number:DataTransferRate	tr064_CurrentDownstream	"3 Crurent Downstream"	<network>	(gtr064)	["Measurement","Network"]
+{channel="tr064:subdevice:fb7590:WANCon:wanCurrentDownstreamBitrate"}
+Number:DataTransferRate	tr064_CurrentUpstream	"3 Crurent Upstream"	<network>	(gtr064)	["Measurement","Network"]
+{channel="tr064:subdevice:fb7590:WANCon:wanCurrentUpstreamBitrate"}
+
+Number:DataAmount	tr064_TotalBytesReceived 	"3 Total Bytes Received"	<network>	(gtr064)	["Measurement","Network"]
+{channel="tr064:subdevice:fb7590:WANCon:wanTotalBytesReceived"}
+Number:DataAmount	tr064_TotalBytesSend	 	"3 Total Bytes Send"	<network>	(gtr064)	["Measurement","Network"]
+{channel="tr064:subdevice:fb7590:WANCon:wanTotalBytesSend"}
 
 // Incoming, Outgoing and missed calls in the last 7 days
-//Number tr064IncomingCalls "Incoming Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:inboundCalls_7" }
-//Number tr064OutgoingCalls "Outgoing Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:outboundCalls_7" }
-//Number tr064MissedCalls "Missed Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7490:missedCalls_7" }P
+//Number tr064IncomingCalls "Incoming Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7590:inboundCalls_7" }
+//Number tr064OutgoingCalls "Outgoing Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7590:outboundCalls_7" }
+//Number tr064MissedCalls "Missed Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7590:missedCalls_7" }P
 
-Switch		tr064tamEnable				"3 AB Ein/Aus"				<phone>		(gtr064)	["Control","Sound"]
-{ channel="tr064:fritzbox:fb7490:tamEnable_0 " }
-Number		tr064tamNewMessages			"3 AB Anrufe [%d]"			<phone>		(gtr064)	["Measurement","Message"]
-{ channel="tr064:fritzbox:fb7490:tamNewMessages_0" }
+Switch		tr064tamEnable				"4 AB Ein/Aus"				<phone>		(gtr064)	["Control","Sound"]
+{ channel="tr064:fritzbox:fb7590:tamEnable_0 " }
+Number		tr064tamNewMessages			"4 AB Anrufe [%d]"			<phone>		(gtr064)	["Measurement","Message"]
+{ channel="tr064:fritzbox:fb7590:tamNewMessages_0" }
+

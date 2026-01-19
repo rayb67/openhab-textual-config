@@ -18,12 +18,6 @@ else
 	DATAPATH=${OPENHAB_SETUP_SOURCE}/${BINDING}
 fi
 
-FILE=$DATAPATH
-if [ ! -d $FILE  ]; then
-    echo "Wrong call because folder does not exist : "$FILE
-    exit
-fi
-
 cp ${DATAPATH}/comfoair*.map $OPENHAB_SETUP_CONF/transform/.
 cp ${DATAPATH}/comfoair.items $OPENHAB_SETUP_CONF/items/.
 cp ${DATAPATH}/comfoair.sitemap $OPENHAB_SETUP_CONF/sitemaps/.

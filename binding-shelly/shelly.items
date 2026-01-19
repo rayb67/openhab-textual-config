@@ -1,7 +1,7 @@
 //....
 Group	gShelly
 
-Switch			Shelly_Device114_Relay			"Computer-Mini ein/aus"		<switch>    (gShelly,gTechnik)		["Control","Switch"]
+Switch			Shelly_Device114_Relay			"Computer-Mini ein/aus"		<switch>    (gShelly,gTechnik)		["Switch"]
 {channel="shelly:shellyplugs:XX114:relay#output",stateDescription=" "[ pattern=" " ] }
 Number:Power	Shelly_Device114_Power_Current 	"Computer-Mini Power"		<energy>    (gShelly,gTechnik)		["Measurement","Power"]
 {channel="shelly:shellyplugs:XX114:meter#currentWatts", stateDescription=" "[ pattern="%.1f W" ]}
@@ -10,7 +10,7 @@ Number:Energy	Shelly_Device114_Power_Total	"Computer-Mini kWh"			<energy>    (gS
 Number:Temperature	Shelly_Device114_Temperature	"Computer-Mini Temp"	<temperature>    (gShelly,gTechnik)		["Measurement","Temperature"]
 {channel="shelly:shellyplugs:XX114:device#internalTemp", stateDescription=" "[ pattern="%.1f °C" ] }
 
-Switch			Shelly_Device114_powerLed		"Computer-Mini PowerLed"		<switch>    (gShelly,gTechnik)		["Control","Switch"]
+Switch			Shelly_Device114_powerLed		"Computer-Mini PowerLed"		<switch>    (gShelly,gTechnik)		["Control"]
 {channel="shelly:shellyplugs:XX114:device#powerLed",stateDescription=" "[ pattern=" " ] }
 Switch			Shelly_Device114_updateAva		"Computer-Mini FirmwareUp"		<switch>    (gShelly,gTechnik)		["Status"]
 {channel="shelly:shellyplugs:XX114:device#updateAvailable",stateDescription=" "[ pattern=" " ] }
@@ -18,7 +18,7 @@ Switch			Shelly_Device114_updateAva		"Computer-Mini FirmwareUp"		<switch>    (gS
 DateTime		Shelly_Device114_lastUpdate		"Computer-Mini Last Update [%d unit%]"	<time>   (gShelly,gTechnik)
 {channel="shelly:shellyplugs:XX114:meter#lastUpdate", stateDescription=" "[ pattern="[%1$tY.%1$tm.%1$td %1$tH:%1$tM"] }
 
-Switch			Shelly_Device113_Relay			"NAS ein/aus"		<switch>    (gShelly,gTechnik)		["Control","Switch"]
+Switch			Shelly_Device113_Relay			"NAS ein/aus"		<switch>    (gShelly,gTechnik)		["Switch"]
 {channel="shelly:shellyplugs:XX113:relay#output",stateDescription=" "[ pattern=" " ] }
 Number:Power	Shelly_Device113_Power_Current 	"NAS Power"		<energy>    (gShelly,gTechnik)		["Measurement","Power"]
 {channel="shelly:shellyplugs:XX113:meter#currentWatts", stateDescription=" "[ pattern="%.1f W" ]}
@@ -27,7 +27,7 @@ Number:Energy	Shelly_Device113_Power_Total	"NAS kWh"			<energy>    (gShelly,gTec
 Number:Temperature	Shelly_Device113_Temperature	"NAS Temp"	<temperature>    (gShelly,gTechnik)		["Measurement","Temperature"]
 {channel="shelly:shellyplugs:XX113:device#internalTemp", stateDescription=" "[ pattern="%.1f °C" ] }
 
-Switch			Shelly_Device113_powerLed		"NAS PowerLed"		<switch>    (gShelly,gTechnik)		["Control","Switch"]
+Switch			Shelly_Device113_powerLed		"NAS PowerLed"		<switch>    (gShelly,gTechnik)		["Control"]
 {channel="shelly:shellyplugs:XX113:device#powerLed",stateDescription=" "[ pattern=" " ] }
 Switch			Shelly_Device113_updateAva		"NAS FirmwareUp"		<switch>    (gShelly,gTechnik)		["Status"]
 {channel="shelly:shellyplugs:XX113:device#updateAvailable",stateDescription=" "[ pattern=" " ] }

@@ -3,50 +3,20 @@ Thing ipcamera:instar:hof "Hof Camera" [
     username="openhab",
     password="password",
     onvifPort="8080",
-	port="80",
-	onvifEventServiceType="0",
-	ffmpegLocation="/usr/bin/ffmpeg",
-	mjpegUrl="rtsp://10.10.10.80:554/11",
-	updateImageWhen="0",
-    onvifMediaProfile="0",
     onvifEventServiceType="0",
-	onvifMediaProfile="1",
-//	ffmpegOutput="/tmp",
 	pollTime="1000",
-    ffmpegInput="rtsp://10.10.10.80:554/11",
-    snapshotUrl="http://10.10.10.80/tmpfs/snap.jpg" 
+	ffmpegLocation="/volume4/@appstore/ffmpeg7/bin/ffmpeg",
+	port="80"
 ]
 /*
-	gifOutOptions="-r 2 -filter_complex scale=-2:360:flags=lanczos,setpts=0.5*PTS,split[o1][o2];[o1]palettegen[p];[o2]fifo[o3];[o3][p]paletteuse",
-	mjpegOptions="-q:v 5 -r 2 -vf scale=640:-2 -update 1",
-	snapshotOptions="-an -vsync vfr -q:v 2 -update 1",
-	mp4OutOptions="-c:v copy -c:a copy",
-	hlsOutOptions="-strict -2 -f lavfi -i aevalsrc=0 -acodec aac -vcodec copy -hls_flags delete_segments -hls_time 2 -hls_list_size 4",
-	ptzContinuous="false",
 
-
-	ffmpegInputOptions : null
-	ffmpegInput : null
-	mjpegOptions : -q:v 5 -r 2 -vf scale=640:-2 -update 1
-	ipAddress : 10.10.10.80
-	updateImageWhen : 0
-	mjpegUrl : rtsp://10.10.10.80:554/11
-	onvifPort : 8080
-	gifPreroll : 0
-	ffmpegLocation : /usr/bin/ffmpeg
-	onvifEventServiceType : 0
-	ipWhitelist : DISABLE
-	ffmpegOutput : /tmp
-	mp4OutOptions : -c:v copy -c:a copy
-	pollTime : 1000
-	password : password
-	port : 80
-	snapshotUrl : http://10.10.10.80/tmpfs/snap.jpg
-	snapshotOptions : -an -vsync vfr -q:v 2 -update 1
-	ptzContinuous : false
-	onvifMediaProfile : 1
-	username : openhab
-	hlsOutOptions : -strict -2 -f lavfi -i aevalsrc=0 -acodec aac -vcodec copy -hls_flags delete_segments -hls_time 2 -hls_list_size 4
-	gifOutOptions : -r 2 -filter_complex scale=-2:360:flags=lanczos,setpts=0.5*PTS,split[o1][o2];[o1]palettegen[p];[o2]fifo[o3];[o3][p]paletteuse
+    onvifMediaProfile="0",
+	updateImageWhen="0",
+    ffmpegInput="rtsp://10.10.10.80:554/11",
+    snapshotUrl="http://10.10.10.80/tmpfs/snap.jpg",
+	mjpegUrl="rtsp://10.10.10.80:554/11",
+	mjpegUrl="http://10.10.10.68:8080/ipcamera/hof/ipcamera.mjpeg",
+//	ffmpegOutput="/tmp",
+//	ffmpegLocation="/bin/ffmpeg",
 
 */

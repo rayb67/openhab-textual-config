@@ -18,7 +18,8 @@ else
 	DATAPATH=${OPENHAB_SETUP_SOURCE}/${BINDING}
 fi
 
-cp ${DATAPATH}/ecowitt.items ${OPENHAB_SETUP_CONF}/items/.
-cp ${DATAPATH}/ecowitt.things ${OPENHAB_SETUP_CONF}/things/.
-cp ${DATAPATH}/ecowitt.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
-chown -R ${OPENHAB_USER}:${OPENHAB_GROUP} ${OPENHAB_SETUP_CONF}
+cp ${DATAPATH}/lgwebos*.rules $OPENHAB_SETUP_CONF/rules/.
+cp ${DATAPATH}/lgwebos*.items $OPENHAB_SETUP_CONF/items/.
+cp ${DATAPATH}/lgwebos*.sitemap $OPENHAB_SETUP_CONF/sitemaps/.
+cp ${DATAPATH}/lgwebos*.things $OPENHAB_SETUP_CONF/things/.
+#chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}

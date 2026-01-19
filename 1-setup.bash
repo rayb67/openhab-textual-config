@@ -254,6 +254,37 @@ EndOfDBCreate
 
 #######################################################################
 #######################################################################
+db-prod-restore() {
+
+#################################
+# MySQL DB setup
+#  mysql -u root -p
+# create the database automatically
+# grand access for openhab and phpmyadmin too.
+# phpmyadmin user is "pma" with password "password"
+mysql -u root -p << 'EndOfDBCreate'
+DROP DATABASE openhab;
+CREATE DATABASE openhab;
+GRANT ALL PRIVILEGES ON openhab.* TO 'openhab'@'localhost';
+GRANT ALL PRIVILEGES ON openhab.* TO 'openhab'@'192.168.%.%';
+GRANT ALL PRIVILEGES ON openhab.* TO 'openhab'@'172.%.%.%';
+GRANT ALL PRIVILEGES ON *.* TO 'pma'@'172.%.%.%';
+GRANT ALL PRIVILEGES ON *.* TO 'pma'@'192.168.%.%';
+GRANT ALL PRIVILEGES ON *.* TO 'pma'@'localhost';
+FLUSH PRIVILEGES;
+quit
+EndOfDBCreate
+
+# ... hier noch weiter das letzte file ermittlen 
+#ls -ltr /nas/linux/backups/server-prd.fritz.box/openhab-db-server-prd-*sql.gz | cut -d/ -f5-
+#  ... dann mysql import
+# mariadb -h localhost -P 3306 --protocol=tcp -u openhab -popenhab openhab < /tmp/file.....
+	return $RETVAL
+}
+
+
+#######################################################################
+#######################################################################
 docker-reset() {
 
 	echo 
@@ -488,8 +519,12 @@ back-restore-prd() {
 	function-check-prod  # if the current system is PRD, we stop
 	
     LAST_BACKUP=`ls -trl ${BACKUP_PATH}/${OPENHAB_PRD_HOSTNAME}.fritz.box/ | grep openhab-backup | tail -1 | cut -c 48- | cut -d- -f3- | cut -d. -f1`
-	echo "... last backup date : "${LAST_BACKUP}
-	echo "... hostname prd     : "${OPENHAB_PRD_HOSTNAME}
+	echo "... last backup date     : "${LAST_BACKUP}
+	echo "... OPENHAB_PRD_HOSTNAME : "${OPENHAB_PRD_HOSTNAME}
+	echo "... OPENHAB_RESTORE      : "${OPENHAB_RESTORE}
+	echo "... OPENHAB_DOCKER_BASE  : "${OPENHAB_DOCKER_BASE}
+	echo "... OPENHAB_DB_BASE      : "${OPENHAB_DB_BASE}
+
 	echo "... copy files ... wait"
 	pwd
 	cp ${BACKUP_PATH}/${OPENHAB_PRD_HOSTNAME}.fritz.box/*${LAST_BACKUP}*.zip /tmp
@@ -497,24 +532,25 @@ back-restore-prd() {
 
 	cd /tmp
 	ls -l *${LAST_BACKUP}*
-
 	uncompress *${LAST_BACKUP}.sql.gz
-	mv /tmp/*${LAST_BACKUP}.sql ${OPENHAB_DB_BASE}/
+#	mv /tmp/*${LAST_BACKUP}.sql ${OPENHAB_DB_BASE}/
 
-	echo
-	echo "Start Restore PRD"
-	echo
 	function-openhab-stop   ## call funtion
 	echo "!!! ToDo - check that mariadb is running as expected"
+	echo "openhab restore : "${OPENHAB_RESTORE}
 
 	if [ -d "${OPENHAB_RESTORE}" ]; then
+		echo
+		echo "Start Restore PRD"
+		echo
+
 	### Take action if ${OPENHAB_RESTORE} exists ###
-		echo "... Installing config files in ${DIR}..."
+		echo "... Installing config files in ${OPENHAB_RESTORE}..."
 		rm -R ${OPENHAB_RESTORE}
 		mkdir ${OPENHAB_RESTORE}
 	else
 	###  Control will jump here if ${OPENHAB_RESTORE} does NOT exists ###
-		echo "... Error: ${DIR} not found. Create it."
+		echo "... Error: ${OPENHAB_RESTORE} not found. Create it."
 		mkdir ${OPENHAB_RESTORE}
 	fi
 	echo "... unzip in quite mode"	
@@ -524,6 +560,14 @@ back-restore-prd() {
 	pwd
 	unzip -q ../*${LAST_BACKUP}*.zip
 
+#	echo "... restore latest database"
+    read -p "   push >Enter< to go on -db1"
+	FILE=openhab-db-${OPENHAB_PRD_HOSTNAME}-${LAST_BACKUP}.sql
+	echo " file : "$FILE
+	docker exec -i mariadb mariadb -uroot -ppassword openhab < /tmp/$FILE
+	echo "... restore db finisehd"
+    read -p "   push >Enter< to go on -db2"
+
 	# prepare restore into test environment
 	rm -R backup.properties userdata/uui* userdata/openhabcloud/secret* userdata/logs userdata/etc/users.properties
 	rm -R userdata/jsondb/users.json userdata/etc/keystore userdata/etc/host.k* userdata/secrets/* userdata/jsondb/backup/*
@@ -531,12 +575,13 @@ back-restore-prd() {
 	mv *.rules off/.
 	mv off/Datalogging.rules off/mqtt_* off/squeezebox.rules .
 	mv off/Noti* off/Init.rules off/Mon* off/ephemeris.rules off/exec.rules off/network.rules .
-	mv off/avmfritz.rules off/lcnAction.rules off/worxlandroid.rules .
+	mv off/avmfritz.rules off/lcnAction.rules
 	cd ../services/
 	FILE=jdbc.cfg
 	if [ -f "${FILE}" ]; then
 		echo "... replace DB ip-address in : "${FILE}
-		find . -name ${FILE}  -type f -exec sed -i 's/10.10.10.68/10.10.10.125/g'  {} \;
+		find . -name ${FILE}  -type f -exec sed -i 's/10.10.10.68/10.10.10.59/g'  {} \;
+		find . -name ${FILE}  -type f -exec sed -i 's/10.10.10.68/10.10.10.59/g'  {} \;
 	else
 		echo "... replace - file not found : "${FILE}
 	fi
@@ -549,17 +594,12 @@ back-restore-prd() {
 	mv ${OPENHAB_DOCKER_BASE}/data ${OPENHAB_DOCKER_BASE}/data-`date +%Y%m%d-%H%M%S`
 
 	mkdir ${OPENHAB_DOCKER_BASE}/data
-	cp -R * ${OPENHAB_DOCKER_BASE}/data/.
+	cp -R * ${OPENHAB_DOCKER_BASE}/.
 	chown -R openhab:openhab  ${OPENHAB_DOCKER_BASE}/data
 	rm -rf ${OPENHAB_LOGPATH}/openhab.log
 
-#	echo "... restore latest database"
-#    read -p "   push >Enter< to go on -db1"
-#	FILE=openhab-db-${OPENHAB_PRD_HOSTNAME}-${LAST_BACKUP}.sql
-#	echo " file : "$FILE
-#	docker exec -it mariadb mariadb -uroot -ppassword openhab < $FILE
-#	echo "... restore db finisehd"
-#    read -p "   push >Enter< to go on -db2"
+	echo "....done ...without start... please check"
+	return $RETVAL
 
 	function-openhab-start					## call function
 	sleep 10s
@@ -951,7 +991,6 @@ case "$COMMAND" in
 
   inst-db)
         clear
-			echo "Installing config files in ${DIR}..."
 	        echo "........................................................................."
 	        echo "...       installing database" 
 	        echo "........................................................................."

@@ -18,12 +18,6 @@ else
 	DATAPATH=${OPENHAB_SETUP_SOURCE}/${BINDING}
 fi
 
-FILE=$DATAPATH
-if [ ! -d $FILE  ]; then
-    echo "Wrong call because folder does not exist : "$FILE
-    exit
-fi
-
 #echo "conf  >"${OPENHAB_SETUP_CONF}"<"
 #echo "sourc >"${OPENHAB_SETUP_SOURCE}"<"
 #echo "daat  >"${DATAPATH}"<"
@@ -33,4 +27,4 @@ cp ${DATAPATH}/astro.items $OPENHAB_SETUP_CONF/items/.
 cp ${DATAPATH}/astro.rules $OPENHAB_SETUP_CONF/rules/.
 cp ${DATAPATH}/astro.sitemap $OPENHAB_SETUP_CONF/sitemaps/.
 cp ${DATAPATH}/astro.things $OPENHAB_SETUP_CONF/things/.
-chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}
+chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}

@@ -1,0 +1,14 @@
+Group gLgWebos				"LG WebOS"    <info>         (EG_Wohnz)  ["Equipment"]
+
+Switch LG_TV1_TestSwitch	"Test Switch"       (gTest) ["WallSwitch"]
+Switch LG_TV1_Power			"TV Power" <television>  { autoupdate="false", channel="lgwebos:WebOSTV:tv1:power" }
+Switch LG_TV1_Mute  "TV Mute"                { channel="lgwebos:WebOSTV:tv1:mute"}
+Dimmer LG_TV1_Volume "Volume [%d]"           { channel="lgwebos:WebOSTV:tv1:volume" }
+Number LG_TV1_VolDummy "VolumeUpDown"
+String LG_TV1_Channel "Channel [%s]"         { channel="lgwebos:WebOSTV:tv1:channel" }
+Number LG_TV1_ChannelDummy "ChannelUpDown"
+String LG_TV1_Toast                          { channel="lgwebos:WebOSTV:tv1:toast"}
+// Stop macht sinn, wenn man ein usb geraet angeschlossen hat
+// Switch LG_TV1_Stop "Stop"                    { autoupdate="false", channel="lgwebos:WebOSTV:tv1:mediaStop" }
+String LG_TV1_Application "Application [%s]" { channel="lgwebos:WebOSTV:tv1:appLauncher"}
+Player LG_TV1_Player                         { channel="lgwebos:WebOSTV:tv1:mediaPlayer"}

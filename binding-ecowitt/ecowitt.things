@@ -5,4 +5,7 @@ Bridge fineoffsetweatherstation:gateway:ecowitt "Weather station"
      discoverInterval="900",
      pollingInterval="60",
      protocol="DEFAULT"
-] { }
+] { 
+	Thing fineoffsetweatherstation:sensor:ecowitt:WH51_CH1 "Sensor Hochbeet" (fineoffsetweatherstation:gateway:ecowitt) [sensor="WH51_CH1"]
+}
+

@@ -6,8 +6,9 @@ if [ -z ${OPENHAB_SETUP_SOURCE} ];
 then
         echo "  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         echo "  \$OPENHAB_SETUP_SOURCE not defined"
-        echo "  ...please set e.g.:"
-        echo "  export OPENHAB_SETUP_SOURCE=/dsnas/install/openhab"
+        echo "  Default wird zur Laufzeit genutzt und auf das aktuelle Verzeichnis gesetzt!"
+        echo
+        export OPENHAB_SETUP_SOURCE=`pwd`
         exit
 fi
 
@@ -16,12 +17,6 @@ then
     DATAPATH=$OPENHAB_SETUP_SOURCE/$1
 else
 	DATAPATH=${OPENHAB_SETUP_SOURCE}/${BINDING}
-fi
-
-FILE=$DATAPATH
-if [ ! -d $FILE  ]; then
-    echo "Wrong call because folder does not exist : "$FILE
-    exit
 fi
 
 #echo "conf  >"${OPENHAB_SETUP_CONF}"<"

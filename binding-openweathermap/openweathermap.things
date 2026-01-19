@@ -1,6 +1,6 @@
 Bridge openweathermap:weather-api:api	"OWM Account"				
-//	[	apikey="your dev token",   // Dev
-	[	apikey="your prod token",   // Prod
+//	[	apikey="your-api-key",   // Dev
+	[	apikey="your-api-key",   // Prod
 		refreshInterval=5, 
 		language="de"] 
 {

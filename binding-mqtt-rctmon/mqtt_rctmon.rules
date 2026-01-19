@@ -99,7 +99,7 @@ then
     val InputVoltB = Math::abs((PV_Input_B_Volt.averageSince(now.minusMinutes(20)) as QuantityType<Number>).doubleValue)
     val InputVoltDiff = InputVoltA - InputVoltB
     
-    val sgr_all = "\r\nDiff     : " + InputVoltDiff +
+    val sgr_all = "\r\nDiff 250 : " + InputVoltDiff +
                   "\r\nVolt A   : " + InputVoltA +
                   "\r\nVolt B   : " + InputVoltB +
                   "\r\nLevel    : " + tmp_level
@@ -111,8 +111,8 @@ then
 		logDebug("RctMqttDataloggingGenerator","level  : "+tmp_level+" Volt A : "+InputVoltA.toString.format("%.0f")+" Volt B : "+InputVoltB.toString.format("%.0f"))
 
 		logDebug("RctMqttDataloggingGenerator","PV A : "+InputVoltA+" B : "+InputVoltB)
-		if (	((InputVoltDiff) < -200 ) || 
-				((InputVoltDiff) > 200 )  )
+		if (	((InputVoltDiff) < -250 ) || 
+				((InputVoltDiff) > 250 )  )
 		{
 			logDebug("RctMqttDataloggingGenerator","FEHLER - PV Input Delta : "+InputVoltDiff)
 			if ( PV_Error_LIM.state == ON ) 

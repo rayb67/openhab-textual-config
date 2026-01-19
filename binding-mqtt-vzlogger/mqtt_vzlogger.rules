@@ -27,6 +27,13 @@ when
 //	or Item mqtt_vzlogger_Test changed to ON
 then
 	logInfo("vzlogger_monitor","info ")
+
+    val tmp_all = "\r\nlieferung stunde  : " + mqtt_vzlogger_stunde_lieferung.state +
+                  "\r\nbezug     stunde  : " + mqtt_vzlogger_stunde_bezug.state +
+                  "\r\nlieferung tag     : " + mqtt_vzlogger_tag_lieferung.state +
+                  "\r\nbezug     tag     : " + mqtt_vzlogger_tag_bezug.state 
+
+
 	if	(
 			((( mqtt_vzlogger_tag_bezug.state  as QuantityType<Energy>).toBigDecimal) == 0) &&
 			((( mqtt_vzlogger_tag_lieferung.state  as QuantityType<Energy>).toBigDecimal) == 0) &&
@@ -34,13 +41,10 @@ then
 			((( mqtt_vzlogger_stunde_lieferung.state  as QuantityType<Energy>).toBigDecimal) == 0)
 		)
 	{   
-		logInfo("vzlogger_monitor","vzlogger Störung !!!! bezug und lieferung 0 seit heut")
+		logInfo("vzlogger_monitor","vzlogger Stoerung !!!! bezug und lieferung 0 seit heut")
 		val mailActions = getActions("mail","mail:smtp:samplesmtp")
-		mailActions.sendMail("yourmail@localhost","vzlogger bezug + lieferung seit 24h 0","Entweder ist soviel sonnne da, oder .... prufen")
-		logInfo("vzlogger_monitor","lieferung stunde  : "+ mqtt_vzlogger_stunde_bezug.state)
-		logInfo("vzlogger_monitor","bezug     stunde  : "+ mqtt_vzlogger_stunde_lieferung.state)
-		logInfo("vzlogger_monitor","lieferung tag  : "+ mqtt_vzlogger_tag_bezug.state)
-		logInfo("vzlogger_monitor","bezug     tag  : "+ mqtt_vzlogger_tag_lieferung.state)
+		mailActions.sendMail("yourmail@localhost","vzlogger seit 24h keine Daten - Restart!!!"+"da muss was getan werden"+tmp_all)
+		logInfo("vzlogger_monitor", tmp_all)
 	}
 
 end

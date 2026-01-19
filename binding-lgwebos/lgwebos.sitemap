@@ -1,0 +1,14 @@
+sitemap lgwebos label="Main LG WebOS"
+{
+    Frame label="TV" {
+        Switch item=LG_TV1_TestSwitch
+        Switch item=LG_TV1_Power
+        Switch item=LG_TV1_Mute
+        Text item=LG_TV1_Volume
+        Switch item=LG_TV1_VolDummy icon="soundvolume" label="Volume" mappings=[1="▲", 0="▼"]
+        Default item=LG_TV1_Channel
+        Switch item=LG_TV1_ChannelDummy icon="television" label="Channel" mappings=[1="▲", 0="▼"]
+        Default item=LG_TV1_Player
+        Default item=LG_TV1_Application
+    }
+}

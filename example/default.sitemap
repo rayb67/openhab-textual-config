@@ -3,7 +3,7 @@ sitemap default label="Haussteuerung"
  	Frame label="Raueme" icon="house" {
 		Text label="Erdgeschoss" icon="groundfloor" {
 			Text label="Wohnzimmer" icon="sofa" {
-				Switch item=Steckdose_EG_Wohnz_Fernseher
+				Switch item=Steckdose_EG_Wohnz_Schrank
 				Slider item=Licht_EG_Sofa switchSupport
 				Text item=TempEGWohnzFlur icon="temperature"
             	Setpoint item=SetTeEGWohnz			step=0.5 minValue=16 maxValue=24

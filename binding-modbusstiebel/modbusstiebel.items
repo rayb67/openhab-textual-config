@@ -1,237 +1,210 @@
 Group					gStiebelEltronHP					"Group Stiebel Eltron Heat Pump"		<heating>	(gTechnik)  ["Equipment"]
 
-Number:Temperature		Stiebel_VorlaufIstTemperaturWP		"Vorlauftemperatur"						<temperature>   (gStiebelEltronHP)	["Measurement"]
-{ channel="modbus:heatpump:bridge:stiebelEltron:systemInformation#supply-temperature", stateDescription=" "[ pattern="%.1f °C"] }
+// my own values
+Number:Energy			Stiebel_power_water_houre			"Stromverbrauch Wasser/h [%.0f kWh]"	<energy>	(gStiebelEltronHP)
+Number:Energy			Stiebel_power_heating_houre			"Stromverbrauch Heizen/h [%.0f kWh]"	<energy>	(gStiebelEltronHP)
+Number:Energy			Stiebel_power_sum_houre				"Stromverbrauch Summe/h [%.0f kWh]"		<energy>	(gStiebelEltronHP)
 
-Switch					Stiebel_TestSwitch					"Stiebel Test Switch"									(gStiebelEltronHP)
+Number:Temperature		Stiebel_VorlaufIstTemperaturWP		"Vorlauftemperatur [%.1f °C]"			<temperature>   (gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#hp-flow-temperature" }
 
-Number:Dimensionless	Stiebel_Betriebsart					"1 Operating Mode"						<heating>     (gStiebelEltronHP) 
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#operating-mode" , 
+//Number:Temperature		Stiebel_heat_pump_flow_temperature	"Waermepumpe Durchflusstemperature [%.1f °C]"		<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+//{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#hp-flow-temperature" }
+
+Switch					Stiebel_TestSwitch					"Stiebel Test Switch"					<info>		(gStiebelEltronHP)
+
+Number:Dimensionless	Stiebel_Betriebsart					"1 Operating Mode"						<heating>	(gStiebelEltronHP) 	["Control","Mode"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#operating-mode" , 
 stateDescription=" "[ pattern="%d", options="1=Bereitschaftsbetrieb,2=Programmbetrieb,3=Komfortbetrieb,4=ECO-Betrieb,5=Warmwasserbetrieb,6=Notbetrieb" ] }
 
-Contact					Stiebel_hk1_pump_active				"HK1 Pump Active"						<pump>			(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#hc1-pump-active" }
-Contact					Stiebel_currently_heating			"Heizen Active"							<status>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#hp-in-heating-mode" }
-Contact					Stiebel_currently_hot_water			"Warmwasser Active"						<status>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#hp-in-hotwater-mode" }
-Contact					Stiebel_compressor_running			"Compressor Running"					<status>      (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#compressor-running" }
-Contact					Stiebel_summer_mode_active			"Sommer Mode Active"					<status>      (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#summer-mode-active" }
-Contact					Stiebel_currently_cooling			"Kuehlung Active"						<status>      (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#cooling-mode-active" }
-Contact					Stiebel_power_off					"Power Off"								<status>      (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#power-off" }
-Number:Dimensionless	Stiebel_fault_status				"Fehler Status"							<status>      (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#fault-status", stateDescription=" "[ pattern="%.1f %%"] }
-Number:Dimensionless	Stiebel_bus_status					"Bus Status"							<status>      (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#bus-status" }
-Number:Dimensionless	Stiebel_active_error				"Active Error"							<status>      (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemStateWpm3i#active-error" }
+
+Contact					Stiebel_hk1_pump_active				"HK1 Pump Active"						<pump>			(gStiebelEltronHP)	["Status","OpenState"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#hc1-pump-active" }
+Contact					Stiebel_currently_heating			"Heizen Active"							<status>		(gStiebelEltronHP)	["Status","OpenState"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#hp-in-heating-mode" }
+Contact					Stiebel_currently_hot_water			"Warmwasser Active"						<status>		(gStiebelEltronHP)	["Status","OpenState"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#hp-in-hotwater-mode" }
+Contact					Stiebel_compressor_running			"Compressor Running"					<status>      (gStiebelEltronHP)	["Status","OpenState"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#compressor-running" }
+Contact					Stiebel_summer_mode_active			"Sommer Mode Active"					<status>      (gStiebelEltronHP)	["Status","OpenState"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#summer-mode-active" }
+Contact					Stiebel_currently_cooling			"Kuehlung Active"						<status>      (gStiebelEltronHP)	["Status","OpenState"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#cooling-mode-active" }
+Contact					Stiebel_power_off					"Power Off"								<status>      (gStiebelEltronHP)	["Status","OpenState"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#power-off" }
+Number:Dimensionless	Stiebel_fault_status				"Fehler Status [%.1f %%]"				<status>      (gStiebelEltronHP)	["Status","Mode"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#fault-status" }
+Number:Dimensionless	Stiebel_bus_status					"Bus Status [%.1f %%]"					<status>      (gStiebelEltronHP)	["Status","Mode"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#bus-status" }
+Number:Dimensionless	Stiebel_active_error				"Active Error [%.1f %%]"				<status>      (gStiebelEltronHP)	["Status","Mode"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemStateAllWpm#active-error" }
 
 
-Number:Temperature		Stiebel_KomforttemperaturHKSOLL		"Komfort Temperature"					<temperature> (gStiebelEltronHP) 
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#hc1-comfort-temperature", 
+Number:Temperature		Stiebel_KomforttemperaturHKSOLL		"Komfort Temperature [%.1f °C]"					<temperature> (gStiebelEltronHP) 
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#hc1-comfort-temperature", 
      widget    ="oh-stepper-card"[ title="Komf. Heizung Soll", min=16, max=25, step=0.5, icon="oh:temperature" ],
      listWidget="oh-stepper-item"[ title="Komf. Heizung Soll", min=16, max=25, step=0.5, icon="oh:temperature" ],
      cellWidget="oh-stepper-cell"[ title="Komf. Heizung Soll", min=16, max=25, step=0.5, icon="oh:temperature" ],
      autoupdate="false"
-	 , stateDescription=" "[ pattern="%.1f °C"]
 }
-Number:Temperature		Stiebel_ECOtemperaturHKSOLL			"Eco Temperature"						<temperature> (gStiebelEltronHP) 
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#hc1-eco-temperature",
+Number:Temperature		Stiebel_ECOtemperaturHKSOLL			"Eco Temperature [%.1f °C]"						<temperature> (gStiebelEltronHP) 
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#hc1-eco-temperature",
     widget    ="oh-stepper-card"[ title="ECOt. Heizung Soll", min=16, max=25, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="ECOt. Heizung Soll", min=16, max=25, step=0.5, icon="oh:temperature" ],
     cellWidget="oh-stepper-cell"[ title="ECOt. Heizung Soll", min=16, max=25, step=0.5, icon="oh:temperature" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
 
-Number:Dimensionless	Stiebel_Heizkurve					"Heizkurve"								<line>        (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#hc1-heating-curve-rise",
+Number:Dimensionless	Stiebel_Heizkurve					"Heizkurve [%.1f °C]"								<line>        (gStiebelEltronHP)
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#hc1-heating-curve-rise",
     widget    ="oh-stepper-card"[ title="Heizkurve", min=0, max=3, step=0.1, icon="oh:info" ],
     listWidget="oh-stepper-item"[ title="Heizkurve", min=0, max=3, step=0.1, icon="oh:info" ],
     cellWidget="oh-stepper-cell"[ title="Heizkurve", min=0, max=3, step=0.1, icon="oh:info" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
-Number:Temperature		Stiebel_heating_dm_temp_bivalence   "Heizen Temperature (bivalence)"		<temperature> (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#heating-dual-mode-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
+Number:Temperature		Stiebel_heating_dm_temp_bivalence   "Heizen Temperature (bivalence) [%.1f °C]"		<temperature> (gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#heating-dual-mode-temperature" }
 
-Number:Temperature		Stiebel_KomforttemperaturWWSOLL		"Warmwasser Comfort Temperature"		<temperature> (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#hotwater-comfort-temperature",
+Number:Temperature		Stiebel_KomforttemperaturWWSOLL		"Warmwasser Comfort Temperature [%.1f °C]"		<temperature> (gStiebelEltronHP)
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#hotwater-comfort-temperature",
     widget    ="oh-stepper-card"[ title="Komf. Warmwasser Soll", min=25, max=48, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="Komf. Warmwasser Soll", min=25, max=48, step=0.5, icon="oh:temperature" ],
     cellWidget="oh-stepper-cell"[ title="Komf. Warmwasser Soll", min=25, max=48, step=0.5, icon="oh:temperature" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
-Number:Temperature		Stiebel_ECOtemperaturWWSOLL			"Warmwasser Eco Temperature"			<temperature> (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#hotwater-eco-temperature",
+Number:Temperature		Stiebel_ECOtemperaturWWSOLL			"Warmwasser Eco Temperature  [%.1f °C]"			<temperature> (gStiebelEltronHP)
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#hotwater-eco-temperature",
     widget    ="oh-stepper-card"[ title="ECOt. Warmwasser Soll", min=25, max=48, step=0.5, icon="oh:temperature" ],
     listWidget="oh-stepper-item"[ title="ECOt. Warmwasser Soll", min=25, max=48, step=0.5, icon="oh:temperature" ],
     cellWidget="oh-stepper-cell"[ title="Ecot. Warmwasser Soll", min=25, max=48, step=0.5, icon="oh:temperature" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
-Number					Stiebel_hot_water_stages			"Warmwasser Stages"						<status>      (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#hotwater-stages" }
-Number:Temperature		Stiebel_hot_water_dm_temp_bivalence	"Warmwasser Temperature (bivalence)"	<temperature> (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#hotwater-dual-mode-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
+Number:Temperature		Stiebel_hot_water_dm_temp_bivalence	"Warmwasser Temperature (bivalence) [%.1f °C]"	<temperature> (gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#hotwater-dual-mode-temperature" }
 
-Number:Temperature		Stiebel_KuehlenSOLLDurchlauf		"Kuehlen Flusstemperature Soll"		<temperature> (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#area-cooling-flow-temperature-setpoint" ,
+Number:Temperature		Stiebel_KuehlenSOLLDurchlauf		"Kuehlen Flusstemperature Soll [%.1f °C]"		<temperature> (gStiebelEltronHP)
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#area-cooling-flow-temperature-setpoint" ,
     listWidget="oh-stepper-item"[ title="Kuehlen Flusstemperature Soll", min=16, max=25, step=1.0, icon="oh:temperature" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
-Number:Temperature		Stiebel_Kuehlenhysterese			"Kuehlen Hysterese"	<temperature> (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#area-cooling-flow-temperature-hysteresis",
+Number:Temperature		Stiebel_Kuehlenhysterese			"Kuehlen Hysterese [%.1f °C]"	<temperature> (gStiebelEltronHP)
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#area-cooling-flow-temperature-hysteresis",
     listWidget="oh-stepper-item"[ title="Kuehlen Hysterese", min=0, max=10, step=0.5, icon="oh:temperature" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
-Number:Temperature		Stiebel_KuehlenSOLLRaumtemperatur	"Kuehlen Raumtemperature Soll"        <temperature> (gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#area-cooling-room-temperature-setpoint" ,
+Number:Temperature		Stiebel_KuehlenSOLLRaumtemperatur	"Kuehlen Raumtemperature Soll [%.1f °C]"        <temperature> (gStiebelEltronHP)
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#area-cooling-room-temperature-setpoint" ,
     listWidget="oh-stepper-item"[ title="Kuehlen Raumtemperature Soll", min=16, max=25, step=1.0, icon="oh:temperature" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
 
 
-// Nur als Nummer, weil ich das nicht ausversehen machen moechte
-Number					Stiebel_reset						"Reset"									<settings>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#reset" }
+// Nur als Nummer, weil ich das nicht ausversehen machen moechte .
+Number					Stiebel_reset						"Reset"									<settings>		(gStiebelEltronHP)	["Control","Enabled"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#reset" }
 // Nur als Nummer, weil ich das nicht ausversehen machen moechte
 Number					Stiebel_RebootISG					"Restart ISG"							<settings>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemParameterWpm3Wpm3i#restart-isg" }
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemParameterAllWpm#restart-isg" }
 
-Number:Temperature		Stiebel_FEKTemperaturIST			"FFK Temperature Ist"					<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#fek-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:Temperature		Stiebel_FEKTemperaturSOLL			"FFK Temperature Soll"					<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#fek-temperature-setpoint" ,
+Number:Temperature		Stiebel_FEKTemperaturIST			"FFK Temperature Ist [%.1f °C]"					<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#fek-temperature"}
+Number:Temperature		Stiebel_FEKTemperaturSOLL			"FFK Temperature Soll [%.1f °C]"			<temperature>	(gStiebelEltronHP)	  ["SetPoint","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#fek-temperature-setpoint" ,
     listWidget="oh-stepper-item"[ title="FFK Temperatur", min=16, max=25, step=0.5, icon="oh:temperature" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
-Number:Dimensionless	Stiebel_Raumfeuchte					"FFK Luftfeuchtigkeit"					<humidity>		(gStiebelEltronHP)	["Humidity"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#fek-humidity" }
+Number:Dimensionless	Stiebel_Raumfeuchte					"FFK Luftfeuchtigkeit [%.1f %%]"			<humidity>		(gStiebelEltronHP)	["Measurement","Humidity"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#fek-humidity" }
 
-Number:Temperature		Stiebel_Taupunkttemperatur			"FFK Taupunkt"							<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#fek-dewpoint", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:Temperature		Stiebel_Aussentemperatur			"Aussentemperatur (Hof)"				<temperature>	(gStiebelEltronHP,AUS_Hof)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#outdoor-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:Temperature		Stiebel_Heizkreis1IST				"HK1 Temperatur Ist"					<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#hc1-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:Temperature		Stiebel_Heizkreis1SOLL				"HK1 Temperatur Soll"					<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#hc1-temperature-setpoint" ,
+Number:Temperature		Stiebel_Taupunkttemperatur			"FFK Taupunkt [%.1f °C]"							<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#fek-dewpoint" }	
+Number:Temperature		Stiebel_Aussentemperatur			"Aussentemperatur (Hof) [%.1f °C]"				<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#outdoor-temperature"  }
+Number:Temperature		Stiebel_Heizkreis1IST				"HK1 Temperatur Ist [%.1f °C]"					<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#hc1-temperature" }
+Number:Temperature		Stiebel_Heizkreis1SOLL				"HK1 Temperatur Soll [%.1f °C]"					<temperature>	(gStiebelEltronHP)	["SetPoint","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#hc1-temperature-setpoint" ,
     listWidget="oh-stepper-item"[ title="HC1 Temperature", min=16, max=25, step=0.5, icon="oh:temperature" ],
     autoupdate="false"
-	, stateDescription=" "[ pattern="%.1f °C"]
 }
-Number:Temperature		Stiebel_heat_pump_flow_temperature	"Waermepumpe Durchflusstemperature"		<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#hp-flow-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
 
 
-Number:Temperature		Stiebel_Ruecklaufisttemperatur		"Ruecklauf Temperatur"					<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#return-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:Temperature		Stiebel_PufferIST					"Puffer Temperature IST"				<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#buffer-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:Temperature		Stiebel_PufferSOLL					"Puffer Temperature Soll"				<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#buffer-temperature-setpoint", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:VolumetricFlowRate Stiebel_Volumenstrom				"Volumenstrom (Druchfluss)"				<flow>			(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#flow-rate", stateDescription=" "[ pattern="%.1f l/min"] }
-Number:Temperature		Stiebel_WarmwasserIST				"Warmwasser Temperature Ist"			<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#hotwater-temperature", stateDescription=" "[ pattern="%.1f °C"]  }
-Number:Temperature		Stiebel_WarmwasserSOLL				"Warmwasser Temperature Soll"			<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#hotwater-temperature-setpoint" }
-Number:Temperature		Stiebel_KuehlenIST					"Kuehlung Temperature Ist"				<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#area-cooling-temperature" }
-Number:Temperature		Stiebel_KuehlenSOLL					"Kuehlung Temperature Soll"				<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#area-cooling-temperature-setpoint" }
-Number:Temperature		Stiebel_LAL_heating					"Lower Application Limit Heizen"		<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#lower-application-limit-heating" }
-Number:Temperature		Stiebel_LAL_hot_water				"Lower Application Limit Warmwasser"	<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#lower-application-limit-hotwater" }
-Number:Temperature		Stiebel_QuellenTemperatur			"Quellen Temperatur"					<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#source-temperature" }
-Number:Temperature		Stiebel_QuellenTempMin				"Quellen Minimal Temperatur"			<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#min-source-temperature" }
+Number:Temperature		Stiebel_Ruecklaufisttemperatur		"Ruecklauf Temperatur [%.1f °C]"					<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#return-temperature" }
+Number:Temperature		Stiebel_PufferIST					"Puffer Temperature IST [%.1f °C]"				<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#buffer-temperature" }
+Number:Temperature		Stiebel_PufferSOLL					"Puffer Temperature Soll [%.1f °C]"				<temperature>	(gStiebelEltronHP)	["SetPoint","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#buffer-temperature-setpoint" }
+Number:VolumetricFlowRate Stiebel_Volumenstrom				"Volumenstrom (Druchfluss) [%.2f %unit%]"				<flow>			(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#flow-rate" }
+Number:Temperature		Stiebel_WarmwasserIST				"Warmwasser Temperature Ist [%.1f °C]"			<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#hotwater-temperature"  }
+Number:Temperature		Stiebel_WarmwasserSOLL				"Warmwasser Temperature Soll [%.1f °C]"			<temperature>	(gStiebelEltronHP)	["SetPoint","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#hotwater-temperature-setpoint" }
+Number:Temperature		Stiebel_KuehlenIST					"Kuehlung Temperature Ist [%.1f °C]"				<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#area-cooling-temperature" }
+Number:Temperature		Stiebel_KuehlenSOLL					"Kuehlung Temperature Soll [%.1f °C]"				<temperature>	(gStiebelEltronHP)	["SetPoint","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#area-cooling-temperature-setpoint" }
+Number:Temperature		Stiebel_LAL_heating					"Lower Application Limit Heizen [%.1f °C]"		<temperature>	(gStiebelEltronHP)	["SetPoint","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#lower-application-limit-heating" }
+Number:Temperature		Stiebel_LAL_hot_water				"Lower Application Limit Warmwasser [%.1f °C]"	<temperature>	(gStiebelEltronHP)	["SetPoint","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#lower-application-limit-hotwater" }
+Number:Temperature		Stiebel_QuellenTemperatur			"Quellen Temperatur [%.1f °C]"					<temperature>	(gStiebelEltronHP)	["Measurement","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#source-temperature" }
+Number:Temperature		Stiebel_QuellenTempMin				"Quellen Minimal Temperatur [%.1f °C]"			<temperature>	(gStiebelEltronHP)	["SetPoint","Temperature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#min-source-temperature" }
 
-Number		Stiebel_HeizgasTemperatur			"Heisgas Temperatur"					<temperature>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#hotgas-temperature" }
+Number:Temperature		Stiebel_HeizgasTemperatur			"Heisgas Temperatur [%.1f °C]"					<temperature>	(gStiebelEltronHP)	["Measurement","Temerature"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#hotgas-temperature" }
 
-//Number:Pressure			Stiebel_high_pressure				"High Pressure"							<pressure>		(gStiebelEltronHP)	["Pressure"]
-//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#high-pressure" }
-//Number:Pressure			Stiebel_low_pressure				"Low Pressure"							<pressure>		(gStiebelEltronHP)	["Pressure"]
-//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#low-pressure" }
-//Number:Pressure			Stiebel_Quellendruck				"Quellendruck"							<pressure>		(gStiebelEltronHP)	["Pressure"]
-//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#source-pressure" }
-//Number:Pressure			Stiebel_Heizungsdruck				"Heizen Druck"							<pressure>		(gStiebelEltronHP)	["Pressure"]
-//{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#heating-pressure", stateDescription=" "[ pattern="%.1f bar"]  }
+Number:Energy			Stiebel_heat_quantity_today			"Heizen Quantity Today [%.3f %unit%]"		<energy>		(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#production-heat-today", unit="kWh"  }
+Number:Energy			Stiebel_heat_quantity_total			"Heizen Quantity Total [%.0f %unit%]"		<energy>		(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#production-heat-total", unit="kWh"  }
+          
 
 
-Number:Pressure     Stiebel_Quellendruck        "Quellendruck"              <pressure>    (gStiebelEltronHP) ["Pressure"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#source-pressure", unit="bar" }
-Number:Pressure     Stiebel_Heizungsdruck       "Heizen Druck"              <pressure>    (gStiebelEltronHP) ["Pressure"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#heating-pressure", unit="bar" }
-Number:Pressure     Stiebel_high_pressure       "High Pressure"             <pressure>    (gStiebelEltronHP) ["Pressure"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#high-pressure", unit="bar" }
-Number:Pressure     Stiebel_low_pressure        "Low Pressure"              <pressure>    (gStiebelEltronHP) ["Pressure"]
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:systemInformationWpm3i#low-pressure", unit="bar" }
+Number:Energy			Stiebel_water_quantity_today	"Warmwasser Quantity Today [%.3f %unit%]"	<energy>		(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#production-water-today", unit="kWh" }
+Number:Energy			Stiebel_water_quantity_total	"Warmwasser Quantity Total [%.0f %unit%]"	<energy>		(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#production-water-total", unit="kWh" }
+Number:Energy			Stiebel_nhz_heat_quantity_total		"NHZ Heizen Quantity Total [%.3f %unit%]"	<energy>		(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemRuntimeInformationAllWpm#production-nhz-heat-total", unit="kWh" }
+Number:Energy			Stiebel_nhz_hotwater_quantity_total	"NHZ Warmwasser Quantity Total [%.3f %unit%]"	<energy>	(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemRuntimeInformationAllWpm#production-nhz-water-total", unit="kWh" }
+Number:Energy			Stiebel_power_heating_today			"Stromverbrauch Heizen heute [%.1f %unit%]"	<energy>	(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#consumption-heat-today", unit="kWh" }
+Number:Energy			Stiebel_power_heating_total			"Stromverbrauch Heizen gesamt [%.1f %unit%]"	<energy>	(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#consumption-heat-total", unit="kWh" }
+Number:Energy			Stiebel_power_water_today			"Stromverbrauch Wasser heute [%.1f %unit%]"	<energy>	(gStiebelEltronHP)	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#consumption-water-today", unit="kWh" }
+Number:Energy			Stiebel_power_water_total			"Stromverbrauch Wasser gesamt [%.1f %unit%]"	<energy>	(gStiebelEltronHP) 	["Measurement","Energy"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#consumption-water-total", unit="kWh" }
 
-Number:Energy			Stiebel_heat_quantity_today			"Heizen Quantity Today [%.0f kWh]"		<energy>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-heat-today" }
-Number:Energy			Stiebel_heat_quantity_total			"Heizen Quantity Total [%.3f MWh]"		<energy>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-heat-total" }
-Number:Energy			Stiebel_water_quantity_today	"Warmwasser Quantity Today [%.0f kWh]"	<energy>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-water-today" }
-Number:Energy			Stiebel_water_quantity_total	"Warmwasser Quantity Total [%.3f MWh]"	<energy>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-water-total" }
+Number:Time 			Stiebel_heating_runtime			"Laufzeit Heizen  [%u %unit%]"		<time>		(gStiebelEltronHP) ["Measurement","Duration"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#heating-runtime", unit="s" }
+Number:Time				Stiebel_hot_water_runtime		"Laufzeit Warmwasser [%u %unit%]"	<time>		(gStiebelEltronHP)	["Measurement","Duration"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#hotwater-runtime", unit="s" }  
+Number:Time				Stiebel_cooling_runtime			"Laufzeit Cooling [%u %unit%]"		<time>		(gStiebelEltronHP)	["Measurement","Duration"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#cooling-runtime", unit="s" } 
+Number:Time				Stiebel_nhz1_runtime			"Laufzeit nhz1 [%u %unit%]"			<time>		(gStiebelEltronHP)	["Measurement","Duration"] 
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:energyRuntimeInformationAllWpm#nhz1-runtime", unit="s"  }
 
-Number:Energy			Stiebel_nhz_heat_quantity_total		"NHZ Heizen Quantity Total [%.3f MWh]"	<energy>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-nhz-heat-total" }
-Number:Energy			Stiebel_nhz_hotwater_quantity_total	"NHZ Warmwasser Quantity Total [%.3f MWh]"	<energy>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#production-nhz-water-total" }
-
-Number:Energy			Stiebel_power_heating_today			"Stromverbrauch Heizen heute [%.0f kWh]"	<energy>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-heat-today" }
-Number:Energy			Stiebel_power_heating_total			"Stromverbrauch Heizen gesamt [%.0f kWh]"	<energy>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-heat-total" }
-Number:Energy			Stiebel_power_heating_houre			"Stromverbrauch Heizen/h [%.0f kWh]"	<energy>	(gStiebelEltronHP)
-
-
-
-Number:Energy			Stiebel_power_water_today			"Stromverbrauch Wasser heute [%.0f kWh]"		<energy>	(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-water-today" }
-Number:Energy			Stiebel_power_water_total			"Stromverbrauch Wasser gesamt [%.0f kWh]"		<energy>	(gStiebelEltronHP) 
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#consumption-water-total" }
-Number:Energy			Stiebel_power_water_houre			"Stromverbrauch Wasser/h [%.0f kWh]"		<energy>	(gStiebelEltronHP)
-
-Number:Energy			Stiebel_power_sum_houre				"Stromverbrauch Summe/h [%.0f kWh]"		<energy>	(gStiebelEltronHP)
-
-Number:Time 			Stiebel_heating_runtime				"Laufzeit Heizen Compressor"				<time>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#heating-runtime" }
-Number:Time				Stiebel_hot_water_runtime			"Laufzeit Warmwasser Compressor"			<time>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#hotwater-runtime" }
-Number:Time				Stiebel_cooling_runtime				"Laufzeit Cooling Compressor"				<time>		(gStiebelEltronHP)
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#cooling-runtime" }
+Switch					Stiebel_sgready_onoff_switch	"SG Ready On/Off Switch"				<heating>	(gStiebelEltronHP)	["Control","Mode"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:sgReadyEnergyManagementSettings#sg-ready-on-off-switch" }
+Number:Dimensionless	Stiebel_sgready_operation_state	"SG Ready Operation State"				<status>	(gStiebelEltronHP)	["Status","Mode"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:sgReadyEnergyManagementSystemInformation#sg-ready-operating-state" }
+Number:Dimensionless	Stiebel_sgready_input_lines		"SG Ready Input Lines"					<heating>	(gStiebelEltronHP)	["Control","Mode"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:sgReadyEnergyManagementSettings#sg-ready-input-lines" }
+Number:Dimensionless	Stiebel_sgready_controller		"SG Ready ControllerID"					<heating>	(gStiebelEltronHP)	["Status","Mode"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:sgReadyEnergyManagementSystemInformation#sg-ready-controller-identification" }
 
 
-
-Switch					Stiebel_sgready_onoff_switch		"SG Ready On/Off Switch"					<heating>	(gStiebelEltronHP)	["Control"]
-{ channel="modbus:stiebeleltron-isg-sg-ready-em:bridge:stiebelEltronEM:sgReadyEnergyManagementSettings#sg-ready-on-off-switch" }
-
-Number:Dimensionless	Stiebel_sgready_input_lines			"SG Ready Input Lines"						<heating>	(gStiebelEltronHP)	
-{ channel="modbus:stiebeleltron-isg-sg-ready-em:bridge:stiebelEltronEM:sgReadyEnergyManagementSettings#sg-ready-input-lines" }
-
-Number:Dimensionless	Stiebel_sgready_controller			"SG Ready ControllerID"						<heating>	(gStiebelEltronHP)	["Status"]
-{ channel="modbus:stiebeleltron-isg-sg-ready-em:bridge:stiebelEltronEM:sgReadyEnergyManagementSystemInformation#sg-ready-controller-identification" }
-
-Number:Dimensionless	Stiebel_sgready_operating_state		"SG Ready Operating State"						<heating>	(gStiebelEltronHP)	["Status"]
-{ channel="modbus:stiebeleltron-isg-sg-ready-em:bridge:stiebelEltronEM:sgReadyEnergyManagementSystemInformation#sg-ready-operating-state" }
-
-Number:Time				Stiebel_sgready_nhz1_runtime		"SG Readyr Runtime nhz1"					<time>		(gStiebelEltronHP) 
-{ channel="modbus:stiebeleltron-heatpump-wpm3i:bridge:stiebelEltronWMP3i:energyRuntimeInformationWpm3i#nhz1-runtime" }
-
+Number:Pressure     Stiebel_Quellendruck        "Quellendruck [%.2f %unit%]"					<pressure>    (gStiebelEltronHP) ["Control","Pressure"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#source-pressure", unit="bar" }
+Number:Pressure     Stiebel_Heizungsdruck       "Heizen Druck [%.2f %unit%]"					<pressure>    (gStiebelEltronHP) ["Control","Pressure"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#heating-pressure", unit="bar" }
+Number:Pressure     Stiebel_high_pressure       "High Pressure [%.2f %unit%]"					<pressure>    (gStiebelEltronHP) ["Control","Pressure"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#high-pressure" }
+Number:Pressure     Stiebel_low_pressure        "Low Pressure [%.2f %unit%]"					<pressure>    (gStiebelEltronHP) ["Control","Pressure"]
+{ channel="modbus:stiebeleltron-heatpump-allwpm:bridge:stiebelEltronEM:systemInformationAllWpm#low-pressure" }

@@ -2,8 +2,8 @@
 # Some general environment infomration.
 # The version must match exactly!
 
-export OPENHAB_VERSION=4.3.5
-export JDK_VERSION=17  # Java 17 for OH 4.x ; Java 21 for OH 5.x
+export OPENHAB_VERSION=5.0.2
+export JDK_VERSION=21  # Java 17 for OH 4.x ; Java 21 for OH 5.x
 export OPENHAB_USER=openhab
 export OPENHAB_GROUP=openhab
 export OPENHAB_DBNAME=openhab
@@ -26,14 +26,11 @@ if [ `hostname` == "server-prd" ];
 then
     echo "  env.bash - hostname server-prd"
     export OPENHAB_DB_BASE=/volume4/@appstore/MariaDB10/mysql
-    export OPENHAB_DOCKER_BASE=/volume4/docker
+    export OPENHAB_DOCKER_BASE=/volume4/docker/openhab
     export OPENHAB_SRV_TYPE=prd
     export OPENHAB_DOCKER=true
-    export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/openhab/conf
-    export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/openhab/userdata
-    export OPENHAB_SETUP_ADDONS=${OPENHAB_DOCKER_BASE}/openhab/addons
     export OPENHAB_SETUP_SOURCE=/volume1/default/linux/install/openhab
-    export OPENHAB_LOGPATH=${OPENHAB_SETUP_USERDATA}/logs
+	export DATABASE_CLIENT=mysql
 fi
 
 # this is my develpment server
@@ -41,21 +38,11 @@ if [ `hostname` == "server-dev" ];
 then
     echo "  env.bash - hostname server-dev"
     export OPENHAB_DB_BASE=/docker/openhab/data_mariadb
-    export OPENHAB_DOCKER_BASE=/docker/openhab
+    export OPENHAB_DOCKER_BASE=/docker/openhab/data
     export OPENHAB_SRV_TYPE=dev
     export OPENHAB_DOCKER=true
-    export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/data/conf
-    export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/data/userdata
-    export OPENHAB_SETUP_ADDONS=${OPENHAB_DOCKER_BASE}/data/addons
-    export OPENHAB_LOGPATH=${OPENHAB_SETUP_USERDATA}/logs
-fi
-
-# this is my develpment server
-if [ `hostname` == "MacBookPro.fritz.box" ];
-then
-    echo "  env.bash - hostname server-dev"
-    export OPENHAB_SRV_TYPE=github
-    export OPENHAB_SETUP_SOURCE=/Volumes/default/linux/install/openhab
+    export OPENHAB_SETUP_SOURCE=/nas/linux/install/openhab
+	export DATABASE_CLIENT=mariadb
 fi
 
 # this is my sandbox server
@@ -64,6 +51,12 @@ then
     echo "  env.bash - hostname mac-ubuntu"
     export OPENHAB_SRV_TYPE=sbx
 fi
+# --------------------------------------------------------------
+
+export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/conf
+export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/userdata
+export OPENHAB_SETUP_ADDONS=${OPENHAB_DOCKER_BASE}/addons
+export OPENHAB_LOGPATH=${OPENHAB_SETUP_USERDATA}/logs
 
 if [ -z ${OPENHAB_SETUP_CONF} ];
 then
@@ -85,28 +78,20 @@ fi
 
 if [ -z ${OPENHAB_SETUP_SOURCE} ];
 then
-        echo "  env.bash -  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        echo "  env.bash -  \$OPENHAB_SETUP_SOURCE not defined"
-        echo "  env.bash -  Default wird zur Laufzeit genutzt und auf das aktuelle Verzeichnis gesetzt!"
-        echo
-        export OPENHAB_SETUP_SOURCE=`pwd`
+	echo "  env.bash -  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	echo "  env.bash -  \$OPENHAB_SETUP_SOURCE not defined"
+	echo "  env.bash -  Default wird zur Laufzeit genutzt und auf das aktuelle Verzeichnis gesetzt!"
+	echo
+	export OPENHAB_SETUP_SOURCE=`pwd`
 fi
 
 if [ "$OPENHAB_DOCKER" == "true" ];
 then
-        echo "  env.bash - Docker is : "$OPENHAB_DOCKER
+	echo "  env.bash - openhab is running in DOCKER : "$OPENHAB_DOCKER
+	export OPENHAB_USER=docker
+	export OPENHAB_GROUP=docker
 else
-        echo "  env.bash - no Docker installation "$OPENHAB_DOCKER
-fi
-
-
-if [ -z ${OPENHAB_SETUP_CONF} ];
-then
-        echo "  env.bash -  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        echo "  env.bash -  \$OPENHAB_SETUP_CONF not defined"
-        echo "  env.bash -  Default wird zur Laufzeit genutzt!"
-        echo
-        export OPENHAB_SETUP_CONF=/etc/openhab
+	echo "  env.bash - no Docker installation "$OPENHAB_DOCKER
 fi
 
 if [ -z ${OPENHAB_SETUP_USERDATA} ];

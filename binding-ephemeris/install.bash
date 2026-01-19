@@ -18,12 +18,6 @@ else
 	DATAPATH=${OPENHAB_SETUP_SOURCE}/${BINDING}
 fi
 
-FILE=$DATAPATH
-if [ ! -d $FILE  ]; then
-    echo "Wrong call because folder does not exist : "$FILE
-    exit
-fi
-
 cp ${DATAPATH}/ephemeris.things ${OPENHAB_SETUP_CONF}/things/.
 cp ${DATAPATH}/ephemeris.items ${OPENHAB_SETUP_CONF}/items/.
 cp ${DATAPATH}/ephemeris.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
@@ -33,7 +27,6 @@ mkdir ${OPENHAB_SETUP_CONF}/misc
 mkdir ${OPENHAB_SETUP_CONF}/misc/ephemeris
 cp ${DATAPATH}/ephemeris.xml ${OPENHAB_SETUP_CONF}/misc/ephemeris/.
 cp ${DATAPATH}/MyEntry_de.xml ${OPENHAB_SETUP_CONF}/misc/ephemeris/.
-cp ${DATAPATH}/holiday_descriptions_de.properties ${OPENHAB_SETUP_CONF}/misc/ephemeris/.
 cp ${DATAPATH}/Holidays_de.xml ${OPENHAB_SETUP_CONF}/misc/ephemeris/.
 
 chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}

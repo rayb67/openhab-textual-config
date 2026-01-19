@@ -1,21 +1,21 @@
 #!/bin/bash
 
+BINDING=`pwd | awk -F/ '{print $NF}'`
+
 if [ -z ${OPENHAB_SETUP_SOURCE} ];
 then
         echo "  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         echo "  \$OPENHAB_SETUP_SOURCE not defined"
-        echo "  ...please set e.g.:"
-        echo "  export OPENHAB_SETUP_SOURCE=/dsnas/install/openhab"
-        exit
+        echo "  Default wird zur Laufzeit genutzt und auf das aktuelle Verzeichnis gesetzt!"
+        echo
+        export OPENHAB_SETUP_SOURCE=`pwd`
 fi
 
 if [ "$#" -gt "0" ];
 then
-    DATAPATH=$OPENHAB_SETUP_SOURCE/$1
+    DATAPATH=${OPENHAB_SETUP_SOURCE}/$1
 else
-    echo "not possible without parameter!"
-    echo "parameter set e.g.: binding-<name>"
-    exit
+    DATAPATH=${OPENHAB_SETUP_SOURCE}/${BINDING}
 fi
 
 FILE=$DATAPATH
