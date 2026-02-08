@@ -11,12 +11,12 @@ Number:Temperature		lcn_Temp_EG_WC					"WC [%.1f °C]"			<temperature>		(EG_WC,g
 
 // ------------------------------------------------------------------------------------
 // M020 / UPP GT12 (EG Wohnzimmer > Flur)
-Switch					Licht_EG_Sekretaer				"Wohnzimmer Licht Sekretaer [%s]"	<light>		(EG_Wohnz,gLichtEG) ["Lightbulb"] 
+Switch					Licht_EG_Sekretaer				"Wz Licht Sekretaer [%s]"	<light>		(EG_Wohnz,gLichtEG) ["Lightbulb"] 
 {channel="lcn:module:bus:S000M020:output#1" }
 
 // ------------------------------------------------------------------------------------
 // M022 / UPS GT6  (EG Wohnzimmer > Sofa)
-Number					lcn_SetTe_EGWohnz				"Wohnz Soll"		<temperature>	(EG_Wohnz,gHeizung_Soll)			["Temperature"]
+Number					lcn_SetTe_EGWohnz				"Wz Soll"		<temperature>	(EG_Wohnz,gHeizung_Soll)			["Temperature"]
 { channel="lcn:module:bus:S000M022:rvarsetpoint#1",
 	widget    ="oh-stepper-card"[ title="Wohnzimmer", min=16, max=23, step=0.5, icon="oh:temperature" ], 
 	listWidget="oh-stepper-item"[ title="Wohnzimmer", min=16, max=23, step=0.5, icon="oh:temperature" ],
@@ -24,24 +24,25 @@ Number					lcn_SetTe_EGWohnz				"Wohnz Soll"		<temperature>	(EG_Wohnz,gHeizung_S
 	stateDescription=" "[ pattern="%.1f °C"],
 	autoupdate="false"	
 }
-Number:Temperature		lcn_Temp_EG_WohnzSofa			"Wohnz Sofa [%.1f °C]"		<temperature>	(EG_Wohnz,gHeizung_Ist)		["Measurement"]
+Number:Temperature		lcn_Temp_EG_WohnzSofa			"Wz Sofa [%.1f °C]"		<temperature>	(EG_Wohnz,gHeizung_Ist)		["Measurement"]
 {channel="lcn:module:bus:S000M022:variable#2" }
 
 // ------------------------------------------------------------------------------------
 // M023 / UPS GT12 R1U (EG Wohnzimmer > Terasse)
 Number:Temperature		lcn_Temp_EG_WohnzFlur			"Flur [%.1f °C]"		<temperature>	(EG_Wohnz,gHeizung_Ist)		["Measurement"]
 {channel="lcn:module:bus:S000M020:variable#1" }
-Number:Temperature		lcn_Temp_EG_WohnzGarten			"Wohnz Garten [%.1f °C]"		<temperature>	(EG_Wohnz,gHeizung_Ist)		["Measurement"]
+Number:Temperature		lcn_Temp_EG_WohnzGarten			"Wz Garten [%.1f °C]"		<temperature>	(EG_Wohnz,gHeizung_Ist)		["Measurement"]
 {channel="lcn:module:bus:S000M023:variable#2" }
-Switch					lcn_steckd_EG_Wohnz_Leibung		"Wohnz Leibung"	<poweroutlet>	(EG_Wohnz,gSteckdosenEG)	["Switch"]
+
+Switch					lcn_steckd_EG_Wohnz_Leibung		"Wz Leibung"	<poweroutlet>	(EG_Wohnz,gSteckdosenEG)	["Switch"]
 {channel="lcn:module:bus:S000M023:relay#1" , homekit="Switchable" }
 
 // ------------------------------------------------------------------------------------
 // M024 / UPS GT12  (EG Wohnzimmer > Kueche)
 
 // ------------------------------------------------------------------------------------
-// M025 / UPS R1U   (EG Wohnzimmer > Steckdose TV)
-Switch					lcn_steckd_EG_Wohnz_Schrank		"Wohnz Schrank"	<poweroutlet>	(EG_Wohnz,gSteckdosenEG)	["Switch"]
+// M025 / UPS R1U   (EG Wohnzimmer > Steckdose Schrank)
+Switch					lcn_steckd_EG_Wohnz_Schrank		"Wz Schrank"	<poweroutlet>	(EG_Wohnz,gSteckdosenEG)	["Switch"]
 { channel="lcn:module:bus:S000M025:relay#1" , homekit="Switchable" }
 
 // M031 / UPS GT12  (EG Kueche > Terasse)
@@ -53,7 +54,7 @@ Dimmer					Licht_EG_Kueche_Kranz			"Kueche Li Kranz [%d %%]"	<light>			(EG_Kuech
 
 // ------------------------------------------------------------------------------------
 // M032 / UPS GT6   (EG Kueche > Wohnz)
-Number:Temperature		lcn_Temp_EG_KuecheWz			"Kueche  Wz [%.1f °C]"		<temperature>	(EG_Kueche,gHeizung_Ist)		["Measurement"]
+Number:Temperature		lcn_Temp_EG_KuecheWz			"Kueche Wz [%.1f °C]"		<temperature>	(EG_Kueche,gHeizung_Ist)		["Measurement"]
 {channel="lcn:module:bus:S000M032:variable#2" }
 
 // ------------------------------------------------------------------------------------
@@ -153,12 +154,12 @@ Number:Temperature	lcn_Temp_EG_Vorrat				"Vorrat [%.1f %unit%]"			<temperature>	
 
 // ------------------------------------------------------------------------------------
 // M120 / SH+ R8H   (EG Technik UV-Aussen)
-Dimmer				Licht_AUS_Terasse			"AUS Terasse [%d %%]"									(AUS_Terasse,gLichtAUS)	["Lightbulb"] 
+Dimmer				Licht_AUS_Terasse			"AUS Terasse [%d %%]"							(AUS_Terasse,gLichtAUS)	["Lightbulb"] 
 {channel="lcn:module:bus:S000M120:output#1"}
-Dimmer				Licht_AUS_Erker				"AUS Erker [%d %%]"										(AUS_Garten,gLichtAUS)	["Lightbulb"] 
+Dimmer				Licht_AUS_Erker				"AUS Erker [%d %%]"								(AUS_Garten,gLichtAUS)	["Lightbulb"] 
 {channel="lcn:module:bus:S000M120:output#2"}
 
-Switch				lcn_steckd_AUS_Bogen			"Garten Bogen"				<poweroutlet>		(AUS_Terasse, gSteckdosenAUS)	["Control"] 
+Switch				lcn_steckd_AUS_Bogen		"Garten Bogen"				<poweroutlet>		(AUS_Terasse, gSteckdosenAUS)	["Control"] 
 { channel="lcn:module:bus:S000M120:relay#2" ,homekit="Outlet"}
 
 Switch				Licht_AUS_Haustuer			"AUS Haustuer [%s]"								(AUS_Hof,gLichtAUS)		["Lightbulb"] 
@@ -446,17 +447,23 @@ Dimmer			Licht_OG_Bad_Kranz			"Kranz [%d %%]"					<light>				(OG_Bad)			["Lightb
  homekit="Lighting, Lighting.Brightness" [dimmerMode="filterBrightness100"]}
 
 Rollershutter	Rollo_OG_BueroGarten		"Buero zRo Garten"	<rollershutter> (OG_Buero)	["Blinds"]  
-{channel="lcn:module:bus:S000M165:rollershutterrelay#1",
-homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
+{
+channel="lcn:module:bus:S000M165:rollershutterrelay#1"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 Rollershutter	Rollo_OG_BueroHinten		"Buero zRo Hinten"	<rollershutter> (OG_Buero)	["Blinds"]
-{channel="lcn:module:bus:S000M165:rollershutterrelay#2",
-homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
+{
+channel="lcn:module:bus:S000M165:rollershutterrelay#2"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 //Neu
 Rollershutter	Rollo_OG_BueroStrasse		"Buero zRo Strasse"	<rollershutter> (OG_Buero)	["Blinds"]
-{channel="lcn:module:bus:S000M165:rollershutterrelay#3",
-homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
-//Alt
+{
+channel="lcn:module:bus:S000M165:rollershutterrelay#3"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
+
 Rollershutter	Rollo_OG_Flur				"zRo Flur"		<rollershutter> (OG_Flur)	["Blinds"]  
 {channel="lcn:module:bus:S000M165:rollershutterrelay#4"}
 
@@ -469,34 +476,55 @@ Dimmer			Licht_EG_Sofa				"Wohnzimmer Sofa"			<light>				(EG_Wohnz,gLichtEG)		["
 {channel="lcn:module:bus:S000M170:output#2", homekit="Lighting, Lighting.Brightness" }
 
 Rollershutter	Rollo_EG_WZ_ErkerLinks		"Kueche Erker Links"			<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
-{channel="lcn:module:bus:S000M170:rollershutterrelay#1",
-homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
+{
+channel="lcn:module:bus:S000M170:rollershutterrelay#1"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 Rollershutter	Rollo_EG_WZ_ErkerRechts		"Kueche Erker Rechts"			<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
-{channel="lcn:module:bus:S000M170:rollershutterrelay#2",
-homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
+{
+channel="lcn:module:bus:S000M170:rollershutterrelay#2"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 Rollershutter	Rollo_EG_KuecheTuer			"Kueche Tuer"					<rollershutter>		(EG_Kueche,gRoll_EG_Kueche)		["Blinds"]
-{channel="lcn:module:bus:S000M170:rollershutterrelay#3",
-homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
+{
+channel="lcn:module:bus:S000M170:rollershutterrelay#3"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 Rollershutter	Rollo_EG_KuecheFenster		"Kueche Fenster"				<rollershutter>		(EG_Kueche,gRoll_EG_Kueche)		["Blinds"]
-{channel="lcn:module:bus:S000M170:rollershutterrelay#4",
-homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
+{
+channel="lcn:module:bus:S000M170:rollershutterrelay#4",
+homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 // ------------------------------------------------------------------------------------
 // M175 / SH R8H   (EG Technik UV-Unten) Rollokontakte
 Dimmer			Licht_OG_Bad_Spiegel		"Bad Spiegel [%d %%]"		<light>				(OG_Bad,gLichtOG)		["Lightbulb"] 
-{channel="lcn:module:bus:S000M175:output#2",
-homekit="Lighting, Lighting.Brightness" [dimmerMode="filterBrightness100"]}
+{
+channel="lcn:module:bus:S000M175:output#2"
+, homekit="Lighting, Lighting.Brightness" [dimmerMode="filterBrightness100"]
+}
 
 Rollershutter	Rollo_OG_GaesteLinks		"zRo Links"					<rollershutter>		(OG_Gaeste)						["Blinds"]
-{channel="lcn:module:bus:S000M175:rollershutterrelay#1"}
+{
+channel="lcn:module:bus:S000M175:rollershutterrelay#1"
+,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 Rollershutter	Rollo_OG_GaesteRechts		"zRo Rechts"				<rollershutter>		(OG_Gaeste)						["Blinds"]
-{channel="lcn:module:bus:S000M175:rollershutterrelay#2"}
+{
+channel="lcn:module:bus:S000M175:rollershutterrelay#2"
+,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 Rollershutter	Rollo_OG_Schlafz			"zRo Rollo"					<rollershutter>		(OG_Schlafz)					["Blinds"]
-{channel="lcn:module:bus:S000M175:rollershutterrelay#3"}
+{
+channel="lcn:module:bus:S000M175:rollershutterrelay#3"
+,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 Rollershutter	Rollo_OG_Ankleide			"zRo Rollo"					<rollershutter>		(OG_Ankleide)					["Blinds"]
-{channel="lcn:module:bus:S000M175:rollershutterrelay#4"}
+{channel="lcn:module:bus:S000M175:rollershutterrelay#4"
+,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 //Switch SendKeyRollaedenEGRunterB    "Abends rollo RunterB"              {lcn="[ON:lcn_pi:KEYS.S0.M170.B2.1s]"}
 //Switch SendKeyRolloEGWzErkerLamelle "EGWzErkerLamelle"                  {lcn="[ON:lcn_pi:KEYS.S0.M170.D8.HIT]"}
 
@@ -504,10 +532,14 @@ Rollershutter	Rollo_OG_Ankleide			"zRo Rollo"					<rollershutter>		(OG_Ankleide)
 // ------------------------------------------------------------------------------------
 // M180 / SH+ R8H / 4x Rollosteuerung (EG Technik - Unterverteilung)
 Rollershutter	Rollo_EG_Technik			"Ro Rollo"				<rollershutter>		(EG_Technik)					["Blinds"]
-{channel="lcn:module:bus:S000M180:rollershutterrelay#1"}
+{
+channel="lcn:module:bus:S000M180:rollershutterrelay#1"
+,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 Rollershutter	Rollo_EG_WZ_Strasse         "Wohnzimmer Strasse"			<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
-{channel="lcn:module:bus:S000M180:rollershutterrelay#2"
+{
+channel="lcn:module:bus:S000M180:rollershutterrelay#2"
 , homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
 
 Rollershutter	Rollo_EG_WZ_Fenster         "Wohnzimmer Fenster"			<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
@@ -819,6 +851,7 @@ Switch		lcn_action_SendKeyOGKindDachFRunter		"OG KindDachF Runter"	(OG_Kind)			[
 Switch		lcn_action_SendKeyOGKindDachFRauf		"OG KindDachF Rauf"		(OG_Kind)			["Switch"]
 
 Switch		lcn_action_SendKeyGuestWLAN				"Fritzbox Guest WLAN"	(EG_Technik)		["Switch"]
+Switch		lcn_action_SendKeyTueroeffner			"Tueroeffner"			(EG_Flur)			["Switch"]
 
 Switch		lcn_action_GarageTorUP					"Garage Öffnen"			(EG_Garage)			["Switch"]
 { homekit="Switchable" }

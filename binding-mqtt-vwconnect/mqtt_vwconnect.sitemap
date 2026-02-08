@@ -1,0 +1,22 @@
+sitemap  mqtt_vwconnect label="VW Connect"
+{
+    Frame label="VW" {
+        Switch item=VWCar_Lights
+        Default item=VWCar_Inspection_At
+        Default item=VWCar_Oil_Service_At
+        Default item=VWCar_Oil_Service_After
+        Default item=VWCar_Inspection_After
+        Default item=VWCar_Odometer
+    }
+    Frame label="Position" {
+        Default item=VWCar_Longitude
+        Default item=VWCar_Latitude
+        Text item=VWCar_Position_Type
+    }
+    Frame label="Info" {
+        Text item=VWCar_State
+        Text item=VWCar_Name
+        Text item=VWCar_Model
+        Image item=VWCar_Picture
+    }
+}

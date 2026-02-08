@@ -1,4 +1,4 @@
-sitemap lgwebos label="Main LG WebOS"
+sitemap lgwebos label="LG WebOS"
 {
     Frame label="TV" {
         Switch item=LG_TV1_TestSwitch

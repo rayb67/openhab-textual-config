@@ -2,15 +2,15 @@ Thing ipcamera:instar:hof "Hof Camera" [
     ipAddress="10.10.10.80",
     username="openhab",
     password="password",
+	pollTime="1000",
     onvifPort="8080",
     onvifEventServiceType="0",
-	pollTime="1000",
+    onvifMediaProfile="1",
 	ffmpegLocation="/volume4/@appstore/ffmpeg7/bin/ffmpeg",
 	port="80"
 ]
 /*
 
-    onvifMediaProfile="0",
 	updateImageWhen="0",
     ffmpegInput="rtsp://10.10.10.80:554/11",
     snapshotUrl="http://10.10.10.80/tmpfs/snap.jpg",

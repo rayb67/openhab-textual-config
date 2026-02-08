@@ -1,4 +1,5 @@
-var Number tmp_level = 250.0
+// Statisdcher Wert der abhaenigig von der Anlage ist
+var Number tmp_level = 300.0
 rule "RctMqtt_Grid_Power" 
 when
 	Time cron "0 */1 * * * ?" //  1 Min zum testen

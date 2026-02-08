@@ -10,15 +10,15 @@ der OpenHab Steuerung verwendet und beginnt mit Oh....
 */
 Switch					Oh_Status_RolloBueroStrasse		"Ro Buero Strasse Status"				<info>			(gMisc)
 Switch					Oh_Status_WifeExceptions		"Status Frau Besonderheiten"	// in der Rule FrauBesonderheiten
+Switch					Oh_Status_Nacht					"Nacht Status"							<info>			(gTechnik)	["Switch"]
 Number:Dimensionless	Oh_Regen_count					"Regen minuten"							<rain>			(gMisc)
 
+Switch					Oh_Control_DaemmerungRolloDeko	"Daemmerung Rollo Deko E/A"				<info>			(gTechnik)	["Switch"]
 Switch					Oh_Control_RolloBueroStrasse	"Ro Buero Strasse Control E/A"			<sun>			(gTechnik)	["Switch"]
 Switch					Oh_Control_Urlaub				"Urlaub E/A"							<sun>			(gTechnik)	["Switch"]
 Switch					Oh_Control_TimerHeizung			"Timer Heitzung auf 43 E/A"				<temperature>	(gTechnik)	["Switch"]
-Switch					Oh_Status_Nacht					"Nacht Status"							<info>			(gTechnik)	["Switch"]
 Switch					Oh_Control_HomeOffice			"Home Office E/A"						<home>			(gTechnik)	["Switch"]
 Switch					Oh_Control_Abwesend				"Abwesend E/A"							<info>			(gTechnik)	["Switch"]
-Switch					Oh_Control_DaemmerungRolloDeko	"Daemmerung Rollo Deko E/A"				<info>			(gTechnik)	["Switch"]
 Switch					Oh_Control_WifeExceptions		"Frau Ausnahmen E/A"					<info>			(gTechnik)	["Switch"]
 Switch					Oh_Control_RolloBlockKuecheDaemmerung	"Ro Kueche block Dammerung E/A"	<info>			(gTechnik)	["Switch"]
 Switch					Oh_Control_BadMusicAutomatic	"Musik Bad automatik E/A"				<player>		(OG_Bad)	["Switch"]

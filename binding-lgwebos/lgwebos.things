@@ -1,1 +1,6 @@
-Thing lgwebos:WebOSTV:tv1 [host="10.10.10.78", key="yourAPIKey"]
+Thing lgwebos:WebOSTV:tv1 [
+	host="10.10.10.78", 
+	key="yourAPIKey", 
+	macAddress="60:75:6C:3D:4E:6A", 
+	broadcastAddress="10.10.10.255"
+]

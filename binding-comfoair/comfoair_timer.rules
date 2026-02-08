@@ -1,4 +1,4 @@
-// Gast Lueftung EIN
+// Karen Lueftung EIN
 rule "TimerDiverses:LueftungEIN"
 when
 	Time cron "0 30 18 ? * *"
@@ -19,7 +19,7 @@ then
 	}
 end
 
-// Gast Lueftung AUS
+// Karen Lueftung AUS
 rule "TimerDiverses:LueftungAUS"
 when
 	Time cron "0 50 7 ? * THU,FRI"

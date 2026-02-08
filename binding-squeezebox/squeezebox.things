@@ -10,7 +10,7 @@ Bridge squeezebox:squeezeboxserver:server   "SB Server" @ "NAS"             [ ip
 	Thing squeezeboxplayer bad           "SB Bad" @ "Bad"					
 	[ mac="b8:27:eb:73:c0:bf" , notificationTimeout=30, notificationVolume=50 ] // Bad
 	Thing squeezeboxplayer kueche        "SB Kueche" @ "Kueche"
-	[ mac="dc:a6:32:04:70:83" , notificationTimeout=30, notificationVolume=50 ] // Kueche
+	[ mac="dc:a6:32:22:68:76" , notificationTimeout=30, notificationVolume=50 ] // Kueche
 }
 /*
 	Thing squeezeboxplayer boom          "SB Boom" @ "Boom"					

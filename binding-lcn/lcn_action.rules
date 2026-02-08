@@ -1,30 +1,3 @@
-//Switch SendKeyGuestMode             "Gaeste im Haus"                    {lcn="[ON:lcn_pi:KEYS.S0.M80.B2.MAKE]"}
-// 2023.01.17 Da die Sperre nicht wieder manuell geloest werden kann,
-//            wird diese Rule erst mal deaktiviert.
-/*
-rule "SendKeyGuestMode"
-when
-    Item SendKeyGuestMode changed // to ON
-then
-    logInfo("SendKeyGuestMode","Guest Mode set")
-    val actions = getActions("lcn","lcn:module:bus:S000M080")
-    actions.hitKey("B", 2, "MAKE")
-end
-*/
-
-
-//Switch lcn_action_SendKeyEndSperreBewegungsmelderHof "Sperre Hof Bewegungsm."            {lcn="[ON:lcn_pi:KEYS.S0.M155.A2.1s]"}
-// 2023.01.17 Da die Sperre nicht wieder manuell geloest werden kann,
-//            wird diese Rule erst mal deaktiviert.
-rule "SperreBewegungsmelder"
-when
-    Item lcn_action_SendKeyEndSperreBewegungsmelderHof changed // to ON
-then
-    logInfo("SperreBewegungsmelder","Rollo Sperre Bewegungsmelder")
-    val actions = getActions("lcn","lcn:module:bus:S000M155")
-    actions.hitKey("A", 2, "1s")
-end
-
 // ------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
 //
@@ -33,6 +6,7 @@ end
 //
 // ------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------
+
 
 
 //Switch lcn_action_SendKeySperreRolloOff        "Rollo Sperre >AUS< wegen Wind"     {lcn="[ON:lcn_pi:KEYS.S0.M125.A3.HIT]"}
@@ -73,20 +47,34 @@ end
 
 // ###################################################
 // #4
+rule "HaustuerOeffner"
+when
+//    Item lcn_action_SendKeyTueroeffner changed from Off to ON // to ON
+    Item lcn_action_SendKeyTueroeffner changed to ON // to ON
+then
+    logInfo("HaustuerOeffner","HaustuerOeffner wurde betaetigt")
+    val actions = getActions("lcn","lcn:module:bus:S000M140")
+    actions.hitKey("A", 5, "HIT")
+	createTimer(now.plusSeconds(2), [
+		postUpdate(lcn_action_SendKeyTueroeffner, "OFF")
+	])
+end
+/*
 rule "lcn_relay_TuerHaustuer" 
 when
 	Item lcn_relay_TuerHaustuer changed from OFF to ON
 then
-	logInfo("lcn_relay_TuerHaustuer","Tueroeffner auf : "+lcn_relay_TuerHaustuer.state)
+	logInfo("lcn_relay_TuerHaustuer","1 - Tueroeffner auf : "+lcn_relay_TuerHaustuer.state)
 	val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
 	telegramAction.sendTelegram("....da hat jemand auf die Haustuer gedrueckt")
 
-	logDebug("lcn_relay_TuerHaustuer","...trigger...")
-	createTimer(now.plusSeconds(2), [
+	logInfo("lcn_relay_TuerHaustuer","2 - ...trigger...")
+	createTimer(now.plusSeconds(4), [
 		lcn_relay_TuerHaustuer.sendCommand( OFF )
 	])
-	logInfo("lcn_relay_TuerHaustuer","Tueroeffner zu : "+lcn_relay_TuerHaustuer.state)
+	logInfo("lcn_relay_TuerHaustuer","3 - Tueroeffner zu : "+lcn_relay_TuerHaustuer.state)
 end
+*/
 
 // ###################################################
 // #5
@@ -408,4 +396,31 @@ then
 	}
 end
 */
+
+//Switch SendKeyGuestMode             "Gaeste im Haus"                    {lcn="[ON:lcn_pi:KEYS.S0.M80.B2.MAKE]"}
+// 2023.01.17 Da die Sperre nicht wieder manuell geloest werden kann,
+//            wird diese Rule erst mal deaktiviert.
+/*
+rule "SendKeyGuestMode"
+when
+    Item SendKeyGuestMode changed // to ON
+then
+    logInfo("SendKeyGuestMode","Guest Mode set")
+    val actions = getActions("lcn","lcn:module:bus:S000M080")
+    actions.hitKey("B", 2, "MAKE")
+end
+*/
+
+
+//Switch lcn_action_SendKeyEndSperreBewegungsmelderHof "Sperre Hof Bewegungsm."            {lcn="[ON:lcn_pi:KEYS.S0.M155.A2.1s]"}
+// 2023.01.17 Da die Sperre nicht wieder manuell geloest werden kann,
+//            wird diese Rule erst mal deaktiviert.
+rule "SperreBewegungsmelder"
+when
+    Item lcn_action_SendKeyEndSperreBewegungsmelderHof changed // to ON
+then
+    logInfo("SperreBewegungsmelder","Rollo Sperre Bewegungsmelder")
+    val actions = getActions("lcn","lcn:module:bus:S000M155")
+    actions.hitKey("A", 2, "1s")
+end
 

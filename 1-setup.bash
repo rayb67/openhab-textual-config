@@ -796,6 +796,7 @@ back-all() {
 	${OPENHAB_SETUP_SOURCE}/binding-mqtt-instar/backup.bash binding-mqtt-instar
 	${OPENHAB_SETUP_SOURCE}/binding-mqtt-rctmon/backup.bash binding-mqtt-rctmon
 	${OPENHAB_SETUP_SOURCE}/binding-mqtt-vzlogger/backup.bash binding-mqtt-vzlogger
+	${OPENHAB_SETUP_SOURCE}/binding-mqtt-vwconnect/backup.bash binding-mqtt-vwconnect
 	${OPENHAB_SETUP_SOURCE}/binding-network/backup.bash binding-network
 	${OPENHAB_SETUP_SOURCE}/binding-openweathermap/backup.bash binding-openweathermap
 	${OPENHAB_SETUP_SOURCE}/binding-sgready/backup.bash binding-sgready

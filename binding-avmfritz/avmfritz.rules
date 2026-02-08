@@ -23,10 +23,10 @@ then
 	   //actions.sendMessage(msg, "openHAB")
 
 	logInfo("FritzBoxInbound", "play sound")
-	LG_TV1_Toast.sendCommand("... das Telefon geht...")
 //   	playSound("squeezebox:squeezeboxplayer:badsrv:mobile", "doorbell.mp3")
 //   	playSound("squeezebox:squeezeboxplayer:badsrv:mobile", "original-iphone-ring.mp3")
-//	playSound("squeezebox:squeezeboxplayer:badsrv:wohnzimmer", "doorbell.mp3")
+	playSound("squeezebox:squeezeboxplayer:badsrv:wohnzimmer", "doorbell.mp3")
+	playSound("squeezebox:squeezeboxplayer:badsrv:kueche", "doorbell.mp3")
 //	playSound("squeezebox:squeezeboxplayer:badsrv:kueche", "original-iphone-ring.mp3")
 	// Das ist die Voice Funtion. Die muss noch als binding rein
 //	say("Achtung das Telefon klingelt", "voicerss:deDE", "squeezebox:squeezeboxplayer:badsrv:mobile", new PercentType(60))

@@ -1,8 +1,5 @@
 Group		gtr064						"tr064"						<network>	(gTechnik)		["NetworkAppliance"]
 
-//{channel="tr064:subdeviceLan:fb7590:LAN:maconline_30_3AD7_3AA1_3A6C_3A73_3AE5"}
-//{channel="tr064:subdeviceLan:fb7590:LAN:maconline:30:D7:A1:6C:73:E5"}
-
 
 Switch		tr064Wifi24					"1 2,4GHz Wifi"				<network>	(gtr064)	["Control","Network"] 
 {channel="tr064:subdeviceLan:fb7590:LAN:wifi1Enable " }
@@ -26,8 +23,8 @@ Number:DataTransferRate	tr064_CurrentUpstream	"3 Crurent Upstream"	<network>	(gt
 
 Number:DataAmount	tr064_TotalBytesReceived 	"3 Total Bytes Received"	<network>	(gtr064)	["Measurement","Network"]
 {channel="tr064:subdevice:fb7590:WANCon:wanTotalBytesReceived"}
-Number:DataAmount	tr064_TotalBytesSend	 	"3 Total Bytes Send"	<network>	(gtr064)	["Measurement","Network"]
-{channel="tr064:subdevice:fb7590:WANCon:wanTotalBytesSend"}
+Number:DataAmount	tr064_TotalBytesSent	 	"3 Total Bytes Sent"	<network>	(gtr064)	["Measurement","Network"]
+{channel="tr064:subdevice:fb7590:WANCon:wanTotalBytesSent"}
 
 // Incoming, Outgoing and missed calls in the last 7 days
 //Number tr064IncomingCalls "Incoming Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7590:inboundCalls_7" }

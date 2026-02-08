@@ -10,12 +10,14 @@ Number	Camera_Hof_MP4_Recording		"1-Kamera MP4 Recording"				<Time>				(gIPCamer
 { channel="ipcamera:instar:hof:recordingMp4" }
 Number	Camera_Hof_GIF_Recording		"1-Kamera GIF Recording"				<Time>				(gIPCamera)	["Camera"]
 { channel="ipcamera:instar:hof:recordingGif" }
+
 String	Camera_Hof_Image_URL			"1-Kamera Image URL"					<Camera>			(gIPCamera)	["Camera"]
 { channel="ipcamera:instar:hof:imageUrl", stateDescription="http://10.10.10.68:8080/ipcamera/hof/ipcamera.jpg" }
 String	Camera_Hof_HLS_URL				"1-Kamera HLS URL"						<Camera>			(gIPCamera)	["Camera"]
 { channel="ipcamera:instar:hof:hlsUrl", stateDescription="http://10.10.10.68:8080/ipcamera/hof/ipcamera.m3u8" }
 String	Camera_Hof_MJPEG_URL			"1-Kamera MJPEG URL"					<Camera>			(gIPCamera)	["Camera"]
 { channel="ipcamera:instar:hof:mjpegUrl", stateDescription="http://10.10.10.68:8080/ipcamera/hof/ipcamera.mjpeg" }
+
 Switch	Camera_Hof_Poll					"1-Kamera Poll (on/off)"				<switch>			(gIPCamera)	["Camera"]
 { channel="ipcamera:instar:hof:pollImage" }
 Switch	Camera_Hof_Pir_Alarm			"1-Kamera pirAlarm (detect)"			<motion>			(gIPCamera)	["Alarm","Presens"]

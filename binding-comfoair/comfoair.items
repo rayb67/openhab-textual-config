@@ -33,7 +33,7 @@ String				comfoair_ErrorLast					"Error Last: [%s]"				<info>			(gComfoAir)	["Pr
 {channel="comfoair:comfoair:myComfoAir:errors#errorsLast"}
 String				comfoair_ErrorPrelast				"ErrorPrelast: [%s]"			<info>			(gComfoAir)	["Property"]
 {channel="comfoair:comfoair:myComfoAir:errors#errorsPrelast"}
-Number:Time			comfoair_FilterRuntime				"Filter runtime [%d h]"			<clock>			(gComfoAir)	["Measuremet"]
+Number:Time			comfoair_FilterRuntime				"Filter runtime [%.0f h]"			<clock>			(gComfoAir)	["Measuremet"]
 {channel="comfoair:comfoair:myComfoAir:times#filterHours"}
 
 
