@@ -52,14 +52,14 @@ Number:Length			weather_rain_month				"Wetter Niederschlag Monat [%.1f mm]"		<ra
 Number:Length			weather_rain_year				"Wetter Niederschlag Jahr [%.1f mm]"		<rain>      (gWetterStation)  ["Measurement","Rain"]
 { channel="fineoffsetweatherstation:gateway:ecowitt:rain-year" }
 
-Number					weather_Sensor_Hochbeet_Batterieladung "Sensor Hochbeet Batterieladung [%.0f %%]" <Battery> (gWetterStation)	[Energy, Measurement] 
-{ channel="fineoffsetweatherstation:sensor:ecowitt:WH51_CH1:batteryLevel" }
+Number						weather_Sensor_Hochbeet_Signalstarke			"Sensor Hochbeet Signalstärke"		<QualityOfService>	
+(gWetterStation)	[Measurement, SignalStrength]	{ channel="fineoffsetweatherstation:sensor:ecowitt:WH51_CH1:signal" }
+Number:ElectricPotential	weather_Sensor_Hochbeet_Batteriespannung		"Sensor Hochbeet Batteriespannung [%.1f %unit%]"	<Energy>	
+(gWetterStation)	[Measurement, Voltage]			{ channel="fineoffsetweatherstation:sensor:ecowitt:WH51_CH1:batteryVoltage", unit="V" }
+Switch						weather_Sensor_Hochbeet_Batteriestatus			"Sensor Hochbeet Niedriger Batteriestatus"	<LowBattery>	
+(gWetterStation)	[Alarm, LowBattery]				{ channel="fineoffsetweatherstation:sensor:ecowitt:WH51_CH1:lowBattery" }
 
-Number					weather_Sensor_Hochbeet_Signalstarke	"Sensor Hochbeet Signalstärke"		<QualityOfService>	(gWetterStation)	[Measurement, SignalStrength] 
-{ channel="fineoffsetweatherstation:sensor:ecowitt:WH51_CH1:signal" }
-
-Number:ElectricPotential	weather_Sensor_Hochbeet_Batteriespannung "Sensor Hochbeet Batteriespannung [%.1f %unit%]"	<Energy>	(gWetterStation)	[Measurement, Voltage]
-{ channel="fineoffsetweatherstation:sensor:ecowitt:WH51_CH1:batteryVoltage", unit="V" }
-
-Switch					weather_Sensor_Hochbeet_Niedriger_Batteriestatus "Sensor Hochbeet Niedriger Batteriestatus"	<LowBattery>	(gWetterStation)	[Alarm, LowBattery]
-{ channel="fineoffsetweatherstation:sensor:ecowitt:WH51_CH1:lowBattery" }
+Switch						weather_Sensor_Dach_Batteriestatus				"Sensor Dach Niedriger Batteriestatus"	<LowBattery>	
+(gWetterStation)	[Alarm, LowBattery]				{ channel="fineoffsetweatherstation:sensor:ecowitt:WH65:lowBattery" }
+Number						weather_Sensor_Dach_Signalstarke				"Sensor Dach Signalstärke"		<QualityOfService>	
+(gWetterStation)	[Measurement, SignalStrength]	{ channel="fineoffsetweatherstation:sensor:ecowitt:WH65:signal" }

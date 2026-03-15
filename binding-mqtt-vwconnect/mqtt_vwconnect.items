@@ -8,21 +8,27 @@ String		VWCar_Name				"Name"						<info>			(gVWConnect) [Point]
 { channel="mqtt:topic:server-dev:golf:name" }
 String		VWCar_Model				"Model"						<info>			(gVWConnect) [Point] 
 { channel="mqtt:topic:server-dev:golf:model" }
+
 String		VWCar_Position_Type		"Position Type"				<movecontrol>	(gVWConnect) [Point] 
 { channel="mqtt:topic:server-dev:golf:position_type" }
-DateTime	VWCar_Inspection_At		"Inspektion am"				<calendar>		(gVWConnect) [Status,Timestamp] 
-{ channel="mqtt:topic:server-dev:golf:inspection_at" }
-DateTime	VWCar_Oil_Service_At	"Oelservice am"				<calendar>		(gVWConnect) [Status,Timestamp] 
-{ channel="mqtt:topic:server-dev:golf:oil_service_at" }
 Number		VWCar_Longitude			"Longitude [%.5f '']"		<movecontrol>	(gVWConnect) [Point] 
 { channel="mqtt:topic:server-dev:golf:longitude" }
 Number		VWCar_Latitude			"Latitude [%.5f '']"		<movecontrol>	(gVWConnect) [Point] 
 { channel="mqtt:topic:server-dev:golf:latitude" }
+
 Number		VWCar_Oil_Service_After	"Oelservice nach [%.0f km]"	<info>			(gVWConnect) [Point] 
 { channel="mqtt:topic:server-dev:golf:oil_service_after" }
 Number		VWCar_Inspection_After	"Inspektion nach [%.0f km]"	<info>			(gVWConnect) [Point] 
 { channel="mqtt:topic:server-dev:golf:inspection_after" }
+
+DateTime	VWCar_Inspection_At		"Inspektion am"				<calendar>		(gVWConnect) [Status,Timestamp] 
+{ channel="mqtt:topic:server-dev:golf:inspection_at" }
+DateTime	VWCar_Oil_Service_At	"Oelservice am"				<calendar>		(gVWConnect) [Status,Timestamp] 
+{ channel="mqtt:topic:server-dev:golf:oil_service_at" }
+
 Number		VWCar_Odometer			"Kilomenterstand [%.0f km]"	<info>			(gVWConnect) [Point] 
 { channel="mqtt:topic:server-dev:golf:odometer" }
+Number		VWCar_Odometer_Day		"Kilomenter/Day [%.0f km]"	<info>			(gVWConnect) [Point] 
+
 Image		VWCar_Picture			"Picture CoverArt [%s]"						(gVWConnect) [Point] 
 { channel="mqtt:topic:server-dev:golf:picture" }

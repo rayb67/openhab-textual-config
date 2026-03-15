@@ -20,14 +20,24 @@ sitemap ecowitt label="Weather Station" {
 	}
 	Frame label="Regen" icon="water" {
 		Text item=weather_rain_rate label="Niederschlagsrate"
-		Text item=Wetter_Station_rain_day label="Menge/Tag"
-		Text item=Wetter_Station_rain_event label="Menge zuletzt"
-		Text item=Wetter_Station_rain_hour label="Menge/Stunde"
-		Text item=Wetter_Station_rain_week label="Menge/Woche"
-		Text item=Wetter_Station_rain_month label="Menge/Monat"
-		Text item=Wetter_Station_rain_year label="Menge/Jahr"
+		Text item=weather_rain_day label="Menge/Tag"
+		Text item=weather_rain_event label="Menge zuletzt"
+		Text item=weather_rain_hour label="Menge/Stunde"
+		Text item=weather_rain_week label="Menge/Woche"
+		Text item=weather_rain_month label="Menge/Monat"
+		Text item=weather_rain_year label="Menge/Jahr"
 	}
 	Frame label="Garten Feuchte" icon="water" {
 		Text item=weather_moisture_soil_channel_1 label="Hochbeet"
+	}
+
+	Frame label="Sensor Dach" icon="wave" {
+		Text item=weather_Sensor_Dach_Batteriestatus label="Batteriestatus [MAP(de.map):%s]"
+		Text item=weather_Sensor_Dach_Signalstarke label="Signalstaerke"
+	}
+	Frame label="Sensor Garten" icon="wave" {
+		Text item=weather_Sensor_Hochbeet_Batteriespannung label="Batteriespannung"
+		Text item=weather_Sensor_Hochbeet_Batteriestatus label="Batteriestatus [MAP(de.map):%s]"
+		Text item=weather_Sensor_Hochbeet_Signalstarke label="Signalstaerke"
 	}
 }
