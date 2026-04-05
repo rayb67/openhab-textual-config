@@ -1,34 +1,34 @@
 Group		gVWConnect				"VW Golf" [Equipment]
 
 Switch		VWCar_Lights			"Licht On/Off [%s]"			<switch>		(gVWConnect) [Power,Switch] 
-{ channel="mqtt:topic:server-dev:golf:lights" }
+{ channel="mqtt:topic:golfsrv:golf:lights" }
 String		VWCar_State				"Status"					<info>			(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:state" }
+{ channel="mqtt:topic:golfsrv:golf:state" }
 String		VWCar_Name				"Name"						<info>			(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:name" }
+{ channel="mqtt:topic:golfsrv:golf:name" }
 String		VWCar_Model				"Model"						<info>			(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:model" }
+{ channel="mqtt:topic:golfsrv:golf:model" }
 
 String		VWCar_Position_Type		"Position Type"				<movecontrol>	(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:position_type" }
+{ channel="mqtt:topic:golfsrv:golf:position_type" }
 Number		VWCar_Longitude			"Longitude [%.5f '']"		<movecontrol>	(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:longitude" }
+{ channel="mqtt:topic:golfsrv:golf:longitude" }
 Number		VWCar_Latitude			"Latitude [%.5f '']"		<movecontrol>	(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:latitude" }
+{ channel="mqtt:topic:golfsrv:golf:latitude" }
 
 Number		VWCar_Oil_Service_After	"Oelservice nach [%.0f km]"	<info>			(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:oil_service_after" }
+{ channel="mqtt:topic:golfsrv:golf:oil_service_after" }
 Number		VWCar_Inspection_After	"Inspektion nach [%.0f km]"	<info>			(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:inspection_after" }
+{ channel="mqtt:topic:golfsrv:golf:inspection_after" }
 
 DateTime	VWCar_Inspection_At		"Inspektion am"				<calendar>		(gVWConnect) [Status,Timestamp] 
-{ channel="mqtt:topic:server-dev:golf:inspection_at" }
+{ channel="mqtt:topic:golfsrv:golf:inspection_at" }
 DateTime	VWCar_Oil_Service_At	"Oelservice am"				<calendar>		(gVWConnect) [Status,Timestamp] 
-{ channel="mqtt:topic:server-dev:golf:oil_service_at" }
+{ channel="mqtt:topic:golfsrv:golf:oil_service_at" }
 
 Number		VWCar_Odometer			"Kilomenterstand [%.0f km]"	<info>			(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:odometer" }
+{ channel="mqtt:topic:golfsrv:golf:odometer" }
 Number		VWCar_Odometer_Day		"Kilomenter/Day [%.0f km]"	<info>			(gVWConnect) [Point] 
 
 Image		VWCar_Picture			"Picture CoverArt [%s]"						(gVWConnect) [Point] 
-{ channel="mqtt:topic:server-dev:golf:picture" }
+{ channel="mqtt:topic:golfsrv:golf:picture" }

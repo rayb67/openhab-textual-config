@@ -1,0 +1,24 @@
+Group		gWatermeter				"Wasseruhr"						<info>	(gTechnik)		["Sensor"]
+
+Switch		mqtt_wm_test			"Wasseruhr Test"				<info>	(gWatermeter)	["WallSwitch"]
+
+//Number		mqtt_wm_value			"Waswatermsrvbrauch [%.3f m³]"	<info>	(gWatermeter)	["Measurement","Water"]
+Number		mqtt_wm_value			"Waswatermsrvbrauch [%.0f m³]"	<info>	(gWatermeter)	["Measurement","Water"]
+{ channel="mqtt:topic:watermsrv:watermeter:value" }
+Number		mqtt_wm_freeMem			"Free Memory  [%.0f]"			<info>	(gWatermeter)	["Measurement","Current"] 
+{ channel="mqtt:topic:watermsrv:watermeter:freeMem" }
+Number		mqtt_wm_CPUtemp			"CPU temp  [%d]"				<info>	(gWatermeter)	["Measurement","Temperature"]
+{ channel="mqtt:topic:watermsrv:watermeter:CPUtemp" }
+
+String		mqtt_wm_error			"error"							<info>	(gWatermeter)	["Point"] 
+{ channel="mqtt:topic:watermsrv:watermeter:error" }
+String		mqtt_wm_connection		"connection"					<info>	(gWatermeter)	["Point"] 
+{ channel="mqtt:topic:watermsrv:watermeter:connection" }
+String		mqtt_wm_status			"Status"						<info>	(gWatermeter)	["Point"] 
+{ channel="mqtt:topic:watermsrv:watermeter:status" }
+String		mqtt_wm_fwVersion		"FW Version"					<info>	(gWatermeter)	["Point"] 
+{ channel="mqtt:topic:watermsrv:watermeter:fwVersion" }
+
+Number		mqtt_wm_tag_value		"Verbrauch letzter Tag [%.0f m³]"         <info>    (gWatermeter)    ["Measurement","Water"]
+Number		mqtt_wm_stunde_value	"Verbrauch letzte Stunde [%.0f m³]"       <info>    (gWatermeter)    ["Measurement","Water"]
+

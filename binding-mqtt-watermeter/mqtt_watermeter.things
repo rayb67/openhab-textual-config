@@ -1,0 +1,13 @@
+Bridge mqtt:broker:watermsrv [ host="10.10.10.68", port="1883", secure=false ]
+{
+   Thing topic watermeter "MQTT watermeter" {
+    Channels:
+	  Type number : value		[ stateTopic="watermeter/main/value", transformationPattern="REGEX:(\\d+\\.\\d*?[1-9])0*$|(\\d+)\\.0+$" ]
+      Type string : error		[ stateTopic="watermeter/main/error"]
+      Type number : CPUtemp		[ stateTopic="watermeter/CPUtemp"]
+      Type number : freeMem		[ stateTopic="watermeter/freeMem"]
+      Type string : status		[ stateTopic="watermeter/status"]
+      Type string : connection	[ stateTopic="watermeter/connection"]
+      Type string : fwVersion	[ stateTopic="watermeter/fwVersion"]
+	}
+}

@@ -1,0 +1,12 @@
+rule "VWCar_Odometer_Day"
+	when
+		Time cron "1 59 23 * * * ?"
+	then
+
+		var Number temp_day = VWCar_Odometer.deltaSince(now.minusDays(1))
+//		temp_day = temp_day*1000
+		VWCar_Odometer_Day.postUpdate(temp_day)
+		logInfo("VWCar_Odometer_Day","lief d  : "+ temp_day)
+
+end
+

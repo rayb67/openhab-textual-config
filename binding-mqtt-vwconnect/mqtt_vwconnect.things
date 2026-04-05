@@ -1,5 +1,5 @@
 //# https://community.openhab.org/t/carconnectivity-mqtt-setup/165334/7
-Bridge mqtt:broker:server-dev [ host="10.10.10.68", port="1883", secure=false ]
+Bridge mqtt:broker:golfsrv [ host="10.10.10.68", port="1883", secure=false ]
 {
    Thing topic golf  "MQTT VW Golf" {
     Channels:

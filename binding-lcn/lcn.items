@@ -412,7 +412,7 @@ Switch				lcn_relay_Bewegungsmelder_Hof	"Sperre Bewegungsm. Hof [%s]"  <contact>
 {channel="lcn:module:bus:S000M155:relay#8"}
 
 //Switch lcn_action_SendKeyEndSperreBewegungsmelderHof   "Sperre Hof Bewegungsm."            {lcn="[ON:lcn_pi:KEYS.S0.M155.A2.1s]"}  HIT
-Switch lcn_action_SendKeyEndSperreBewegungsmelderHof		"Sperre Hof Bewegungsm."		<motion>		(gTechnik)		["Control"]
+Switch lcn_action_SendKeyEndSperreBewegungsmelderHof	"Sperre Hof Bewegungsm."	<motion>		(gTechnik)		["Control"]
 
 
 // ------------------------------------------------------------------------------------
@@ -421,16 +421,22 @@ Switch			Licht_EG_Kueche_Tisch		"Kueche Li Tisch [%s]"				<light>			(EG_Kueche)	
 {channel="lcn:module:bus:S000M160:output#1" ,		// RALF - Dip-Schalter 1 auf of
 homekit="Lighting, Lighting.Brightness" [dimmerMode="filterBrightness100"]}
 
-Dimmer			Licht_EG_Kueche_Insel		"Kueche Li Insel  [%d %%]"						<light>			(EG_Kueche)		["Lightbulb"] 
+Dimmer			Licht_EG_Kueche_Insel		"Kueche Li Insel  [%d %%]"			<light>			(EG_Kueche)		["Lightbulb"] 
 {channel="lcn:module:bus:S000M160:output#2" ,
 homekit="Lighting, Lighting.Brightness" [dimmerMode="filterBrightness100"]}
 
-Rollershutter	Rollo_EG_KuecheErkerLinks	"Kueche zRo Erker Links"						<rollershutter>	(EG_Kueche,gRoll_EG_Kueche)		["Blinds"]
-{channel="lcn:module:bus:S000M160:rollershutterrelay#1"}
-Rollershutter	Rollo_EG_KuecheErkerRechts	"Kueche zRo Erker Rechts"						<rollershutter>	(EG_Kueche,gRoll_EG_Kueche)		["Blinds"]
-{channel="lcn:module:bus:S000M160:rollershutterrelay#2"}
-Rollershutter	Rollo_EG_Abstell			"Abstell zRo"							<rollershutter>	(EG_Abstell)				["Blinds"]
-{channel="lcn:module:bus:S000M160:rollershutterrelay#3"}
+Rollershutter	Rollo_EG_KuecheErkerLinks	"Kueche zRo Erker Links"			<rollershutter>	(EG_Kueche,gRoll_EG_Kueche)		["Blinds"]
+{channel="lcn:module:bus:S000M160:rollershutterrelay#1"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
+Rollershutter	Rollo_EG_KuecheErkerRechts	"Kueche zRo Erker Rechts"			<rollershutter>	(EG_Kueche,gRoll_EG_Kueche)		["Blinds"]
+{channel="lcn:module:bus:S000M160:rollershutterrelay#2"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
+Rollershutter	Rollo_EG_Abstell			"Abstell zRo"						<rollershutter>	(EG_Abstell)					["Blinds"]
+{channel="lcn:module:bus:S000M160:rollershutterrelay#3"
+//, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 
 // Sommer 2020  wurde genutzt weil der Raffstore defekt war
@@ -442,30 +448,26 @@ Rollershutter	Rollo_EG_Abstell			"Abstell zRo"							<rollershutter>	(EG_Abstell
 // M165 / SH R8H   (EG Technik UV-Unten) Rollokontakte
 Switch			Licht_OG_Flur				"Flur [%s]"								(OG_Flur)		["Lightbulb"] 
 {channel="lcn:module:bus:S000M165:output#2"}
-Dimmer			Licht_OG_Bad_Kranz			"Kranz [%d %%]"					<light>				(OG_Bad)			["Lightbulb"] 
+Dimmer			Licht_OG_Bad_Kranz			"Kranz [%d %%]"		<light>				(OG_Bad)		["Lightbulb"] 
 {channel="lcn:module:bus:S000M165:output#1",
  homekit="Lighting, Lighting.Brightness" [dimmerMode="filterBrightness100"]}
 
-Rollershutter	Rollo_OG_BueroGarten		"Buero zRo Garten"	<rollershutter> (OG_Buero)	["Blinds"]  
-{
-channel="lcn:module:bus:S000M165:rollershutterrelay#1"
+Rollershutter	Rollo_OG_BueroGarten		"Buero zRo Garten"				<rollershutter> (OG_Buero)	["Blinds"]  
+{ channel="lcn:module:bus:S000M165:rollershutterrelay#1"
 , homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
-
-Rollershutter	Rollo_OG_BueroHinten		"Buero zRo Hinten"	<rollershutter> (OG_Buero)	["Blinds"]
-{
-channel="lcn:module:bus:S000M165:rollershutterrelay#2"
+Rollershutter	Rollo_OG_BueroHinten		"Buero zRo Hinten"				<rollershutter> (OG_Buero)	["Blinds"]
+{ channel="lcn:module:bus:S000M165:rollershutterrelay#2"
 , homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
-//Neu
-Rollershutter	Rollo_OG_BueroStrasse		"Buero zRo Strasse"	<rollershutter> (OG_Buero)	["Blinds"]
-{
-channel="lcn:module:bus:S000M165:rollershutterrelay#3"
+Rollershutter	Rollo_OG_BueroStrasse		"Buero zRo Strasse"				<rollershutter> (OG_Buero)	["Blinds"]
+{ channel="lcn:module:bus:S000M165:rollershutterrelay#3"
 , homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
-
-Rollershutter	Rollo_OG_Flur				"zRo Flur"		<rollershutter> (OG_Flur)	["Blinds"]  
-{channel="lcn:module:bus:S000M165:rollershutterrelay#4"}
+Rollershutter	Rollo_OG_Flur				"zRo Flur"				<rollershutter> (OG_Flur)	["Blinds"]  
+{channel="lcn:module:bus:S000M165:rollershutterrelay#4"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 // ------------------------------------------------------------------------------------
 // M170 / SH R8H   (EG Technik UV-Unten) Rollokontakte
@@ -476,20 +478,17 @@ Dimmer			Licht_EG_Sofa				"Wohnzimmer Sofa"			<light>				(EG_Wohnz,gLichtEG)		["
 {channel="lcn:module:bus:S000M170:output#2", homekit="Lighting, Lighting.Brightness" }
 
 Rollershutter	Rollo_EG_WZ_ErkerLinks		"Kueche Erker Links"			<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
-{
-channel="lcn:module:bus:S000M170:rollershutterrelay#1"
+{ channel="lcn:module:bus:S000M170:rollershutterrelay#1"
 , homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
 
 Rollershutter	Rollo_EG_WZ_ErkerRechts		"Kueche Erker Rechts"			<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
-{
-channel="lcn:module:bus:S000M170:rollershutterrelay#2"
+{ channel="lcn:module:bus:S000M170:rollershutterrelay#2"
 , homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
 
 Rollershutter	Rollo_EG_KuecheTuer			"Kueche Tuer"					<rollershutter>		(EG_Kueche,gRoll_EG_Kueche)		["Blinds"]
-{
-channel="lcn:module:bus:S000M170:rollershutterrelay#3"
+{ channel="lcn:module:bus:S000M170:rollershutterrelay#3"
 , homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
 Rollershutter	Rollo_EG_KuecheFenster		"Kueche Fenster"				<rollershutter>		(EG_Kueche,gRoll_EG_Kueche)		["Blinds"]
@@ -507,21 +506,18 @@ channel="lcn:module:bus:S000M175:output#2"
 }
 
 Rollershutter	Rollo_OG_GaesteLinks		"zRo Links"					<rollershutter>		(OG_Gaeste)						["Blinds"]
-{
-channel="lcn:module:bus:S000M175:rollershutterrelay#1"
+{ channel="lcn:module:bus:S000M175:rollershutterrelay#1"
 ,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
 Rollershutter	Rollo_OG_GaesteRechts		"zRo Rechts"				<rollershutter>		(OG_Gaeste)						["Blinds"]
-{
-channel="lcn:module:bus:S000M175:rollershutterrelay#2"
+{ channel="lcn:module:bus:S000M175:rollershutterrelay#2"
 ,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
-Rollershutter	Rollo_OG_Schlafz			"zRo Rollo"					<rollershutter>		(OG_Schlafz)					["Blinds"]
-{
-channel="lcn:module:bus:S000M175:rollershutterrelay#3"
+Rollershutter	Rollo_OG_Schlafz			"zRo Rollo Sch"					<rollershutter>		(OG_Schlafz)					["Blinds"]
+{ channel="lcn:module:bus:S000M175:rollershutterrelay#3"
 ,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
-Rollershutter	Rollo_OG_Ankleide			"zRo Rollo"					<rollershutter>		(OG_Ankleide)					["Blinds"]
+Rollershutter	Rollo_OG_Ankleide			"zRo Rollo An"					<rollershutter>		(OG_Ankleide)					["Blinds"]
 {channel="lcn:module:bus:S000M175:rollershutterrelay#4"
 ,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
@@ -532,15 +528,14 @@ Rollershutter	Rollo_OG_Ankleide			"zRo Rollo"					<rollershutter>		(OG_Ankleide)
 // ------------------------------------------------------------------------------------
 // M180 / SH+ R8H / 4x Rollosteuerung (EG Technik - Unterverteilung)
 Rollershutter	Rollo_EG_Technik			"Ro Rollo"				<rollershutter>		(EG_Technik)					["Blinds"]
-{
-channel="lcn:module:bus:S000M180:rollershutterrelay#1"
+{ channel="lcn:module:bus:S000M180:rollershutterrelay#1"
 ,homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
 
 Rollershutter	Rollo_EG_WZ_Strasse         "Wohnzimmer Strasse"			<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
-{
-channel="lcn:module:bus:S000M180:rollershutterrelay#2"
-, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]}
+{ channel="lcn:module:bus:S000M180:rollershutterrelay#2"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 Rollershutter	Rollo_EG_WZ_Fenster         "Wohnzimmer Fenster"			<rollershutter>		(EG_Wohnz,gRoll_EG_WZ)			["Blinds"]
 {channel="lcn:module:bus:S000M180:rollershutterrelay#3"
@@ -551,6 +546,7 @@ Rollershutter	Rollo_EG_WZ_Garten          "Wohnzimmer Garten"				<rollershutter>
 {channel="lcn:module:bus:S000M180:rollershutterrelay#4"
 , homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
 }
+
 Switch			Licht_EG_Technik			"Licht [%s]"						(EG_Technik)	["Lightbulb"] 
 {channel="lcn:module:bus:S000M180:output#1" }
 
@@ -564,13 +560,21 @@ Dimmer			Licht_OG_Schlafz_Links		"Bett Links [%d %%]"	<light>				(OG_Schlafz)	["
 {channel="lcn:module:bus:S000M185:output#2",
  homekit="Lighting, Lighting.Brightness" [dimmerMode="filterBrightness100"]}
 Rollershutter	Rollo_OG_BadToilette		"zRo Toilette"			<rollershutter>		(OG_Bad,gRoll_OG_Bad)				["Blinds"]
-{channel="lcn:module:bus:S000M185:rollershutterrelay#1"}
+{channel="lcn:module:bus:S000M185:rollershutterrelay#1"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 Rollershutter	Rollo_OG_BadDusche			"zRo Dusche"			<rollershutter>		(OG_Bad,gRoll_OG_Bad)				["Blinds"]
-{channel="lcn:module:bus:S000M185:rollershutterrelay#2"}
+{channel="lcn:module:bus:S000M185:rollershutterrelay#2"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 Rollershutter	Rollo_OG_BadStrasse			"zRo Strasse"			<rollershutter>		(OG_Bad,gRoll_OG_Bad)				["Blinds"]
-{channel="lcn:module:bus:S000M185:rollershutterrelay#3"}
+{channel="lcn:module:bus:S000M185:rollershutterrelay#3"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 Rollershutter	Rollo_OG_Kind				"zRo Kind"				<rollershutter>		(OG_Kind)							["Blinds"]
-{channel="lcn:module:bus:S000M185:rollershutterrelay#4"}
+{channel="lcn:module:bus:S000M185:rollershutterrelay#4"
+, homekit = "WindowCovering"  [stop=true, sendUpDownForExtents=true]
+}
 
 
 // ------------------------------------------------------------------------------------

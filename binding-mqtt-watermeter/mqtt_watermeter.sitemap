@@ -1,0 +1,17 @@
+sitemap mqtt_watermeter label="MQTT Wasseruhr"
+{	
+	Frame label="Zaehlerstand" {
+		Text item=mqtt_wm_value
+		Text item=mqtt_wm_stunde_value
+		Text item=mqtt_wm_tag_value
+	}
+	Frame label="ESP32-CAM" {
+		Text item=mqtt_wm_fwVersion
+		Text item=mqtt_wm_freeMem
+		Text item=mqtt_wm_CPUtemp
+		Text item=mqtt_wm_connection
+		Text item=mqtt_wm_status
+		Text item=mqtt_wm_error
+		Switch item=mqtt_wm_test
+	}
+}

@@ -1,0 +1,37 @@
+rule "mqtt_wm_stunde_value"
+when
+    Time cron "3 59 * * * * ?"
+//	or Item mqtt_wm_test changed
+then
+    logDebug("mqtt_wm_stunde_value","Wassermeter : "+mqtt_wm_value.state)
+
+    val delta = mqtt_wm_value.deltaSince(now.minusHours(1))
+    if(delta !== null) {
+        logDebug("mqtt_wm_stunde_value","Wassermeter delta : "+ delta)
+
+        mqtt_wm_stunde_value.postUpdate(delta)
+        logDebug("mqtt_wm_stunde_value","Wassermeter h : "+ mqtt_wm_stunde_value.state)
+    } else {
+        logWarn("mqtt_wm_stunde_value","deltaSince returned null")
+    }
+end
+
+
+rule "mqtt_wm_tag"
+when
+	Time cron "3 59 23 * * * ?"
+	or Item mqtt_wm_test changed
+then
+
+	val deltad = mqtt_wm_value.deltaSince(now.minusDays(1))
+
+    if(deltad !== null) {
+        logDebug("mqtt_wm_tag","Wassermeter d delta : "+ deltad)
+		mqtt_wm_tag_value.postUpdate(deltad)
+		logDebug("mqtt_wm_tag","Wasserzeahler d  : "+ mqtt_wm_tag_value.state)
+
+    } else {
+	    logWarn("mqtt_wm_tag_value","deltaSince returned null")
+    }
+end
+
