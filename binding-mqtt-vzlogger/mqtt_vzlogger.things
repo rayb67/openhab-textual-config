@@ -1,10 +1,16 @@
-// ..
-Bridge mqtt:broker:mybroker [ host="10.10.10.68", port="1883", secure=false ]
-{
-    Thing topic vzlogger "MQTT vzlogger Energiemeter" {
-		Channels: 
-		Type number : bezug		"Bezug"			[stateTopic="vzlogger/data/chn0/agg", transformationPattern="JS:mqtt_vzlogger_aufrunden.js" ]
-		Type number : lieferung	"Lieferung"		[stateTopic="vzlogger/data/chn1/agg", transformationPattern="JS:mqtt_vzlogger_aufrunden.js" ]
-		Type number : aktuell	"Aktuell"		[stateTopic="vzlogger/data/chn2/agg", transformationPattern="JS:mqtt_vzlogger_aktuell.js" ]
-	}
+// Because i use an extra thing file for the broker definition, the next line
+// is only for information. Put hat in an extra file, if you have more than one mqtt sources.
+// Bridge mqtt:broker:mybroker "MQTT -1- Broker" [ host="10.10.10.68", port=1883, keepAlive=66, secure=false, qos=1 ]
+
+Thing mqtt:topic:vzlogger "MQTT vzlogger Energie Meter" (mqtt:broker:mybroker) {
+	Channels: 
+		Type number : bezug		"Bezug"
+			[	stateTopic="vzlogger/data/chn0/agg", 
+			transformationPattern="JS:mqtt_vzlogger_aufrunden.js" ]
+		Type number : aktuell	"Aktuell"
+			[	stateTopic="vzlogger/data/chn2/agg", 
+				transformationPattern="JS:mqtt_vzlogger_aktuell.js" ]
+		Type number : lieferung	"Lieferung"
+			[	stateTopic="vzlogger/data/chn1/agg",
+				transformationPattern="JS:mqtt_vzlogger_aufrunden.js" ]
 }

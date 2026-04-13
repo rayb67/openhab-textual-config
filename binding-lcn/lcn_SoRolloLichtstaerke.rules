@@ -1,0 +1,47 @@
+// Die durchschnittliche Lichtstaerke der letzten 20 Min soll bei kurzen Sonnenstrahlen
+// genutzt werden, damit nicht sofort die Rollos herunter fahren
+
+// 2021.08.27 Zeit von 20 auf 30 min erhöht
+
+rule "Lichtstaerke"
+when  
+    Item WetterLichtW changed
+    or  Time cron "0 0/5 * * * ?"	// alle 5 min
+	or Item oh_SunPro_TestSwitch changed
+//    or  Time cron "0 */2 * * * ?"  // 30 sec zum Testen
+then
+	val java.util.List<Double> validValues = newArrayList()
+
+    val lichtO_avg = WetterLichtO.averageSince(now.minusMinutes(30))
+    if (lichtO_avg instanceof QuantityType) {
+        validValues.add((lichtO_avg as QuantityType<Number>).doubleValue)
+    }
+
+    val lichtS_avg = WetterLichtS.averageSince(now.minusMinutes(30))
+    if (lichtS_avg instanceof QuantityType) {
+        validValues.add((lichtS_avg as QuantityType<Number>).doubleValue)
+    }
+
+    val lichtW_avg = WetterLichtW.averageSince(now.minusMinutes(30))
+    if (lichtW_avg instanceof QuantityType) {
+        validValues.add((lichtW_avg as QuantityType<Number>).doubleValue)
+    }
+
+    logDebug("LichtAvgRule", "WetterLichtO    : "+ WetterLichtO.state+" avg : "+lichtO_avg)
+    logDebug("LichtAvgRule", "WetterLichtS    : "+ WetterLichtS.state+" avg : "+lichtS_avg)
+    logDebug("LichtAvgRule", "WetterLichtW    : "+ WetterLichtW.state+" avg : "+lichtW_avg)
+
+    val sum = validValues.reduce [ acc, v | acc + v ]
+    val avg = sum / validValues.size
+
+    logDebug("LichtAvgRule", String::format("Durchschnittswert der letzten 30 Minuten: %.1f", avg))
+
+	WetterLichtSAvg.postUpdate(lichtS_avg)
+	WetterLichtOAvg.postUpdate(lichtO_avg)
+	WetterLichtWAvg.postUpdate(lichtW_avg)
+    logDebug("LichtAvgRule", "WetterLichtW    : "+ WetterLichtW.state+" avg : "+lichtW_avg)
+    logDebug("LichtAvgRule", "WetterLichtWAvg : "+ WetterLichtWAvg.state+" avg : "+lichtW_avg)
+
+    // Optional: Ergebnis in ein Item speichern
+    // LichtDurchschnitt30min.postUpdate(avg)
+end

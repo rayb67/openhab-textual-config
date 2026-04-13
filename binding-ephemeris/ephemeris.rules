@@ -2,7 +2,7 @@
 rule "Ephemeris:FerienAndFeiertag" 
 when
 	Time cron "0 0 1 * * ?"
-//	or
+	or Item ephemeris_TestSwitch changed
 then
    val String  currentHoliday     = Ephemeris.getBankHolidayName()
    val String  nextHoliday        = Ephemeris.getNextBankHoliday()
@@ -27,10 +27,11 @@ then
  end 
 
 rule "Ephemeris:Message"
-when 
+when
 //	Time cron "0/10 1 * * * ?"
 	Time cron "1 0 1 * * ?"
+	or Item ephemeris_TestSwitch changed
 then
 	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("${OPENHAB_SETUP_CONF}/misc/ephemeris/MyEntry_de.xml"))
-	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("${OPENHAB_SETUP_CONF}/openhab/misc/ephemeris/Holidays_de.xml"))
+	logInfo("Ephemeris:Message", Ephemeris.getNextBankHoliday("${OPENHAB_SETUP_CONF}/misc/ephemeris/Holidays_de.xml"))
 end

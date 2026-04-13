@@ -1,13 +1,13 @@
 rule "mqtt_wm_stunde_value"
 when
     Time cron "3 59 * * * * ?"
-//	or Item mqtt_wm_test changed
+	or Item mqtt_wm_test changed
 then
-    logDebug("mqtt_wm_stunde_value","Wassermeter : "+mqtt_wm_value.state)
+    logInfo("mqtt_wm_stunde_value","Wassermeter : "+mqtt_wm_value.state)
 
-    val delta = mqtt_wm_value.deltaSince(now.minusHours(1))
+    val delta = mqtt_wm_value.deltaSince(now.minusHours(3))
+    logInfo("mqtt_wm_stunde_value","Wassermeter delta : "+ delta)
     if(delta !== null) {
-        logDebug("mqtt_wm_stunde_value","Wassermeter delta : "+ delta)
 
         mqtt_wm_stunde_value.postUpdate(delta)
         logDebug("mqtt_wm_stunde_value","Wassermeter h : "+ mqtt_wm_stunde_value.state)
@@ -20,7 +20,7 @@ end
 rule "mqtt_wm_tag"
 when
 	Time cron "3 59 23 * * * ?"
-	or Item mqtt_wm_test changed
+//	or Item mqtt_wm_test changed
 then
 
 	val deltad = mqtt_wm_value.deltaSince(now.minusDays(1))

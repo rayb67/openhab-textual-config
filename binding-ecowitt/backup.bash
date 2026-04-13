@@ -29,3 +29,4 @@ cd ${DATAPATH}
 cp ${OPENHAB_SETUP_CONF}/things/ecowitt.things .
 cp ${OPENHAB_SETUP_CONF}/items/ecowitt.items .
 cp ${OPENHAB_SETUP_CONF}/sitemaps/ecowitt.sitemap .
+cp ${OPENHAB_SETUP_CONF}/rules/ecowitt.rules .

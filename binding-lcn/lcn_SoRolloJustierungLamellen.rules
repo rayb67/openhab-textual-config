@@ -1,0 +1,46 @@
+// Hier eine "nice to have" funktion.
+// Bei Bedarf kann wenn die Sonne sehr tief steht, die Lammelle weiter herunter gestellt werden
+
+// ab wann solls denn losgehen
+var Number SunJustAzimuth = 180 
+var Number SunJustElevation1In = 28.0
+var Number SunJustElevation2In = 16.0
+var Number SunJustElevationOut = 2
+
+rule "SonnenschutzJustierung"
+when
+	Item astro_Elevation changed
+	or
+	Time cron "0 */15 * * * ?" //   4Min zum testen
+then
+	logDebug("SonnenschutzJustierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
+		
+	if(	(astro_Elevation.state < SunJustElevation1In) && 
+		(astro_Azimuth.state > SunJustAzimuth) && 
+		(astro_Elevation.state > SunJustElevationOut) &&
+		(oh_SunPro_Status_West.state == ON) )
+	{
+		logDebug("SonnenschutzJustierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
+		if(oh_SunPro_Justierung.state != OFF) 
+		{
+			logDebug("SonnenschutzJustierung", "Anfang RollJustierungState : "+ oh_SunPro_Status_Justieren.state)
+			if ( oh_SunPro_Status_Justieren.state != ON )
+		 	{
+				logDebug("SonnenschutzJustierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
+	 			logInfo("SonnenschutzJustierung", "3.1 - Lamelle runter")
+
+				val actions = getActions("lcn","lcn:module:bus:S000M155")
+				actions.hitKey("B", 8, "HIT")
+		   		postUpdate(oh_SunPro_Status_Justieren, "ON")
+				sendCommand( lcn_action_SendKeySunProWestJust, ON) 
+			} 
+		} 
+		else
+		{
+			logDebug("SonnenschutzJustierung","57.1 - Daemmerung ....")
+			logDebug("SonnenschutzJustierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevationOut + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
+		}
+	}
+
+end
+

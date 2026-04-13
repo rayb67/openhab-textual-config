@@ -1,4 +1,5 @@
-Bridge fineoffsetweatherstation:gateway:ecowitt "Weather station" 
+//Bridge fineoffsetweatherstation:gateway:ecowitt "Ecowitt - Weather station" 
+Bridge fineoffsetweatherstation:gateway:3906700515 "Weather station" 
 [
      ip="10.10.10.39",
      port="45000",
@@ -6,13 +7,7 @@ Bridge fineoffsetweatherstation:gateway:ecowitt "Weather station"
      pollingInterval="60",
      protocol="DEFAULT"
 ] 
-{ 
-	Thing fineoffsetweatherstation:sensor:ecowitt:WH51_CH1 "Sensor Hochbeet" 
-		(fineoffsetweatherstation:gateway:ecowitt) 
-		[sensor="WH51_CH1"]
-
-	Thing fineoffsetweatherstation:sensor:ecowitt:WH65 "Sensor Dach" 
-		(fineoffsetweatherstation:gateway:ecowitt) 
-		[sensor="WH65"]
+{
+ Thing sensor WH51_CH1 "WH51_CH1" [sensor="WH51_CH1"] 
+ Thing sensor WH65 "WH65" [sensor="WH65"]
 }
-

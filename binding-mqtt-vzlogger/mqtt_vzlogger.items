@@ -3,14 +3,14 @@ Group gVzlogger									"Energiezaehler"			<engergy>
 
 Switch			mqtt_vzlogger_Test              "vzlogger Test"							(gVzlogger,gTechnik)	["WallSwitch"]
 
-//Number			mqtt_vzlogger_atest				"Bezug test"				<energy>	(gVzlogger,gTechnik)   ["Measurement"]
-{channel="mqtt:topic:mybroker:vzlogger:test", stateDescription=" " }
 Number:Power	mqtt_vzlogger_bezug				"Bezug"						<energy>	(gVzlogger,gTechnik)	["Measurement","Power"]
-{channel="mqtt:topic:mybroker:vzlogger:bezug", stateDescription=" "}
+{channel="mqtt:topic:vzlogger:bezug", stateDescription=" "}
 Number:Power	mqtt_vzlogger_lieferung			"Lieferung"					<energy>	(gVzlogger,gTechnik)	["Measurement","Power"]
-{channel="mqtt:topic:mybroker:vzlogger:lieferung", stateDescription=" "}
+{channel="mqtt:topic:vzlogger:lieferung", stateDescription=" "}
 Number:Power	mqtt_vzlogger_aktuell			"aktuell"					<energy>	(gVzlogger,gTechnik)	["Measurement","Power"]
-{channel="mqtt:topic:mybroker:vzlogger:aktuell" , stateDescription=" "}
+{channel="mqtt:topic:vzlogger:aktuell" , stateDescription=" "}
+
+
 
 Number:Energy	mqtt_vzlogger_tag_bezug			"Bezug letzter Tag"			<energy>	(gVzlogger,gTechnik)	["Measurement","Energy"]
 { stateDescription=" "[ pattern="%.0f Wh" ] }

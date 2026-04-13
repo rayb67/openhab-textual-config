@@ -21,7 +21,7 @@ sitemap lcn label="LCN" {
         Switch item=oh_SunPro_control_ErRe label="ErRe aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
         Switch item=oh_SunPro_control_Nord label="Nord aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
         Switch item=oh_SunPro_control_ErLi label="ErLi aktiv (Steuerung)" mappings=[ON=ON, OFF=OFF] // Don't display "Blink" or "Flicker"
-        Switch item=DummySwitch 
+        Switch item=oh_SunPro_TestSwitch 
     }
 
     Frame label="Heizung" {

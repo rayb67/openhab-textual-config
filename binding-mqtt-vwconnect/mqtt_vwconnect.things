@@ -1,20 +1,21 @@
+// Because i use an extra thing file for the broker definition, the next line
+// is only for information. Put hat in an extra file, if you have more than one mqtt sources.
+// Bridge mqtt:broker:mybroker "MQTT -1- Broker" [ host="10.10.10.68", port=1883, keepAlive=66, secure=false, qos=1 ]
+
 //# https://community.openhab.org/t/carconnectivity-mqtt-setup/165334/7
-Bridge mqtt:broker:golfsrv [ host="10.10.10.68", port="1883", secure=false ]
-{
-   Thing topic golf  "MQTT VW Golf" {
-    Channels:
-      Type number : latitude          [ stateTopic="carconnectivity/0/garage/yourWVWKey/position/latitude"]
-      Type number : longitude         [ stateTopic="carconnectivity/0/garage/yourWVWKey/position/longitude"]
-      Type string : position_type     [ stateTopic="carconnectivity/0/garage/yourWVWKey/position/position_type"]
-      Type string : state             [ stateTopic="carconnectivity/0/garage/yourWVWKey/state"]
-      Type number : odometer		  [ stateTopic="carconnectivity/0/garage/yourWVWKey/odometer"]
-      Type switch : lights            [ stateTopic="carconnectivity/0/garage/yourWVWKey/lights/light_state" ,on="on", off="off"]
-      Type datetime : inspection_at   [ stateTopic="carconnectivity/0/garage/yourWVWKey/maintenance/inspection_due_at"]
-      Type datetime : oil_service_at  [ stateTopic="carconnectivity/0/garage/yourWVWKey/maintenance/oil_service_due_at"]
-      Type number : inspection_after  [ stateTopic="carconnectivity/0/garage/yourWVWKey/maintenance/inspection_due_after"]
-      Type number : oil_service_after	[ stateTopic="carconnectivity/0/garage/yourWVWKey/maintenance/oil_service_due_after"]
-      Type string : name				[ stateTopic="carconnectivity/0/garage/yourWVWKey/name"]
-      Type string : model				[ stateTopic="carconnectivity/0/garage/yourWVWKey/model"]
-      Type image : picture				[ stateTopic="carconnectivity/0/garage/yourWVWKey/images/car_picture"]
-	}
+Thing mqtt:topic:golf  "MQTT VW Golf" (mqtt:broker:mybroker) {
+	Channels:
+		Type number : latitude          [ stateTopic="carconnectivity/0/garage/yourWVWKey/position/latitude"]
+		Type number : longitude         [ stateTopic="carconnectivity/0/garage/yourWVWKey/position/longitude"]
+		Type string : position_type     [ stateTopic="carconnectivity/0/garage/yourWVWKey/position/position_type"]
+		Type string : state             [ stateTopic="carconnectivity/0/garage/yourWVWKey/state"]
+		Type number : odometer			[ stateTopic="carconnectivity/0/garage/yourWVWKey/odometer"]
+		Type switch : lights            [ stateTopic="carconnectivity/0/garage/yourWVWKey/lights/light_state" ,on="on", off="off"]
+		Type datetime : inspection_at   [ stateTopic="carconnectivity/0/garage/yourWVWKey/maintenance/inspection_due_at"]
+		Type datetime : oil_service_at  [ stateTopic="carconnectivity/0/garage/yourWVWKey/maintenance/oil_service_due_at"]
+		Type number : inspection_after  [ stateTopic="carconnectivity/0/garage/yourWVWKey/maintenance/inspection_due_after"]
+		Type number : oil_service_after	[ stateTopic="carconnectivity/0/garage/yourWVWKey/maintenance/oil_service_due_after"]
+		Type string : name				[ stateTopic="carconnectivity/0/garage/yourWVWKey/name"]
+		Type string : model				[ stateTopic="carconnectivity/0/garage/yourWVWKey/model"]
+		Type image  : picture			[ stateTopic="carconnectivity/0/garage/yourWVWKey/images/car_picture"]
 }

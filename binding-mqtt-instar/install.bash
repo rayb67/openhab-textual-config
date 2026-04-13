@@ -27,4 +27,4 @@ cp ${DATAPATH}/mqtt_instar.items ${OPENHAB_SETUP_CONF}/items/.
 cp ${DATAPATH}/mqtt_instar.things ${OPENHAB_SETUP_CONF}/things/.
 cp ${DATAPATH}/mqtt_instar.map ${OPENHAB_SETUP_CONF}/transform/.
 cp ${DATAPATH}/mqtt_instar.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
-chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}
+chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}

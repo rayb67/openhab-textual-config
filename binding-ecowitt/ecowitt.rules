@@ -1,0 +1,41 @@
+rule "weather_Sensor_Hochbeet_Niedriger_Batteriestatus" 
+when
+	Item weather_Sensor_Hochbeet_Niedriger_Batteriestatus changed to ON
+	or Item weather_TestSwitch changed
+then
+
+	logInfo("notify-weather","Feuchtesensor Hochbeet (gruene Pistole) Status  hat sich geaendert")
+	if( weather_Sensor_Hochbeet_Niedriger_Batteriestatus.state == ON )
+	{
+
+		logInfo("notify-weather","Feuchtesensor Hochbeet (gruene Pistole) ist ON")
+		val mailActions = getActions("mail","mail:smtp:samplesmtp")
+		mailActions.sendMail("yourmail@localhost","Feuchtesensor Hochbeet (gruene Pistole) ","Feuchtesensor Hochbeet (gruene Pistole), bitte die Battieren austauschen...")
+	}
+	else
+	{
+		logDebug("notify-weather","Feuchtesensor Hochbeet (gruene Pistole) Batteriestatus ist OFF")
+	}
+end
+
+
+rule "weather_Sensor_Dach_Niedriger_Batteriestatus" 
+when
+	Item weather_Sensor_Dach_Niedriger_Batteriestatus changed to ON
+	or Item weather_TestSwitch changed
+then
+
+	logInfo("notify-weather","Wetterstation Dach Batteriestatus hat sich geaendert")
+	if( weather_Sensor_Dach_Niedriger_Batteriestatus.state == ON )
+	{
+
+		logInfo("notify-weather","Wetterstation Dach Batteriestatus ist ON")
+		val mailActions = getActions("mail","mail:smtp:samplesmtp")
+		mailActions.sendMail("yourmail@localhost","Wetterstation Batteriestatus","...Bitte die Battieren der Wetterstation auf dem Dach austauschen...")
+	}
+	else
+	{
+		logDebug("notify-weather","Wetterstation Dach Batteriestatus ist OFF")
+	}
+end
+

@@ -1,0 +1,358 @@
+// Steuerung der Rollos/Raffstore in Abhaengigkeit von Winkel (Azimut), 
+// Temperatur, Lichtstaerke und Hoehe (Elevation).
+// Die Lichtstaerke wird ueber eine extra Rule ermittelt. Ziel ist es,
+// dass erst nach 20 Minuten Sonnenschein, die Rollos herunter fahren.
+// Wenn also bei einem Regentag, mal kurz ( kleiner 20 Minuten) die
+// Sonne da ist, soll nicht sofort alles runter fahren. Dann hatte man
+// ggf. am fruehen Morgen alles dunkeler im Haus.
+
+var Number SunProElevation = 2|°		// Ab wann solls denn losgehen
+
+//  Sollwert fuer Winkel Einfall und Ausfall der jeweiligen Hausseite
+// Einstellbarkeit ueber GUI ueberfluessig
+var Number SunProAzimutzOstEin  = 12|°	// 12   hard codiert
+var Number SunProAzimutzOstAus  = 135|°	// 135  hard codiert
+var Number SunProLichtOst  = 1000		// 1100 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzSuedEin = 68|°	// 68   hard codiert
+var Number SunProAzimutzSuedAus = 220|°	// 220  hard codiert
+var Number SunProLichtSued = 1100		// 1120 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzWestEin = 146|°	// 146  hard codiert
+var Number SunProAzimutzWestAus = 298|°	// 298  hard codiert
+var Number SunProLichtWest = 1100		// 1100 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzNordEin = 229|°	// 229  hard codiert
+var Number SunProAzimutzNordAus = 313|°	// 313  hard codiert
+var Number SunProLichtNord = 1090		// 1090 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzErLiEin = 180|°	// 180  hard codiert
+var Number SunProAzimutzErLiAus = 330|°	// 330  hard codiert
+var Number SunProLichtErLi = 1075		// 1075 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzErReEin = 270|°	// 270  hard codiert
+var Number SunProAzimutzErReAus = 313|°	// 313  hard codiert
+var Number SunProLichtErRe = 1070		// 1070 hard codiert SollWert Lichtstaerke
+
+// Wenn die Sonne unter geht - gilt nur fuer den Norden
+var Number SunProNordElevation =  18|°	// 18   hard codiert
+
+
+rule "Sun-Protechtion" 
+when
+//	Time cron "0 1 1 1 * ?" //   1 Min zum testen
+//		or
+//	Time cron "0 */2 * * * ?" //   30 sec zum testen
+	Item oh_SunPro_TestSwitch changed 
+	or
+	Item astro_Azimuth changed
+	or
+	Time cron "0 0/5 * * * ?" // alle 5 min
+then
+    logDebug("sun-protecton","##################################################################################")
+	
+	logDebug("sun-protecton","Nord Licht : "+SunProLichtNord+" < "+WetterLichtWAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzNordEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzNordAus+"  Activ : "+oh_SunPro_control_Nord.state.toString+" Status : "+oh_SunPro_Status_Nord.state)
+	logDebug("sun-protecton","Ost  Licht : "+SunProLichtOst+ " < "+WetterLichtOAvg.state.format("%.0f")+" (avg) Winkel : " +SunProAzimutzOstEin+"  > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzOstAus+"  Activ : "+oh_SunPro_control_Ost.state.toString+" Status : "+oh_SunPro_Status_Ost.state)
+	logDebug("sun-protecton","Sued Licht : "+SunProLichtSued+ " < "+WetterLichtSAvg.state.format("%.0f")+" (avg) Winkel : " +SunProAzimutzSuedEin+"  > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzSuedAus+"  Activ : "+oh_SunPro_control_Sued.state.toString+" Status : "+oh_SunPro_Status_Sued.state)
+	logDebug("sun-protecton","West Licht : "+SunProLichtWest+" < "+WetterLichtSAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzWestEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzWestAus +"  Activ : "+oh_SunPro_control_West.state.toString+" Status : "+oh_SunPro_Status_West.state)
+	logDebug("sun-protecton","ErRe Licht : "+SunProLichtErRe+" < "+WetterLichtWAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzErReEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErReAus +"  Activ : "+oh_SunPro_control_ErRe.state.toString+" Status : "+oh_SunPro_Status_ErRe.state)
+	logDebug("sun-protecton","ErLi Licht : "+SunProLichtErLi+" < "+WetterLichtWAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzErLiEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErLiAus +"  State : "+oh_SunPro_control_ErLi.state.toString+" Status : "+oh_SunPro_Status_ErLi.state)
+    logDebug("sun-protecton","Temp Aussen Ist : "+TempAussen.state+" > Soll    : "+oh_SunPro_SollTemp_Aussen.state)
+    logDebug("sun-protecton","Temp Aussen A3D : "+TempAussenAvg3D.state+" > Soll 3D : "+oh_SunPro_SollTemp_3DAussen.state)
+	logDebug("sun-protecton","Temp Wohnzimmer : "+lcn_Temp_EG_WohnzSofa.state.format("%.0f")+" > Soll    : "+oh_SunPro_SollTemp_Wohnz.state.format("%.0f"))
+
+// ----------------------------------------------------------------------------------
+// ------ SUED SUED SUED               ----------------------------------------------
+// ----------------------------------------------------------------------------------
+
+	logDebug("sun-protecton","Sued 1 xxxxxx")
+	logDebug("sun-protecton","Sued Licht : "+SunProLichtSued+ " < "+WetterLichtSAvg.state.format("%.0f")+" (avg) Winkel : " +SunProAzimutzSuedEin+"  > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzSuedAus+"  Activ : "+oh_SunPro_control_Sued.state.toString+" Status : "+oh_SunPro_Status_Sued.state)
+	logDebug("sun-protecton","Sued 1 Licht : "+SunProLichtSued+" < "+WetterLichtSAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzSuedEin+" < "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzSuedAus+" Activ Sued : "+oh_SunPro_control_Sued.state.toString+" Status Sued : "+oh_SunPro_Status_Sued.state)
+	if(
+		(TempAussenAvg3D.state as QuantityType<Temperature>) 
+			> (oh_SunPro_SollTemp_3DAussen.state as QuantityType<Temperature>) &&
+		(TempAussen.state.format("%.0f") > oh_SunPro_SollTemp_Aussen.state.format("%.0f")) &&
+		(lcn_Temp_EG_WohnzSofa.state.format("%.1f") > oh_SunPro_SollTemp_Wohnz.state.format("%.1f")) &&   
+		(SunProLichtSued < WetterLichtSAvg.state) &&
+		(astro_Azimuth.state < SunProAzimutzSuedAus) && // Sonne geht weg
+		(astro_Azimuth.state > SunProAzimutzSuedEin) &&     // Sonne kommt um die Ecke
+		(oh_SunPro_control_Sued.state != OFF)
+	  )
+	{
+		logDebug("sun-protecton","Sued 2 oh_SunPro_Status_Sued.state : "+oh_SunPro_Status_Sued.state)
+		if (oh_SunPro_Status_Sued.state != ON )
+		{
+			logInfo("sun-protecton","Sued-ab 1 Licht : "+SunProLichtSued+" < "+WetterLichtSAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzSuedEin+"  > "+astro_Azimuth.state.format("%.0f") +" < "+SunProAzimutzSuedAus+" Activ Sued : "+oh_SunPro_control_Sued.state.toString+" Status Sued : "+oh_SunPro_Status_Sued.state)
+			val actions = getActions("lcn","lcn:module:bus:S000M155")		// Sued ab  M155 C 3 HIT
+			actions.hitKey("C", 3, "HIT")
+			postUpdate(oh_SunPro_Status_Sued, "ON")
+			logInfo("sun-protecton","Sued-ab 2 Licht : "+SunProLichtSued+" < "+WetterLichtSAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzSuedEin+"  > "+astro_Azimuth.state.format("%.0f") +" < "+SunProAzimutzSuedAus+" Activ Sued : "+oh_SunPro_control_Sued.state.toString+" Status Sued : "+oh_SunPro_Status_Sued.state)
+			logInfo("sun-protecton","Sued-ab 3 Temp Ist  : "+TempAussen.state.toString+" > Soll: "+oh_SunPro_SollTemp_Aussen.state)
+		}
+	}
+	else
+	{
+		logDebug("sun-protecton","Sued 3 Licht : "+SunProLichtSued+" < Ist : "+WetterLichtSAvg.state.toString)
+		if ( (oh_SunPro_Status_Sued.state == ON ) &&
+		     (astro_Azimuth.state > SunProAzimutzSuedAus) )        // Sonne geht weg
+		{
+			val actions = getActions("lcn","lcn:module:bus:S000M155")		// Sued auf M155 C 4 HIT
+			actions.hitKey("C", 4, "HIT")
+			postUpdate(oh_SunPro_Status_Sued, "OFF")
+			logInfo("sun-protecton","Sued-auf ; "+oh_SunPro_Status_Sued.state+"    Winkel : "+SunProAzimutzSuedEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzSuedAus+" Sued Status : "+oh_SunPro_Status_Sued.state)
+		}
+	}
+
+// ----------------------------------------------------------------------------------
+// ------ WEST WEST WEST               ----------------------------------------------
+// ----------------------------------------------------------------------------------
+
+	logDebug("sun-protecton","West 1")
+	if(
+		(TempAussenAvg3D.state as QuantityType<Temperature>) 
+			> (oh_SunPro_SollTemp_3DAussen.state as QuantityType<Temperature>) &&
+		(TempAussen.state.format("%.0f") > oh_SunPro_SollTemp_Aussen.state.format("%.0f")) &&
+		(lcn_Temp_EG_WohnzSofa.state.format("%.1f") > oh_SunPro_SollTemp_Wohnz.state.format("%.1f")) &&   
+		(SunProLichtWest < WetterLichtSAvg.state) &&
+		(astro_Azimuth.state < SunProAzimutzWestAus) && // Sonne geht weg
+		(astro_Azimuth.state > SunProAzimutzWestEin) &&     // Sonne kommt um die Ecke
+		(oh_SunPro_control_West.state != OFF)
+		)	
+	{
+		logInfo("sun-protecton","West Licht 2: "+SunProLichtWest+" < Ist : "+WetterLichtSAvg.state.toString)
+		if (oh_SunPro_Status_West.state != ON)
+		{
+			logInfo("sun-protecton","West-ab Licht : "+SunProLichtWest+" < "+WetterLichtSAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzWestEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzWestAus +"  State : "+oh_SunPro_control_West.state.toString+" Status : "+oh_SunPro_Status_West.state)
+			logDebug("sun-protecton","Gaestezimmer Urlaub : "+Oh_Control_Urlaub.state+"   Frau Besonderheiten : "+Oh_Control_WifeExceptions.state)
+			if( 
+				(Oh_Control_Urlaub.state != ON) && 			// Wenn Urlaub, dann runter da nicht da
+				(Oh_Control_WifeExceptions.state == ON)  // Wenn aktiv, dann nicht runter
+				)
+			{
+				logInfo("sun-protecton","Gaestezimmer EIN Ausnahme - geht nicht runter")
+			} else
+			{
+				logInfo("sun-protecton","Gaestezimmer AUS Ausnahme - runter")
+			}
+			val actions = getActions("lcn","lcn:module:bus:S000M155")		// West ab  M155 C 5 HIT
+			actions.hitKey("C", 5, "HIT")
+			postUpdate(oh_SunPro_Status_West, "ON")
+		}
+	}
+	else
+	{
+		logDebug("sun-protecton","West Licht 3: "+SunProLichtWest+" < Ist : "+WetterLichtWAvg.state.toString)
+		if ( (oh_SunPro_Status_West.state == ON) &&
+			 (astro_Elevation.state < SunProElevation) &&
+		     (astro_Azimuth.state > SunProAzimutzWestAus) )        // Sonne geht weg
+		{
+			logInfo("sun-protecton","West 2 Aus")
+// TODO XXXXXXX TODO YYYYYYYYYYY TODO ... Abends Hoch klaeren.... wenns schon dunkel ist faehrt es hoch
+	      	if (oh_SunPro_BlockAbendsHoch.state != ON)
+	      	{
+				val actions = getActions("lcn","lcn:module:bus:S000M155")	// West auf M155 C 6 HIT
+				actions.hitKey("C", 6, "HIT")
+				logInfo("sun-protecton","West-auf : "+oh_SunPro_Status_West.state+"     Winkel : "+SunProAzimutzWestEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzWestAus)
+      		}
+			postUpdate(oh_SunPro_Status_West, "OFF")
+		}
+	}
+
+
+// ----------------------------------------------------------------------------------
+// ------ ErLi ErLi ErLi               ----------------------------------------------
+// ----------------------------------------------------------------------------------
+
+	logDebug("sun-protecton","ErLi 1-x")
+	logDebug("sun-protecton","Winkel Azi : "+SunProAzimutzErLiEin+" < "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErLiAus) 
+	logDebug("sun-protecton","Winkel Ele : "+astro_Elevation.state.format("%.0f")+" > "+SunProElevation)
+	logDebug("sun-protecton","ErLi Licht : "+SunProLichtErLi+" < "+WetterLichtWAvg.state.format("%.0f"))
+	logDebug("sun-protecton","Activ-     : "+oh_SunPro_control_ErLi.state.toString+" Status : "+oh_SunPro_Status_ErLi.state)
+	logDebug("sun-protecton","Temp Wohnzimmer : "+lcn_Temp_EG_WohnzSofa.state.format("%.1f")+" > Soll    : "+oh_SunPro_SollTemp_Wohnz.state.format("%.1f"))
+
+	if( 
+		(TempAussenAvg3D.state as QuantityType<Temperature>) 
+			> (oh_SunPro_SollTemp_3DAussen.state as QuantityType<Temperature>) &&
+		(TempAussen.state.format("%.0f") > oh_SunPro_SollTemp_Aussen.state.format("%.0f")) &&
+		(lcn_Temp_EG_WohnzSofa.state.format("%.1f") > oh_SunPro_SollTemp_Wohnz.state.format("%.1f")) &&
+		(SunProLichtErLi < WetterLichtWAvg.state) &&
+		(astro_Elevation.state > SunProElevation) &&
+		(astro_Azimuth.state < SunProAzimutzErLiAus) && // Sonne geht weg
+		(astro_Azimuth.state > SunProAzimutzErLiEin) &&     // Sonne kommt um die Ecke
+		(oh_SunPro_control_ErLi.state != OFF)
+		)
+	{
+		logDebug("sun-protecton","ErLi 2 Licht : "+SunProLichtErLi+" < Ist : "+WetterLichtWAvg.state.toString)
+		if (oh_SunPro_Status_ErLi.state != ON )
+		{
+			logInfo("sun-protecton","ErLi 4 Temp Ist  : "+TempAussen.state.toString+" > Soll: "+oh_SunPro_SollTemp_Aussen.state.format("%.0f"))
+			val actions = getActions("lcn","lcn:module:bus:S000M160")		// ErLi ab  M160 A 5 HIT 
+			actions.hitKey("A", 5, "HIT")
+			postUpdate(oh_SunPro_Status_ErLi, "ON")
+		}
+	}
+	else
+	{
+		logDebug("sun-protecton","ErLi 3 Licht : "+SunProLichtErLi+" < Ist : "+WetterLichtWAvg.state.toString)
+		if ( (oh_SunPro_Status_ErLi.state==ON ) &&
+			(astro_Azimuth.state > SunProAzimutzErLiAus) && 
+			(astro_Elevation.state < SunProElevation) ) 
+		{
+      		if (oh_SunPro_BlockAbendsHoch.state != ON)
+      			{
+				val actions = getActions("lcn","lcn:module:bus:S000M160")	// ErLi auf M160 A 6 HIT
+				actions.hitKey("A", 6, "HIT")
+				logInfo("sun-protecton","ErLi-auf  ------: "+oh_SunPro_Status_ErLi.state+"     Winkel : "+SunProAzimutzErLiEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErLiAus)
+			}
+			postUpdate(oh_SunPro_Status_ErLi, "OFF")
+		}
+	}
+
+// ----------------------------------------------------------------------------------
+// ------ ErRe ErRe ErRe               ----------------------------------------------
+// ----------------------------------------------------------------------------------
+
+	logDebug("sun-protecton","ErRe 1 "+SunProAzimutzErReEin+" < "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErReAus) 
+	if ( 
+		(astro_Elevation.state > SunProElevation) &&
+		(TempAussenAvg3D.state as QuantityType<Temperature>) 
+			> (oh_SunPro_SollTemp_3DAussen.state as QuantityType<Temperature>) &&
+		(TempAussen.state.format("%.0f") > oh_SunPro_SollTemp_Aussen.state.format("%.0f")) &&
+		(lcn_Temp_EG_WohnzSofa.state.format("%.1f") > oh_SunPro_SollTemp_Wohnz.state.format("%.1f")) &&
+		(SunProLichtErRe < WetterLichtWAvg.state) &&
+		(astro_Azimuth.state < SunProAzimutzErReAus) && // Sonne geht weg
+		(astro_Azimuth.state > SunProAzimutzErReEin) &&     // Sonne kommt um die Ecke
+		(oh_SunPro_control_ErRe.state != OFF)
+	  )
+	{
+	logDebug("sun-protecton","ErRe 2 "+SunProLichtErRe+" > Ist : "+WetterLichtWAvg.state.format("%.0f")+" Status  : "+oh_SunPro_Status_ErRe.state+"     Winkel :"+SunProAzimutzErReEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErReAus)
+
+		if (oh_SunPro_Status_ErRe.state != ON )
+		{
+			val actions = getActions("lcn","lcn:module:bus:S000M160")		// ErRe ab  M160 A 7 HIT
+			actions.hitKey("A", 7, "HIT")
+			postUpdate(oh_SunPro_Status_ErRe, "ON")
+			logInfo("sun-protecton","ErRe-ab runter : "+oh_SunPro_Status_ErRe.state+"     Winkel :"+SunProAzimutzErReEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErReAus)
+			logDebug("sun-protecton","ErRe Temp Ist   : "+TempAussen.state.toString+" > Soll: "+oh_SunPro_SollTemp_Aussen.state.format("%.0f"))
+		}
+	}
+	else
+	{
+		if ( (oh_SunPro_Status_ErRe.state==ON ) &&
+			(astro_Elevation.state < SunProElevation) &&
+			(astro_Azimuth.state > SunProAzimutzErReAus) )        // Sonne geht weg
+		{
+			if (oh_SunPro_BlockAbendsHoch.state != ON)
+	      	{
+				logInfo("sun-protecton","ErRe-auf rauf -----------: "+oh_SunPro_Status_ErRe.state+"     Winkel :"+SunProAzimutzErReEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErReAus)
+				val actions = getActions("lcn","lcn:module:bus:S000M160")	// ErRe auf M160 A 8 HIT
+				actions.hitKey("A", 8, "HIT")
+			}
+			postUpdate(oh_SunPro_Status_ErRe, "OFF")
+		}
+	}
+	
+// ----------------------------------------------------------------------------------
+// ------ OST OST OST               ----------------------------------------------
+// ----------------------------------------------------------------------------------
+
+	logDebug("sun-protecton","Winkel Ost A : "+SunProAzimutzOstEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzOstAus) 
+	logDebug("sun-protecton","Winkel E     : "+astro_Elevation.state+" > "+SunProElevation)
+	logDebug("sun-protecton","Ost Licht    : "+SunProLichtOst+" < "+WetterLichtOAvg.state.format("%.0f"))
+	logDebug("sun-protecton","Ost Activ    : "+oh_SunPro_control_Ost.state.toString+" Ost State : "+oh_SunPro_Status_Ost.state)
+	logDebug("sun-protecton","Ost 1")
+	if(
+		(TempAussenAvg3D.state as QuantityType<Temperature>) 
+			> (oh_SunPro_SollTemp_3DAussen.state as QuantityType<Temperature>) &&
+		(TempAussen.state.format("%.0f") > oh_SunPro_SollTemp_Aussen.state.format("%.0f")) &&
+		(lcn_Temp_EG_WohnzSofa.state.format("%.1f") > oh_SunPro_SollTemp_Wohnz.state.format("%.1f")) &&
+		(SunProLichtSued < WetterLichtOAvg.state) &&
+		(astro_Azimuth.state < SunProAzimutzOstAus) && // Sonne geht weg
+		(astro_Azimuth.state > SunProAzimutzOstEin) &&     // Sonne kommt um die Ecke
+		(oh_SunPro_control_Ost.state != OFF)
+		)
+	{
+		logDebug("sun-protecton","Ost ein : "+oh_SunPro_Status_Ost.state)
+		if (oh_SunPro_Status_Ost.state != ON )
+		{
+			val actions = getActions("lcn","lcn:module:bus:S000M155")		// OST  ab  M155 C 1 HIT
+			actions.hitKey("C", 1, "HIT")
+			postUpdate(oh_SunPro_Status_Ost, "ON")
+			logInfo("sun-protecton","Ost-ab Licht : "+SunProLichtOst+" < "+WetterLichtOAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzOstEin+"  > "+astro_Azimuth.state.format("%.0f") +" < "+SunProAzimutzOstAus+" Ost Activ : "+oh_SunPro_control_Ost.state.toString+" Ost Status : "+oh_SunPro_Status_Ost.state)
+			logDebug("sun-protecton","Ost Temp Ist  : "+TempAussen.state.toString+" > Soll: "+oh_SunPro_SollTemp_Aussen)
+			// Wenn Ost runter geht, dann sollte auch Sued runter fahren.
+			// Auch wenn Sued Lichtstaerke noch nicht so hoch ist!
+		    createTimer(now.plusSeconds(30)) [
+				val actions = getActions("lcn","lcn:module:bus:S000M155")	// Ost  ab  M155 C 3 HIT (+Sued)
+				actions.hitKey("C", 3, "HIT")
+				postUpdate(oh_SunPro_Status_Sued, "ON")
+				postUpdate(oh_SunPro_Status_Ost, "ON")
+				logInfo("sun-protecton","Ost-ab (+ Sued) Licht : "+SunProLichtOst+" < "+WetterLichtSAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzSuedEin+"  > "+astro_Azimuth.state.format("%.0f") +" < "+SunProAzimutzSuedAus+"  Sued Activ : "+oh_SunPro_control_Sued.state.toString+" Sued Status : "+oh_SunPro_Status_Sued.state+" Ost Activ : "+oh_SunPro_control_Ost.state.toString+" Ost Status : "+oh_SunPro_Status_Ost.state)
+		    ]
+		}
+	}
+	else
+	{
+		if ( (oh_SunPro_Status_Ost.state == ON ) &&
+		     (astro_Azimuth.state > SunProAzimutzOstAus) )        // Sonne geht weg
+		{
+			val actions = getActions("lcn","lcn:module:bus:S000M155")		// Ost  auf M155 C 2 HIT
+			actions.hitKey("C", 2, "HIT")
+			postUpdate(oh_SunPro_Status_Ost, "OFF")
+			logInfo("sun-protecton","Ost-auf rauf -------- : "+oh_SunPro_Status_Ost.state+"    Winkel "+SunProAzimutzOstEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzOstAus+" Ost Activ : "+oh_SunPro_control_Ost.state.toString+" Ost Status : "+oh_SunPro_Status_Ost.state)
+		}
+	}
+
+// ----------------------------------------------------------------------------------
+// ------ NORD NORD NORD               ----------------------------------------------
+// ----------------------------------------------------------------------------------
+	logDebug("sun-protecton","Nord xxx ")
+	if( 
+		(TempAussenAvg3D.state as QuantityType<Temperature>) 
+			> (oh_SunPro_SollTemp_3DAussen.state as QuantityType<Temperature>) &&
+		(TempAussen.state.format("%.0f") > oh_SunPro_SollTemp_Aussen.state.format("%.0f")) &&
+		(lcn_Temp_EG_WohnzSofa.state.format("%.1f") > oh_SunPro_SollTemp_Wohnz.state.format("%.1f")) &&
+		(SunProLichtNord < WetterLichtWAvg.state ) &&
+		(astro_Azimuth.state < SunProAzimutzNordAus) &&
+		(astro_Azimuth.state > SunProAzimutzNordEin) &&
+		(astro_Elevation.state > SunProNordElevation) &&	// wenn die Sonne unter den Winkel geht, passiert nichts mehr.
+		(oh_SunPro_control_Nord.state != OFF) 
+	  )
+	{
+		logDebug("sun-protecton","Nord ein a ")
+		if (oh_SunPro_Status_Nord.state != ON )
+		{
+			logDebug("sun-protecton","Nord ein b ")
+	    	logDebug("sun-protecton","Temp Aussen Ist : "+TempAussen.state.toString+" > Soll    : "+oh_SunPro_SollTemp_Aussen.state)
+		    logDebug("sun-protecton","Temp Aussen A3D : "+TempAussenAvg3D.state.format("%.1f")+" > Soll 3D : "+oh_SunPro_SollTemp_3DAussen.state)
+			logDebug("sun-protecton","Temp Wohnzimmer : "+lcn_Temp_EG_WohnzSofa.state.format("%.1f")+" > Soll    : "+oh_SunPro_SollTemp_Wohnz.state)
+			logDebug("sun-protecton","Nord Licht : "+SunProLichtNord+" < "+WetterLichtWAvg.state.format("%.0f"))
+			logDebug("sun-protecton","Nord  Winkel : "+SunProAzimutzNordEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzNordAus+"  Activ : "+oh_SunPro_control_Nord.state.toString+" Status : "+oh_SunPro_Status_Nord.state)
+			logDebug("sun-protecton","Nord ein : "+oh_SunPro_Status_Nord.state+"    Winkel : "+SunProAzimutzNordEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzNordAus)
+		    logDebug("sun-protecton","Nord Evalutaion       : "+astro_Elevation.state.format("%.0f")+" > " +SunProNordElevation)
+			val actions = getActions("lcn","lcn:module:bus:S000M155")		// NORD ab  M155 C 7 HIT
+			actions.hitKey("C", 7, "HIT")
+			postUpdate(oh_SunPro_Status_Nord, "ON")
+			logDebug("sun-protecton","Nord-ab Licht : "+SunProLichtNord+" < "+WetterLichtWAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzNordEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzNordAus+"  State : "+oh_SunPro_control_Nord.state.toString+" Status : "+oh_SunPro_Status_Nord.state)
+//			logDebug("sun-protecton","Nord-ab Licht : "+SunProLichtNord+" < "+WetterLichtWAvg.state.format("%.0f")+" (avg) Winkel : "+SunProAzimutzNordEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzNordAus+"  State : "+oh_SunPro_control_Nord.state.toString+" Status : "+oh_SunPro_Status_Nord.state)
+		}
+	}
+	else
+	{
+		logDebug("sun-protecton","Nord Aus 1")
+		if ( (oh_SunPro_Status_Nord.state == ON ) &&
+			 (astro_Elevation.state < SunProElevation) &&
+		     (astro_Azimuth.state > SunProAzimutzNordAus) )        // Sonne geht weg
+		{
+			logInfo("sun-protecton","Nord Aus 2")
+   			if (oh_SunPro_BlockAbendsHoch.state != ON)
+   			{
+				val actions = getActions("lcn","lcn:module:bus:S000M155")	// Nord auf M155 C 8 HIT
+				actions.hitKey("C", 8, "HIT")
+				logInfo("sun-protecton","Nord-auf : "+oh_SunPro_Status_Nord.state+"    Winkel : "+SunProAzimutzNordEin+" >  "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzNordAus)
+			}
+			postUpdate(oh_SunPro_Status_Nord, "OFF")
+		}
+	}
+
+end

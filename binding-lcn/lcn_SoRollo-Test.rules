@@ -1,0 +1,173 @@
+// Steuerung der Rollos/Raffstore in Abhaengigkeit von Winkel (Azimut), 
+// Temperatur, Lichtstaerke und Hoehe (Elevation).
+// Die Lichtstaerke wird ueber eine extra Rule ermittelt. Ziel ist es,
+// dass erst nach 20 Minuten Sonnenschein, die Rollos herunter fahren.
+// Wenn also bei einem Regentag, mal kurz ( kleiner 20 Minuten) die
+// Sonne da ist, soll nicht sofort alles runter fahren. Dann hatte man
+// ggf. am fruehen Morgen alles dunkeler im Haus.
+
+var Number SunProElevation = 2|°			// Ab wann solls denn losgehen
+
+//  Sollwert fuer Winkel Einfall und Ausfall der jeweiligen Hausseite
+// Einstellbarkeit ueber GUI ueberfluessig
+var Number SunProAzimutzOstEin  = 12|°	// 12   hard codiert
+var Number SunProAzimutzOstAus  = 135|°	// 135  hard codiert
+var Number SunProLichtOst  = 1100		// 1100 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzSuedEin = 68|°	// 68   hard codiert
+var Number SunProAzimutzSuedAus = 220|°	// 220  hard codiert
+var Number SunProLichtSued = 1100		// 1120 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzWestEin = 146|°	// 146  hard codiert
+var Number SunProAzimutzWestAus = 298|°	// 298  hard codiert
+var Number SunProLichtWest = 1000		// 1100 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzNordEin = 229|°	// 229  hard codiert
+var Number SunProAzimutzNordAus = 313|°	// 313  hard codiert
+var Number SunProLichtNord = 1090		// 1090 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzErLiEin = 180|°	// 180  hard codiert
+var Number SunProAzimutzErLiAus = 330|°	// 330  hard codiert
+var Number SunProLichtErLi = 1075		// 1075 hard codiert SollWert Lichtstaerke
+
+var Number SunProAzimutzErReEin = 270|°	// 270  hard codiert
+var Number SunProAzimutzErReAus = 313|°	// 313  hard codiert
+var Number SunProLichtErRe = 1070		// 1070 hard codiert SollWert Lichtstaerke
+
+// Wenn die Sonne unter geht - gilt nur fuer den Norden
+var Number SunProNordElevation =  18|°	// 18   hard codiert
+
+rule "Sun-Test" 
+when
+	Item oh_SunPro_TestSwitch changed
+then
+    logDebug("sun-test","####################################################")
+    logDebug("sun-test","start ##############################################")
+    logDebug("sun-protecton","Temp Aussen Ist : "+TempAussen.state.toString+" > Soll    : "+oh_SunPro_SollTemp_Aussen.state)
+    logDebug("sun-protecton","Temp Aussen A3D : "+TempAussenAvg3D.state.format("%.1f")+" > Soll 3D : "+oh_SunPro_SollTemp_3DAussen.state)
+    logDebug("sun-protecton","Temp Wohnzimmer : "+lcn_Temp_EG_WohnzSofa.state.format("%.0f")+" > Soll    : "+oh_SunPro_SollTemp_Wohnz.state.format("%.0f"))
+	logDebug("sun-test","Sued Licht : "+SunProLichtSued+" < "+WetterLichtW.state.format("%.0f")+"  Winkel : "+SunProAzimutzSuedEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzSuedAus+"  Activ : "+oh_SunPro_control_Sued.state.toString+" Status : "+oh_SunPro_Status_Sued.state)
+//	var Number SunProLichtSued = 890		// 1090 hard codiert SollWert Lichtstaerke
+	logDebug("sun-test","Sued Licht (SunProLichtSued): "+SunProLichtSued+" < "+WetterLichtS.state.format("%.0f")+" (WetterLichtS.state)")
+	if	(SunProLichtSued < WetterLichtS.state ) 
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+    logDebug("sun-test","Temp Aussen A3D (TempAussenAvg3D) : "+TempAussenAvg3D.state.format("%.1f")+" > Soll 3D : "+oh_SunPro_SollTemp_3DAussen.state+" (oh_SunPro_SollTemp_3DAussen)")
+	if ((( TempAussenAvg3D.state as QuantityType<Temperature>).toBigDecimal) > oh_SunPro_SollTemp_3DAussen.state)
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+	logDebug("sun-test","Azimuth (astro_Azimuth) : "+astro_Azimuth.state+" > SuedEin "+SunProAzimutzSuedEin+" (SunProAzimutzSuedEin)")
+    if  ( astro_Azimuth.state > SunProAzimutzSuedEin)
+//	      (astro_Azimuth.state > SunProAzimutzSuedEin) &&     // Sonne kommt um die Ecke
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+	logDebug("sun-test","Winkel : "+SunProAzimutzSuedEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzSuedAus)
+
+//      (astro_Azimuth.state < SunProAzimutzSuedAus) && // Sonne geht weg
+	logDebug("sun-test","Azimuth (astro_Azimuth): "+astro_Azimuth.state+" < SuedAus "+SunProAzimutzSuedAus+" (SunProAzimutzSuedAus)")
+    if  (astro_Azimuth.state < SunProAzimutzSuedAus)  // Sonne geht weg
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+
+//      (TempAussen.state.format("%.0f") > oh_SunPro_SollTemp_Aussen.state.format("%.0f")) &&
+	logDebug("sun-test","(TempAussen): "+TempAussen.state.format("%.0f")+" < "+oh_SunPro_SollTemp_Aussen.state.format("%.0f")+" (oh_SunPro_SollTemp_Aussen)")
+    if (TempAussen.state.format("%.0f") > oh_SunPro_SollTemp_Aussen.state.format("%.0f")) 
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+
+//      (lcn_Temp_EG_WohnzSofa.state.format("%.0f") > oh_SunPro_SollTemp_Wohnz.state.format("%.0f")) &&
+
+	logDebug("sun-test","(lcn_Temp_EG_WohnzSofa): "+lcn_Temp_EG_WohnzSofa.state.format("%.1f")+" > "+oh_SunPro_SollTemp_Wohnz.state.format("%.1f")+" (oh_SunPro_SollTemp_Wohnz)")
+    if (lcn_Temp_EG_WohnzSofa.state.format("%.1f") > oh_SunPro_SollTemp_Wohnz.state.format("%.1f"))
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+	logDebug("sun-test","(SunProLichtSued): "+SunProLichtSued+" < "+WetterLichtS.state+" (WetterLichtS)")
+//      (SunProLichtSued < WetterLichtS.state) &&
+    if (SunProLichtSued < WetterLichtS.state) 
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+	logDebug("sun-test","(astro_Azimuth): "+astro_Azimuth.state+" < "+SunProAzimutzSuedAus+" (SunProAzimutzSuedAus)")
+//      (astro_Azimuth.state < SunProAzimutzSuedAus) && // Sonne geht weg
+    if (astro_Azimuth.state < SunProAzimutzSuedAus) 
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+	logDebug("sun-test","Steuerung Sued (ein/aus) (oh_SunPro_control_Sued): "+oh_SunPro_control_Sued.state+" != OFF ")
+//        (oh_SunPro_control_Sued.state != OFF)
+    if (oh_SunPro_control_Sued.state != OFF)
+    { logDebug("sun-test","OK") } else { logDebug("sun-test","NO") }
+
+    logDebug("sun-test","####################################################")
+
+
+
+
+    logDebug("sun-test","done ###############################################")
+	logDebug("sun-test","  Winkel : "+SunProAzimutzNordEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzNordAus+"  Activ : "+oh_SunPro_control_Nord.state.toString+" Status : "+oh_SunPro_Status_Nord.state)
+    logDebug("sun-test","SGReadySoCON.state   : "+SGReadySoCON.state)
+    logDebug("sun-test","< PV_Battery_SOC.state : "+PV_Battery_SOC.state)
+    if ( SGReadySoCON.state < (PV_Battery_SOC.state as Number))
+    { logDebug("sun-test","OK") } else { logDebug("SGReadyAutomatik","NO") }
+
+    logDebug("sun-test","SGReadySoCON.state : "+SGReadySoCON.state)
+    if ((SGReadySoCON.state as Number) < (PV_Battery_SOC.state as Number))
+    { logDebug("sun-test","OK") } else { logDebug("SGReadyAutomatik","NO") }
+
+
+
+	logDebug("sun-test","Sued Licht : "+SunProLichtSued+ " < "+WetterLichtS.state.format("%.0f")+"  Winkel : " +SunProAzimutzSuedEin+"  > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzSuedAus+"  Avtiv : "+oh_SunPro_control_Sued.state.toString+" Status : "+oh_SunPro_Status_Sued.state)
+	logDebug("sun-test","Ost  Licht : "+SunProLichtOst+ " < "+WetterLichtO.state.format("%.0f")+"  Winkel : " +SunProAzimutzOstEin+"  > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzOstAus+"  Avtiv : "+oh_SunPro_control_Ost.state.toString+" Status : "+oh_SunPro_Status_Ost.state)
+	logDebug("sun-test","West Licht : "+SunProLichtWest+" < "+WetterLichtW.state.format("%.0f")+"  Winkel : "+SunProAzimutzWestEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzWestAus +"  Activ : "+oh_SunPro_control_West.state.toString+" Status : "+oh_SunPro_Status_West.state)
+	logDebug("sun-test","ErRe Licht : "+SunProLichtErRe+" < "+WetterLichtW.state.format("%.0f")+"  Winkel : "+SunProAzimutzErReEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErReAus +"  Activ : "+oh_SunPro_control_ErRe.state.toString+" Status : "+oh_SunPro_Status_ErRe.state)
+	logDebug("sun-test","ErLi Licht : "+SunProLichtErLi+" < "+WetterLichtW.state.format("%.0f")+"  Winkel : "+SunProAzimutzErLiEin+" > "+astro_Azimuth.state.format("%.0f")+" < "+SunProAzimutzErLiAus +"  State : "+oh_SunPro_control_ErLi.state.toString+" Status : "+oh_SunPro_Status_ErLi.state)
+    logDebug("sun-test","Temp Aussen Ist : "+TempAussen.state.toString+" > Soll    : "+oh_SunPro_SollTemp_Aussen.state)
+	logDebug("sun-test","Temp Wohnzimmer : "+lcn_Temp_EG_WohnzSofa.state.format("%.0f")+" > Soll    : "+oh_SunPro_SollTemp_Wohnz.state.format("%.0f"))
+
+
+    logDebug("sun-test","##################################################################################")
+
+    logDebug("sun-protecton","Temp Aussen A3D : "+TempAussenAvg3D.state.format("%.1f")+" > Soll 3D : "+oh_SunPro_SollTemp_3DAussen.state)
+
+    logDebug("sun-test","West xxxxxxx")
+
+logDebug("sun-test","Ist  : "+ TempAussenAvg3D.state+" > "+"Soll : "+ oh_SunPro_SollTemp_3DAussen.state) 
+
+if(
+  (TempAussenAvg3D.state as QuantityType<Temperature>) > (oh_SunPro_SollTemp_3DAussen.state as QuantityType<Temperature>)
+)
+{
+    logDebug("sun-test","West Licht Goooooo-")
+} else {
+    logDebug("sun-test","West Licht NOOOOOO-")
+}
+
+end
+
+
+rule "TimerRollo:rollo-test"
+when
+    Item oh_SunPro_TestSwitch changed
+then
+	logDebug("TimerRollo:rollo-test","Start")
+    logDebug("TimerRollo:rollo-test","Rollos * Oh_Control_Urlaub: "+Oh_Control_Urlaub.state+" Oh_Control_Abwesend "+Oh_Control_Abwesend.state+" Oh_Control_HomeOffice:"+Oh_Control_HomeOffice.state)
+	logDebug("TimerRollo:rollo-test","SUN Sued : "+oh_SunPro_Status_Sued.state.toString+" - SUN Ost : "+oh_SunPro_Status_Ost.state.toString)
+//	+" - SUN West : "+oh_SunPro_Status_West.state.toString)
+
+    if (
+        (oh_SunPro_Status_Sued.state == ON ) || 
+		(oh_SunPro_Status_Ost.state == ON )
+		)
+    {
+        logDebug("TimerRollo:rollo-test","drin.... OhHomeoffice : "+Oh_Control_HomeOffice.state)
+        if (Oh_Control_HomeOffice.state != "ON") {
+            logDebug("TimerRollo:rollo-test","HomeOffice off")
+        } else {
+            logDebug("TimerRollorollo-test","Homeoffice on")
+        }
+        // NORD
+	} else
+    {
+        logDebug("TimerRollorollo-test","-...raus...............")
+	}
+	logDebug("TimerRollo:rollo-test","Ende -")
+
+end

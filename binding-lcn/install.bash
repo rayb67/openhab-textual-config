@@ -28,4 +28,4 @@ cp ${DATAPATH}/lcn*.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
 cp ${DATAPATH}/lcn.things ${OPENHAB_SETUP_CONF}/things/.
 cp ${DATAPATH}/lcn_*.rules ${OPENHAB_SETUP_CONF}/rules/.
 cp ${DATAPATH}/lcn.map ${OPENHAB_SETUP_CONF}/transform/.
-chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}
+chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}

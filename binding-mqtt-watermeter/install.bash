@@ -30,4 +30,4 @@ cp ${DATAPATH}/mqtt_water*.things $OPENHAB_SETUP_CONF/things/.
 cp ${DATAPATH}/mqtt_water*.rules $OPENHAB_SETUP_CONF/rules/.
 #cp ${DATAPATH}/mqtt_water*.js $OPENHAB_SETUP_CONF/transform/.
 
-chown -R openhab:openhab  ${OPENHAB_SETUP_CONF}
+chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}

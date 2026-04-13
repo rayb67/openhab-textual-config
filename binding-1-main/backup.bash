@@ -31,4 +31,5 @@ cp ${OPENHAB_SETUP_CONF}/items/_groups.items .
 cp ${OPENHAB_SETUP_CONF}/items/_oh.items .
 cp ${OPENHAB_SETUP_CONF}/scripts/_holiday.script .
 cp ${OPENHAB_SETUP_CONF}/rules/_holiday.rules .
+cp ${OPENHAB_SETUP_CONF}/things/_mqtt_broker.things .
 

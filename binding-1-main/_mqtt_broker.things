@@ -1,0 +1,31 @@
+Bridge mqtt:broker:mybroker "MQTT -1- Broker"
+[ 
+	host="10.10.10.68", 
+	port=1883, 
+	keepAlive=66, 
+	secure=false, 
+	qos=1
+]
+
+// Try to configure a MQTT Bridge via GUI and copy the DSL file as template
+/*
+Thing mqtt:broker:test-broker "MQTT New Broker" 
+[
+	host="10.10.10.68", 
+	port=1883, 
+	secure=false, 
+	hostnameValidated=false, 
+	protocol="TCP", 
+	mqttVersion="V3", 
+	qos=0, reconnectTime=60000, 
+	keepAlive=60, 
+	lwtQos=0, 
+	lwtRetain=true, 
+	birthRetain=true, 
+	shutdownRetain=true, 
+	certificatepin=true, 
+	publickeypin=true, 
+	enableDiscovery=true, 
+	clientid="b1d9119f-530f-458c-a8fb-8e937fd7d5c7"
+]
+*/

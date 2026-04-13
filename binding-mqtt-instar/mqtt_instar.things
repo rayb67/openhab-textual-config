@@ -1,6 +1,8 @@
-Bridge mqtt:broker:server-dev [ host="10.10.10.68", port="1883", secure=false ]
-{
-    Thing topic instar "MQTT instar Hof" {
+// Because i use an extra thing file for the broker definition, the next line
+// is only for information. Put hat in an extra file, if you have more than one mqtt sources.
+// Bridge mqtt:broker:mybroker "MQTT -1- Broker" [ host="10.10.10.68", port=1883, keepAlive=66, secure=false, qos=1 ]
+
+Thing mqtt:topic:instar "MQTT instar Hof" (mqtt:broker:mybroker) {
 		Channels: 
 		Type switch : status_area_alarm_red_enable	"red"	
 			[	stateTopic="instar/E009BF6A5434/alarm/areas/red/enable", 
@@ -39,21 +41,8 @@ Bridge mqtt:broker:server-dev [ host="10.10.10.68", port="1883", secure=false ]
 				commandTopic="instar/E009BF6A5434/status/alarm/areas/blue/sensitivity", 
 				min=0, max=100, step=1 ]
 
-		Type switch : status_alarm_action_pir	"pir"
-			[	stateTopic="instar/E009BF6A5434/status/alarm/actions/pir/link", 
-				commandTopic="instar/E009BF6A5434/status/alarm/actions/pir/link", 
-				on="1", off="0" ]
 		Type number : status_alarm_triggerd	"triggered"
 			[ stateTopic="instar/E009BF6A5434/status/alarm/triggered" ]
 		Type number : status_alarm_triggerd_object	"triggered object"
 			[ stateTopic="instar/E009BF6A5434/status/alarm/triggered/object" ]
 	}
-}
-/*
-		instar/E009BF6A5434/status/alarm/actions/pir/link
-		Type switch : lamp "Kitchen Lamp" [ stateTopic="lamp/enabled", commandTopic="lamp/enabled/set" ]
-		Type switch : fancylamp "Fancy Lamp" [ stateTopic="fancy/lamp/state", commandTopic="fancy/lamp/command", on="i-am-on", off="i-am-off" ]
-		Type string : alarmpanel "Alarm system" [ stateTopic="alarm/panel/state", commandTopic="alarm/panel/set", allowedStates="ARMED_HOME,ARMED_AWAY,UNARMED" ]
-		Type color : lampcolor "Kitchen Lamp color" [ stateTopic="lamp/color", commandTopic="lamp/color/set", colorMode="RGB" ]
-		Type dimmer : blind "Blind" [ stateTopic="blind/state", commandTopic="blind/set", min=0, max=5, step=1 ]
-*/
