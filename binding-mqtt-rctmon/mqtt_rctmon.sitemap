@@ -6,9 +6,7 @@ sitemap mqtt_rctmon label="RCT Solar Monitoring"
 				Text item=PV_Input_A_Watt
 				Text item=PV_Input_B_Watt
 				Text item=PV_Input_Sum
-				Text item=PV_Daily_House_Power
 				Text item=PV_House_Current_Power
-				Text item=PV_Current_Grid_Feed_Sum
 				Text item=PV_Energy_Household_Sum
 				Text item=PV_Grid_Power_Sum
 				Text item=PV_Grid_Power_Phase1
@@ -16,16 +14,24 @@ sitemap mqtt_rctmon label="RCT Solar Monitoring"
 				Text item=PV_Grid_Power_Phase3
 				Switch item=PV_Error_LIM mappings=[ON=ON, OFF=OFF]
 				Text item=PV_Solar_Generator_Sum
-				Text item=PV_Daily_Grid_Load
-				Text item=PV_Energy_Grid_Load_Sum
 				Text item=PV_Daily_Generator
 				Text item=PV_Solar_Generator_Sum
 				Text item=PV_Energy_Solar_Generator_A
 				Text item=PV_Energy_Solar_Generator_B
-				Text item=PV_Current_Grid_Feed
-				Text item=PV_House_Current_Power
+				Text item=PV_Energy_Grid_Load_Sum
+        }
+
+        Frame label="PV SUM / calculated values" {
+				Text item=PV_Daily_Grid_Load
+				Text item=PV_Daily_House_Power
         }
 		
+		Frame label="PV Basic Information" {
+                Text item=PV_Basic_Inverter_status  label="Inverter Status [MAP(mqtt_rctmon.map):%d]"
+                Text item=PV_Basic_Inverter_Grid_Separated
+                Text item=PV_Basic_Serial_Number
+                Text item=PV_Basic_Inverter_Version
+        }
 		Frame label="PV Battery Status" {
                 Text item=PV_Battery_Voltage
 				Text item=PV_Battery_Upper_SOC
@@ -34,29 +40,11 @@ sitemap mqtt_rctmon label="RCT Solar Monitoring"
 				Text item=PV_Battery_Temperature
 				Text item=PV_Battery_Energy_From
 				Text item=PV_Battery_Energy_Into
+				Text item=PV_Battery_Health
+				Text item=PV_Battery_SOC_MIN
+				Text item=PV_Battery_SOC_TARGET
+				Text item=PV_Battery_SOC2
+				Text item=PV_Battery_SOH
+				Text item=PV_Battery_DischargeHours
         }
-		
-//		Frame label="PV Daily Status" {
-//                Text item=PV_Daily_Input_A
-//				Text item=PV_Daily_Input_B
-//				Text item=PV_Daily_Grid_Feed
-//				Text item=PV_Daily_Grid_Load
-//				Text item=PV_Daily_House_Power
-//        }
-		
-//		Frame label="PV Monthly Status" {
-//                Text item=PV_Monthly_Input_A
-//				Text item=PV_Monthly_Input_B
-//				Text item=PV_Monthly_Grid_Feed
-//				Text item=PV_Monthly_Grid_Load
-//				Text item=PV_Monthly_House_Power
-//        }
-		
-		//Frame label="PV Yearly Status" {
-        //        Text item=PV_Yearly_Input_A
-		//		Text item=PV_Yearly_Input_B
-		//		Text item=PV_Yearly_Grid_Feed
-		//		Text item=PV_Yearly_Grid_Load
-		//		Text item=PV_Yearly_House_Power
-        //}
 }

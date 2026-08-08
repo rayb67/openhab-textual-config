@@ -107,15 +107,15 @@ rule "Astro Abenddammerung start"
 when
     Channel 'astro:sun:local:civilDusk#event' triggered START
 then
-    logDebug("astro","Astro Abenddammerung start")
-	Oh_Status_Nacht.postUpdate(ON)
+    logInfo("astro","Astro Abenddammerung start")
 end
 
 rule "Astro Abenddammerung ende"
 when
     Channel 'astro:sun:local:civilDusk#event' triggered END
 then
-    logDebug("astro","Astro Abenddammerung end")
+    logInfo("astro","Astro Abenddammerung end")
+	Oh_Status_Nacht.postUpdate(ON)
 end
 
 rule "Astro daylight Start"
@@ -129,5 +129,5 @@ rule "Astro daylight Ende"
 when
     Channel 'astro:sun:local:daylight#event' triggered END
 then
-    logDebug("astro","Astro daylight Ende")
+    logInfo("astro","Astro daylight Ende")
 end

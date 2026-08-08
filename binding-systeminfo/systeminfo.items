@@ -1,5 +1,5 @@
 //. das ist die .
-Group	gSystemInfo								"System Information"	<info>		(gTechnik)	["Equipment"]
+Group	gSystemInfo								"System Information"	<info>		(gTechnik)	[Equipment]
 
 /* Network information */
 String	Systeminfo_Network_AdapterName        "Adapter name"        <network>         (gSystemInfo)	{ channel="systeminfo:computer:work:network#networkDisplayName" }

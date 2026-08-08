@@ -1,0 +1,16 @@
+
+rule "FRITZ_546E_Stunde_Energy"
+when
+    Time cron "2 */10 * * * * ?"
+	or Item Fritz_Test changed
+then
+// ToDo... das laeuft noch nicht richtig
+    val delta = FRITZ_546E_Energy.deltaSince(now.minusHours(1))
+    logDebug("FRITZ_546E_Stunde_Energy","Verbrauch delta : "+ delta)
+    if(delta !== null) {
+        FRITZ_546E_Stunde_Energy.postUpdate(delta)
+        logDebug("FRITZ_546E_Stunde_Energy","Verbrauch Wert : "+ FRITZ_546E_Stunde_Energy.state)
+    } else {
+        logWarn("FRITZ_546E_Stunde_Energy","deltaSince returned null")
+    }
+end

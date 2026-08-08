@@ -27,6 +27,7 @@ cp ${DATAPATH}/mqtt_rctmon.items ${OPENHAB_SETUP_CONF}/items/.
 cp ${DATAPATH}/mqtt_rctmon.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
 cp ${DATAPATH}/mqtt_rctmon.things ${OPENHAB_SETUP_CONF}/things/.
 cp ${DATAPATH}/mqtt_rctmon.rules ${OPENHAB_SETUP_CONF}/rules/.
+cp ${DATAPATH}/mqtt_rctmon.map ${OPENHAB_SETUP_CONF}/transform/.
 cp ${DATAPATH}/mqtt_rctmon*.js ${OPENHAB_SETUP_CONF}/transform/.
 cp ${DATAPATH}/*.png ${OPENHAB_SETUP_CONF}/icons/classic/.
 chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}

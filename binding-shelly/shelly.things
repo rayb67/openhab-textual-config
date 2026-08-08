@@ -1,5 +1,5 @@
 // ...
-Thing shelly:shellyplugs:XX114		"K Shelly Plug" @ "Kuehlschrank 38"		
-[deviceIp="10.10.10.38", userId="admin", password="your-password", updateInterval="3000"]
-Thing shelly:shellyplugs:XX113		"K Shelly Plug" @ "Computer Mini 37" 
-[deviceIp="10.10.10.37", userId="admin", password="your-password", updateInterval="3000"]
+Thing shelly:shellyplugs:XX114		"K Shelly Plug" @ "Variable"		
+[deviceIp="10.10.10.66", userId="admin", password="your-password", updateInterval="60"]
+Thing shelly:shellyplugs:XX113		"K Shelly Plug" @ "Computer" 
+[deviceIp="10.10.10.69", userId="admin", password="your-password", updateInterval="150"]

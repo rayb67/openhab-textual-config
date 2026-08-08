@@ -10,14 +10,14 @@
 // ueberschritten wird, wird die Lueftungsanlage auf 1 (server-devmal) gestellt.
 //
 // number of houres to calculate average temperature
-var Number belueftung_avg_time = 72
-// Target value
-//oh_SunPro_SollTemp_Aussen.state
-// BelueftungSollTempAuussen= 20
+var Number belueftung_avg_time = 70
+
 var Number belueftung_temperature_soll = 20
+
 // Wenn die temp ueberschritten wird, wird tagsueber auf Fan auf 1 und AutoMode aktiviert 
 // 26.7. von 25. auf 22. runter
 var Number belueftung_temperature_max_aussen = 22
+
 // average temperature
 var Number tmp_temperatur
 
@@ -26,7 +26,8 @@ when
 //	Time cron "0 */2 * * * ?"      // every two minute only for testing
 //	or
 	Time cron "0 2 */1 * * ?"      //   every houre
-//	or Item comfoair_auto_onoff changed
+	or Item comfoair_Test changed
+	or Item comfoair_control_auto changed
 then
 
     var Number month = now.getMonthValue
@@ -41,88 +42,97 @@ then
 	var belueftung_monat_bis = ZonedDateTime.parse(year+"-10-01T00:00:00.349+01:00")
 	
 	// Nachts - soll es im Haus kuehler werden. Dazu wir das Dachfenster geoeffnet und die Lueftung auf volle Pulle gestellt!
-	var belueftung_nacht_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T23:30:00.349+01:00")
-	var belueftung_nacht_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T07:00:00.349+01:00")
+	var belueftung_nacht_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T00:05:00.349+01:00")
+	var belueftung_nacht_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T06:00:00.349+01:00")
 	// Tagsueber - soll wenn es zu warm ist, die Lueftung reduziert werden.
-	var belueftung_tag_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T09:00:00.349+01:00")
-	var belueftung_tag_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T21:00:00.349+01:00")
+	var belueftung_tag_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T07:00:00.349+01:00")
+	var belueftung_tag_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T20:00:00.349+01:00")
 
 	var Number tmp_temperatur = TempAussen.averageSince(now.minusHours(belueftung_avg_time))
 
 	logDebug("BelueftungNacht","monat von        : " + belueftung_monat_von.toString("yyyy.MM.dd_HH:mm")+" - "+belueftung_monat_bis.toString("yyyy.MM.dd_HH:mm"))
-	logDebug("BelueftungNacht","nacht stunde von : "+belueftung_nacht_stunde_von.toString("yyyy.MM.dd_HH:mm")+" "+now.isAfter(belueftung_nacht_stunde_von)+" - "+belueftung_nacht_stunde_bis.toString("yyyy.MM.dd_HH:mm")+" "+now.isBefore(belueftung_nacht_stunde_bis))
-	logDebug("BelueftungNacht","tag stunde von   : "+belueftung_tag_stunde_von.toString("yyyy.MM.dd_HH:mm")+" "+now.isAfter(belueftung_tag_stunde_von)+" - "+belueftung_tag_stunde_bis.toString("yyyy.MM.dd_HH:mm")+" "+now.isBefore(belueftung_tag_stunde_bis))
-	logDebug("BelueftungNacht","Automatik On/off : "+comfoair_auto_onoff.state)
+	logDebug("BelueftungNacht","Automatik On/off : "+comfoair_control_auto.state)
 
-    val String sgr_str1 = "\r\nBelueft Controle auto     : "+comfoair_auto_onoff.state
-    val String sgr_str2 = "\r\nBelueft Temp Aussen Ist   : "+TempAussen.state.format("%.1f")+" > Soll    : "+belueftung_temperature_soll
-    val String sgr_all = sgr_str1 + sgr_str2 
+    val String sgr_str1 = "\r\nBelueft auto Nacht (E/A) : "+comfoair_control_auto.state
+    val String sgr_str2 = "\r\nBelueft Temp Aussen Ist  : "+TempAussen.state.format("%.1f")+" > Soll    : "+belueftung_temperature_soll
+	val String sgr_str3 = "\r\nTempAussen               : "+TempAussen.state.format("%.1f")+" > "+belueftung_temperature_soll+" (Schwellwert) "
+	val String sgr_str4 = "\r\nTemperaturen avg         : "+tmp_temperatur+" > "+belueftung_temperature_soll+" (Schwellwert)  ueber "+belueftung_avg_time+" h"
+	val String sgr_str5 = "\r\nSTART Level/Mode         : "+comfoair_FanLevel.state
+    val String sgr_all = sgr_str1 + sgr_str2 + sgr_str3 + sgr_str4 + sgr_str5
+	
+	logDebug("BelueftungNacht","......     "+sgr_all) 
 
 	logDebug("BelueftungNacht","TempAussen  : "+TempAussen.state.format("%.1f")+" > "+belueftung_temperature_soll+" (Schwellwert) ")
 	logDebug("BelueftungNacht","Temperaturen avg : "+tmp_temperatur+" > "+belueftung_temperature_soll+" (Schwellwert)  ueber "+belueftung_avg_time+" h")
-	logDebug("BelueftungNacht","START Level/Mode : "+comfoair_FanLevel.state+" Temp "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll+" State: "+comfoair_state_auto.state)
+	logDebug("BelueftungNacht","START Level/Mode : "+comfoair_FanLevel.state+" Temp "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll+" State: "+comfoair_state_night.state)
 
 //		( tmp_temperatur > belueftung_temperature_soll) &&
 
 	if ( 
-		(comfoair_auto_onoff.state == ON) && 
-		((TempAussen.state as QuantityType<Number>).doubleValue > belueftung_temperature_soll) &&
+		(comfoair_control_auto.state == ON) && 
+		(TempAussen.state > belueftung_temperature_soll) &&
 		(now.isAfter(belueftung_monat_von)) && 
 		(now.isBefore(belueftung_monat_bis)) )        // Monat 
 	{
-		logDebug("BelueftungNacht","Im Monatszeitrum ......     ") 
+		logDebug("BelueftungNacht","05-im Monatszeitrum ......     ") 
+		logInfo("BelueftungNacht","05-nacht stunde von : "+belueftung_nacht_stunde_von.toString("yyyy.MM.dd_HH:mm")+" "+
+				now.isAfter(belueftung_nacht_stunde_von)+" - "+
+				belueftung_nacht_stunde_bis.toString("yyyy.MM.dd_HH:mm")+" "+
+				now.isBefore(belueftung_nacht_stunde_bis))
+		logDebug("BelueftungNacht","05-tag stunde von   : "+belueftung_tag_stunde_von.toString("yyyy.MM.dd_HH:mm")+" "+now.isAfter(belueftung_tag_stunde_von)+" - "+belueftung_tag_stunde_bis.toString("yyyy.MM.dd_HH:mm")+" "+now.isBefore(belueftung_tag_stunde_bis))
+
+
 		if (
 			(now.isAfter(belueftung_nacht_stunde_von)) &&
 			(now.isBefore(belueftung_nacht_stunde_bis)) )   // Stunde
 		{
 			logInfo("BelueftungNacht","10-nachts und los geht es TempAussen.   : "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll)
 
-			if ((TempAussen.state <= belueftung_temperature_soll) &&
-				(comfoair_state_auto.state != ON ) )
+			if (
+					(TempAussen.state >= belueftung_temperature_soll) &&
+					(comfoair_state_night.state != ON ) 
+				)
 			{  
-				logInfo("BelueftungNacht","20-Ein Dachfenster oeffnen....     ") 
-				comfoair_state_auto.postUpdate(ON)
-//				sendCommand(lcn_action_OGFlurDachFAuf, ON)
-//Switch lcn_action_OGFlurDachFAuf 		"OGFlurDachFAuf"					{lcn="[ON:lcn_pi:KEYS.S0.M200.A8.HIT]"}
-				val actions = getActions("lcn","lcn:module:bus:S000M200")
+				logInfo("BelueftungNacht","20-Ein Dachfenster oeffnen.... + Level 4") 
+				comfoair_state_night.postUpdate(ON)
+				val actions = getActions("lcn","lcn:module:bus:S000M200") // Dachfenster Auf
 				actions.hitKey("A", 8, "HIT")
-				logInfo("BelueftungNacht","Ein Lueftung auf 4  ....     ") 
 				sendCommand(comfoair_FanLevel, 4) // 1=Auto; 2=leicht; 3=normal; 4=Stark
 				val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
-				telegramAction.sendTelegram("BelueftungNacht"+sgr_all)
+				telegramAction.sendTelegram("20 BelueftungNacht EIN"+sgr_all)
 			}
 		} else if (
-				(now.isAfter(belueftung_tag_stunde_von)) &&
 				(TempAussen.state > belueftung_temperature_soll) &&
+				(now.isAfter(belueftung_tag_stunde_von)) &&
 				(now.isBefore(belueftung_tag_stunde_bis)) )
 		{
 			logInfo("BelueftungNacht","35-tagsueber Lueftung auf Auto  ....     ") 
 			sendCommand(comfoair_FanLevel, 1) // 1=Automatik - das sind im Sommer i.d.R 15% Fan Level, 2=wenig, 3=normal, 4=start
 		}
-		else if  (comfoair_state_auto.state == ON )        
+		else if  (comfoair_state_night.state == ON )        
 		{
-			logInfo("BelueftungNacht","40-Aus Dachfenster schließen....     ") 
-			comfoair_state_auto.postUpdate(OFF)
-//			sendCommand(lcn_action_OGFlurDachFZu, ON)
-//Switch lcn_action_OGFlurDachFZu 		"OGFlurDachFZu"						{lcn="[ON:lcn_pi:KEYS.S0.M200.A7.HIT]"}
-			val actions = getActions("lcn","lcn:module:bus:S000M200")
+			logInfo("BelueftungNacht","40-Aus Dachfenster schließen.... + Level 1") 
+			comfoair_state_night.postUpdate(OFF)
+			val actions = getActions("lcn","lcn:module:bus:S000M200")	// Dachfenster zu
 			actions.hitKey("A", 7, "HIT")
 			sendCommand(comfoair_FanLevel, 1) // 1=Automatik - das sind im Sommer i.d.R 15% Fan Level, 2=wenig, 3=normal, 4=start
-			BelueftungNachts.postUpdate(0)
+			val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
+			telegramAction.sendTelegram("40 BelueftungNacht AUS"+sgr_all)
 		}
 		else
 		{
-			logDebug("BelueftungNacht","50-nicht im Zeitfenster") 
+			logInfo("BelueftungNacht","50-nicht im Zeitfenster fuer die Nacht") 
 		}
 	}
-	else if  (comfoair_state_auto.state == ON )        
+	else if  (comfoair_state_night.state == ON )        
 	{
-		logInfo("BelueftungNacht","60-...default") 
-		comfoair_state_auto.postUpdate(OFF)
-		sendCommand(lcn_action_OGFlurDachFZu, ON)
-		val actions = getActions("lcn","lcn:module:bus:S000M200")
+		logInfo("BelueftungNacht","60-...default Dachfenster schließen.... + Level 1") 
+		comfoair_state_night.postUpdate(OFF)
+		val actions = getActions("lcn","lcn:module:bus:S000M200")	//Dachfenster zu
 		actions.hitKey("A", 7, "HIT")
 		sendCommand(comfoair_FanLevel, 1) // 1=Automatik - das sind im Sommer i.d.R 15% Fan Level, 2=wenig, 3=normal, 4=start
+		val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
+		telegramAction.sendTelegram("60 BelueftungNacht AUS"+sgr_all)
 	}
 	else
 	{
@@ -170,13 +180,10 @@ end
 // Falls es Fehler gibt und das Dachfenster offen bleibt, wird pauschal das Fenster geschlossen.
 rule "BelueftungHeiss"
 when
-	Time cron "0 */10 * * * ?"      // every two minute only for testing
-	or
 	Time cron "0 30 7 ? * MON-FRI" //   0sec 0min 7h
-	or
-	Time cron "0 30 8 ? * SAT-SUN" //   0sec 0min 7h
-	or
-	Item comfoair_Test changed
+	or Time cron "0 30 8 ? * SAT-SUN" //   0sec 0min 7h
+//	or Time cron "0 */10 * * * ?"      // every two minute only for testing
+//	or Item comfoair_Test changed
 then
 
     val String sgr_str1 = "\r\nControl         : "+comfoair_control_noon.state
@@ -197,25 +204,27 @@ then
     {   
 		if ( comfoair_state_heiss.state != ON) 
 		{   
-			logInfo("BelueftungHeiss","1 - action an ....")
-			sendCommand(comfoair_FanLevel, 2) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+			sendCommand(comfoair_FanLevel, 1) // 1=Auto; 2=leicht; 3=normal; 4=Stark
 			val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
 			telegramAction.sendTelegram("BelueftungHeiss - level 2 - leicht "+sgr_all)
 			postUpdate(comfoair_state_heiss, "ON")
+			logInfo("BelueftungHeiss","1 - action an ....")
+			logInfo("BelueftungHeiss","--------------------------------------"+sgr_all)
 		}  
-		logDebug("BelueftungHeiss","2 - ist on ....")
+		else { logDebug("BelueftungHeiss","2 - ist on ....") }
     }  
 	else
     {   
-		logDebug("BelueftungHeiss","3 - nix.....")
 		if	( comfoair_state_heiss.state != OFF)
 		{   
-			logInfo("BelueftungHeiss","4 - action aus ....")
 			sendCommand(comfoair_FanLevel, 3) // 1=Auto; 2=leicht; 3=normal; 4=Stark
 			val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
 			telegramAction.sendTelegram("BelueftungHeiss - level 3 - normaler"+sgr_all)
 			postUpdate(comfoair_state_heiss, "OFF")
+			logInfo("BelueftungHeiss","3 - action aus ....")
+			logInfo("BelueftungHeiss","--------------------------------------"+sgr_all)
 		}   
+		else { logDebug("BelueftungHeiss","4 - nix.....") }
     }   
     logDebug("BelueftungHeiss","Ende")
 end

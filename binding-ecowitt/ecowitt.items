@@ -1,14 +1,14 @@
-Group					gWetterStation							"Group Wetterstation"				<heating>	(AUS_Dach)	 ["Equipment"]
+Group					gWetterStation							"Group Wetterstation"				<heating>	(AUS_Dach)	 [Equipment]
 
 Switch		weather_TestSwitch		"Weather Test"		<info>	(gWetterStation)	["WallSwitch"]
 
-Number:Temperature		weather_temperature_indoor		"Wetter Temperatur Innen [%.1f %unit%]"		<temperature>   (gWetterStation)   ["Measurement","Temperature"]
+Number:Temperature		weather_temperature_indoor		"Wetter Temperatur Innen [%.1f %unit%]"		<temperature>   (gWetterStation)   [Measurement,Temperature]
 { channel="fineoffsetweatherstation:gateway:3906700515:temperature-indoor" }
-Number:Temperature		weather_temperature_outdoor		"Wetter Temperatur Aussen [%.1f %unit%]"	<temperature>   (gWetterStation)   ["Measurement","Temperature"]
+Number:Temperature		weather_temperature_outdoor		"Wetter Temperatur Aussen [%.1f %unit%]"	<temperature>   (gWetterStation)   [Measurement,Temperature]
 { channel="fineoffsetweatherstation:gateway:3906700515:temperature-outdoor" }
-Number:Dimensionless    weather_humidity_indoor			"Wetter Luftfeuchtigkeit Innen [%.1f %%]"	<humidity>      (gWetterStation) ["Measurement","Humidity"]
+Number:Dimensionless    weather_humidity_indoor			"Wetter Luftfeuchtigkeit Innen [%.1f %%]"	<humidity>      (gWetterStation) [Measurement,"Humidity"]
 { channel="fineoffsetweatherstation:gateway:3906700515:humidity-indoor" }
-Number:Dimensionless    weather_humidity_outdoor		"Wetter Luftfeuchtigkeit Aussen [%.1f %%]"	<humidity>      (gWetterStation) ["Measurement","Humidity"]
+Number:Dimensionless    weather_humidity_outdoor		"Wetter Luftfeuchtigkeit Aussen [%.1f %%]"	<humidity>      (gWetterStation) [Measurement,"Humidity"]
 { channel="fineoffsetweatherstation:gateway:3906700515:humidity-outdoor" }
 
 Number:Pressure         weather_pressure_absolute		"Wetter Druck Absolute [%.1f hPa]"			<pressure>      (gWetterStation)  ["Pressure"]
@@ -17,54 +17,62 @@ Number:Pressure         weather_pressure_relative		"Wetter Druck Relative [%.1f 
 { channel="fineoffsetweatherstation:gateway:3906700515:pressure-relative" }
 
 
-Number:Angle			weather_direction_wind			"Wetter Wind Richtung [%.0f %unit%]"		<pressure>      (gWetterStation)  ["Measurement","Wind"]
+Number:Angle			weather_direction_wind			"Wetter Wind Richtung [%.0f %unit%]"		<pressure>      (gWetterStation)  [Measurement,"Wind"]
 { channel="fineoffsetweatherstation:gateway:3906700515:direction-wind" }
-Number:Speed			weather_speed_wind				"Wetter Wind Speed [%.0f %unit%]"			<wind>      (gWetterStation)  ["Measurement","Wind"]
+Number:Speed			weather_speed_wind				"Wetter Wind Speed [%.0f %unit%]"			<wind>      (gWetterStation)  [Measurement,"Wind"]
 { channel="fineoffsetweatherstation:gateway:3906700515:speed-wind" }
 
-Number:Speed			weather_speed_gust				"Wetter Wind Böhen [%.0f %unit%]"			<wind>      (gWetterStation)  ["Measurement","Wind"]
+Number:Speed			weather_speed_gust				"Wetter Wind Böhen [%.0f %unit%]"			<wind>      (gWetterStation)  [Measurement,"Wind"]
 { channel="fineoffsetweatherstation:gateway:3906700515:speed-gust" }
 
 
-Number:Illuminance		weather_illumination			"Wetter Lichtstärke [%.0f %unit%]"			<sun>      (gWetterStation)  ["Measurement","Light"]
+Number:Illuminance		weather_illumination			"Wetter Lichtstaerke [%.0f lx]"			<sun>      (gWetterStation)  [Measurement,Light]
 { channel="fineoffsetweatherstation:gateway:3906700515:illumination" }
 
-Number:Intensity		weather_irradiation_uv			"Wetter UV-Strahlung [%.0f %unit%]"			<sun>      (gWetterStation)  ["Measurement"]
-{ channel="fineoffsetweatherstation:gateway:3906700515:irradiation-uv" }
-Number:Dimensionless	weather_uv_index				"Wetter UV-Index [%.0f %unit%]"				<sun>      (gWetterStation)  ["Measurement"]
-{ channel="fineoffsetweatherstation:gateway:3906700515:uv-index" }
-Number:Speed			weather_wind_max_day			"Wetter Wind Max/day [%.0f %unit%]"			<wind>      (gWetterStation)  ["Measurement","Wind"]
-{ channel="fineoffsetweatherstation:gateway:3906700515:wind-max-day" }
-Number:Speed			weather_rain_rate				"Wetter Niederschlagsrate [%.2f mm]"		<rain>      (gWetterStation)  ["Measurement","Rain"]
-{ channel="fineoffsetweatherstation:gateway:3906700515:rain-rate" }
+Number:Illuminance		weather_illumination_Avg		"Wetter Lichtstaerke Avg [%.0f lx]"		<sun>		(gWetterStation)  [Measurement,Light]
 
-Number:Length			weather_rain_day				"Wetter Niederschlag heute [%.1f mm]"		<rain>      (gWetterStation)  ["Measurement"]
+Number:Intensity		weather_irradiation_uv			"Wetter UV-Strahlung [%.0f %unit%]"			<sun>      (gWetterStation)  [Measurement]
+{ channel="fineoffsetweatherstation:gateway:3906700515:irradiation-uv" }
+Number:Dimensionless	weather_uv_index				"Wetter UV-Index [%.0f %unit%]"				<sun>      (gWetterStation)  [Measurement]
+{ channel="fineoffsetweatherstation:gateway:3906700515:uv-index" }
+Number:Speed			weather_wind_max_day			"Wetter Wind Max/day [%.0f %unit%]"			<wind>      (gWetterStation)  [Measurement,"Wind"]
+{ channel="fineoffsetweatherstation:gateway:3906700515:wind-max-day" }
+
+Number:Speed			weather_rain_rate				"Wetter Niederschlagsrate [%.2f %unit%]"		<rain>      (gWetterStation)  [Measurement,"Rain"]
+{ channel="fineoffsetweatherstation:gateway:3906700515:rain-rate" , unit="km/h"}
+// DSL Kopie aus der GUI
+//Number:Speed xWeather_station_Niederschlagsrate "xWeather station Niederschlagsrate [%.2f %unit%]" <Rain> [Measurement, Rain] { channel="fineoffsetweatherstation:gateway:3906700515:rain-rate", unit="km/h" }
+
+
+Number:Length			weather_rain_day				"Wetter Niederschlag heute [%.1f mm]"		<rain>      (gWetterStation)  [Measurement]
 { channel="fineoffsetweatherstation:gateway:3906700515:rain-day" }
-Number:Length			weather_rain_event				"Wetter Niederschlag zuletzt [%.1f mm]"		<rain>      (gWetterStation)  ["Measurement"]
+Number:Length			weather_rain_event				"Wetter Niederschlag zuletzt [%.1f mm]"		<rain>      (gWetterStation)  [Measurement]
 { channel="fineoffsetweatherstation:gateway:3906700515:rain-event" }
-Number:Length			weather_rain_hour				"Wetter Niederschlag aktuelle Stunde [%.1f mm]"	<rain>	(gWetterStation)  ["Measurement"]
+Number:Length			weather_rain_hour				"Wetter Niederschlag aktuelle Stunde [%.1f mm]"	<rain>	(gWetterStation)  [Measurement]
 { channel="fineoffsetweatherstation:gateway:3906700515:rain-hour" }
-Number:Length			weather_rain_week				"Wetter Niederschlag Woche [%.1f mm]"		<rain>      (gWetterStation)  ["Measurement","Rain"]
+Number:Length			weather_rain_week				"Wetter Niederschlag Woche [%.1f mm]"		<rain>      (gWetterStation)  [Measurement,"Rain"]
 { channel="fineoffsetweatherstation:gateway:3906700515:rain-week"  }
-Number:Length			weather_rain_month				"Wetter Niederschlag Monat [%.1f mm]"		<rain>      (gWetterStation)  ["Measurement","Rain"]
+Number:Length			weather_rain_month				"Wetter Niederschlag Monat [%.1f mm]"		<rain>      (gWetterStation)  [Measurement,"Rain"]
 { channel="fineoffsetweatherstation:gateway:3906700515:rain-month" }
-Number:Length			weather_rain_year				"Wetter Niederschlag Jahr [%.1f mm]"		<rain>      (gWetterStation)  ["Measurement","Rain"]
+Number:Length			weather_rain_year				"Wetter Niederschlag Jahr [%.1f mm]"		<rain>      (gWetterStation)  [Measurement,"Rain"]
 { channel="fineoffsetweatherstation:gateway:3906700515:rain-year" }
 
-Number:Dimensionless    weather_moisture_soil_channel_1	"CH1 Sensor Bodenfeuchtigkeit [%.0f %%]"	<humidity>      (gWetterStation) ["Measurement","Humidity"]
+Number:Dimensionless    weather_moisture_soil_channel_1	"CH1 Sensor Bodenfeuchtigkeit [%.0f %%]"	<humidity>      (gWetterStation) [Measurement,"Humidity"]
 { channel="fineoffsetweatherstation:gateway:3906700515:moisture-soil-channel-1" }
 
 
-Number						weather_Sensor_Hochbeet_Signalstarke	"ecowitt WH51_CH1 Hochbeet Signalstärke"		<QualityOfService>	(gWetterStation)	["Measurement","SignalStrength"]
+Number						weather_Sensor_Hochbeet_Signalstarke	"ecowitt WH51_CH1 Hochbeet Signalstärke"		<QualityOfService>	(gWetterStation)	[Measurement,"SignalStrength"]
 { channel="fineoffsetweatherstation:sensor:3906700515:WH51_CH1:signal" }
 
-Number:ElectricPotential	weather_Sensor_Hochbeet_Batteriespannung "ecowitt WH51_CH1 Hochbeet Batteriespannung [%.1f %unit%]"	<Energy>	(gWetterStation)	["Measurement", "Voltage"]
+Number:ElectricPotential	weather_Sensor_Hochbeet_Batteriespannung "ecowitt WH51_CH1 Hochbeet Batteriespannung [%.1f %unit%]"	<Energy>	(gWetterStation)	[Measurement, "Voltage"]
 { channel="fineoffsetweatherstation:sensor:3906700515:WH51_CH1:batteryVoltage", unit="V" }
-Switch						weather_Sensor_Hochbeet_Niedriger_Batteriestatus "ecowitt WH51_CH1 Hochbeet Niedriger Batteriestatus"	<LowBattery>	(gWetterStation)	["Energy", "LowBattery"]
+Switch						weather_Sensor_Hochbeet_Niedriger_Batteriestatus "ecowitt WH51_CH1 Hochbeet Niedriger Batteriestatus"	<LowBattery>	(gWetterStation)	[Measurement,"LowBattery"]
 { channel="fineoffsetweatherstation:sensor:3906700515:WH51_CH1:lowBattery" }
 
 
-Switch						weather_Sensor_Dach_Niedriger_Batteriestatus "ecowitt WH65 Dach niedriger Batteriestatus"	<LowBattery>	(gWetterStation)	["Energy", "LowBattery"] 
+Switch						weather_Sensor_Dach_Niedriger_Batteriestatus "ecowitt WH65 Dach niedriger Batteriestatus"	<LowBattery>	(gWetterStation)	[Measurement,"LowBattery"] 
 { channel="fineoffsetweatherstation:sensor:3906700515:WH65:lowBattery" }
-Number						weather_Sensor_Dach_Signalstarke	"ecowitt WH65 Dach Signalstärke"		<QualityOfService>	(gWetterStation)	["Measurement", "SignalStrength"]
+Number						weather_Sensor_Dach_Signalstarke	"ecowitt WH65 Dach Signalstärke"		<QualityOfService>	(gWetterStation)	[Measurement, "SignalStrength"]
 { channel="fineoffsetweatherstation:sensor:3906700515:WH65:signal" }
+
+

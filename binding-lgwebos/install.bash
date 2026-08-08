@@ -22,4 +22,4 @@ cp ${DATAPATH}/lgwebos*.rules $OPENHAB_SETUP_CONF/rules/.
 cp ${DATAPATH}/lgwebos*.items $OPENHAB_SETUP_CONF/items/.
 cp ${DATAPATH}/lgwebos*.sitemap $OPENHAB_SETUP_CONF/sitemaps/.
 cp ${DATAPATH}/lgwebos*.things $OPENHAB_SETUP_CONF/things/.
-#chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}
+chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}

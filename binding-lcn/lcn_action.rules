@@ -49,32 +49,19 @@ end
 // #4
 rule "HaustuerOeffner"
 when
-//    Item lcn_action_SendKeyTueroeffner changed from Off to ON // to ON
-    Item lcn_action_SendKeyTueroeffner changed to ON // to ON
+    Item lcn_relay_TuerHaustuer changed to ON // to ON
 then
-    logInfo("HaustuerOeffner","HaustuerOeffner wurde betaetigt")
+    logDebug("HaustuerOeffner","1 ...wurde betaetigt")
     val actions = getActions("lcn","lcn:module:bus:S000M140")
     actions.hitKey("A", 5, "HIT")
-	createTimer(now.plusSeconds(2), [
-		postUpdate(lcn_action_SendKeyTueroeffner, "OFF")
-	])
-end
-/*
-rule "lcn_relay_TuerHaustuer" 
-when
-	Item lcn_relay_TuerHaustuer changed from OFF to ON
-then
-	logInfo("lcn_relay_TuerHaustuer","1 - Tueroeffner auf : "+lcn_relay_TuerHaustuer.state)
 	val telegramAction = getActions("telegram","telegram:telegramBot:openhab")
 	telegramAction.sendTelegram("....da hat jemand auf die Haustuer gedrueckt")
-
-	logInfo("lcn_relay_TuerHaustuer","2 - ...trigger...")
-	createTimer(now.plusSeconds(4), [
-		lcn_relay_TuerHaustuer.sendCommand( OFF )
+	createTimer(now.plusSeconds(1), [
+		postUpdate(lcn_relay_TuerHaustuer, "OFF")
+		logDebug("HaustuerOeffner","2 ... aus")
 	])
-	logInfo("lcn_relay_TuerHaustuer","3 - Tueroeffner zu : "+lcn_relay_TuerHaustuer.state)
+	logDebug("HaustuerOeffner","3 ... ende")
 end
-*/
 
 // ###################################################
 // #5

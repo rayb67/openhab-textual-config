@@ -1,43 +1,39 @@
+Group	gAVMFritz					"avmFritz Box"										(EG_Technik)	[Equipment]
+Group	gCALLMONITOR				"Call Monitor"										(gAVMFritz)
 
-// === AVM Call Monitor ===
-//Call	Fritz_IncomingCall  "Anruf: %1$s → %2$s"   { channel="avmfritz:fritzbox:fritz7590:incoming_call" }
-//Call	Fritz_ActiveCall    "Aktiver Anruf"       { channel="avmfritz:fritzbox:fritz7590:active_call" }
-//String	Fritz_CallState   "Call State"          { channel="avmfritz:fritzbox:fritz7590:call_state" }
+Switch	Fritz_Test					"Fritz Test"						<info>			(gAVMFritz)		[Control]
 
 // === Haustür Anzeige ===
-String Fritz_Haustuer_Status  "Haustuer: %s" <doorbell>
-Switch Fritz_Haustuer_Klingel "Haustuerklingel"
+String	Fritz_Haustuer_Status		"Haustuer: %s"						<doorbell>		(gAVMFritz)		[Status]
+Switch	Fritz_Haustuer_Klingel		"Haustuerklingel"					<doorbell>		(gAVMFritz)     [Status]
 
 
-Group   gAVMFritz                   "avmFritz_"                     (EG_Technik)                ["Equipment"]
-
-// Points:
-
-Group   gCALLMONITOR                "Call Monitor"                      (gAVMFritz)
+// === AVM Call Monitor ===
 Call    Fritz_IncomingCall          "Incoming Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR)
-{ channel="avmfritz:fritzbox:fritz7590:incoming_call" }
-Call    Fritz_ActiveCall                "Active Call [from %1$s]"           (gAVMFritz,gCALLMONITOR)
-{ channel="avmfritz:fritzbox:fritz7590:active_call" }
+{ channel="avmfritz:fritzbox:10.10.10.1:incoming_call" }
+Call    Fritz_ActiveCall			"Active Call [from %1$s]"           (gAVMFritz,gCALLMONITOR)
+{ channel="avmfritz:fritzbox:10.10.10.1:active_call" }
 Call    Fritz_OutgoingCall          "Outgoing Call [from %2$s to %1$s]" (gAVMFritz,gCALLMONITOR)
-{ channel="avmfritz:fritzbox:fritz7590:outgoing_call" }
-String  Fritz_CallState	           "Status [%s]"                       (gAVMFritz,gCALLMONITOR)
-{ channel="avmfritz:fritzbox:fritz7590:call_state" }
-String  Fritz_Template              "Vorlage anwenden"                  (gAVMFritz,gCALLMONITOR)
-{ channel="avmfritz:fritzbox:fritz7590:apply_template" }
+{ channel="avmfritz:fritzbox:10.10.10.1:outgoing_call" }
+String  Fritz_CallState				"Status [%s]"                       (gAVMFritz,gCALLMONITOR)
+{ channel="avmfritz:fritzbox:10.10.10.1:call_state" }
 
-// resolved numbers (only if TR-064 binding is installed)
+String  Fritz_LastOutboundCall		"Name Angerufener"                  (gAVMFritz)                 [Status]
+String  Fritz_LastOutboundNumber	"angerufene Nummer"                 (gAVMFritz)                 [Status]
+Number  Fritz_LastOutboundLine		"über ausgehende Nummer"            (gAVMFritz)                 [Status]
+String  Fritz_LastInboundCall		"Name Anrufer"                      (gAVMFritz)                 [Status]
+String  Fritz_LastInboundNumber		"anrufende Nummer"                  (gAVMFritz)                 [Status]
+Number  Fritz_LastInboundLine		"über eingende Nummer"              (gAVMFritz)                 [Status]
 
-String  Fritz_IncomingCallCaller     "Incoming Call - Caller [%s]"      (gAVMFritz,gCALLMONITOR)
-{ channel="tr064:Fritz_box:fb7490:incoming_call" [profile="transform:PHONEBOOK", phonebook="tr064_3AFritz_box_3Afb7490", phoneNumberIndex=1, matchcount="8"] }
-String  Fritz_ActiveCallCaller      "Active Call - Caller [%s]"         (gAVMFritz,gCALLMONITOR)
-{ channel="tr064:Fritz_box:fb7490:active_call" [profile="transform:PHONEBOOK", phonebook="tr064_3AFritz_box_3Afb7490"] }
-String  Fritz_OutgoingCallCaller     "Outgoing Call - Caller [%s]"      (gAVMFritz,gCALLMONITOR)
-{ channel="tr064:Fritz_box:fb7490:outgoing_call" [profile="transform:PHONEBOOK", phonebook="tr064_3AFritz_box_3Afb7490", phoneNumberIndex=1, matchcount="8"] }
-String  Fritz_LetzterAusgehenderRuf  "Name Angerufener"                  (gAVMFritz)                 ["Status"]
-String  Fritz_LetzteAusgendeNr       "angerufene Nummer"                 (gAVMFritz)                 ["Status"]
-Number  Fritz_LetzteALeitung         "über ausgehende Nummer"            (gAVMFritz)                 ["Status"]
-String  Fritz_LetzterEingehenderRuf  "Name Anrufer"                      (gAVMFritz)                 ["Status"]
-String  Fritz_LetzteEingehendeNr     "anrufende Nummer"                  (gAVMFritz)                 ["Status"]
-Number  Fritz_LetzteELeitung         "über eingende Nummer"              (gAVMFritz)                 ["Status"]
-
-
+// FritzPowerline 546E
+Number:Energy	FRITZ_546E_Energy		"FRITZ 546E Energieverbrauch"	<energy>		(gAVMFritz) [Energy, Measurement] 
+{ channel="avmfritz:FRITZ_Powerline_546E:10.10.10.1:08_96_D7_F3_8E_AA:energy" , stateDescription=" " [pattern="%.1f %unit%"], unit="kWh" }
+Number:Power	FRITZ_546E_Power		"FRITZ 546E Leistung"			<energy>		(gAVMFritz) [Measurement, Power] 
+{ channel="avmfritz:FRITZ_Powerline_546E:10.10.10.1:08_96_D7_F3_8E_AA:power" , stateDescription=" " [pattern="%.1f %unit%"], unit="W" }
+Switch			FRITZ_546E_Plug			"FRITZ_546E Steckdose"			<poweroutlet>	(gAVMFritz)	[Power,Switch]
+{ channel="avmfritz:FRITZ_Powerline_546E:10.10.10.1:08_96_D7_F3_8E_AA:outlet" }
+String			FRITZ_546E_Modus		"FRITZ 546E Modus"				<heating>		(gAVMFritz)	["Mode",Status]
+{ channel="avmfritz:FRITZ_Powerline_546E:10.10.10.1:08_96_D7_F3_8E_AA:mode" }
+Number:ElectricPotential FRITZ_546E_Voltage "FRITZ 546E Spannung" 		<energy>		(gAVMFritz) [Measurement,"Voltage"] 
+{ channel="avmfritz:FRITZ_Powerline_546E:10.10.10.1:08_96_D7_F3_8E_AA:voltage" , stateDescription=" " [pattern="%.1f %unit%"], unit="V" }
+Number			FRITZ_546E_Stunde_Energy	"Energie letzte Stunde [%.0f kWh]"	<energy>	(gAVMFritz)	[Measurement,Energy]

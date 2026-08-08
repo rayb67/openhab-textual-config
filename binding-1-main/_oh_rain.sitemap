@@ -1,0 +1,22 @@
+sitemap _oh_rain label="Regen Status" {
+	Frame label="openHAB settings" icon="info" {
+		Text item=Oh_Regen_count label="Oh_Regen_count"
+		Text item=Oh_Regen_in_24h
+		Switch item=Oh_Regen_in_24h label="Oh_Regen_in_24h" mappings=[ON="Play", OFF="Stop"]
+		Switch item=Bewaesserung_Test
+		Setpoint item=Oh_Soll_Rain_Volume icon="rain" step=1 minValue=0 maxValue=20
+	}
+	Frame label="Garten Feuchte" icon="water" {
+		Text item=WetterRegen label="Regen Contact"
+		Text item=StatusRegen label="StatusRegen"
+	}
+	Frame label="Ecowitt" icon="water" {
+		Text item=weather_rain_rate label="Niederschlagsrate"
+		Text item=weather_rain_day label="Menge/Tag"
+		Text item=weather_rain_event label="Menge zuletzt"
+		Text item=weather_rain_hour label="Menge/Stunde"
+		Text item=weather_rain_week label="Menge/Woche"
+		Text item=weather_rain_month label="Menge/Monat"
+		Text item=weather_rain_year label="Menge/Jahr"
+	}
+}

@@ -1,5 +1,5 @@
 Thing ipcamera:instar:hof "Hof Camera" [
-    ipAddress="10.10.10.80",
+    ipAddress="10.10.10.22",
     username="openhab",
     password="password",
 	pollTime="1000",
@@ -10,11 +10,10 @@ Thing ipcamera:instar:hof "Hof Camera" [
 	port="80"
 ]
 /*
-
 	updateImageWhen="0",
-    ffmpegInput="rtsp://10.10.10.80:554/11",
-    snapshotUrl="http://10.10.10.80/tmpfs/snap.jpg",
-	mjpegUrl="rtsp://10.10.10.80:554/11",
+    ffmpegInput="rtsp://10.10.10.22:554/11",
+    snapshotUrl="http://10.10.10.22/tmpfs/snap.jpg",
+	mjpegUrl="rtsp://10.10.10.22:554/11",
 	mjpegUrl="http://10.10.10.68:8080/ipcamera/hof/ipcamera.mjpeg",
 //	ffmpegOutput="/tmp",
 //	ffmpegLocation="/bin/ffmpeg",

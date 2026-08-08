@@ -1,6 +1,4 @@
-// Because i use an extra thing file for the broker definition, the next line
-// is only for information. Put hat in an extra file, if you have more than one mqtt sources.
-// Bridge mqtt:broker:mybroker "MQTT -1- Broker" [ host="10.10.10.68", port=1883, keepAlive=66, secure=false, qos=1 ]
+//Bridge mqtt:broker:mybroker [ host="10.10.10.68", port="1883", secure=false ]
 
 Thing mqtt:topic:instar "MQTT instar Hof" (mqtt:broker:mybroker) {
 		Channels: 
@@ -40,9 +38,4 @@ Thing mqtt:topic:instar "MQTT instar Hof" (mqtt:broker:mybroker) {
 			[	stateTopic="instar/E009BF6A5434/alarm/areas/blue/sensitivity", 
 				commandTopic="instar/E009BF6A5434/status/alarm/areas/blue/sensitivity", 
 				min=0, max=100, step=1 ]
-
-		Type number : status_alarm_triggerd	"triggered"
-			[ stateTopic="instar/E009BF6A5434/status/alarm/triggered" ]
-		Type number : status_alarm_triggerd_object	"triggered object"
-			[ stateTopic="instar/E009BF6A5434/status/alarm/triggered/object" ]
 	}

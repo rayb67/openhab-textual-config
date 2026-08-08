@@ -9,7 +9,7 @@ rule "StatusMusicBadSender1"
 when
 	Item StatusMusicBadSender1 changed to ON
 then
-	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play")
+	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play Sender1")
 	sendCommand( SPBad_PlayFavorite, 2) // 2 = WDR 2
 end
 
@@ -18,7 +18,7 @@ rule "StatusMusicBadSender2"
 when
 	Item StatusMusicBadSender2 changed to ON
 then
-	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play")
+	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play Sender2")
 	sendCommand( SPBad_PlayFavorite, 6) // 6 = Antenne Bayern Top 40
 end
 
@@ -27,7 +27,7 @@ rule "StatusMusicBadPlay"
 when
 	Item StatusMusicBadPlay changed to ON
 then
-	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play")
+	logInfo("StatusMusicBadPlay","StatusMusicBadPlay Play ON")
 	sendCommand( SPBad_Control, PLAY)
 	sendCommand( StatusMusicBadPlay, OFF)
 	sendCommand( Oh_Status_SPBadAutomatic, ON) // Zur Umgehung des Bewegungsmelder auto Stop

@@ -3,21 +3,21 @@ Group gVzlogger									"Energiezaehler"			<engergy>
 
 Switch			mqtt_vzlogger_Test              "vzlogger Test"							(gVzlogger,gTechnik)	["WallSwitch"]
 
-Number:Power	mqtt_vzlogger_bezug				"Bezug"						<energy>	(gVzlogger,gTechnik)	["Measurement","Power"]
+Number:Power	mqtt_vzlogger_bezug				"Bezug"						<energy>	(gVzlogger,gTechnik)	[Measurement,Power]
 {channel="mqtt:topic:vzlogger:bezug", stateDescription=" "}
-Number:Power	mqtt_vzlogger_lieferung			"Lieferung"					<energy>	(gVzlogger,gTechnik)	["Measurement","Power"]
+Number:Power	mqtt_vzlogger_lieferung			"Lieferung"					<energy>	(gVzlogger,gTechnik)	[Measurement,Power]
 {channel="mqtt:topic:vzlogger:lieferung", stateDescription=" "}
-Number:Power	mqtt_vzlogger_aktuell			"aktuell"					<energy>	(gVzlogger,gTechnik)	["Measurement","Power"]
+Number:Power	mqtt_vzlogger_aktuell			"aktuell"					<energy>	(gVzlogger,gTechnik)	[Measurement,Power]
 {channel="mqtt:topic:vzlogger:aktuell" , stateDescription=" "}
 
 
 
-Number:Energy	mqtt_vzlogger_tag_bezug			"Bezug letzter Tag"			<energy>	(gVzlogger,gTechnik)	["Measurement","Energy"]
+Number:Energy	mqtt_vzlogger_tag_bezug			"Bezug letzter Tag"			<energy>	(gVzlogger,gTechnik)	[Measurement,Energy]
 { stateDescription=" "[ pattern="%.0f Wh" ] }
-Number:Energy	mqtt_vzlogger_stunde_bezug		"Bezug letzte Stunde"		<energy>	(gVzlogger,gTechnik)	["Measurement","Energy"]
+Number:Energy	mqtt_vzlogger_stunde_bezug		"Bezug letzte Stunde"		<energy>	(gVzlogger,gTechnik)	[Measurement,Energy]
 { stateDescription=" "[ pattern="%.0f Wh" ] }
-Number:Energy	mqtt_vzlogger_tag_lieferung		"Lieferung letzter Tag"		<energy>	(gVzlogger,gTechnik)	["Measurement","Energy"]
+Number:Energy	mqtt_vzlogger_tag_lieferung		"Lieferung letzter Tag"		<energy>	(gVzlogger,gTechnik)	[Measurement,Energy]
 { stateDescription=" "[ pattern="%.0f Wh" ] }
-Number:Energy	mqtt_vzlogger_stunde_lieferung	"Lieferung letzte Stunde"	<energy>	(gVzlogger,gTechnik)	["Measurement","Energy"]
+Number:Energy	mqtt_vzlogger_stunde_lieferung	"Lieferung letzte Stunde"	<energy>	(gVzlogger,gTechnik)	[Measurement,Energy]
 { stateDescription=" "[ pattern="%.0f Wh" ] }
 

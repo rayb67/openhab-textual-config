@@ -1,7 +1,20 @@
+rule "ecowitt:Avg"
+when
+    Item weather_TestSwitch changed
+    or Time cron "0 0/5 * * * ?"
+then
+    val avg = weather_illumination.averageSince(now.minusMinutes(30)) as QuantityType<Illuminance>
+    val avgInt = Math::round(avg.doubleValue)
+
+    logDebug("ecowitt:Avg", "Aktuell={} Durchschnitt={} -> {} lx", weather_illumination.state, avg, avgInt)
+
+    weather_illumination_Avg.postUpdate(avgInt)
+end
+
 rule "weather_Sensor_Hochbeet_Niedriger_Batteriestatus" 
 when
 	Item weather_Sensor_Hochbeet_Niedriger_Batteriestatus changed to ON
-	or Item weather_TestSwitch changed
+//	or Item weather_TestSwitch changed
 then
 
 	logInfo("notify-weather","Feuchtesensor Hochbeet (gruene Pistole) Status  hat sich geaendert")
@@ -22,7 +35,7 @@ end
 rule "weather_Sensor_Dach_Niedriger_Batteriestatus" 
 when
 	Item weather_Sensor_Dach_Niedriger_Batteriestatus changed to ON
-	or Item weather_TestSwitch changed
+//	or Item weather_TestSwitch changed
 then
 
 	logInfo("notify-weather","Wetterstation Dach Batteriestatus hat sich geaendert")

@@ -1,8 +1,5 @@
-// Because i use an extra thing file for the broker definition, the next line
-// is only for information. Put hat in an extra file, if you have more than one mqtt sources.
-// Bridge mqtt:broker:mybroker "MQTT -1- Broker" [ host="10.10.10.68", port=1883, keepAlive=66, secure=false, qos=1 ]
-
 //# https://community.openhab.org/t/carconnectivity-mqtt-setup/165334/7
+//Bridge mqtt:broker:mybroker [ host="10.10.10.68", port="1883", secure=false ]
 Thing mqtt:topic:golf  "MQTT VW Golf" (mqtt:broker:mybroker) {
 	Channels:
 		Type number : latitude          [ stateTopic="carconnectivity/0/garage/yourWVWKey/position/latitude"]

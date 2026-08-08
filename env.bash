@@ -2,7 +2,7 @@
 # Some general environment infomration.
 # The version must match exactly!
 
-export OPENHAB_VERSION=5.0.2
+export OPENHAB_VERSION=5.1.0
 export JDK_VERSION=21  # Java 17 for OH 4.x ; Java 21 for OH 5.x
 export OPENHAB_USER=openhab
 export OPENHAB_GROUP=openhab
@@ -16,10 +16,15 @@ export OPENHAB_SETUP_FILES=openhab-setup-step-files-$VERSION
 export OPENHAB_PRD_HOSTNAME=server-prd
 export OPENHAB_PRD_IP=10.10.10.68
 export OPENHAB_DEV_HOSTNAME=server-dev
-export OPENHAB_DEV_IP=10.10.10.125
+export OPENHAB_DEV_IP=10.10.10.77
 export OPENHAB_RESTORE=/tmp/openhab-restore
 export OPENHAB_LOGPATH=/var/log/openhab
 export BACKUP_PATH=/nas/linux/backups
+
+#export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/conf
+#export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/userdata
+#export OPENHAB_SETUP_ADDONS=${OPENHAB_DOCKER_BASE}/addons
+#export OPENHAB_LOGPATH=${OPENHAB_SETUP_USERDATA}/logs
 
 # this is my production server
 if [ `hostname` == "server-prd" ];
@@ -33,7 +38,7 @@ then
 	export DATABASE_CLIENT=mysql
 fi
 
-# this is my develpment server
+# this is one of my develpment server
 if [ `hostname` == "server-dev" ];
 then
     echo "  env.bash - hostname server-dev"
@@ -45,18 +50,26 @@ then
 	export DATABASE_CLIENT=mariadb
 fi
 
-# this is my sandbox server
-if [ `hostname` == "mac-ubuntu" ];
+
+# --------------------------------------------------------------
+# this is one of my develpment server
+if [ `hostname` == "openhab-test" ];
 then
     echo "  env.bash - hostname mac-ubuntu"
     export OPENHAB_SRV_TYPE=sbx
 fi
 # --------------------------------------------------------------
 
-export OPENHAB_SETUP_CONF=${OPENHAB_DOCKER_BASE}/conf
-export OPENHAB_SETUP_USERDATA=${OPENHAB_DOCKER_BASE}/userdata
-export OPENHAB_SETUP_ADDONS=${OPENHAB_DOCKER_BASE}/addons
-export OPENHAB_LOGPATH=${OPENHAB_SETUP_USERDATA}/logs
+# this is one of my develpment server
+if [ `hostname` == "openhab-test" ];
+then
+    echo "  env.bash - hostname mac-ubuntu"
+    export OPENHAB_DB_BASE=/var/lib/mysql
+    export OPENHAB_SRV_TYPE=dev
+    export OPENHAB_DOCKER=true
+    export OPENHAB_SETUP_SOURCE=/nas/linux/install/openhab
+	export DATABASE_CLIENT=mysql
+fi
 
 if [ -z ${OPENHAB_SETUP_CONF} ];
 then
@@ -92,6 +105,7 @@ then
 	export OPENHAB_GROUP=docker
 else
 	echo "  env.bash - no Docker installation "$OPENHAB_DOCKER
+	echo  "OPENHAB_SETUP_CONF="${OPENHAB_SETUP_CONF}
 fi
 
 if [ -z ${OPENHAB_SETUP_USERDATA} ];

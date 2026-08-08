@@ -1,82 +1,61 @@
 // Idee geklaut aus :
 // https://community.openhab.org/t/oh3-rule-for-tr064-binding-does-not-work/139293/12
-rule "Eingehender Anruf"
+rule "FritzBoxInbound"
 when
     Item Fritz_CallState changed to RINGING 
 then
-    // zerlege die rufnummern mit avmFritz_ bindung
-
     val incCall = Fritz_IncomingCall.state as StringListType
-
     val ourNumber = incCall.getValue(0)
     val callerNumber = incCall.getValue(1)
-
-    val tr064Actions = getActions("tr064","tr064:fritzbox:fb7590")
+    val tr064Actions = getActions("tr064","tr064:fritzbox:10.10.10.1")
     val callerName = tr064Actions.phonebookLookup(callerNumber,5)
 
-    var String msg = "Der Anruf von" + " '" + Fritz_IncomingCallCaller.state +"' " + " Telefon-Nr. " + callerNumber + " erfolgte an die eigene Nr. " + ourNumber
+    logDebug("FritzBoxInbound","ourNumber    : "+ourNumber)
+    logDebug("FritzBoxInbound","callerNumber : "+callerNumber)
+    logDebug("FritzBoxInbound","callerName   : "+callerName)
+
+    Fritz_LastInboundCall.postUpdate(callerName)
+    Fritz_LastInboundNumber.postUpdate(callerNumber)
+    Fritz_LastInboundLine.postUpdate(ourNumber)
+
+    var String msg = "Inbound : Der Anruf von" + " '" + Fritz_LastInboundCall.state +"' " + " Telefon-Nr. " 
+		+ Fritz_LastInboundNumber.state + " erfolgte an die eigene Nr. " + Fritz_LastInboundLine.state + " ."
+
     logInfo("FritzBoxInbound", msg)
-    Fritz_LetzterEingehenderRuf.postUpdate(callerName)
-    Fritz_LetzteEingehendeNr.postUpdate(callerNumber)
-    Fritz_LetzteELeitung.postUpdate(ourNumber)
-    logInfo("FritzBoxInbound", "Der Anruf an" + " '" + Fritz_IncomingCallCaller.state +"' " + callerNumber + " wurde als letztes Gespräch gespeichert.")
 	   //actions.sendMessage(msg, "openHAB")
 
-	logInfo("FritzBoxInbound", "play sound")
+	logDebug("FritzBoxInbound", "play sound")
 //   	playSound("squeezebox:squeezeboxplayer:badsrv:mobile", "doorbell.mp3")
 //   	playSound("squeezebox:squeezeboxplayer:badsrv:mobile", "original-iphone-ring.mp3")
-	playSound("squeezebox:squeezeboxplayer:badsrv:wohnzimmer", "doorbell.mp3")
-	playSound("squeezebox:squeezeboxplayer:badsrv:kueche", "doorbell.mp3")
+//	playSound("squeezebox:squeezeboxplayer:badsrv:wohnzimmer", "doorbell.mp3")
+//	playSound("squeezebox:squeezeboxplayer:badsrv:kueche", "doorbell.mp3")
+//	playSound("squeezebox:squeezeboxplayer:badsrv:buero", "doorbell.mp3")
 //	playSound("squeezebox:squeezeboxplayer:badsrv:kueche", "original-iphone-ring.mp3")
 	// Das ist die Voice Funtion. Die muss noch als binding rein
 //	say("Achtung das Telefon klingelt", "voicerss:deDE", "squeezebox:squeezeboxplayer:badsrv:mobile", new PercentType(60))
 
-	logInfo("FritzBoxInbound", "...ende")
+	logDebug("FritzBoxInbound", "...ende")
 
 end
 
-rule "Ausgehender Anruf"
+rule "FritzBoxOutbound"
 when
     Item Fritz_CallState changed to DIALING 
 then
-    // zerlege die rufnummern mit avmFritz_ bindung
 
     val outCall = Fritz_OutgoingCall.state as StringListType
- 
     var String calledNumber = outCall.getValue(0)
     var String ourNumber = outCall.getValue(1)
-
-    val tr064Actions = getActions("tr064","tr064:fritzbox:fb7590")
+    val tr064Actions = getActions("tr064","tr064:fritzbox:10.10.10.1")
     val calleeName = tr064Actions.phonebookLookup(calledNumber,5) 
 
-    var String msg = "Der Anruf an" + " '" + calleeName +"' " + " Telefon-Nr. " + calledNumber + " erfolgte über die eigene Nr. " + ourNumber
+    Fritz_LastOutboundCall.postUpdate(calleeName)
+    Fritz_LastOutboundNumber.postUpdate(calledNumber)
+    Fritz_LastOutboundLine.postUpdate(ourNumber)
+
+    var String msg = "Outbound : Der Anruf an" + " '" + Fritz_LastOutboundCall.state +"' " + " Telefon-Nr. " 
+		+ Fritz_LastOutboundNumber.state + " erfolgte über die eigene Nr. " + Fritz_LastOutboundLine.state + " ."
     logInfo("FritzBoxOutbound", msg)
-    Fritz_LetzterAusgehenderRuf.postUpdate(calleeName)
-    Fritz_LetzteAusgendeNr.postUpdate(calledNumber)
-    Fritz_LetzteALeitung.postUpdate(ourNumber)
-    logInfo("FritzBoxOutbound", "Der Anruf an" + " '" + calleeName +"' " + calledNumber + " wurde als letztes Gespräch gespeichert.")
 	   //actions.sendMessage(msg, "openHAB")
-end
-
-rule "Verbindung aufgebaut - ausgehend"
-when
-    Item Fritz_CallState changed from DIALING to ACTIVE
-then
-    logInfo("FritzBoxOutActive", "Ausgehender Anruf: Verbindung hergestellt")
-end
-
-rule "Verbindung hergestellt - eingehend"
-when
-    Item Fritz_CallState changed from RINGING to ACTIVE
-then
-    logInfo("FritzBoxInActive", "Eingehender Anruf: Verbindung hergestellt")
-end
-
-
-rule "Verbindung unterbrochen"
-when
-    Item Fritz_CallState changed from ACTIVE to IDLE
-then
-    logInfo("FritzBoxFailed", "Aktiver Anruf: Verbindung unterbrochen")
 end
 

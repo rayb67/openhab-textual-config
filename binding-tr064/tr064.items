@@ -1,38 +1,38 @@
 Group		gtr064						"tr064"						<network>	(gTechnik)		["NetworkAppliance"]
 
 
-Switch		tr064Wifi24					"1 2,4GHz Wifi"				<network>	(gtr064)	["Control","Network"] 
+Switch		tr064Wifi24					"1 2,4GHz Wifi"				<network>	(gtr064)	[Control,Network] 
 {channel="tr064:subdeviceLan:fb7590:LAN:wifi1Enable " }
-Switch		tr064Wifi50					"1 5,0GHz Wifi"				<network>	(gtr064)	["Control","Network"]
+Switch		tr064Wifi50					"1 5,0GHz Wifi"				<network>	(gtr064)	[Control,Network]
 {channel="tr064:subdeviceLan:fb7590:LAN:wifi2Enable " }
-Switch		tr064GuestWifi				"1 Guest Wifi"				<network>	(gtr064)	["Control","Network"]
+Switch		tr064GuestWifi				"1 Guest Wifi"				<network>	(gtr064)	[Control,Network]
 {channel="tr064:subdeviceLan:fb7590:LAN:wifi3Enable"}
 
-String		tr064WanIP					"2 tr064 WAN IP [%s]"		<network>	(gtr064)	["Measurement","Network"]
+String		tr064WanIP					"2 tr064 WAN IP [%s]"		<network>	(gtr064)	[Measurement,Network]
 {channel="tr064:subdevice:fb7590:WAN:wanIpAddress"}
-String		tr064WanConnectionStatus	"2 tr064 WAN Status [%s]"	<network>	(gtr064)	["Status","Network"]
+String		tr064WanConnectionStatus	"2 tr064 WAN Status [%s]"	<network>	(gtr064)	[Status,Network]
 {channel="tr064:subdevice:fb7590:WAN:wanConnectionStatus"}
-Number:Time	tr064WanUptime				"2 tr064 WAN Uptime "		<network>	(gtr064)	["Measurement","Duration"]
+Number:Time	tr064WanUptime				"2 tr064 WAN Uptime "		<network>	(gtr064)	[Measurement,"Duration"]
 {channel="tr064:subdevice:fb7590:WAN:uptime"}
 
 
-Number:DataTransferRate	tr064_CurrentDownstream	"3 Crurent Downstream"	<network>	(gtr064)	["Measurement","Network"]
+Number:DataTransferRate	tr064_CurrentDownstream	"3 Crurent Downstream"	<network>	(gtr064)	[Measurement,Network]
 {channel="tr064:subdevice:fb7590:WANCon:wanCurrentDownstreamBitrate"}
-Number:DataTransferRate	tr064_CurrentUpstream	"3 Crurent Upstream"	<network>	(gtr064)	["Measurement","Network"]
+Number:DataTransferRate	tr064_CurrentUpstream	"3 Crurent Upstream"	<network>	(gtr064)	[Measurement,Network]
 {channel="tr064:subdevice:fb7590:WANCon:wanCurrentUpstreamBitrate"}
 
-Number:DataAmount	tr064_TotalBytesReceived 	"3 Total Bytes Received"	<network>	(gtr064)	["Measurement","Network"]
+Number:DataAmount	tr064_TotalBytesReceived 	"3 Total Bytes Received"	<network>	(gtr064)	[Measurement,Network]
 {channel="tr064:subdevice:fb7590:WANCon:wanTotalBytesReceived"}
-Number:DataAmount	tr064_TotalBytesSent	 	"3 Total Bytes Sent"	<network>	(gtr064)	["Measurement","Network"]
+Number:DataAmount	tr064_TotalBytesSent	 	"3 Total Bytes Sent"	<network>	(gtr064)	[Measurement,Network]
 {channel="tr064:subdevice:fb7590:WANCon:wanTotalBytesSent"}
 
 // Incoming, Outgoing and missed calls in the last 7 days
-//Number tr064IncomingCalls "Incoming Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7590:inboundCalls_7" }
-//Number tr064OutgoingCalls "Outgoing Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7590:outboundCalls_7" }
-//Number tr064MissedCalls "Missed Calls [%d]" (gCALLMONITOR) ["Status"] { channel="tr064:fritzbox:fb7590:missedCalls_7" }P
+//Number tr064IncomingCalls "Incoming Calls [%d]" (gCALLMONITOR) [Status] { channel="tr064:fritzbox:fb7590:inboundCalls_7" }
+//Number tr064OutgoingCalls "Outgoing Calls [%d]" (gCALLMONITOR) [Status] { channel="tr064:fritzbox:fb7590:outboundCalls_7" }
+//Number tr064MissedCalls "Missed Calls [%d]" (gCALLMONITOR) [Status] { channel="tr064:fritzbox:fb7590:missedCalls_7" }P
 
-Switch		tr064tamEnable				"4 AB Ein/Aus"				<phone>		(gtr064)	["Control","Sound"]
+Switch		tr064tamEnable				"4 AB Ein/Aus"				<phone>		(gtr064)	[Control,Sound]
 { channel="tr064:fritzbox:fb7590:tamEnable_0 " }
-Number		tr064tamNewMessages			"4 AB Anrufe [%d]"			<phone>		(gtr064)	["Measurement","Message"]
+Number		tr064tamNewMessages			"4 AB Anrufe [%d]"			<phone>		(gtr064)	[Measurement,"Message"]
 { channel="tr064:fritzbox:fb7590:tamNewMessages_0" }
 

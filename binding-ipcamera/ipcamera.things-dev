@@ -1,5 +1,5 @@
 Thing ipcamera:instar:hof "Hof Camera" [
-    ipAddress="10.10.10.80",
+    ipAddress="10.10.10.22",
     username="openhab",
     password="openHAB99!1234",
     onvifPort="8080",

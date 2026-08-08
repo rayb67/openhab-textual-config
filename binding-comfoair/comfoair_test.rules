@@ -1,106 +1,135 @@
-// Ralf Berhorst
-// Funktionstest idR zur Vor- und Nachbereitung einen Updates
-// 2024.07.25
-
-// number of houres to calculate average temperature
-var Number belueftung_avg_time = 72
-// Target value
-// BelueftungSollTempAussen = 20
+var Number belueftung_avg_time = 70
 var Number belueftung_temperature_soll = 20
-// Wenn die temp ueberschritten wird, wird tagsueber auf Fan auf 1 und AutoMode aktiviert
-// 26.7. von 25. auf 22. runter
 var Number belueftung_temperature_max_aussen = 22
-// average temperature
-var Number tmp_temperatur
 
-rule "Test-Belueftung"
+rule "BelueftungTestNacht"
 when
-    Item comfoair_Test changed
-//  or
-//  Time cron "0 */1 * * * ?" //   1 Min zum testen
-//  Time cron "0 */2 * * * ?" //   30 sec zum testen
-//  Time cron "20 */5 * * * ?" // alle 5 min
+//	Time cron "0 12 */1 * * ?"      //   every houre
+	Time cron "0 22 23 * * ?"      // um 23:: Uhr
+//	or Item comfoair_Test changed
 then
-
-    logInfo("Test-Belueftung","#######################################################")
-    logInfo("Test-Belueftung","Erwartet werden keine Fehler und zum Schluss ein 'ENDE'")
-    logInfo("Test-Belueftung","#######################################################")
-	if	( 
-			(BelueftungOnOff.state == ON) 
-		)
-	{
-		logInfo("Test-Belueftung","1 yes - (BelueftungOnOff.state == ON)") 
-	} else {
-		logInfo("Test-Belueftung","1 no")
-	}
+	logInfo("BelueftungTestNacht","-------------------------") 
 
     var Number month = now.getMonthValue
     if (month < 10) { month = '0' + month.toString() } else { month = month.toString() }
     var Number day = now.dayOfMonth
     if (day < 10) { day = '0' + day.toString() } else { day = day.toString() }
-    var Number year = now.getYear
+	var Number year = now.getYear
 
-    // Ab Monat MAI
-    var belueftung_monat_von = ZonedDateTime.parse(year+"-05-01T00:00:00.349+01:00")
-    // Bis zum 1. Oktober
-    var belueftung_monat_bis = ZonedDateTime.parse(year+"-10-01T00:00:00.349+01:00")
+	// Ab Monat MAI
+	var belueftung_monat_von = ZonedDateTime.parse(year+"-05-01T00:00:00.349+01:00")
+	// Bis zum 1. Oktober
+	var belueftung_monat_bis = ZonedDateTime.parse(year+"-10-01T00:00:00.349+01:00")
+	
+	// Nachts - soll es im Haus kuehler werden. Dazu wir das Dachfenster geoeffnet und die Lueftung auf volle Pulle gestellt!
+	var belueftung_nacht_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T20:05:00.349+01:00")
+	var belueftung_nacht_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T20:30:00.349+01:00")
+	// Tagsueber - soll wenn es zu warm ist, die Lueftung reduziert werden.
+	var belueftung_tag_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T20:00:00.349+01:00")
+	var belueftung_tag_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T21:00:00.349+01:00")
 
-    // Nachts - soll es im Haus kuehler werden. Dazu wir das Dachfenster geoeffnet und die Lueftung auf volle Pulle gestellt!
-    var belueftung_nacht_stunde_von = ZonedDateTime.parse(year+"-"+month+"-"+day+"T22:30:00.349+01:00")
-    var belueftung_nacht_stunde_bis = ZonedDateTime.parse(year+"-"+month+"-"+day+"T07:00:00.349+01:00")
+	var Number tmp_temperatur = TempAussen.averageSince(now.minusHours(belueftung_avg_time))
 
-	logInfo("Test-Belueftung","TempAussenAvg1W     : "+(TempAussenAvg1W.state as QuantityType<Number>).doubleValue )
-	logInfo("Test-Belueftung","belueftung_tempSoll : "+belueftung_temperature_soll) 
-	if	( 
-			((TempAussenAvg1W.state as QuantityType<Number>).doubleValue > belueftung_temperature_soll) 
-		)
+	logInfo("BelueftungTestNacht","monat von        : " + belueftung_monat_von.toString("yyyy.MM.dd_HH:mm")+" - "+belueftung_monat_bis.toString("yyyy.MM.dd_HH:mm"))
+	logInfo("BelueftungTestNacht","Automatik On/off : "+comfoair_control_auto.state)
+
+    val String sgr_str1 = "\r\nBelueft auto Nacht (E/A) : "+comfoair_control_auto.state
+    val String sgr_str2 = "\r\nBelueft Temp Aussen Ist  : "+TempAussen.state.format("%.1f")+" > Soll    : "+belueftung_temperature_soll
+	val String sgr_str3 = "\r\nTempAussen               : "+TempAussen.state.format("%.1f")+" > "+belueftung_temperature_soll+" (Schwellwert) "
+	val String sgr_str4 = "\r\nTemperaturen avg         : "+tmp_temperatur+" > "+belueftung_temperature_soll+" (Schwellwert)  ueber "+belueftung_avg_time+" h"
+	val String sgr_str5 = "\r\nSTART Level/Mode         : "+comfoair_FanLevel.state
+    val String sgr_all = sgr_str1 + sgr_str2 + sgr_str3 + sgr_str4 + sgr_str5
+	
+	logDebug("BelueftungTestNacht","......     "+sgr_all) 
+
+	logInfo("BelueftungTestNacht","TempAussen  : "+TempAussen.state.format("%.1f")+" > "+belueftung_temperature_soll+" (Schwellwert) ")
+	logInfo("BelueftungTestNacht","Temperaturen avg : "+tmp_temperatur+" > "+belueftung_temperature_soll+" (Schwellwert)  ueber "+belueftung_avg_time+" h")
+	logDebug("BelueftungTestNacht","START Level/Mode : "+comfoair_FanLevel.state+" Temp "+TempAussen.state.format("%.1f")+" Avg : "+tmp_temperatur+" in "+belueftung_avg_time+" (h) | Soll : "+belueftung_temperature_soll+" State: "+comfoair_state_night.state)
+
+//		( tmp_temperatur > belueftung_temperature_soll) &&
+
+	if ( 
+		(comfoair_control_auto.state == ON) && 
+		(TempAussen.state > belueftung_temperature_soll) &&
+		(now.isAfter(belueftung_monat_von)) && 
+		(now.isBefore(belueftung_monat_bis)) )        // Monat 
 	{
-		logInfo("Test-Belueftung","2 yes - (TempAussenAvg1W.state > belueftung_temperature_soll)") 
-	} else {
-		logInfo("Test-Belueftung","2 no - (TempAussenAvg1W.state > belueftung_temperature_soll)") 
-	}
+		logDebug("BelueftungTestNacht","05-im Monatszeitrum ......     ") 
+		logInfo("BelueftungTestNacht","05-nacht stunde von : "+
+			belueftung_nacht_stunde_von.toString("yyyy.MM.dd_HH:mm")+" "+
+			now.isAfter(belueftung_nacht_stunde_von)+" - "+
+			belueftung_nacht_stunde_bis.toString("yyyy.MM.dd_HH:mm")+" "+
+			now.isBefore(belueftung_nacht_stunde_bis))
+		logInfo("BelueftungTestNacht","05-tag stunde von   : "+
+			belueftung_tag_stunde_von.toString("yyyy.MM.dd_HH:mm")+" "+
+			now.isAfter(belueftung_tag_stunde_von)+" - "+
+			belueftung_tag_stunde_bis.toString("yyyy.MM.dd_HH:mm")+" "+
+			now.isBefore(belueftung_tag_stunde_bis))
 
-	if	( 
-			(now.isAfter(belueftung_monat_von))
-		)
+			logInfo("BelueftungTestNacht","11-nachts      : "+comfoair_state_night.state ) 
+
+		if (
+			(now.isAfter(belueftung_nacht_stunde_von)) &&
+			(now.isBefore(belueftung_nacht_stunde_bis)) )   // Stunde
+		{
+			if (comfoair_state_night.state != ON ) 
+			{ logInfo("BelueftungTestNacht","!=ON   OK") } else { logInfo("BelueftungTestNacht","!=ON   NO") }
+
+			logInfo("BelueftungTestNacht","13-nachts      : "+ TempAussen.state.format("%.1f")+" <= "+belueftung_temperature_soll)
+
+			if (TempAussen.state >= belueftung_temperature_soll)
+			{ logInfo("BelueftungTestNacht","---OK") } else { logInfo("BelueftungTestNacht","---NO") }
+
+			if (
+					(TempAussen.state <= belueftung_temperature_soll) &&
+					(comfoair_state_night.state != ON ) 
+				)
+			{  
+				logInfo("BelueftungTestNacht","20-Ein Dachfenster oeffnen....     ") 
+				comfoair_state_night.postUpdate(ON)
+				logInfo("BelueftungTestNacht","21-Ein Lueftung auf 4  ....     ") 
+			}
+		} else if (
+				(TempAussen.state > belueftung_temperature_soll) &&
+				(now.isAfter(belueftung_tag_stunde_von)) &&
+				(now.isBefore(belueftung_tag_stunde_bis)) )
+		{
+			logInfo("BelueftungTestNacht","35-tagsueber Lueftung auf Auto  ....     ") 
+		}
+		else if  (comfoair_state_night.state == ON )        
+		{
+			logInfo("BelueftungTestNacht","40-Aus Dachfenster schließen....     ") 
+			comfoair_state_night.postUpdate(OFF)
+		}
+		else
+		{
+			logInfo("BelueftungTestNacht","50-nicht im Zeitfenster") 
+		}
+	}
+	else if  (comfoair_state_night.state == ON )        
 	{
-		logInfo("Test-Belueftung","3 yes - (now.isAfter(belueftung_monat_von)") 
-	} else {
-		logInfo("Test-Belueftung","3 no - (now.isAfter(belueftung_monat_von)") 
+		logInfo("BelueftungTestNacht","60-...default") 
+		comfoair_state_night.postUpdate(OFF)
 	}
-
-	if	( 
-			(now.isBefore(belueftung_monat_bis)) 
-		)
+	else
 	{
-		logInfo("Test-Belueftung","4 yes - (now.isBefore(belueftung_monat_bis)") 
-	} else {
-		logInfo("Test-Belueftung","4 no - (now.isBefore(belueftung_monat_bis)") 
+		logDebug("BelueftungTestNacht","100-Nicht im Zeitfenster oder deaktiviert--------------------------")
+		if ( (TempAussen.state > belueftung_temperature_max_aussen) &&
+			 (Oh_Control_Abwesend.state == ON)) 
+		{
+			logInfo("BelueftungTestNacht","110- Abwesend und warm --------------------------")
+		}
+// Der folgend Teil deaktiviert, weil das bewusste setzen auf Level 2
+// nicht ueberschrieben werden soll
+/*		
+		else if (	(TempAussen.state < belueftung_temperature_max_aussen) &&
+					(Oh_Control_Abwesend.state != ON)) 
+		{
+			logInfo("BelueftungTestNacht","120- Default  --------------------------")
+			sendCommand(comfoair_FanLevel, 3) // 1=Auto; 2=leicht; 3=normal; 4=Stark
+		}
+*/
 	}
-
-	logInfo("Test-Belueftung","belueftung_nacht_stunde_von : "+belueftung_nacht_stunde_von) 
-	if	(
-			(now.isAfter(belueftung_nacht_stunde_von))
-		)
-//           (now.isBefore(belueftung_nacht_stunde_bis)) )   // Stunde
-	{
-		logInfo("Test-Belueftung","5 yes - (now.isAfter(belueftung_nacht_stunde_von)") 
-	} else {
-		logInfo("Test-Belueftung","5 no - (now.isAfter(belueftung_nacht_stunde_von)") 
-	}
-
-	logInfo("Test-Belueftung","belueftung_nacht_stunde_bis : "+belueftung_nacht_stunde_bis) 
-	if	(
-           (now.isBefore(belueftung_nacht_stunde_bis))
-		)
-	{
-		logInfo("Test-Belueftung","6 yes - (now.isBefore(belueftung_nacht_stunde_bis)") 
-	} else {
-		logInfo("Test-Belueftung","6 no - (now.isBefore(belueftung_nacht_stunde_bis)") 
-	}
-
-
-
-	logInfo("Test-Belueftung","ENDE")
+	logInfo("BelueftungTestNacht","ENDE  Level/Mode "+ comfoair_FanLevel.state)
 end
 

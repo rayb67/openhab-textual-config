@@ -727,6 +727,7 @@ back-all() {
 
 	echo
 	echo "CONF     = "${OPENHAB_SETUP_CONF}
+	pause
 	echo "SOURCE   = "${OPENHAB_SETUP_SOURCE}
 	echo "UserData = "${OPENHAB_SETUP_USERDATA}
 	echo "SRV Type = "${OPENHAB_SRV_TYPE}

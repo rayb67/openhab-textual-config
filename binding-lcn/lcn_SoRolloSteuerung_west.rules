@@ -1,0 +1,110 @@
+// Steuerung der Rollos/Raffstore in Abhaengigkeit von Winkel (Azimut), 
+// Temperatur, Lichtstaerke und Hoehe (Elevation).
+// Die Lichtstaerke wird ueber eine extra Rule ermittelt. Ziel ist es,
+// dass erst nach 20 Minuten Sonnenschein, die Rollos herunter fahren.
+// Wenn also bei einem Regentag, mal kurz ( kleiner 20 Minuten) die
+// Sonne da ist, soll nicht sofort alles runter fahren. Dann hatte man
+// ggf. am fruehen Morgen alles dunkeler im Haus.
+
+
+var Number SunProElevation = 2|°		// Ab wann solls denn losgehen
+
+//  Sollwert fuer Winkel Einfall und Ausfall der jeweiligen Hausseite
+// Einstellbarkeit ueber GUI ueberfluessig
+var Number SunProAzimutzWestEin = 146|° // 146  hard codiert
+var Number SunProAzimutzWestAus = 298|° // 298  hard codiert
+var Number SunProLichtWest = 1005       // 1050 hard codiert SollWert Lichtstaerke
+
+var Number SunProIllumination = 80000   // 80000 hard codiert SollWert Illumination
+
+rule "Sun-Protechtion-West"
+when
+//	Item astro_Azimuth changed
+	Time cron "0 */10 * * * ?"
+	or Item oh_SunPro_TestSwitch changed 
+then
+    logDebug("sun-protecton-west","##################################################################################")
+    if (WetterLichtWAvg.state == NULL || WetterLichtWAvg.state == UNDEF) {
+        logWarn("sun-protecton-west", "WetterLichtWAvg ist nicht verfügbar: " + WetterLichtWAvg.state)
+        return
+    }
+	
+	val sunpro_west =
+		"\r\nWest Licht : "+SunProLichtWest+ " < "+WetterLichtWAvg.state.format("%.0f")+
+		" (avg) Winkel : " +SunProAzimutzWestEin+"  < "+astro_Azimuth.state.format("%.0f")+
+		" < "+SunProAzimutzWestAus+"  Activ : "+oh_SunPro_control_West.state.toString+" Status : "+oh_SunPro_Status_West.state+
+		"\r\nill     : "+weather_illumination.state+" ill-Avg : "+weather_illumination_Avg.state
+
+	val sunpro_all =
+		"\r\nTemp Aussen Ist : "+TempAussen.state+" > Soll    : "+oh_SunPro_SollTemp_Aussen.state+
+		"\r\nTemp Aussen A3D : "+TempAussenAvg3D.state+" > Soll 3D : "+oh_SunPro_SollTemp_3DAussen.state+
+		"\r\nTemp Wohnzimmer : "+lcn_Temp_EG_WohnzSofa.state.format("%.0f")+" > Soll    : "+oh_SunPro_SollTemp_Wohnz.state.format("%.0f")+
+		"\r\nWinkel E     : "+astro_Elevation.state+" > "+SunProElevation
+
+	logDebug("sun-protecton-west",sunpro_all)
+	logDebug("sun-protecton-west","oh_SunPro_Status_LevelHit : "+oh_SunPro_Status_LevelHit.state)
+	logDebug("sun-protecton-west",sunpro_west)
+
+
+
+
+	if  (oh_SunPro_Status_LevelHit.state == ON)
+	{
+
+		logDebug("sun-protecton-west","West1 1 xxxxxx-")
+		/*
+		if  (SunProLichtWest < WetterLichtWAvg.state )
+		{			logInfo("sun-protecton-west","West1 OK  - Licht Soll : "+SunProLichtWest+" < "+WetterLichtWAvg.state.format("%.0f")+" Ist")
+		} else {	logInfo("sun-protecton-west","West1 NO  - Licht Soll : "+SunProLichtWest+" < "+WetterLichtWAvg.state.format("%.0f")+" Ist") }
+
+
+		*/
+		if  (weather_illumination_Avg.state > SunProIllumination )
+		{			logInfo("sun-protecton-west","West1 OK  - Licht Ist : "+weather_illumination_Avg.state+" > "+SunProIllumination+" Soll")
+		} else {	logDebug("sun-protecton-west","West1 NO  - Licht Ist : "+weather_illumination_Avg.state+" > "+SunProIllumination+" Soll") }
+
+		logDebug("sun-protecton-west",sunpro_west)
+
+val lichtWAvg = (WetterLichtWAvg.state as QuantityType<Illuminance>).floatValue
+val illumAvg  = (weather_illumination_Avg.state as QuantityType<Illuminance>).floatValue
+
+val lichtOK = lichtWAvg > SunProLichtWest.floatValue
+val illumOK = illumAvg > SunProIllumination.floatValue
+if (
+    (lichtOK || illumOK) &&
+    astro_Azimuth.state > SunProAzimutzWestEin &&
+    astro_Azimuth.state < SunProAzimutzWestAus &&
+    oh_SunPro_control_West.state != OFF
+)
+		{
+			logDebug("sun-protecton-west","West2-ein moeglich oh_SunPro_Status_West.state : "+oh_SunPro_Status_West.state)
+			if (oh_SunPro_Status_West.state != ON )
+			{
+				val actions = getActions("lcn","lcn:module:bus:S000M155")       // West ab  M155 C 5 HIT
+				actions.hitKey("C", 5, "HIT")
+				postUpdate( oh_SunPro_Status_West , "ON")
+				postUpdate( oh_SunPro_Status_KuecheAbendsHoch , "OFF")			// Reset
+				logInfo("sun-protecton-west","West2-ein 2")
+			}
+		}
+		else
+		{
+			logDebug("sun-protecton-west","West3 Licht : "+SunProLichtWest+" < Ist : "+WetterLichtWAvg.state.toString)
+			if (
+					(oh_SunPro_Status_West.state == ON ) &&
+					(astro_Elevation.state < SunProElevation) &&
+					(astro_Azimuth.state > SunProAzimutzWestAus) )        // Sonne geht weg
+			{
+				logDebug("sun-protecton-west","41-West")
+
+				if (oh_SunPro_BlockAbendsHoch.state != ON)
+				{
+					val actions = getActions("lcn","lcn:module:bus:S000M155")   // West auf M155 C 6 HIT
+					actions.hitKey("C", 6, "HIT")
+					logInfo("sun-protecton-west","42-West2-aus 2")
+				}
+				postUpdate(oh_SunPro_Status_West, "OFF")
+			}
+		}
+	}
+end

@@ -1,6 +1,6 @@
 Group		gVWConnect				"VW Golf" [Equipment]
 
-Switch		VWCar_Lights			"Licht On/Off [%s]"			<switch>		(gVWConnect) [Power,Switch] 
+Switch		VWCar_Lights			"Licht On/Off [%s]"			<switch>		(gVWConnect) [Control] 
 { channel="mqtt:topic:golf:lights" }
 String		VWCar_State				"Status"					<info>			(gVWConnect) [Point] 
 { channel="mqtt:topic:golf:state" }

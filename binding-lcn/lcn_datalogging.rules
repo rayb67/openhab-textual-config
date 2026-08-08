@@ -1,0 +1,64 @@
+// Ermittlung von Durchschnittsdaten.
+// Das ist relevant fuere verschiedene Aspekte
+// a) Einige durchschnitts Werte der Aussentemperatur... ist/war wichtig um eine Gefuehl zu bekommen, 
+//    wie stark die Temperatur schwankt. 
+// b) Wind... waru
+
+rule "Daten-15Min"
+when
+  Time cron "4 */4 * * * ?" // alle 15 min
+//  Time cron "4 36 22 * * ?"
+then
+	var Number WindTemp1 = Wind.averageSince(now.minusMinutes(130)) // 10 Minuten
+	WindAvg.postUpdate(WindTemp1)
+logDebug("datalogging","WindAvg  : "+WindAvg.state.format("%.2f"))
+
+  	var Number TempAvg  = TempAussen.averageSince(now.minusMinutes(130)) // 10 Minuten
+	TempAussenAvg.postUpdate(TempAvg)
+	logDebug("datalogging","TempAuss : "+TempAussen.state.format("%.2f")+"   TempAvg  125m / 30min: "+TempAvg)
+
+  	var Number TempAvg1 = TempAussen.averageSince(now.minusMinutes(1560)) // 1440 + 120
+	TempAussenAvg1D.postUpdate(TempAvg1)
+	logDebug("datalogging","TempAussenAvg1D : "+TempAvg1)
+  	var Number TempAvg2 = TempAussen.averageSince(now.minusMinutes(10080))
+	TempAussenAvg1W.postUpdate(TempAvg2)
+	logDebug("datalogging","TempAussenAvg1W : "+TempAvg2)
+  	var Number TempAvg3 = TempAussen.averageSince(now.minusMinutes(4320))
+	TempAussenAvg3D.postUpdate(TempAvg3)
+	logDebug("datalogging","TempAussenAvg3D : "+TempAvg3)
+
+// Die Temperaturen fuer den Durchschnitt werden nur aus den Raeumen ermittelt, die zum Sueden und Westen liegen.
+// Die anderen Rauem, vorallem der OGFlur (lcn_Temp_OG_Flur) sowie die OGAnkleide (lcn_Temp_OG_Ankleide) spielen keine Rolle
+// fuer die Ermittlung der Durchschnittstemperatur. Fuer den OGFlur gilt darueber hinaus, dass wenn das Dachfenster
+// in der Nacht geoeffnet wird, die Temperatur in dem Zeitraum relative stark nach unten geht. Damit wird der
+// Mittelwert ueber alle zusehr verfaelscht. 
+// OK, das ist vielleicht nicht so viel, aber immerhin sollte das nicht ausser acht gelassen werden.
+// new OH3 style force error in OH3
+    var Number templcn_Temp_EG_Avg = ( (lcn_Temp_EG_WohnzSofa.state as QuantityType<Number>).doubleValue +
+                                (lcn_Temp_EG_WohnzFlur.state as QuantityType<Number>).doubleValue+
+                                (lcn_Temp_EG_WohnzGarten.state as QuantityType<Number>).doubleValue+
+                                (lcn_Temp_EG_KuecheTerasse.state as QuantityType<Number>).doubleValue+
+                                (lcn_Temp_EG_KuecheWz.state as QuantityType<Number>).doubleValue+
+                                (lcn_Temp_EG_KuecheErker.state as QuantityType<Number>).doubleValue)
+    var Number templcn_Temp_OG_Avg = ( (lcn_Temp_OG_SchlafTuer.state as QuantityType<Number>).doubleValue +
+                                (lcn_Temp_OG_SchlafRechts.state as QuantityType<Number>).doubleValue+
+                                (lcn_Temp_OG_Gaeste.state as QuantityType<Number>).doubleValue+
+                                (lcn_Temp_OG_Buero.state as QuantityType<Number>).doubleValue+
+                                (lcn_Temp_OG_Kind.state as QuantityType<Number>).doubleValue+
+                                (lcn_Temp_OG_Gaeste.state as QuantityType<Number>).doubleValue)
+// old OH2 style force error in OH3
+/*
+	var Number templcn_Temp_OG_Avg = ( (lcn_Temp_OG_SchlafTuer.state as QuantityType<Number>).doubleValue )
+								(lcn_Temp_OG_SchlafTuer.state as DecimalType)+
+								(lcn_Temp_OG_SchlafRechts.state as DecimalType)+
+								(lcn_Temp_OG_Gaeste.state as DecimalType)+
+								(lcn_Temp_OG_Buero.state as DecimalType)+
+								(lcn_Temp_OG_Kind.state as DecimalType)+
+								(lcn_Temp_OG_Gaeste.state as DecimalType))
+*/
+	logDebug("datalogging","lcn_Temp_OG_Avg : "+templcn_Temp_OG_Avg)
+	lcn_Temp_OG_Avg.postUpdate(templcn_Temp_OG_Avg/6)
+	logDebug("datalogging","lcn_Temp_EG_Avg : "+templcn_Temp_EG_Avg)
+	lcn_Temp_EG_Avg.postUpdate(templcn_Temp_EG_Avg/6)
+ end  
+

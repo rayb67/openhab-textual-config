@@ -1,9 +1,75 @@
+rule "SunPro:LevelOn"
+when
+//    Item oh_SunPro_TestSwitch changed or
+    Time cron "0 0/10 * * * ?"	// alle 5 min
+then
+    logDebug("sunPro:Level", "==================== START ====================")
+
+    val avg3d =
+        TempAussenAvg3D.state as QuantityType<Temperature>
+
+    val avg3dSoll =
+        oh_SunPro_SollTemp_3DAussen.state as QuantityType<Temperature>
+
+    val wohnz =
+        lcn_Temp_EG_WohnzSofa.state as QuantityType<Temperature>
+
+    val wohnzSoll =
+        oh_SunPro_SollTemp_Wohnz.state as QuantityType<Temperature>
+
+    val aussen =
+        (TempAussen.state as DecimalType).doubleValue
+
+    val aussenSoll =
+        (oh_SunPro_SollTemp_Aussen.state as QuantityType<Temperature>).doubleValue
+
+    val condAvg3d  = avg3d > avg3dSoll
+    val condAussen = aussen > aussenSoll
+    val condWohnz  = wohnz > wohnzSoll
+
+    val levelHit = condAvg3d && condAussen && condWohnz
+
+    logDebug("sunPro:Level", "TempAussenAvg3D        : {}", avg3d)
+    logDebug("sunPro:Level", "SollTemp_3DAussen      : {}", avg3dSoll)
+    logDebug("sunPro:Level", "Bedingung Avg3D        : {}", condAvg3d)
+
+    logDebug("sunPro:Level", "TempAussen             : {} °C", aussen)
+    logDebug("sunPro:Level", "SollTemp_Aussen        : {} °C", aussenSoll)
+    logDebug("sunPro:Level", "Bedingung Aussen       : {}", condAussen)
+
+    logDebug("sunPro:Level", "Wohnzimmer             : {}", wohnz)
+    logDebug("sunPro:Level", "SollTemp_Wohnzimmer    : {}", wohnzSoll)
+    logDebug("sunPro:Level", "Bedingung Wohnzimmer   : {}", condWohnz)
+
+    logDebug("sunPro:Level", "----------------------------------------------")
+    logDebug("sunPro:Level", "Gesamtergebnis         : {}", levelHit)
+
+    if (levelHit) {
+        if (oh_SunPro_Status_LevelHit.state != ON) {
+            logInfo("sunPro:Level", "Statusänderung: OFF -> ON")
+            oh_SunPro_Status_LevelHit.postUpdate(ON)
+        } else {
+            logDebug("sunPro:Level", "Status bleibt ON")
+        }
+    } else {
+        if (oh_SunPro_Status_LevelHit.state != OFF) {
+            logInfo("sunPro:Level", "Statusänderung: ON -> OFF")
+            oh_SunPro_Status_LevelHit.postUpdate(OFF)
+        } else {
+            logDebug("sunPro:Level", "Status bleibt OFF")
+        }
+    }
+
+    logDebug("sunPro:Level", "Aktueller Status       : {}", oh_SunPro_Status_LevelHit.state)
+    logDebug("sunPro:Level", "===================== ENDE =====================")
+end
+
 // Die durchschnittliche Lichtstaerke der letzten 20 Min soll bei kurzen Sonnenstrahlen
 // genutzt werden, damit nicht sofort die Rollos herunter fahren
 
 // 2021.08.27 Zeit von 20 auf 30 min erhöht
 
-rule "Lichtstaerke"
+rule "SunPro:LichtAvg"
 when  
     Item WetterLichtW changed
     or  Time cron "0 0/5 * * * ?"	// alle 5 min
@@ -26,21 +92,20 @@ then
     if (lichtW_avg instanceof QuantityType) {
         validValues.add((lichtW_avg as QuantityType<Number>).doubleValue)
     }
-
-    logDebug("LichtAvgRule", "WetterLichtO    : "+ WetterLichtO.state+" avg : "+lichtO_avg)
-    logDebug("LichtAvgRule", "WetterLichtS    : "+ WetterLichtS.state+" avg : "+lichtS_avg)
-    logDebug("LichtAvgRule", "WetterLichtW    : "+ WetterLichtW.state+" avg : "+lichtW_avg)
+    logDebug("SunPro:LichtAvg", "WetterLichtO    : "+ WetterLichtO.state+" avg : "+lichtO_avg)
+    logDebug("SunPro:LichtAvg", "WetterLichtS    : "+ WetterLichtS.state+" avg : "+lichtS_avg)
+    logDebug("SunPro:LichtAvg", "WetterLichtW    : "+ WetterLichtW.state+" avg : "+lichtW_avg)
 
     val sum = validValues.reduce [ acc, v | acc + v ]
     val avg = sum / validValues.size
 
-    logDebug("LichtAvgRule", String::format("Durchschnittswert der letzten 30 Minuten: %.1f", avg))
+    logDebug("SunPro:LichtAvg", String::format("Durchschnittswert der letzten 30 Minuten: %.1f", avg))
 
 	WetterLichtSAvg.postUpdate(lichtS_avg)
 	WetterLichtOAvg.postUpdate(lichtO_avg)
 	WetterLichtWAvg.postUpdate(lichtW_avg)
-    logDebug("LichtAvgRule", "WetterLichtW    : "+ WetterLichtW.state+" avg : "+lichtW_avg)
-    logDebug("LichtAvgRule", "WetterLichtWAvg : "+ WetterLichtWAvg.state+" avg : "+lichtW_avg)
+    logDebug("SunPro:LichtAvg", "WetterLichtW    : "+ WetterLichtW.state+" avg : "+lichtW_avg)
+    logDebug("SunPro:LichtAvg", "WetterLichtWAvg : "+ WetterLichtWAvg.state+" avg : "+lichtW_avg)
 
     // Optional: Ergebnis in ein Item speichern
     // LichtDurchschnitt30min.postUpdate(avg)

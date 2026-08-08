@@ -6,28 +6,86 @@ var Number SunJustAzimuth = 180
 var Number SunJustElevation1In = 28.0
 var Number SunJustElevation2In = 16.0
 var Number SunJustElevationOut = 2
+var QuantityType<Angle> SunKuecheAbendsHoch = 13 | "°"  // hier geht es wieder hoch
 
-rule "SonnenschutzJustierung"
+rule "SunPro:KuecheAbendsHoch"
+when
+    Time cron "7 */10 * * * ?"    // alle 10 Minuten
+//	or Item astro_Elevation changed
+	or Item DummySwitch changed
+then
+	logDebug("SunPro:KuecheAbendsHoch","10-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+	logDebug("SunPro:KuecheAbendsHoch","10-Elevation ist                     : "+(astro_Elevation.state as Number)+" < soll : "+SunKuecheAbendsHoch)
+	logDebug("SunPro:KuecheAbendsHoch","10-oh_SunPro_KuecheAbendsHoch        : "+ oh_SunPro_KuecheAbendsHoch.state)
+	logDebug("SunPro:KuecheAbendsHoch","10-oh_SunPro_Status_KuecheAbendsHoch : "+ oh_SunPro_Status_KuecheAbendsHoch.state )
+	logDebug("SunPro:KuecheAbendsHoch","10-Elevation                         : "+ astro_Elevation.state.format("%.1f"))
+	logDebug("SunPro:KuecheAbendsHoch","10-lcn_Sensor_Licht_EG_Schleuse1     : "+ lcn_Sensor_Licht_EG_Schleuse1.state.format("%d") )
+
+	if(	
+		( astro_Elevation.state < SunKuecheAbendsHoch) &&
+		(oh_SunPro_Status_KuecheAbendsHoch.state != ON) &&
+		(oh_SunPro_KuecheAbendsHoch.state == ON) 
+		)
+	{
+		logInfo("SunPro:KuecheAbendsHoch","20-...drin")
+		if ( oh_SunPro_Status_KuecheAbendsHoch.state != ON )
+		{
+			logDebug("SunPro:KuecheAbendsHoch","22-hoch")
+			logInfo("SunPro:KuecheAbendsHoch","22-SunJustElevationOut            : "+SunJustElevationOut )
+			logInfo("SunPro:KuecheAbendsHoch","22-lcn_Sensor_Licht_EG_Schleuse1  : "+lcn_Sensor_Licht_EG_Schleuse1.state.format("%d") )
+		   	postUpdate(oh_SunPro_Status_KuecheAbendsHoch, "ON")
+			sendCommand(Rollo_EG_KuecheErkerLinks, UP)
+			sendCommand(Rollo_EG_KuecheErkerRechts, UP)
+			sendCommand(Rollo_EG_KuecheTuer, UP)
+			sendCommand(Rollo_EG_KuecheFenster, UP)
+		}
+		else
+		{
+			logInfo("SunPro:KuecheAbendsHoch","27-...ist schon oben")
+		}
+		
+	}
+	else
+	{
+		logDebug("SunPro:KuecheAbendsHoch","30...raus")
+	}
+
+	if(	
+		( astro_Elevation.state < (SunKuecheAbendsHoch - (1 | "°")) )
+		&& ( astro_Elevation.state < 0 )
+		) // Wenn es eins weniger ist, reset
+	{
+		logInfo("SunPro:KuecheAbendsHoch","99-...drin")
+		logInfo("SunPro:KuecheAbendsHoch","99-1 oh_SunPro_Status_KuecheAbendsHoch : "+ oh_SunPro_Status_KuecheAbendsHoch.state )
+		postUpdate(oh_SunPro_Status_KuecheAbendsHoch, "OFF")
+		logInfo("SunPro:KuecheAbendsHoch","99-2 oh_SunPro_Status_KuecheAbendsHoch : "+ oh_SunPro_Status_KuecheAbendsHoch.state )
+	}
+
+	
+end
+
+rule "SunPro:Justierung"
 when
 	Item astro_Elevation changed
 	or
-	Time cron "0 */15 * * * ?" //   4Min zum testen
+	Time cron "0 */10 * * * ?" //   4Min zum testen
 then
-	logDebug("SonnenschutzJustierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
+	logDebug("SunPro:Justierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state )
+	logDebug("SunPro:Justierung"," # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
 		
 	if(	(astro_Elevation.state < SunJustElevation1In) && 
 		(astro_Azimuth.state > SunJustAzimuth) && 
 		(astro_Elevation.state > SunJustElevationOut) &&
 		(oh_SunPro_Status_West.state == ON) )
 	{
-		logDebug("SonnenschutzJustierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
+		logInfo("SunPro:Justierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
 		if(oh_SunPro_Justierung.state != OFF) 
 		{
-			logDebug("SonnenschutzJustierung", "Anfang RollJustierungState : "+ oh_SunPro_Status_Justieren.state)
+			logInfo("SunPro:Justierung", "Anfang RollJustierungState : "+ oh_SunPro_Status_Justieren.state)
 			if ( oh_SunPro_Status_Justieren.state != ON )
 		 	{
-				logDebug("SonnenschutzJustierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
-	 			logInfo("SonnenschutzJustierung", "3.1 - Lamelle runter")
+				logDebug("SunPro:Justierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevation1In + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
+	 			logInfo("SunPro:Justierung", "3.1 - Lamelle runter")
 
 				val actions = getActions("lcn","lcn:module:bus:S000M155")
 				actions.hitKey("B", 8, "HIT")
@@ -37,8 +95,8 @@ then
 		} 
 		else
 		{
-			logDebug("SonnenschutzJustierung","57.1 - Daemmerung ....")
-			logDebug("SonnenschutzJustierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevationOut + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
+			logDebug("SunPro:Justierung","57.1 - Daemmerung ....")
+			logDebug("SunPro:Justierung","OhSJ : "+ oh_SunPro_Justierung.state+" # RJState : "+oh_SunPro_Status_Justieren.state+" SunProtWest :" +oh_SunPro_Status_West.state + " # Elevation : "+ astro_Elevation.state.format("%.1f")+" < "+SunJustElevationOut + " # Azimuth : "+astro_Azimuth.state.format("%.1f"))
 		}
 	}
 

@@ -5,6 +5,7 @@ sitemap comfoair label="ComfoAir" {
 		Setpoint item=comfoair_soll_TempAussen step=0.5 minValue=15 maxValue=28 valuecolor=["black"]
 		Text item=comfoair_control valuecolor=[OFF="silver", ON="black"]
 		Switch item=comfoair_Test
+		Switch item=comfoair_state_heiss
 	}
 	Frame label="State" {
 		Text item=comfoair_IncomingFan valuecolor=["black"]
@@ -27,6 +28,10 @@ sitemap comfoair label="ComfoAir" {
 		Text item=comfoair_Error labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
 		Text item=comfoair_ErrorLast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
 		Text item=comfoair_ErrorPrelast labelcolor=[!="No Errors"="red"] valuecolor=[!="No Errors"="red"]
+		Default item=comfoAir_Laufzeiten_Stufe_0
+		Default item=comfoAir_Laufzeiten_Stufe_1
+		Default item=comfoAir_Laufzeiten_Stufe_2
+		Default item=comfoAir_Laufzeiten_Stufe_3
 	}
 	Frame label="Bypass" {
 		Text item=comfoair_OptionsBypass valuecolor=[1="green", 0="red"]
@@ -35,14 +40,28 @@ sitemap comfoair label="ComfoAir" {
 		Text item=comfoair_BypassFactor
 		Text item=comfoair_BypassLevel
 		Text item=comfoair_BypassCorrection
-		Text item=comfoair_BypassTime
+		Default item=comfoair_BypassTime
+		Default item=comfoair_FreezeTime
 	}
 	Frame label="Option" {
 		Text item=comfoair_OptionsCookerhood valuecolor=[1="green", 0="red"]
-		Text item=comfoair_GHXMode valuecolor=[OFF="red", ON="green"]
 	}
 	Frame label="Automode" {
-		Switch item=comfoair_auto_onoff
-		Switch item=comfoair_auto_status
+		Switch item=comfoair_control_auto
+		Switch item=comfoair_state_night
+	}
+
+	Frame label="Lueftung" {
+		Switch	item=comfoair_Test
+		Switch item=comfoair_control_noon
+		Switch item=comfoair_control_auto
+		Switch item=comfoair_state_heiss
+		Default item=TempAussen
+		Default item=lcn_Temp_EG_WohnzSofa
+		Default item=TempAussenAvg3D
+		Setpoint item=comfoair_soll_TempAussen
+		Setpoint item=comfoair_soll_TempWohnzimmer
+		Setpoint item=comfoair_soll_3DTempAussen
+		Chart item=TempAussenAvg3D period=3D refresh=300
 	}
 }

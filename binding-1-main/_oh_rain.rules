@@ -1,0 +1,126 @@
+var Number bewaesserung_avg_time = 24	// time sind we measure last rain
+var Number bewaesserung_temperature = 6 // Seit soviel Stunden die Durchschnitsstemperatur
+var Number tmp_temperatur	           
+var Number tmp_minutes = 45 
+
+// Quelle Ecowitt
+// Hier wird der Status fuer Regen gesetzt
+rule "OhRain:Ecowitt"
+when
+    Item weather_rain_event changed
+	or Item weather_TestSwitch changed
+    or Time cron "2 */30 * * * ?" // alle 30 minuten
+then
+    logDebug("OhRain:Ecowitt","#########################################")
+	// ... in case of test-system without a status
+    if ( Oh_Soll_Rain_Volume.state == NULL) {
+		logWarn("OhRain:Ecowitt","Oh_Soll_Rain_Volume.state ... NULL - FAILURE")
+		return;
+	}
+    if ( weather_rain_event.state == NULL) {
+		logWarn("OhRain:Ecowitt","weather_rain_event.state ... NULL - FAILURE")
+		return;
+	}
+
+	val avgRainState = weather_rain_event.averageSince(now.minusHours(32))
+
+	if (avgRainState === null) {
+	 logWarn("OhRain:Ecowitt", "Kein Wert für die letzten 24h")
+	 return
+	}
+
+	val avgRain = avgRainState as QuantityType<?>
+	val avgRainMm = avgRain.toUnit("mm").doubleValue
+
+	logDebug("OhRain:Ecowitt", "3 : {} mm", avgRainMm)
+
+
+//	var Number tempRainAvg = (weather_rain_event.averageSince(now.minusHours(12)) as QuantityType<Energy>).doubleValue
+
+    logDebug("OhRain:Ecowitt","#########################################\r\n")
+    logDebug("OhRain:Ecowitt","weather_rain_event   : "+weather_rain_event.state)
+    logDebug("OhRain:Ecowitt","Oh_Soll_Rain_Volume  : "+Oh_Soll_Rain_Volume.state)
+    logDebug("OhRain:Ecowitt","avgRain              : "+avgRain)
+
+//    if (weather_rain_event.state > Oh_Soll_Rain_Volume.state) {
+    if (avgRain > Oh_Soll_Rain_Volume.state) {
+        logDebug("OhRain:Ecowitt","groesser >>>>>>>>>>>>>")
+		logDebug("OhRain:Ecowitt","ist > soll  "+weather_rain_event.state + " > "+Oh_Soll_Rain_Volume.state)
+        Oh_Regen_in_24h.postUpdate(ON)
+    } else {
+        logDebug("OhRain:Ecowitt","kleiner <<<<<<<<<<")
+        Oh_Regen_in_24h.postUpdate(OFF)
+    }
+    logDebug("OhRain:Ecowitt","Oh_Regen_in_24h : "+Oh_Regen_in_24h.state)
+end
+
+
+// Den Status ob es geregnet hat muss irgend wann wieder auf 0 gesetzt werfden.
+// Das kann man nach eine Zeit machen,
+// Das kann man ueber einen Feuchtesensor messen... wenn man den hat
+rule "OhRain:reset"
+when
+	Time cron "0 1 * * * ?" // stuendlich
+	or Item Bewaesserung_Test changed
+then
+	logDebug("OhRain:reset","\r\n")
+    if (weather_rain_event.state == 0) 
+	{
+    	logDebug("OhRain:reset","20-weather_rain_event   : "+weather_rain_event.state)
+		logDebug("OhRain:reset","20-reset")
+    	Oh_Regen_in_24h.postUpdate(OFF)
+	} else {
+    	logDebug("OhRain:reset","21-weather_rain_event   : "+weather_rain_event.state)
+		logDebug("OhRain:reset","21-no          : "+ Oh_Regen_count.state+" > "+tmp_minutes)
+	}
+end
+
+// Quelle LCN!!!
+// Hier wird der Status fuer Regen gesetzt
+rule "OhRain:LCN"
+when
+//	Item Bewaesserung_Test changed or
+    Time cron "0 */20 * * * ?" // every minute
+then
+
+	logDebug("OhRain:LCN","xxxxxxxxxxxxxxxx")
+	logDebug("OhRain:LCN",".....                : "+ Oh_Regen_count.state+" > "+tmp_minutes)
+	logDebug("OhRain:LCN","Oh_Regen_in_24h      : "+Oh_Regen_in_24h.state)
+
+	// ... in case of test-system without a status
+    if ( WetterRegen.state == NULL) {
+		logWarn("OhRain:LCN","WetterRegene : ",WetterRegen.state)
+		return;
+	}
+
+	// WetterRegen is from lcn_weather station
+	// we count every minute if rain the status from LCN is raining
+    if ( WetterRegen.state != OPEN) 
+	{
+		Oh_Regen_count.postUpdate(Oh_Regen_count.state as Number + 1)
+		logDebug("OhRain:LCN","Status :"+WetterRegen.state+" count : "+Oh_Regen_count.state+" ....kein regen mehr als : "+tmp_minutes+" minuten")
+	}
+
+    if	(
+			(Oh_Regen_count.state as Number  > tmp_minutes) &&
+			(Oh_Regen_in_24h.state != ON)
+		)
+	{
+		Oh_Regen_in_24h.postUpdate(ON)
+		logDebug("OhRain:LCN","es regnet mehr als :"+tmp_minutes+" minuten")
+		logDebug("OhRain:LCN","Ecowitt Ist "+weather_rain_event.state+" > Soll "+Oh_Soll_Rain_Volume.state)
+	} 
+	else { logDebug("OhRain:LCN","Status :"+WetterRegen.state+" count : "+Oh_Regen_count.state+" ....kein regen mehr als : "+tmp_minutes+" minuten") 
+	}
+
+// Um 9:53 Uhr wird der Wert auf 0 gesetzt
+// da zu dem Zeitpunkt die Bewaesserung gestartet ist
+// und fuer den naechsten Tag alles wieder zurueck gesetzt wird
+    if (now.getHour() == 9 && now.getMinute() == 53)
+	{
+		Oh_Regen_count.postUpdate(0)
+		Oh_Regen_in_24h.postUpdate(OFF)
+		logDebug("OhRain:LCN","set 0, was : "+Oh_Regen_count.state)
+    }
+	logDebug("OhRain:LCN","Ende")
+end

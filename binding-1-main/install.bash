@@ -18,9 +18,9 @@ else
 	DATAPATH=${OPENHAB_SETUP_SOURCE}/${BINDING}
 fi
 
-cp ${DATAPATH}/_groups.items ${OPENHAB_SETUP_CONF}/items/.
-cp ${DATAPATH}/_oh.items ${OPENHAB_SETUP_CONF}/items/.
-cp ${DATAPATH}/_holiday.script ${OPENHAB_SETUP_CONF}/scripts/.
-cp ${DATAPATH}/_holiday.rules ${OPENHAB_SETUP_CONF}/rules/.
-cp ${DATAPATH}/_mqtt_broker.things ${OPENHAB_SETUP_CONF}/things/.
+cp ${DATAPATH}/_*.items ${OPENHAB_SETUP_CONF}/items/.
+cp ${DATAPATH}/_*.script ${OPENHAB_SETUP_CONF}/scripts/.
+cp ${DATAPATH}/_*.rules ${OPENHAB_SETUP_CONF}/rules/.
+cp ${DATAPATH}/_*.sitemap ${OPENHAB_SETUP_CONF}/sitemaps/.
+cp ${DATAPATH}/_*.things ${OPENHAB_SETUP_CONF}/things/.
 chown -R ${OPENHAB_USER}:${OPENHAB_GROUP}  ${OPENHAB_SETUP_CONF}
